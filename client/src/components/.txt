@@ -1,0 +1,7 @@
+IMPORTANTE --> cada componente debe cumplir una solo funcion
+
+- Solo componentes funcionales
+- Usar hooks
+- Texto en ingles 
+- Comentarios en español
+- Componente y css en una misma carpeta
