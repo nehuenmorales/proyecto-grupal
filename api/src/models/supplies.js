@@ -15,7 +15,6 @@ module.exports = (sequelize) => {
     },
     sport:{
       type: DataTypes.STRING,
-      allowNull: false,
     },
     price:{
       type: DataTypes.INTEGER,
