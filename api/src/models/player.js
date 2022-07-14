@@ -36,12 +36,12 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     elo:{
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false,
       defaultValue:0,
     },
     status:{
-      type: DataTypes.ENUM("allowed","Banned"),
+      type: DataTypes.ENUM("allowed","banned"),
       allowNull: false,
       defaultValue:"allowed"
     }
