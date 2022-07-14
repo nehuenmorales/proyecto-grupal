@@ -11,25 +11,27 @@ module.exports = (sequelize) => {
     },
     date: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false
     },
     sport: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: false
     },
     status: {
         type: DataTypes.ENUM('In Progress', 'Incomplete', 'Complete'),
-        allowNull: true
+        allowNull: false
     },
     result: {
         type: DataTypess.STRING,
+        allowNull: true
     },
     duration: {
         type: DataTypes.STRING,
-        allowNull: true
+        allowNull: false
     },
     link: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        allowNull: true
     }
 
   });
