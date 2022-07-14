@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     image: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING, //DataTypes.BLOB("Long")
       allowNull: false,
     },
     description: {
@@ -23,8 +23,13 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     rating: {
-      type: DataTypes.STRING,
-      allowNull: false,
+      type: DataTypes.FLOAT,
+      defaultValue: 2.5,
+      allowNull: true,
+      validate: {
+        min: 1,
+        max: 5,
+      },
     },
     adress: {
       type: DataTypes.STRING,
