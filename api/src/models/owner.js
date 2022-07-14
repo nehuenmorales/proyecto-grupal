@@ -30,20 +30,6 @@ module.exports = (sequelize) => {
     password:{
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    city:{
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    elo:{
-      type: DataTypes.STRING,
-      allowNull: false,
-      defaultValue:0,
-    },
-    status:{
-      type: DataTypes.ENUM("allowed","Banned"),
-      allowNull: false,
-      defaultValue:"allowed"
     }
   },{
     timestamps:false
