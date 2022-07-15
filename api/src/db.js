@@ -52,7 +52,25 @@ player.belongsToMany(games, {through:"player_games", timestamps: false})
 games.belongsToMany(player, {through:"player_games", timestamps: false})
 
 teams.belongsTo(games)
+games.hasMany(teams)
 
+supplies.belongsTo(complex)
+complex.hasMany(supplies)
+
+field.belongsTo(complex)
+complex.hasMany(field)
+
+games.belongsTo(field)
+field.hasMany(games)
+
+games.belongsTo(tournament)
+tournament.hasMany(games)
+
+products.belongsTo(sponsors)
+sponsors.hasMany(products)
+
+complex.belongsTo(owner)
+owner.belongsTo(complex)
 
 
 module.exports = {
