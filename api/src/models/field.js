@@ -28,6 +28,14 @@ module.exports = (sequelize) => {
         allowNull: false,
         primaryKey: true,
       },
+      description: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
+      appointments: {
+        type: DataTypes.ARRAY(DataTypes.JSONB),
+        allowNull: false,
+      },
     },
     {
       timestamps: false,
