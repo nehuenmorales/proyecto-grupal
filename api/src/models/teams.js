@@ -4,20 +4,30 @@ const { DataTypes } = require("sequelize");
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define(
-    "sponsors",
+    "teams",
     {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
-        primaryKey: true,
       },
-      link: {
+      rating: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+      },
+      elo: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0,
+      },
+      image: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
       },
-      description: {
+      sports: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
       },
     },
     {
