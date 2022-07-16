@@ -6,6 +6,7 @@ const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAMEDB } = process.env;
 
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAMEDB}`,
+
   {
     logging: false, // set to console.log to see the raw SQL queries
     native: false, // lets Sequelize know we can use pg-native for ~30% more speed
@@ -37,41 +38,57 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { complex, field, games, owner, player, products, sponsors, supplies, teams, tournament } = sequelize.models;
+const {
+  Complex,
+  Field,
+  Games,
+  Owner,
+  Player,
+  Products,
+  Sponsors,
+  Supplies,
+  Teams,
+  Tournament,
+} = sequelize.models;
 
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
-player.belongsToMany(teams, {through:"player_teams", timestamps: false})
-teams.belongsToMany(player, {through:"player_teams", timestamps: false})
+Player.belongsToMany(Teams, { through: "player_teams", timestamps: false });
+Teams.belongsToMany(Player, { through: "player_teams", timestamps: false });
 
-teams.belongsToMany(tournament, {through:"teams_tournament", timestamps: false})
-tournament.belongsToMany(teams, {through:"teams_tournament", timestamps: false})
+Teams.belongsToMany(Tournament, {
+  through: "teams_tournament",
+  timestamps: false,
+});
+Tournament.belongsToMany(Teams, {
+  through: "teams_tournament",
+  timestamps: false,
+});
 
-player.belongsToMany(games, {through:"player_games", timestamps: false})
-games.belongsToMany(player, {through:"player_games", timestamps: false})
+Player.belongsToMany(Games, { through: "player_games", timestamps: false });
+Games.belongsToMany(Player, { through: "player_games", timestamps: false });
 
-teams.belongsTo(games)
-games.hasMany(teams)
+Teams.belongsTo(Games);
+Games.hasMany(Teams);
 
-supplies.belongsTo(complex)
-complex.hasMany(supplies)
+Supplies.belongsTo(Complex);
+Complex.hasMany(Supplies);
 
-field.belongsTo(complex)
-complex.hasMany(field)
+Field.belongsTo(Complex);
+Complex.hasMany(Field);
 
-games.belongsTo(field)
-field.hasMany(games)
+Games.belongsTo(Field);
+Field.hasMany(Games);
 
-games.belongsTo(tournament)
-tournament.hasMany(games)
+Games.belongsTo(Tournament);
+Tournament.hasMany(Games);
 
-products.belongsTo(sponsors)
-sponsors.hasMany(products)
+Products.belongsTo(Sponsors);
+Sponsors.hasMany(Products);
 
-complex.belongsTo(owner)
-owner.belongsTo(complex)
-
+Complex.belongsTo(Owner);
+Owner.hasMany(Complex);
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

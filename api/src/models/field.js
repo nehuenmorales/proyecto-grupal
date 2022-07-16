@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       available: {
-        type: DataTypes.ENUM(true, false),
+        type: DataTypes.ENUM("true", "false"), // no puede ser un booleano porque rompe
         allowNull: false,
       },
       pricePerHour: {
