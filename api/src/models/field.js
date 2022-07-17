@@ -6,6 +6,12 @@ module.exports = (sequelize) => {
   sequelize.define(
     "field",
     {
+      id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        allowNull: true,
+        primaryKey: true,
+      },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -21,12 +27,6 @@ module.exports = (sequelize) => {
       pricePerHour: {
         type: DataTypes.INTEGER,
         allowNull: false,
-      },
-      id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        allowNull: true,
-        primaryKey: true,
       },
       description: {
         type: DataTypes.TEXT,
