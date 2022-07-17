@@ -1,4 +1,4 @@
-const { Field } = require("../../db.js");
+const { Field } = require("../../../db.js");
 
 async function modifyField(req, res, next) {
   const { id } = req.params;

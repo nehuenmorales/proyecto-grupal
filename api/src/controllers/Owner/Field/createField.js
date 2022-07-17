@@ -1,4 +1,4 @@
-const { Complex, Field } = require("../../db.js");
+const { Complex, Field } = require("../../../db");
 
 async function createField(req, res, next) {
   const {
@@ -20,7 +20,7 @@ async function createField(req, res, next) {
       appointments, // aca configurar magui y lara
     });
 
-    //FALTA LA RUTA DE CREACION DEL USUARIO/COMPLEJO
+    //FALTA LA RUTA DE CREACION DEL USUARIO/COMPLEJO para linkear a un complejo
 
     // busco el complejo que crea la cancha
     // const complexField = await Complex.findOne({
