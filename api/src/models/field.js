@@ -32,10 +32,18 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
-      appointments: {
-        type: DataTypes.ARRAY(DataTypes.JSONB),
-        allowNull: false,
+      capacity: {
+        type: DataTypes.INTERGER,
+        allowNull: false
       },
+      start:{
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      end: {
+        type: DataTypes.STRING,
+        allowNull: false
+      }
     },
     {
       timestamps: false,

@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
         primaryKey: true,
       },
       date: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING, 
         allowNull: false,
       },
       sport: {
@@ -20,21 +20,25 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       status: {
-        type: DataTypes.ENUM("In Progress", "Incomplete", "Complete"),
+        type: DataTypes.ENUM("free", "booked"),
         allowNull: false,
       },
       result: {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      duration: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
       link: {
         type: DataTypes.STRING,
         allowNull: true,
       },
+      start: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      end: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      }
     },
     {
       timestamps: false,

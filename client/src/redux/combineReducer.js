@@ -1,5 +1,4 @@
-import {combineReducers} from 'redux';
-
+import {combineReducers } from 'redux';
 import reducer from './Profiles/profiles-reducer'
 
 export const reducers = combineReducers({
