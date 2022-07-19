@@ -1,13 +1,13 @@
 const { Router } = require("express");
 // Importar todos los routers;
 
-const users = require("./users.js");
+const player = require("./player.js");
 const owner = require("./owner.js");
 
 const router = Router();
 
 // Configurar los routers
-router.use("/users", users);
+router.use("/player", player);
 router.use("/owner", owner);
 
 module.exports = router;
