@@ -6,12 +6,6 @@ module.exports = (sequelize) => {
   sequelize.define(
     "field",
     {
-      id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        allowNull: true,
-        primaryKey: true,
-      },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -33,7 +27,7 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       capacity: {
-        type: DataTypes.INTERGER,
+        type: DataTypes.INTEGER,
         allowNull: false
       },
       start:{
