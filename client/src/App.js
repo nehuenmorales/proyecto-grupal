@@ -1,7 +1,7 @@
 import "./App.css";
 import React from "react";
 import { Route } from "react-router-dom";
-import CreateFields from "./components/Fields/CreateFields/CreateFields";
+import CreateFields from "./components/Fields/CreateFields/createFields";
 //import Home from './Home.component';
 
 function App() {

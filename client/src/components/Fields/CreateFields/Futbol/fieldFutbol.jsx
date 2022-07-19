@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createField } from "../../../../redux/OwnerFields/fieldsActions";
@@ -10,7 +11,8 @@ export default function FutbolFields() {
       name: "",
       sport: "futbol",
       available:"",
-      pricePerTurn:"",// falta agregar durationPerTurn
+      pricePerTurn:"",
+      durationPerTurn:"",
       description: "",
       capacity:"",
       start:"",
@@ -21,6 +23,7 @@ export default function FutbolFields() {
         name: "Enter the name of the field.",
         available: "Is it available to use?",
         pricePerTurn: "Enter the price per hour",
+        durationPerTurn:"Enter the duration of the turn.",
         description: "Would be nice if you tell us a little bit of this field",
         capacity: "Enter how many player per team can play in that field. ej: (Futbol) 11,7 ",
         start: "Enter the time range in which the players can play",
@@ -40,18 +43,25 @@ export default function FutbolFields() {
         if (property === "available" && !value) {
           return (validations[property] = "Choose an option");
         }
-        if (property === "pricePerTurn" && !beNumber.test(value) && !value) {
-          return (validations[property] =
-            "Enter the price per hour, Must be a number");
+        if (property === "pricePerTurn" && (!beNumber.test(value) ) ) {
+            if ( !value){
+
+                return (validations[property] =
+                  "Enter the price per hour, Must be a number");
+            }
         }
+        if (property === "durationPerTurn" && (!beNumber.test(value) || !value)) {
+            return (validations[property] =
+                "Enter the duration of the turn.");
+          }
         if (property === "description" && !value) {
           return (validations[property] =
             "Would be nice if you tell us a little bit of this field");
         }
-        if (property === "capacity" && !value && !beNumber.test(value) && value>0 && value<12) {
+        if (property === "capacity" (!beNumber.test(value) || !value || value>0 || value<12) ) {
           return (validations[property] = "Enter how many player per team can play in that field. ej: (Futbol) 11,7 ");
         }
-        if (property === "start" && !value) {// aca para abajo magui y lara
+        if (property === "start" && (!beNumber.test(value) || !value || value>=0 || value<24)) {// aca para abajo magui y lara
           return (validations[property] =
             "Enter the time range in which the players can play");
         }
@@ -65,7 +75,7 @@ export default function FutbolFields() {
       };
 
     const handleInputChange = (e) => {
-    console.log(errors);
+    
     if (e.target.name === "pricePerTurn") {
         setNewField({
             ...newField,
@@ -73,44 +83,51 @@ export default function FutbolFields() {
         });
     }
     if (e.target.name === "capacity") {
+        
         setNewField({
             ...newField,
-            [e.target.name]: parseInt(e.target.value*2),
+            [e.target.name]: parseInt(e.target.value)*2,
         });
-    }
+    }else{
         setNewField({
             ...newField,
             [e.target.name]: e.target.value,
         });
         // console.log(validator(e));
         // console.log(e.target.value);
+    }
         
         setErrors({ ...errors, [e.target.name]: validator(e) });
+        console.log(newField)
     }
     
 
-    const hanldeAvailable = (e) => {
+    const handleAvailable = (e) => {
+        console.log(e.target.value)
         setNewField({
         ...newField,
         available: e.target.value,
         });
-        setErrors({ ...errors, [e.target.name]: validator(e) })
+        setErrors({ ...errors, available:"" })
+        
     };
     const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createField(newField)); //crear reducer que cree una receta en actions
+    dispatch(createField(newField)); 
     console.log(newField);
     setNewField({
         name: "",
-        sport: "",
+        sport: "futbol",
         available:"",
         pricePerTurn:"",
+        durationPerTurn:"",
         description: "",
         capacity: "",
         start: "",
         end:""
     });
-    alert("Creaste una Cancha!");
+    alert("creaste la cancha")
+    
     //window.location.href = "/home"; aca nos llevaria al home en caso de que cuando se cree una nueva vaya al home
     //o se quede en la misma pag
     };
@@ -154,7 +171,7 @@ export default function FutbolFields() {
             </span>
           </div>
           <div>
-            <h3>Price per hour:</h3>
+            <h3>Price per Turn:</h3>
             <input
               type="text"
               name="pricePerTurn"
@@ -162,6 +179,16 @@ export default function FutbolFields() {
               onChange={(e) => handleInputChange(e)}
             />
             {errors.pricePerTurn ? <div>{errors.pricePerTurn}</div> : null}
+          </div>
+          <div>
+            <h3>Duration per Turn:</h3>
+            <input
+              type="text"
+              name="durationPerTurn"
+              placeholder="durationPerTurn"
+              onChange={(e) => handleInputChange(e)}
+            />
+            {errors.durationPerTurn ? <div>{errors.durationPerTurn}</div> : null}
           </div>
           <div>
             <h3>Description:</h3>
@@ -185,28 +212,26 @@ export default function FutbolFields() {
           </div>
           <div>
             <h3>Is it available to use Right now?</h3>
-            <form>
+            
               <input
                 type="button"
                 value="true"
                 name="true"
-                onClick={(e) => hanldeAvailable(e)}
+                onClick={(e) => handleAvailable(e)}
               />
               Yes
               <input
                 type="button"
                 value="false"
                 name="false"
-                onClick={(e) => hanldeAvailable(e)}
+                onClick={(e) => handleAvailable(e)}
               />
               No
-            </form>
+            
             {errors.available ? <div>{errors.available}</div> : null}
 
           </div>
-          {!Object.values(errors).length ? (// 
-            <button type="submit">CREATE FIELD</button>
-          ) : <button type="submit" disabled>CREATE FIELD</button>}
+          <button type="submit" disabled={!errors.name &&!errors.durationPerTurn && !errors.start &&!errors.end &&!errors.available &&!errors.pricePerTurn &&!errors.capacity &&!errors.description ? false :true } >CREATE FIELD</button>
         </form>
         </div>
       )
