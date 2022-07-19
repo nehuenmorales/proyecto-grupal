@@ -5,9 +5,12 @@ async function createField(req, res, next) {
     name,
     sport,
     available,
-    pricePerHour,
+    pricePerTurn,
+    durationPerTurn,
     description,
-    appointments, // aca configurar magui y lara
+    capacity,
+    start,
+    end, // aca configurar magui y lara
     complexId,
   } = req.body;
   try {
@@ -15,9 +18,13 @@ async function createField(req, res, next) {
       name,
       sport,
       available,
-      pricePerHour,
+      pricePerTurn,
+      durationPerTurn,
       description,
-      appointments, // aca configurar magui y lara
+      capacity,
+      start,
+      end, // aca configurar magui y lara
+    
     });
 
     //FALTA LA RUTA DE CREACION DEL USUARIO/COMPLEJO para linkear a un complejo
