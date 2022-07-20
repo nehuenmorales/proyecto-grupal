@@ -34,6 +34,7 @@ async function createField(req, res, next) {
     //   where: { id: complexId },
     // });
     // newField.addField(complexField); // asocio la cancha con el complejo
+    console.log('creado correctamente')
     res.status(200).json(newField);
   } catch (e) {
     console.log("fallo la creacion de la cancha", e);

@@ -136,7 +136,7 @@ export default function FutbolFields() {
         <div>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <div>
-                    <h3>Nombre:</h3>
+                    <h3>Nombre</h3>
                     <input
                     type="text"
                     name="name"
@@ -147,7 +147,7 @@ export default function FutbolFields() {
                 </div>
                 <div>
             <h3>Horario de la cancha</h3>
-            <span><h5>Apertura:</h5>
+            <span><h5>Apertura</h5>
             <input
               type="text"
               name="start"
@@ -157,7 +157,7 @@ export default function FutbolFields() {
             {errors.start ? <div>{errors.start}</div> : null}
             </span>
             <span>
-                <h5>Cierre:</h5>
+                <h5>Cierre</h5>
                 <input
                 type="text"
                 name="end"
@@ -168,7 +168,7 @@ export default function FutbolFields() {
             </span>
           </div>
           <div>
-            <h3>Precio por turno:</h3>
+            <h3>Precio por turno</h3>
             <input
               type="text"
               name="pricePerTurn"
@@ -178,7 +178,7 @@ export default function FutbolFields() {
             {errors.pricePerTurn ? <div>{errors.pricePerTurn}</div> : null}
           </div>
           <div>
-            <h3>Duracion por turno:</h3>
+            <h3>Duracion por turno</h3>
             <input
               type="time"
               name="durationPerTurn"
@@ -188,7 +188,7 @@ export default function FutbolFields() {
             {errors.durationPerTurn ? <div>{errors.durationPerTurn}</div> : null}
           </div>
           <div>
-            <h3>Description:</h3>
+            <h3>Description</h3>
             <input
               type="text"
               name="description"
@@ -198,7 +198,7 @@ export default function FutbolFields() {
             {errors.description ? <div>{errors.description}</div> : null}
           </div>
           <div>
-            <h3>Capacidad:</h3>
+            <h3>Capacidad</h3>
             <input
               type="text"
               name="capacity"
@@ -208,27 +208,26 @@ export default function FutbolFields() {
             {errors.capacity ? <div>{errors.capacity}</div> : null}
           </div>
           <div>
-            <h3>¿Esta disponible para usar?</h3>
+            <h3>¿Está disponible para usar?</h3>
             
-              <input
+            <button
                 type="button"
                 value="true"
                 name="true"
                 onClick={(e) => handleAvailable(e)}
-              />
-              Disponible
-              <input
+              >Disponible</button>
+              <button
                 type="button"
                 value="false"
                 name="false"
                 onClick={(e) => handleAvailable(e)}
-              />
-              No disponible
+              >No disponible</button>
+              
             
             {errors.available ? <div>{errors.available}</div> : null}
 
           </div>
-          <button type="submit" disabled={!errors.name && !errors.durationPerTurn && !errors.start && !errors.end && !errors.available && !errors.pricePerTurn && !errors.capacity && !errors.description ? false :true } >CREATE FIELD</button>
+          <button type="submit" disabled={!errors.name && !errors.durationPerTurn && !errors.start && !errors.end && !errors.available && !errors.pricePerTurn && !errors.capacity && !errors.description ? false :true } >CREAR C</button>
         </form>
         </div>
       )

@@ -1,6 +1,9 @@
+import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createField } from "../../../../redux/OwnerFields/fieldsActions";
+
+
 
 export default function TenisFields() {
     const dispatch = useDispatch();
@@ -8,7 +11,8 @@ export default function TenisFields() {
       name: "",
       sport: "tenis",
       available:"",
-      pricePerHour:"",
+      pricePerTurn:"",
+      durationPerTurn:"",
       description: "",
       capacity:4,
       start:"",
@@ -16,94 +20,100 @@ export default function TenisFields() {
     });
 
     const [errors, setErrors] = useState({
-        name: "Enter the name of the field.",
-        available: "Is it available to use?",
-        pricePerHour: "Enter the price per hour",
-        description: "Would be nice if you tell us a little bit of this field",
-        start: "Enter the time range in which the players can play",
-        end: "Enter the time range in which the players can play"
+        name: "Debe ingresar un nombre",
+        available: "",
+        pricePerTurn: "",
+        durationPerTurn:"",
+        description: "",
+        start: "",
+        end: ""
       });
-
-      const validator = (e) => {// funcion que valida que todos los inputs tengan un valor "aceptable"
+      
+      const validator = (field) => {// funcion que valida que todos los inputs tengan un valor "aceptable"
         let validations = {};
         const beNumber = /(^\d{1,10}$)/;
-        const property = e.target.name;
-        const value = e.target.value;
-    
-        if (property === "name" && !value) {
-          return (validations[property] = "Enter the name of the field.");
+        if(!field.name){
+          validations.name = "Ingrese un nombre"
+        }else if(field.name.length>30){
+          validations.name = "Superó el máximo de caracteres"
+        }else if(!field.start){
+          validations.start = "Ingrese el horario de apertura"
+        }else if(!beNumber.test(field.start)){
+          validations.start = "Ingrese solo numeros"
+        }else if(field.start < 0 || field.start > 24){
+          validations.start = "Ingrese un horario válido"
+        }else if(!field.end){
+          validations.end = "Ingrese el horario de cierre"
+        }else if(!beNumber.test(field.end)){
+          validations.end = "Ingrese solo números"
+        }else if(field.end<0 || field.end>24){
+          validations.end = "Ingrese un horario válido"
+        }else if(!field.pricePerTurn){
+          validations.pricePerTurn = "Ingrese un precio por turno"
+        }else if(!beNumber.test(field.pricePerTurn)){
+          validations.pricePerTurn = "Ingrese solo números"
+        }else if(!field.durationPerTurn){
+          validations.durationPerTurn = "Ingrese la duración del turno"
+        }else if(!field.description){
+          validations.description = "Ingrese una descripción de la cancha"
+        } else if(field.description.length > 140){
+          validations.description = "Alcanzó el limite de caracteres"
+        }else if(!field.available){
+          validations.available = "Indique si la cancha esta disponible"
         }
-        
-        if (property === "available" && !value) {
-          return (validations[property] = "Choose an option");
-        }
-        if (property === "pricePerHour" && !beNumber.test(value)) {
-          return (validations[property] =
-            "Enter the price per hour, Must be a number");
-        }
-        if (property === "description" && !value) {
-          return (validations[property] =
-            "Would be nice if you tell us a little bit of this field");
-        }
-        if (property === "start" && !value) {// aca para abajo magui y lara
-          return (validations[property] =
-            "Enter the time range in which the players can play");
-        }
-        if (property === "end" && !value) {
-          return (validations[property] =
-            "Enter the time range in which the players can play");
-        }
-        validations[property] = "";
-    
-        return validations[property];
+        return validations;
       };
 
     const handleInputChange = (e) => {
-    console.log(errors);
-    if (e.target.name === "pricePerHour") {
+    
+    if (e.target.name === "pricePerTurn") {
         setNewField({
             ...newField,
             [e.target.name]: parseInt(e.target.value),
         });
     }
-    if (e.target.name === "capacity") {
-        setNewField({
-            ...newField,
-            [e.target.name]: parseInt(e.target.value*2),
-        });
+    else{
         setNewField({
             ...newField,
             [e.target.name]: e.target.value,
         });
+        // console.log(validator(e));
+        // console.log(e.target.value);
     }
-    // console.log(validator(e));
-    // console.log(e.target.value);
+    let errors = validator({ ...newField, [e.target.name]: e.target.value });
+    setErrors(errors);
+       
+        console.log(newField)
+    }
     
-    setErrors({ ...errors, [e.target.name]: validator(e) });
-    };
 
-    const hanldeAvailable = (e) => {
+    const handleAvailable = (e) => {
+        console.log(e.target.value)
         setNewField({
         ...newField,
         available: e.target.value,
         });
-        setErrors({ ...errors, [e.target.name]: validator(e) })
+        setErrors({ ...errors, available:"" })
+        
     };
     const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(createField(newField)); //crear reducer que cree una receta en actions
+
+    dispatch(createField(newField)); 
     console.log(newField);
     setNewField({
         name: "",
-        sport: "basquet",
+        sport: "tenis",
         available:"",
-        pricePerHour:"",
+        pricePerTurn:"",
+        durationPerTurn:"",
         description: "",
-        capacity: 10,
+        capacity: 4,
         start: "",
         end:""
     });
-    alert("You created a field!");
+    alert("creaste la cancha")
+    
     //window.location.href = "/home"; aca nos llevaria al home en caso de que cuando se cree una nueva vaya al home
     //o se quede en la misma pag
     };
@@ -115,18 +125,18 @@ export default function TenisFields() {
         <div>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <div>
-                    <h3>Name:</h3>
+                    <h3>Nombre</h3>
                     <input
                     type="text"
                     name="name"
-                    placeholder="Name of the field"
+                    placeholder="Nombre de la cancha"
                     onChange={(e) => handleInputChange(e)}
                     />
                     {errors.name ? <div>{errors.name}</div> : null}
                 </div>
                 <div>
-            <h3>schedule in which you are open</h3>
-            <span><h5>Start</h5>
+            <h3>Horario de la cancha</h3>
+            <span><h5>Apertura:</h5>
             <input
               type="text"
               name="start"
@@ -136,7 +146,7 @@ export default function TenisFields() {
             {errors.start ? <div>{errors.start}</div> : null}
             </span>
             <span>
-                <h5>End:</h5>
+                <h5>Cierre</h5>
                 <input
                 type="text"
                 name="end"
@@ -147,17 +157,27 @@ export default function TenisFields() {
             </span>
           </div>
           <div>
-            <h3>Price per hour:</h3>
+            <h3>Precio por turno</h3>
             <input
               type="text"
-              name="pricePerHour"
-              placeholder="pricePerHour"
+              name="pricePerTurn"
+              placeholder="pricePerTurn"
               onChange={(e) => handleInputChange(e)}
             />
-            {errors.pricePerHour ? <div>{errors.pricePerHour}</div> : null}
+            {errors.pricePerTurn ? <div>{errors.pricePerTurn}</div> : null}
           </div>
           <div>
-            <h3>Description:</h3>
+            <h3>Duración por turno</h3>
+            <input
+              type="time"
+              name="durationPerTurn"
+              placeholder="durationPerTurn"
+              onChange={(e) => handleInputChange(e)}
+            />
+            {errors.durationPerTurn ? <div>{errors.durationPerTurn}</div> : null}
+          </div>
+          <div>
+            <h3>Descripción</h3>
             <input
               type="text"
               name="description"
@@ -166,40 +186,28 @@ export default function TenisFields() {
             />
             {errors.description ? <div>{errors.description}</div> : null}
           </div>
+          
           <div>
-            <h3>Capacity:</h3>
-            <input
-              type="text"
-              name="capacity"
-              placeholder="capacity"
-              onChange={(e) => handleInputChange(e)}
-            />
-            {errors.capacity ? <div>{errors.capacity}</div> : null}
-          </div>
-          <div>
-            <h3>Is it available to use Right now?</h3>
-            <form>
-              <input
+            <h3>¿Esta disponible para usar?</h3>
+            
+            <button
                 type="button"
                 value="true"
                 name="true"
-                onClick={(e) => hanldeAvailable(e)}
-              />
-              Yes
-              <input
+                onClick={(e) => handleAvailable(e)}
+              >Disponible</button>
+              <button
                 type="button"
                 value="false"
                 name="false"
-                onClick={(e) => hanldeAvailable(e)}
-              />
-              No
-            </form>
+                onClick={(e) => handleAvailable(e)}
+              >No disponible</button>
+              
+            
             {errors.available ? <div>{errors.available}</div> : null}
 
           </div>
-          {!Object.values(errors).length ? (
-            <button type="submit">CREATE FIELD</button>
-          ) : null}
+          <button type="submit" disabled={!errors.name && !errors.durationPerTurn && !errors.start && !errors.end && !errors.available && !errors.pricePerTurn && !errors.description ? false :true } >CREATE FIELD</button>
         </form>
         </div>
       )
