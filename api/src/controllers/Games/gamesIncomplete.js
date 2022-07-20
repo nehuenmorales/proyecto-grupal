@@ -21,15 +21,16 @@ async function gamesIncomplete(req,res,next){
 
 async function detailGameIncomplete(req, res){
     const { id } = req.params;
-  
     try {
-      let game = await Games.findByPk(id, {
-        include:Player
-      });
-      game=JSON.stringify(game)
-      game=JSON.parse(game)
-      game.players=game.players.map(g=>g.name)
-      
+        let game = await Games.findByPk(id, {
+            include:Player
+        });
+        
+        game=JSON.stringify(game)
+        game=JSON.parse(game)
+        game.players=game.players.map(g=>g.name)
+        
+        console.log(game)
       return res.send(game);
     } catch (error) {
       res.send(error)

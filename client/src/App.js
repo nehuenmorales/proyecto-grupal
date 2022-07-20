@@ -8,8 +8,8 @@ import DetailGamesInc from "./components/Games/GamesIncomplete/DetailGamesInc"
 function App() {
   return(
     <>
-      <Route path="/gamesIncomplete" component={CarouselGamesInc} />
-      <Route exact path="/gamesIncomplete/:id" component={DetailGamesInc} />
+      <Route exact path="/gamesIncomplete" component={CarouselGamesInc} />
+      <Route exact path="/gamesIncomplete/:gameid" component={DetailGamesInc} />
     </>
   ) 
 }

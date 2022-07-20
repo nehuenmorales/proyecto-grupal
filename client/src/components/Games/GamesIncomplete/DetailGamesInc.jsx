@@ -6,16 +6,17 @@ import { getDetailIncomplete } from '../../../redux/GamesIncomplete/gamesIncompl
 
 
 export default function DetailGamesInc() {
-  let { id } = useParams();
+  let { gameid } = useParams();
   const dispatch = useDispatch();
   
-
+  
   useEffect(()=>{
-      dispatch(getDetailIncomplete(id))
-    },[dispatch,id])
+      dispatch(getDetailIncomplete(gameid))
+    },[dispatch,gameid])
     
-    const detail = useSelector(state => state.GamesIncompleteReducer.DetailGamesInc);
- 
+    const detail = useSelector(state => state.GamesIncompleteReducer.gamesDetail);
+    
+ console.log("detail",detail)
     return (<>
         <h1>{detail.name}</h1>
   

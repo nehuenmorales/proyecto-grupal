@@ -2,7 +2,7 @@ import { GET_GAMES_INCOMPLETE,GET_DETAIL_INCOMPLETE } from "./gamesIncompleteAct
 
 const initialState = {
     gamesIncomplete: [],
-    gamesDetail:[],
+    gamesDetail:{},
 }
 
 export default function GamesIncompleteReducer (state = initialState, action){
@@ -13,6 +13,7 @@ export default function GamesIncompleteReducer (state = initialState, action){
                 gamesIncomplete: action.payload,
             }
         case GET_DETAIL_INCOMPLETE:
+            console.log("red",state.gamesDetail)
             return {
                 ...state,
                 gamesDetail: action.payload

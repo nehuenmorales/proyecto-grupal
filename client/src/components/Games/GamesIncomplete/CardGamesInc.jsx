@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 //importar foto canchita
 
 export default function CardGamesInc(props) {
-    console.log(props.id,"id")
+    console.log(props.gameid,"id")
     return (
-        <Link to={`/gamesIncomplete/${props.id}`}>
+        <Link to={`/gamesIncomplete/${props.gameid}`}>
             <div>
                 <h2>name:{props.name}</h2>
                 <h4>sport:{props.sport}</h4>

@@ -26,7 +26,7 @@ export default function CarouselGamesInc() {
                             freeplace={x.freeplace}
                             start={x.start}
                             end={x.end}
-                            id={x.id}
+                            gameid={x.gameid}
                         />
                     );
                 })}
