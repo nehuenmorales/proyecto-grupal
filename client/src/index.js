@@ -14,10 +14,10 @@ root.render(
     <Provider store={store}>
       <BrowserRouter>
         <Auth0Provider
-          domain="dev-guklysp5.us.auth0.com"
-          clientId="GNBokMbEyP9qFhG0B61gRv2RRaAWJkyb"
+          domain="leogonzalez.us.auth0.com"
+          clientId="X7uVDaWOv99Br5K2eNE05D3MlRNYioWR"
           redirectUri={window.location.origin}
-        >
+        > 
           <App />
         </Auth0Provider>
       </BrowserRouter>
