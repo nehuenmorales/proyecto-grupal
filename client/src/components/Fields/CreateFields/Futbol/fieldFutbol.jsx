@@ -20,58 +20,53 @@ export default function FutbolFields() {
     });
 
     const [errors, setErrors] = useState({
-        name: "Enter the name of the field.",
-        available: "Is it available to use?",
-        pricePerTurn: "Enter the price per hour",
-        durationPerTurn:"Enter the duration of the turn.",
-        description: "Would be nice if you tell us a little bit of this field",
-        capacity: "Enter how many player per team can play in that field. ej: (Futbol) 11,7 ",
-        start: "Enter the time range in which the players can play",
-        end: "Enter the time range in which the players can play"
+        name: "Debe ingresar un nombre",
+        available: "",
+        pricePerTurn: "",
+        durationPerTurn:"",
+        description: "",
+        capacity: "",
+        start: "",
+        end: ""
       });
-
-      const validator = (e) => {// funcion que valida que todos los inputs tengan un valor "aceptable"
+      
+      const validator = (field) => {// funcion que valida que todos los inputs tengan un valor "aceptable"
         let validations = {};
         const beNumber = /(^\d{1,10}$)/;
-        const property = e.target.name;
-        const value = e.target.value;
-    
-        if (property === "name" && !value) {
-          return (validations[property] = "Enter the name of the field.");
+        if(!field.name){
+          validations.name = "Ingrese un nombre"
+        }else if(field.name.length>30){
+          validations.name = "Superó el máximo de caracteres"
+        }else if(!field.start){
+          validations.start = "Ingrese el horario de apertura"
+        }else if(!beNumber.test(field.start)){
+          validations.start = "Ingrese solo numeros"
+        }else if(field.start < 0 || field.start > 24){
+          validations.start = "Ingrese un horario válido"
+        }else if(!field.end){
+          validations.end = "Ingrese el horario de cierre"
+        }else if(!beNumber.test(field.end)){
+          validations.end = "Ingrese solo números"
+        }else if(field.end<0 || field.end>24){
+          validations.end = "Ingrese un horario válido"
+        }else if(!field.pricePerTurn){
+          validations.pricePerTurn = "Ingrese un precio por turno"
+        }else if(!beNumber.test(field.pricePerTurn)){
+          validations.pricePerTurn = "Ingrese solo números"
+        }else if(!field.durationPerTurn){
+          validations.durationPerTurn = "Ingrese la duración del turno"
+        }else if(!field.description){
+          validations.description = "Ingrese una descripción de la cancha"
+        } else if(field.description.length > 140){
+          validations.description = "Alcanzó el limite de caracteres"
+        }else if(!field.capacity){
+          validations.capacity = "Ingrese la cantidad de jugadores totales de la cancha"
+        }else if(!beNumber.test(field.capacity)){
+          validations.capacity = "Ingrese solo numeros"
+        }else if(!field.available){
+          validations.available = "Indique si la cancha esta disponible"
         }
-        
-        if (property === "available" && !value) {
-          return (validations[property] = "Choose an option");
-        }
-        if (property === "pricePerTurn" && (!beNumber.test(value) ) ) {
-            if ( !value){
-
-                return (validations[property] =
-                  "Enter the price per hour, Must be a number");
-            }
-        }
-        if (property === "durationPerTurn" && (!beNumber.test(value) || !value)) {
-            return (validations[property] =
-                "Enter the duration of the turn.");
-          }
-        if (property === "description" && !value) {
-          return (validations[property] =
-            "Would be nice if you tell us a little bit of this field");
-        }
-        if (property === "capacity" (!beNumber.test(value) || !value || value>0 || value<12) ) {
-          return (validations[property] = "Enter how many player per team can play in that field. ej: (Futbol) 11,7 ");
-        }
-        if (property === "start" && (!beNumber.test(value) || !value || value>=0 || value<24)) {// aca para abajo magui y lara
-          return (validations[property] =
-            "Enter the time range in which the players can play");
-        }
-        if (property === "end" && !value) {
-          return (validations[property] =
-            "Enter the time range in which the players can play");
-        }
-        validations[property] = "";
-    
-        return validations[property];
+        return validations;
       };
 
     const handleInputChange = (e) => {
@@ -96,8 +91,9 @@ export default function FutbolFields() {
         // console.log(validator(e));
         // console.log(e.target.value);
     }
-        
-        setErrors({ ...errors, [e.target.name]: validator(e) });
+    let errors = validator({ ...newField, [e.target.name]: e.target.value });
+    setErrors(errors);
+       
         console.log(newField)
     }
     
@@ -113,6 +109,7 @@ export default function FutbolFields() {
     };
     const handleSubmit = (e) => {
     e.preventDefault();
+
     dispatch(createField(newField)); 
     console.log(newField);
     setNewField({
@@ -139,7 +136,7 @@ export default function FutbolFields() {
         <div>
             <form onSubmit={(e) => handleSubmit(e)}>
                 <div>
-                    <h3>Name:</h3>
+                    <h3>Nombre:</h3>
                     <input
                     type="text"
                     name="name"
@@ -149,8 +146,8 @@ export default function FutbolFields() {
                     {errors.name ? <div>{errors.name}</div> : null}
                 </div>
                 <div>
-            <h3>schedule in which you are open</h3>
-            <span><h5>Start</h5>
+            <h3>Horario de la cancha</h3>
+            <span><h5>Apertura:</h5>
             <input
               type="text"
               name="start"
@@ -160,7 +157,7 @@ export default function FutbolFields() {
             {errors.start ? <div>{errors.start}</div> : null}
             </span>
             <span>
-                <h5>End:</h5>
+                <h5>Cierre:</h5>
                 <input
                 type="text"
                 name="end"
@@ -171,7 +168,7 @@ export default function FutbolFields() {
             </span>
           </div>
           <div>
-            <h3>Price per Turn:</h3>
+            <h3>Precio por turno:</h3>
             <input
               type="text"
               name="pricePerTurn"
@@ -181,9 +178,9 @@ export default function FutbolFields() {
             {errors.pricePerTurn ? <div>{errors.pricePerTurn}</div> : null}
           </div>
           <div>
-            <h3>Duration per Turn:</h3>
+            <h3>Duracion por turno:</h3>
             <input
-              type="text"
+              type="time"
               name="durationPerTurn"
               placeholder="durationPerTurn"
               onChange={(e) => handleInputChange(e)}
@@ -201,7 +198,7 @@ export default function FutbolFields() {
             {errors.description ? <div>{errors.description}</div> : null}
           </div>
           <div>
-            <h3>Capacity:</h3>
+            <h3>Capacidad:</h3>
             <input
               type="text"
               name="capacity"
@@ -211,7 +208,7 @@ export default function FutbolFields() {
             {errors.capacity ? <div>{errors.capacity}</div> : null}
           </div>
           <div>
-            <h3>Is it available to use Right now?</h3>
+            <h3>¿Esta disponible para usar?</h3>
             
               <input
                 type="button"
@@ -219,19 +216,19 @@ export default function FutbolFields() {
                 name="true"
                 onClick={(e) => handleAvailable(e)}
               />
-              Yes
+              Disponible
               <input
                 type="button"
                 value="false"
                 name="false"
                 onClick={(e) => handleAvailable(e)}
               />
-              No
+              No disponible
             
             {errors.available ? <div>{errors.available}</div> : null}
 
           </div>
-          <button type="submit" disabled={!errors.name &&!errors.durationPerTurn && !errors.start &&!errors.end &&!errors.available &&!errors.pricePerTurn &&!errors.capacity &&!errors.description ? false :true } >CREATE FIELD</button>
+          <button type="submit" disabled={!errors.name && !errors.durationPerTurn && !errors.start && !errors.end && !errors.available && !errors.pricePerTurn && !errors.capacity && !errors.description ? false :true } >CREATE FIELD</button>
         </form>
         </div>
       )

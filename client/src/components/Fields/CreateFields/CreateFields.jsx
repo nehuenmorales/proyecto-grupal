@@ -18,7 +18,7 @@ export default function CreateFields() {
 
   return (
     <div>
-      <h3>Sport of the field to add: </h3>
+      <h3>Selecciona el deporte </h3>
       <span>
         <button value={"futbol"} onClick={(e)=>selectSport(e)}>Futbol</button>
         <button value={"tenis"} onClick={(e)=>selectSport(e)}>Tenis</button>
