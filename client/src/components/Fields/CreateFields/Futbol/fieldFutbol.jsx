@@ -140,7 +140,7 @@ export default function FutbolFields() {
                     <input
                     type="text"
                     name="name"
-                    placeholder="Name of the field"
+                    placeholder="nombre de la cancha"
                     onChange={(e) => handleInputChange(e)}
                     />
                     {errors.name ? <div>{errors.name}</div> : null}
@@ -151,7 +151,7 @@ export default function FutbolFields() {
             <input
               type="text"
               name="start"
-              placeholder="start"
+              placeholder="apertura"
               onChange={(e) => handleInputChange(e)}
             />
             {errors.start ? <div>{errors.start}</div> : null}
@@ -161,7 +161,7 @@ export default function FutbolFields() {
                 <input
                 type="text"
                 name="end"
-                placeholder="end"
+                placeholder="cierre"
                 onChange={(e) => handleInputChange(e)}
                 />
                 {errors.end ? <div>{errors.end}</div> : null}
@@ -172,7 +172,7 @@ export default function FutbolFields() {
             <input
               type="text"
               name="pricePerTurn"
-              placeholder="pricePerTurn"
+              placeholder="precion por turno"
               onChange={(e) => handleInputChange(e)}
             />
             {errors.pricePerTurn ? <div>{errors.pricePerTurn}</div> : null}
@@ -182,7 +182,7 @@ export default function FutbolFields() {
             <input
               type="time"
               name="durationPerTurn"
-              placeholder="durationPerTurn"
+              placeholder="duracion por turno"
               onChange={(e) => handleInputChange(e)}
             />
             {errors.durationPerTurn ? <div>{errors.durationPerTurn}</div> : null}
@@ -198,11 +198,11 @@ export default function FutbolFields() {
             {errors.description ? <div>{errors.description}</div> : null}
           </div>
           <div>
-            <h3>Capacidad</h3>
+            <h3>Capacidad total de jugadres</h3>
             <input
               type="text"
               name="capacity"
-              placeholder="capacity"
+              placeholder="capacidad"
               onChange={(e) => handleInputChange(e)}
             />
             {errors.capacity ? <div>{errors.capacity}</div> : null}
@@ -226,6 +226,15 @@ export default function FutbolFields() {
             
             {errors.available ? <div>{errors.available}</div> : null}
 
+          </div>
+          <div>
+            <h3>Imagen de la cancha</h3>
+            <input
+              type="text"
+              name="image"
+              placeholder="Imagen de la cancha"
+              onChange={(e) => handleInputChange(e)}
+            />
           </div>
           <button type="submit" disabled={!errors.name && !errors.durationPerTurn && !errors.start && !errors.end && !errors.available && !errors.pricePerTurn && !errors.capacity && !errors.description ? false :true } >CREAR C</button>
         </form>

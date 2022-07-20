@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createField } from "../../../../redux/OwnerFields/fieldsActions";
+import axios from "axios";
 
 
 
@@ -71,6 +72,15 @@ export default function TenisFields() {
             ...newField,
             [e.target.name]: parseInt(e.target.value),
         });
+    }if(e.target.name==="start" || e.target.name==="end" || e.target.name==="durationPerTurn"){
+      let hour=e.target.value.slice(0,2)
+      let minutes=e.target.value.slice(3,6)
+      minutes=minutes/60
+      let timeNumber=parseInt(hour)+parseFloat(minutes)
+      setNewField({
+        ...newField,
+        [e.target.name]: timeNumber,
+      })
     }
     else{
         setNewField({
@@ -96,9 +106,34 @@ export default function TenisFields() {
         setErrors({ ...errors, available:"" })
         
     };
+
+    const uploadImage = async (e) => {
+      const form = new FormData();
+      form.append("image", e.target.files[0]);
+      console.log(e.target.files);
+      const settings = {
+        "method": "POST",
+        "timeout": 0,
+        "processData": false,
+        "mimeType": "multipart/form-data",
+        "contentType": false,
+        "data": form
+      };
+      
+      const respuesta = await axios("https://api.imgbb.com/1/upload?expiration=600&key=12d5944c0badc6235fe12ec6550754c8", settings)
+  
+      setNewField({
+        ...newField,
+        image: respuesta.data.data.url,
+      });
+  
+      console.log('soy respuesta img',respuesta);
+    };
+
+
     const handleSubmit = (e) => {
     e.preventDefault();
-
+    
     dispatch(createField(newField)); 
     console.log(newField);
     setNewField({
@@ -138,9 +173,9 @@ export default function TenisFields() {
             <h3>Horario de la cancha</h3>
             <span><h5>Apertura:</h5>
             <input
-              type="text"
+              type="time"
               name="start"
-              placeholder="start"
+              placeholder="apretura"
               onChange={(e) => handleInputChange(e)}
             />
             {errors.start ? <div>{errors.start}</div> : null}
@@ -148,11 +183,11 @@ export default function TenisFields() {
             <span>
                 <h5>Cierre</h5>
                 <input
-                type="text"
+                type="time"
                 name="end"
-                placeholder="end"
+                placeholder="cierre"
                 onChange={(e) => handleInputChange(e)}
-                />
+            />
                 {errors.end ? <div>{errors.end}</div> : null}
             </span>
           </div>
@@ -161,7 +196,7 @@ export default function TenisFields() {
             <input
               type="text"
               name="pricePerTurn"
-              placeholder="pricePerTurn"
+              placeholder="precio por turno"
               onChange={(e) => handleInputChange(e)}
             />
             {errors.pricePerTurn ? <div>{errors.pricePerTurn}</div> : null}
@@ -171,7 +206,7 @@ export default function TenisFields() {
             <input
               type="time"
               name="durationPerTurn"
-              placeholder="durationPerTurn"
+              placeholder="duracion del turno"
               onChange={(e) => handleInputChange(e)}
             />
             {errors.durationPerTurn ? <div>{errors.durationPerTurn}</div> : null}
@@ -181,7 +216,7 @@ export default function TenisFields() {
             <input
               type="text"
               name="description"
-              placeholder="description"
+              placeholder="descripcion"
               onChange={(e) => handleInputChange(e)}
             />
             {errors.description ? <div>{errors.description}</div> : null}
@@ -206,6 +241,16 @@ export default function TenisFields() {
             
             {errors.available ? <div>{errors.available}</div> : null}
 
+          </div>
+          <div>
+            <h3>Imagen de la cancha</h3>
+            <input
+            name="image"
+            onChange={uploadImage}
+            accept="image/*"
+            type='file'
+            
+          />
           </div>
           <button type="submit" disabled={!errors.name && !errors.durationPerTurn && !errors.start && !errors.end && !errors.available && !errors.pricePerTurn && !errors.description ? false :true } >CREATE FIELD</button>
         </form>
