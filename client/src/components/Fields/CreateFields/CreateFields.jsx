@@ -1,23 +1,39 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import TenisFields from "./Tenis/fieldTenis"
+import FutbolFields from "./Futbol/fieldFutbol";
+import PadelFields from "./Padel/fieldPadel";
+import BasquetFields from "./Basquet/fieldBasquet";
 
 export default function CreateFields() {
-  const dispatch = useDispatch();
-  const [newField, setNewField] = useState({
-    title: "",
-    sport: "",
-    available,
-    pricePerHour,
-    description: "",
-    appointments: [],
+  const [sport, setSport] = useState({
+    type:""
   });
+  
+  const selectSport=(e)=>{
+    setSport({
+      type:e.target.value,
+    });
+  }
 
-  const [errors, setErrors] = useState({
-    title: "Enter the name of the field.",
-    sport: "Enter the name of the sport",
-    available: "Is it available to use?",
-    pricePerHour: "Enter the price per hour",
-    description: "Would be nice if you tell us a little bit of this field",
-    appointments: "Enter the time range in which the players can ",
-  });
+  return (
+    <div>
+      <h3>Selecciona el deporte </h3>
+      <span>
+        <button value={"futbol"} onClick={(e)=>selectSport(e)}>Futbol</button>
+        <button value={"tenis"} onClick={(e)=>selectSport(e)}>Tenis</button>
+        <button value={"padel"} onClick={(e)=>selectSport(e)}>Padel</button>
+        <button value={"basquet"} onClick={(e)=>selectSport(e)}>Basquet</button>
+
+      </span>
+      {sport.type==="futbol"?<FutbolFields/> :null}
+      {sport.type==="tenis"?<TenisFields/> :null}
+      {sport.type==="padel"?<PadelFields/> : null}
+      {sport.type==="basquet"?<BasquetFields/> :null}
+
+    </div>
+    
+        
+  );
+
 }
