@@ -2,7 +2,7 @@ import { GET_GAMES_INCOMPLETE,GET_DETAIL_INCOMPLETE } from "./gamesIncompleteAct
 
 const initialState = {
     gamesIncomplete: [],
-    gamesDetail:{},
+    gamesDetail:[],
 }
 
 export default function GamesIncompleteReducer (state = initialState, action){

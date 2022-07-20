@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-//importar foto canchita
+import s from "./CardGamesInc.module.css"
 
 export default function CardGamesInc(props) {
     console.log(props.gameid,"id")
     return (
         <Link to={`/gamesIncomplete/${props.gameid}`}>
-            <div>
+            <div className={s.background}>
                 <h2>name:{props.name}</h2>
                 <h4>sport:{props.sport}</h4>
                 <h4>freeplace:{props.freeplace}</h4>

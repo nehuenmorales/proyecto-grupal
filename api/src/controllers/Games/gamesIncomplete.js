@@ -1,5 +1,5 @@
 const { conn } = require('../../db.js');
-const { Games,Player } = require("../../db.js");
+const { Games,Player,Fields } = require("../../db.js");
 
 async function gamesIncomplete(req,res,next){
     try{
@@ -25,12 +25,11 @@ async function detailGameIncomplete(req, res){
         let game = await Games.findByPk(id, {
             include:Player
         });
-        
+
         game=JSON.stringify(game)
         game=JSON.parse(game)
         game.players=game.players.map(g=>g.name)
-        
-        console.log(game)
+
       return res.send(game);
     } catch (error) {
       res.send(error)
@@ -41,3 +40,4 @@ module.exports = {
     gamesIncomplete,
     detailGameIncomplete
   };
+
