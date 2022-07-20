@@ -1,3 +1,4 @@
+const { QueryTypes } = require('sequelize');
 const { conn } = require('../../db.js');
 const { Games,Player,Fields } = require("../../db.js");
 
@@ -22,15 +23,20 @@ async function gamesIncomplete(req,res,next){
 async function detailGameIncomplete(req, res){
     const { id } = req.params;
     try {
-        let game = await Games.findByPk(id, {
-            include:Player
-        });
-
-        game=JSON.stringify(game)
-        game=JSON.parse(game)
-        game.players=game.players.map(g=>g.name)
-
-      return res.send(game);
+        const detail= await conn.query(`(SELECT p.username, g.*, x.*, f.name, f.capacity
+            FROM players p
+            JOIN player_games pg ON pg."playerId" = p.id
+            JOIN games g ON pg."gameId" = g.id
+            JOIN fields f ON g."fieldId" = f.id
+            JOIN complexes x ON f."complexId" = x.id
+            WHERE pg."gameId" = :id)`,
+            {
+                replacements: { id: id},
+                type: QueryTypes.SELECT
+            })
+        
+        return res.send(detail)
+        
     } catch (error) {
       res.send(error)
     }
