@@ -33,17 +33,17 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       capacity: {
-        type: DataTypes.INTERGER,
-        allowNull: false
+        type: DataTypes.INTEGER,
+        allowNull: false,
       },
-      start:{
+      start: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       end: {
         type: DataTypes.STRING,
-        allowNull: false
-      }
+        allowNull: false,
+      },
     },
     {
       timestamps: false,
