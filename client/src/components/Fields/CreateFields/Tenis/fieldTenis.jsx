@@ -40,14 +40,10 @@ export default function TenisFields() {
           validations.name = "Superó el máximo de caracteres"
         }else if(!field.start){
           validations.start = "Ingrese el horario de apertura"
-        }else if(!beNumber.test(field.start)){
-          validations.start = "Ingrese solo numeros"
         }else if(field.start < 0 || field.start > 24){
           validations.start = "Ingrese un horario válido"
         }else if(!field.end){
           validations.end = "Ingrese el horario de cierre"
-        }else if(!beNumber.test(field.end)){
-          validations.end = "Ingrese solo números"
         }else if(field.end<0 || field.end>24){
           validations.end = "Ingrese un horario válido"
         }else if(!field.pricePerTurn){

@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createField } from "../../../../redux/OwnerFields/fieldsActions";
+import axios from "axios";
 
 
 
@@ -29,6 +30,8 @@ export default function FutbolFields() {
         start: "",
         end: ""
       });
+
+      const [loading, setLoading] = useState(false)
       
       const validator = (field) => {// funcion que valida que todos los inputs tengan un valor "aceptable"
         let validations = {};
@@ -39,14 +42,10 @@ export default function FutbolFields() {
           validations.name = "Superó el máximo de caracteres"
         }else if(!field.start){
           validations.start = "Ingrese el horario de apertura"
-        }else if(!beNumber.test(field.start)){
-          validations.start = "Ingrese solo numeros"
         }else if(field.start < 0 || field.start > 24){
           validations.start = "Ingrese un horario válido"
         }else if(!field.end){
           validations.end = "Ingrese el horario de cierre"
-        }else if(!beNumber.test(field.end)){
-          validations.end = "Ingrese solo números"
         }else if(field.end<0 || field.end>24){
           validations.end = "Ingrese un horario válido"
         }else if(!field.pricePerTurn){
@@ -69,33 +68,36 @@ export default function FutbolFields() {
         return validations;
       };
 
-    const handleInputChange = (e) => {
+      const handleInputChange = (e) => {
     
-    if (e.target.name === "pricePerTurn") {
-        setNewField({
+        if (e.target.name === "pricePerTurn") {
+            setNewField({
+                ...newField,
+                [e.target.name]: parseInt(e.target.value),
+            });
+        }if(e.target.name==="start" || e.target.name==="end" || e.target.name==="durationPerTurn"){
+          let hour=e.target.value.slice(0,2)
+          let minutes=e.target.value.slice(3,6)
+          minutes=minutes/60
+          let timeNumber=parseInt(hour)+parseFloat(minutes)
+          setNewField({
             ...newField,
-            [e.target.name]: parseInt(e.target.value),
-        });
-    }
-    if (e.target.name === "capacity") {
-        
-        setNewField({
-            ...newField,
-            [e.target.name]: parseInt(e.target.value)*2,
-        });
-    }else{
-        setNewField({
-            ...newField,
-            [e.target.name]: e.target.value,
-        });
-        // console.log(validator(e));
-        // console.log(e.target.value);
-    }
-    let errors = validator({ ...newField, [e.target.name]: e.target.value });
-    setErrors(errors);
-       
-        console.log(newField)
-    }
+            [e.target.name]: timeNumber,
+          })
+        }
+        else{
+            setNewField({
+                ...newField,
+                [e.target.name]: e.target.value,
+            });
+            // console.log(validator(e));
+            // console.log(e.target.value);
+        }
+        let errors = validator({ ...newField, [e.target.name]: e.target.value });
+        setErrors(errors);
+           
+            console.log(newField)
+        }
     
 
     const handleAvailable = (e) => {
@@ -107,6 +109,33 @@ export default function FutbolFields() {
         setErrors({ ...errors, available:"" })
         
     };
+
+    const uploadImage = async (e) => {
+      const form = new FormData();
+      form.append("image", e.target.files[0]);
+      console.log(e.target.files);
+      const settings = {
+        "method": "POST",
+        "timeout": 0,
+        "processData": false,
+        "mimeType": "multipart/form-data",
+        "contentType": false,
+        "data": form
+      };
+      setLoading(true)
+      console.log('cargando..',loading)
+      
+      const respuesta = await axios("https://api.imgbb.com/1/upload?expiration=600&key=12d5944c0badc6235fe12ec6550754c8", settings)
+  
+      setNewField({
+        ...newField,
+        image: respuesta.data.data.url,
+      });
+      setLoading(false)
+  
+      console.log('soy respuesta img',respuesta.data.data.url);
+    };
+
     const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -134,7 +163,7 @@ export default function FutbolFields() {
 
       return (
         <div>
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form onSubmit={(e) => handleSubmit(e)} encType='multipart/form-data'>
                 <div>
                     <h3>Nombre</h3>
                     <input
@@ -146,12 +175,12 @@ export default function FutbolFields() {
                     {errors.name ? <div>{errors.name}</div> : null}
                 </div>
                 <div>
-            <h3>Horario de la cancha</h3>
-            <span><h5>Apertura</h5>
+                <h3>Horario de la cancha</h3>
+            <span><h5>Apertura:</h5>
             <input
-              type="text"
+              type="time"
               name="start"
-              placeholder="apertura"
+              placeholder="apretura"
               onChange={(e) => handleInputChange(e)}
             />
             {errors.start ? <div>{errors.start}</div> : null}
@@ -159,11 +188,11 @@ export default function FutbolFields() {
             <span>
                 <h5>Cierre</h5>
                 <input
-                type="text"
+                type="time"
                 name="end"
                 placeholder="cierre"
                 onChange={(e) => handleInputChange(e)}
-                />
+            />
                 {errors.end ? <div>{errors.end}</div> : null}
             </span>
           </div>
@@ -230,13 +259,15 @@ export default function FutbolFields() {
           <div>
             <h3>Imagen de la cancha</h3>
             <input
-              type="text"
-              name="image"
-              placeholder="Imagen de la cancha"
-              onChange={(e) => handleInputChange(e)}
-            />
+            name="image"
+            onChange={uploadImage}
+            accept="image/*"
+            type='file'
+            
+          />
+          {loading ? <p>Cargando...</p> : null}
           </div>
-          <button type="submit" disabled={!errors.name && !errors.durationPerTurn && !errors.start && !errors.end && !errors.available && !errors.pricePerTurn && !errors.capacity && !errors.description ? false :true } >CREAR C</button>
+          <button type="submit" disabled={!loading && !errors.name && !errors.durationPerTurn && !errors.start && !errors.end && !errors.available && !errors.pricePerTurn && !errors.capacity && !errors.description ? false :true } >CREAR C</button>
         </form>
         </div>
       )
