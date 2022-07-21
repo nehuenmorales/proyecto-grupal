@@ -29,7 +29,6 @@ export default function PadelFields() {
         start: "",
         end: ""
       });
-
       const [loading, setLoading] = useState(false)
       
       const validator = (field) => {// funcion que valida que todos los inputs tengan un valor "aceptable"

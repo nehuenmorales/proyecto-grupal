@@ -1,7 +1,5 @@
 
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createField } from "../../../../redux/OwnerFields/fieldsActions";
 import axios from "axios";
 import ModalsFieldsGames from "../../ModalsFieldsGames/ModalFieldsGames";
 
@@ -47,6 +45,8 @@ export default function FutbolFields() {
           validations.start = "Ingrese el horario de apertura"
         }else if(field.start < 0 || field.start > 24){
           validations.start = "Ingrese un horario válido"
+        }else if(field.start[3] !== 0 && field.start[4] !== 0){
+          validations.start = 'ingrese un numero terminado en 0'
         }else if(!field.end){
           validations.end = "Ingrese el horario de cierre"
         }else if(field.end<0 || field.end>24){
