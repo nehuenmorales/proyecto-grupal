@@ -29,6 +29,7 @@ export default function TenisFields() {
         start: "",
         end: ""
       });
+      const [loading, setLoading] = useState(false)
       
       const validator = (field) => {// funcion que valida que todos los inputs tengan un valor "aceptable"
         let validations = {};
@@ -119,6 +120,8 @@ export default function TenisFields() {
         "contentType": false,
         "data": form
       };
+      setLoading(true)
+      console.log('cargando..',loading)
       
       const respuesta = await axios("https://api.imgbb.com/1/upload?expiration=600&key=12d5944c0badc6235fe12ec6550754c8", settings)
   
@@ -126,8 +129,9 @@ export default function TenisFields() {
         ...newField,
         image: respuesta.data.data.url,
       });
+      setLoading(false)
   
-      console.log('soy respuesta img',respuesta);
+      console.log('soy respuesta img',respuesta.data.data.url);
     };
 
 
@@ -158,7 +162,7 @@ export default function TenisFields() {
 
       return (
         <div>
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form onSubmit={(e) => handleSubmit(e)} encType='multipart/form-data'>
                 <div>
                     <h3>Nombre</h3>
                     <input
@@ -251,8 +255,9 @@ export default function TenisFields() {
             type='file'
             
           />
+          {loading ? <p>Cargando...</p> : null}
           </div>
-          <button type="submit" disabled={!errors.name && !errors.durationPerTurn && !errors.start && !errors.end && !errors.available && !errors.pricePerTurn && !errors.description ? false :true } >CREATE FIELD</button>
+          <button type="submit" disabled={!loading && !errors.name && !errors.durationPerTurn && !errors.start && !errors.end && !errors.available && !errors.pricePerTurn && !errors.description ? false :true } >CREATE FIELD</button>
         </form>
         </div>
       )
