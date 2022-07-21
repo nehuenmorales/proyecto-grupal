@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import TenisFields from "./Tenis/fieldTenis"
 import FutbolFields from "./Futbol/fieldFutbol";
 import PadelFields from "./Padel/fieldPadel";
 import BasquetFields from "./Basquet/fieldBasquet";
+import Button from 'react-bootstrap/Button';
 
 export default function CreateFields() {
   const [sport, setSport] = useState({
@@ -20,10 +20,11 @@ export default function CreateFields() {
     <div>
       <h3>Selecciona el deporte </h3>
       <span>
-        <button value={"futbol"} onClick={(e)=>selectSport(e)}>Futbol</button>
-        <button value={"tenis"} onClick={(e)=>selectSport(e)}>Tenis</button>
-        <button value={"padel"} onClick={(e)=>selectSport(e)}>Padel</button>
-        <button value={"basquet"} onClick={(e)=>selectSport(e)}>Basquet</button>
+        <Button value={"futbol"} onClick={(e)=>selectSport(e)}>Futbol</Button>
+        <Button value={"tenis"} onClick={(e)=>selectSport(e)}>Tenis</Button>
+        <Button value={"padel"} onClick={(e)=>selectSport(e)}>Padel</Button>
+        <Button value={"basquet"} onClick={(e)=>selectSport(e)}>Basquet</Button>
+    
 
       </span>
       {sport.type==="futbol"?<FutbolFields/> :null}

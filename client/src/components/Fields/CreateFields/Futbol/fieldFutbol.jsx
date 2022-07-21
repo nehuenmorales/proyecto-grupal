@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import axios from "axios";
 import ModalsFieldsGames from "../../ModalsFieldsGames/ModalFieldsGames";
@@ -139,14 +138,11 @@ export default function FutbolFields() {
       console.log('soy respuesta img',respuesta.data.data.url);
     };
 
-    
 
-    
     const handleModal = (e)=>{
       e.preventDefault();
       setShowModal(true)
     }
-
 
       return (
         <div>
@@ -156,7 +152,7 @@ export default function FutbolFields() {
                     <input
                     type="text"
                     name="name"
-                    placeholder="nombre de la cancha"
+                    placeholder="Nombre de la cancha"
                     onChange={(e) => handleInputChange(e)}
                     />
                     {errors.name ? <div>{errors.name}</div> : null}
@@ -167,7 +163,7 @@ export default function FutbolFields() {
             <input
               type="time"
               name="start"
-              placeholder="apretura"
+              placeholder="Apertura"
               onChange={(e) => handleInputChange(e)}
             />
             {errors.start ? <div>{errors.start}</div> : null}
@@ -177,7 +173,7 @@ export default function FutbolFields() {
                 <input
                 type="time"
                 name="end"
-                placeholder="cierre"
+                placeholder="Cierre"
                 onChange={(e) => handleInputChange(e)}
             />
                 {errors.end ? <div>{errors.end}</div> : null}
@@ -188,7 +184,7 @@ export default function FutbolFields() {
             <input
               type="text"
               name="pricePerTurn"
-              placeholder="precion por turno"
+              placeholder="Precio por turno"
               onChange={(e) => handleInputChange(e)}
             />
             {errors.pricePerTurn ? <div>{errors.pricePerTurn}</div> : null}
@@ -198,7 +194,7 @@ export default function FutbolFields() {
             <input
               type="time"
               name="durationPerTurn"
-              placeholder="duracion por turno"
+              placeholder="Duración por turno"
               onChange={(e) => handleInputChange(e)}
             />
             {errors.durationPerTurn ? <div>{errors.durationPerTurn}</div> : null}
@@ -208,7 +204,7 @@ export default function FutbolFields() {
             <input
               type="text"
               name="description"
-              placeholder="description"
+              placeholder="Descripción"
               onChange={(e) => handleInputChange(e)}
             />
             {errors.description ? <div>{errors.description}</div> : null}
@@ -218,7 +214,7 @@ export default function FutbolFields() {
             <input
               type="text"
               name="capacity"
-              placeholder="capacidad"
+              placeholder="Capacidad"
               onChange={(e) => handleInputChange(e)}
             />
             {errors.capacity ? <div>{errors.capacity}</div> : null}
@@ -250,7 +246,6 @@ export default function FutbolFields() {
             onChange={uploadImage}
             accept="image/*"
             type='file'
-            
           />
           {loading ? <p>Cargando...</p> : null}
           </div>

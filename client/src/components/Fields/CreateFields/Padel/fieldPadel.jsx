@@ -1,13 +1,10 @@
-
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createField } from "../../../../redux/OwnerFields/fieldsActions";
 import axios from "axios";
-
+import ModalsFieldsGames from "../../ModalsFieldsGames/ModalFieldsGames";
 
 
 export default function PadelFields() {
-    const dispatch = useDispatch();
+    
     const [newField, setNewField] = useState({
       name: "",
       sport: "padel",
@@ -19,6 +16,9 @@ export default function PadelFields() {
       start:"",
       end:""
     });
+
+    const [showModal, setShowModal] = useState(false)
+
 
     const [errors, setErrors] = useState({
         name: "Debe ingresar un nombre",
@@ -130,34 +130,14 @@ export default function PadelFields() {
       console.log('soy respuesta img',respuesta.data.data.url);
     };
 
-    const handleSubmit = (e) => {
-    e.preventDefault();
-
-    dispatch(createField(newField)); 
-    console.log(newField);
-    setNewField({
-        name: "",
-        sport: "padel",
-        available:"",
-        pricePerTurn:"",
-        durationPerTurn:"",
-        description: "",
-        capacity: 4,
-        start: "",
-        end:""
-    });
-    alert("creaste la cancha")
-    
-    //window.location.href = "/home"; aca nos llevaria al home en caso de que cuando se cree una nueva vaya al home
-    //o se quede en la misma pag
-    };
-
-    
-
+    const handleModal = (e)=>{
+      e.preventDefault();
+      setShowModal(true)
+    }
 
       return (
         <div>
-            <form onSubmit={(e) => handleSubmit(e)} encType='multipart/form-data'>
+            <form onSubmit={(e) => handleModal(e)} /*encType='multipart/form-data'*/>
                 <div>
                     <h3>Nombre</h3>
                     <input
@@ -254,6 +234,7 @@ export default function PadelFields() {
           </div>
           <button type="submit" disabled={!loading && !errors.name && !errors.durationPerTurn && !errors.start && !errors.end && !errors.available && !errors.pricePerTurn && !errors.description ? false :true } >CREATE FIELD</button>
         </form>
+        <ModalsFieldsGames showModal={showModal} setShowModal={setShowModal} setNewField={setNewField} sport={newField.sport} newField={newField} />
         </div>
       )
 }
