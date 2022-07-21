@@ -1,17 +1,33 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from "react-redux";
+import { createGame } from "../../../redux/Games/gameActions";
 import { createField } from "../../../redux/OwnerFields/fieldsActions";
 
 
 export default function ModalsFieldsGames({ showModal, setShowModal, setNewField, newField, sport }) {
+    const [date, setDate] = useState()
     const dispatch = useDispatch();
     const handleClose = () => setShowModal(false);
+    let turn = [];
+
+
     const handleCreate = (e) => {
         e.preventDefault();
         console.log('soy modal con newfield', newField)
         dispatch(createField(newField));
+        turn?.map((e) => {
+            dispatch(createGame({
+                date: date, 
+                sport: newField.sport,
+                type: newField.capacity,
+                status: 'free',
+                start: e,
+                end: e + newField.durationPerTurn,
+            }))
+        })
+        
         setNewField({
             name: "",
             sport: sport,
@@ -29,6 +45,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
     const appointments = (newField) => {
         let array = [newField.start];
         let i = 0
+        if(newField.durationPerTurn > 0){
         if (newField.end > newField.start) {
             if((newField.end - newField.start) > newField.durationPerTurn){ 
                 while (array[i] + newField.durationPerTurn + newField.durationPerTurn <= newField.end ) {
@@ -43,6 +60,8 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
                 }
                 console.log(array[i])
             }
+            turn= array;
+            console.log('soy turn', turn)
             return array;
         }
         } else if (newField.start > newField.end) {
@@ -94,9 +113,18 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
                         break;
                 }
             }
+            turn = array;
+            console.log('soy turn', turn)
             return array;
         }  
-     }                  
+     }  else {
+         return null;
+     }
+    }                
+}
+const handleDate = (e) => {
+    e.preventDefault()
+    setDate(e.target.value)
 }
 
     return (
@@ -109,7 +137,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
                             <p>Selecciona los turnos que no se deben mostrar disponibles por cada día de la semana.</p>
                         </div>
                         <div>
-                            <select>
+                            <select onClick={(e) => handleDate(e)}>
                                 <option value="Lunes">Lunes</option>
                                 <option value="Martes">Martes</option>
                                 <option value="Miércoles">Miércoles</option>
