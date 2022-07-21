@@ -5,10 +5,10 @@ import s from "./CardGamesInc.module.css"
 export default function CardGamesInc(props) {
     console.log(props.gameid,"id")
     return (
-        <Link to={`/gamesIncomplete/${props.gameid}`}>
+        <Link style={{"textDecoration":"none"}} to={`/gamesIncomplete/${props.gameid}`}>
             <div className={s.background}>
-                <h2>name:{props.name}</h2>
-                <h4>sport:{props.sport}</h4>
+                <h2>{props.name}</h2>
+                <h4>{props.sport}</h4>
                 <h4>freeplace:{props.freeplace}</h4>
                 <h4>start:{props.start}</h4>
                 <h4>end:{props.end}</h4>

@@ -40,7 +40,11 @@ async function detailGameIncomplete(req, res){
     } catch (error) {
       res.send(error)
     }
-  }
+}
+
+// async function updateGame(req,res){
+//     const {id}= req.params
+// }
 
 module.exports = {
     gamesIncomplete,
