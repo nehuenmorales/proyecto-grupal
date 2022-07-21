@@ -1,9 +1,11 @@
 const { DataTypes } = require("sequelize");
+const { UUIDV4 } = require('sequelize');
+
 module.exports = (sequelize) => {
   sequelize.define("complex", {
     id: {
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
+      defaultValue: UUIDV4,
       primaryKey: true,
     },
     name: {
