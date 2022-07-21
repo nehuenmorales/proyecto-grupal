@@ -17,6 +17,10 @@ root.render(
           domain="leogonzalez.us.auth0.com"
           clientId="X7uVDaWOv99Br5K2eNE05D3MlRNYioWR"
           redirectUri={window.location.origin}
+          advancedOptions={{
+            defaultScope: 'openid profile email'
+          }}
+          scope='user_metadata app_metadata slack_id'
         > 
           <App />
         </Auth0Provider>

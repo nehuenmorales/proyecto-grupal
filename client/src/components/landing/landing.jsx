@@ -1,18 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import imageLanding from "../../assets/images/playersLandingPage.png";
 import logo from "../../assets/images/logo.png";
-import ModalRegister from "../Modal/ModalRegister";
 import { Button, Container, Navbar, Spinner } from "react-bootstrap"
+import { useDispatch } from "react-redux";
+import { postPlayer } from "../../redux/PlayerLogin/PlayerLoginActions";
 
 const Landing = () => {
   const { loginWithRedirect, user, isAuthenticated, isLoading, logout } = useAuth0();
-  
-  const selectRol = () => {
 
+  const login = async () => { 
+    await loginWithRedirect();    
   }
-
+  
+  // const userToBack = {
+  //   name: user?.given_name,
+  //   lastName: user?.family_name,
+  //   username: user?.nickname,
+  //   email: user?.email,
+  //   telephone: user?.length > 0 ? user['https://example.com/phone_number'] : "3511",
+  //   city: user?.length > 0 ? user['https://example.com/country'] : "cba" 
+  // };
+  
+  // useEffect( () =>{
+  //   dispatch(postPlayer(userToBack));
+  //   console.log('entra');
+  //   console.log(userToBack);
+  // }, [userToBack])
 
   return (
     <>
@@ -26,21 +41,17 @@ const Landing = () => {
           </Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
-            <Button variant="transparent" style={{ "color": "white" }} onClick={() => loginWithRedirect()}>
+            <Button variant="transparent" style={{ "color": "white" }} onClick={() => login()}>
               Ingresar
             </Button>
-            <Button onClick={() => selectRol()} as="input" type="button" style={{ "color": "white" }} variant="success" value="Registrarse" />
+            <Button as="input" type="button" style={{ "color": "white" }} variant="success" value="Registrarse" />
+            <Button variant="danger" style={{ "color": "white" }} onClick={() => logout({ returnTo: window.location.origin })}>
+              Salir
+            </Button>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      {
-        isAuthenticated ? 
-        <div>
-          {user.name}
-          <img src={user.picture}/>
-        </div>
-        : null
-      }
+
       <nav className="navbar bg-dark">
         <div className="container d-flex justify-content-between">
           <div>
