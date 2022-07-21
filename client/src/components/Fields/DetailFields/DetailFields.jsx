@@ -27,9 +27,15 @@ export default function Detail() {
         (
             field.map((fie) => (
                 <div key={fie.id} id={fie.id}>
-                    <h2>Nombre:  {fie.name}</h2>
-                    <h4>Deporte: {fie.sport}</h4>
-                    <h4>Descripcion {fie.description} </h4>                             
+                    <h2>Name:  {fie.name}</h2>
+                    <h4>Sport: {fie.sport}</h4>
+                    <h4>Available: {fie.available}</h4>
+                    <h4>turn´s price: {fie.pricePerTurn}</h4>
+                    <h4>Description: {fie.description}</h4>
+                    <h4>duration: {fie.durationPerTurn}</h4>
+                    <h4>Capacity: {fie.capacity}</h4>
+                    <h4>Open: {fie.start}</h4>                             
+                    <h4>Close: {fie.end}</h4>                                                          
                 </div>
             ))
         )
