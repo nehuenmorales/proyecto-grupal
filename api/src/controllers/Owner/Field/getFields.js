@@ -26,3 +26,4 @@ const getFields = async (req, res) =>{
     }}
 
 module.exports = {getFields}
+
