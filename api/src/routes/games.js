@@ -1,5 +1,4 @@
 const { Router } = require("express");
-// me traigo el controller aca
 const { gamesIncomplete,detailGameIncomplete} = require("../controllers/Games/gamesIncomplete");
  
 const router = Router();

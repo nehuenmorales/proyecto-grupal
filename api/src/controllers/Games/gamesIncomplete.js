@@ -1,6 +1,6 @@
 const { QueryTypes } = require('sequelize');
 const { conn } = require('../../db.js');
-const { Games,Player,Fields } = require("../../db.js");
+const{Player}=require("../../db.js")
 
 async function gamesIncomplete(req,res,next){
     try{
@@ -23,7 +23,7 @@ async function gamesIncomplete(req,res,next){
 async function detailGameIncomplete(req, res){
     const { id } = req.params;
     try {
-        const detail= await conn.query(`(SELECT p.username, g.*, x.*, f.name, f.capacity
+        const detail= await conn.query(`(SELECT p.username, g.*, x.*, f.name, f.capacity, f."pricePerHour"
             FROM players p
             JOIN player_games pg ON pg."playerId" = p.id
             JOIN games g ON pg."gameId" = g.id
@@ -34,7 +34,7 @@ async function detailGameIncomplete(req, res){
                 replacements: { id: id},
                 type: QueryTypes.SELECT
             })
-        
+        detail.players=detail?.map(g=>g.username).join(",")
         return res.send(detail)
         
     } catch (error) {
@@ -43,7 +43,20 @@ async function detailGameIncomplete(req, res){
 }
 
 // async function updateGame(req,res){
-//     const {id}= req.params
+//     try{
+//        const {id}= req.params
+//         const{email}=req.body
+//         const player= Player.findOne({ where: { email: email } })
+//         const update= await conn.query(`(INSERT INTO player_games ("playerId","gameId")
+//             VALUES (:pId,:gId))`,{
+//             replacements: { pId:player.id, gId:id},
+//             type: QueryTypes.SELECT
+//         })
+//         res.send(update) 
+//     }catch(e){
+//         console.log(e)
+//     }
+   
 // }
 
 module.exports = {

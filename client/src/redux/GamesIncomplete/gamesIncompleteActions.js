@@ -21,10 +21,8 @@ export function getGamesIncomplete() {
   
   export function getDetailIncomplete(gameid) {
     return dispatch =>{
-      console.log(gameid)
       axios.get(`http://localhost:3001/games/gamesIncomplete/${gameid}`)
         .then(res => {
-          console.log("act",res.data)
           dispatch({
             type: GET_DETAIL_INCOMPLETE,
             payload: res.data
