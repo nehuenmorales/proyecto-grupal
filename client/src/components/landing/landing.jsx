@@ -41,13 +41,13 @@ const Landing = () => {
           </Navbar.Brand>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
-            <Button variant="transparent" style={{ "color": "white" }} onClick={() => login()}>
+            <Button variant="success" style={{ "color": "white" }} onClick={() => login()}>
               Ingresar
             </Button>
-            <Button as="input" type="button" style={{ "color": "white" }} variant="success" value="Registrarse" />
-            <Button variant="danger" style={{ "color": "white" }} onClick={() => logout({ returnTo: window.location.origin })}>
+            {/* <Button as="input" type="button" style={{ "color": "white" }} variant="success" value="Registrarse" /> */}
+            {/* <Button variant="danger" style={{ "color": "white" }} onClick={() => logout({ returnTo: window.location.origin })}>
               Salir
-            </Button>
+            </Button> */}
           </Navbar.Collapse>
         </Container>
       </Navbar>

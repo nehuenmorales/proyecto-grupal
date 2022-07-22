@@ -1,6 +1,6 @@
 import { useAuth0, Auth0Context, User, } from '@auth0/auth0-react';
 import React, { useEffect } from 'react'
-import { Button, Image, Spinner } from 'react-bootstrap';
+import { Button, Container, Image, Nav, Navbar, OverlayTrigger, Spinner, Tooltip } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -41,26 +41,41 @@ const Home = () => {
 
       {
         isAuthenticated ?
-          <Card style={{ width: '18rem' }}>
-            <Card.Img style={{ width: '100px' }} variant="top" src={user.picture} />
-            <Card.Body>
-              <Card.Title>{user.name}</Card.Title>
-              <Card.Text>
-                {
-                  user['https://example.com/country'] +
-                  user['https://example.com/phone_number']
-                }
-              </Card.Text>
-              <Button variant="info" style={{ "color": "white" }} onClick={() => saveInDatabase()}>
-                SAVE
-              </Button>
-            </Card.Body>
-          </Card>
+          <>
+            <Navbar bg="dark" variant="dark" shadow>
+              <Container>
+                <Navbar.Brand href="#home">FaltaUno!</Navbar.Brand>
+                <Nav className="me-auto">
+                  <Nav.Link href="#home">Home</Nav.Link>
+                </Nav>
+                <OverlayTrigger
+                  key={"bottom"}
+                  placement={"bottom"}
+                  overlay={
+                    <Tooltip id={`tooltip-${"bottom"}`}>
+                       {`${user.name} \n ${user.email}}`}
+                    </Tooltip>
+                  }
+                >
+                  <Image width="42" style={
+                    {
+                      "marginRight": "10px",
+                      "border": "2px solid white"
+                    }
+                  } src={user.picture} roundedCircle />
+
+                </OverlayTrigger>
+                <Button variant="danger" style={{ "color": "white" }} onClick={() => logout({ returnTo: window.location.origin })}>
+                  Salir
+                </Button>
+              </Container>
+            </Navbar>
+
+
+          </>
           : null
       }
-      <Button variant="danger" style={{ "color": "white" }} onClick={() => logout({ returnTo: window.location.origin })}>
-        Salir
-      </Button>
+
     </div>
   )
 }

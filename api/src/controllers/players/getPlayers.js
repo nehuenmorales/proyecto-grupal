@@ -6,7 +6,9 @@ async function getPlayers(req, res, next) {
     //   include: Activity,
     //   order: [["id", "ASC"]],
     // });
-    res.json({msg :'desde get player'});
+
+    res.json({ msg: 'desde get player' });
+
   } catch (error) {
     res.status(400).json(error);
   }
