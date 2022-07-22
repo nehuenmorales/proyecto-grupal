@@ -9,6 +9,8 @@ const { modifyGame } = require("../controllers/Owner/Games/modifyGame.js");
 const { deleteSupplies } = require("../controllers/Owner/Supplies/deleteSupplies");
 const { getBookedGames } = require("../controllers/Owner/Games/getBookedGames");
 
+const { createOwner } = require("../controllers/Owner/owner/createOwner");
+
 const router = Router();
 
 router.post("/createField", createField);
@@ -18,6 +20,8 @@ router.put("/modifyField/:id", modifyField);
 router.post("/createSupplies", createSupplies);
 
 router.put("/modifySupplies/:id", modifySupplies);
+
+router.post("/createOwner", createOwner);
 
 router.post("/createGame", createGame);
 
