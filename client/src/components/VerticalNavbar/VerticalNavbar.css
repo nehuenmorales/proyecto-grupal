@@ -1,0 +1,8 @@
+.vertical-navbar {
+  display: flex;
+  position: fixed;
+  height: 100%;
+  width: 300px;
+  background: #111825;
+  box-shadow: 10px 0 10px rgba(0, 0, 0, 0.5);
+}

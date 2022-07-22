@@ -9,6 +9,7 @@ export default function DetailGamesInc({match}) {
     const dispatch = useDispatch();
     const detail = useSelector(state => state.GamesIncompleteReducer.gamesDetail);
 // const {user} = useAuth0();
+console.log(gameid)
   useEffect(()=>{
       dispatch(getDetailIncomplete(gameid))
     },[dispatch,gameid])
