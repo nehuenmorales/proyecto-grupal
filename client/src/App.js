@@ -7,6 +7,7 @@ import { Spinner } from "react-bootstrap";
 import { Route } from "react-router-dom";
 import CarouselGamesInc from "./components/Games/GamesIncomplete/CarouselGamesInc";
 import DetailGamesInc from "./components/Games/GamesIncomplete/DetailGamesInc"
+import DetailFields from "./components/Fields/DetailFields/DetailFields.jsx";
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
 
       <Route exact path="/gamesIncomplete" component={CarouselGamesInc} />
       <Route exact path="/gamesIncomplete/:gameid" component={DetailGamesInc} />
+      <Route path="/fields" component={DetailFields} />
     </>
   );
 

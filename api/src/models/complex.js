@@ -1,4 +1,6 @@
 const { DataTypes } = require("sequelize");
+const { UUIDV4 } = require('sequelize');
+
 module.exports = (sequelize) => {
   sequelize.define("complex", {
     name: {
