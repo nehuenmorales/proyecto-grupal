@@ -18,16 +18,18 @@ export default function DetailGamesInc({match}) {
 //    }
 
     return (<div className={s.background}>
-        <h3>{detail[0]?.sport}</h3>
-        <h3>{detail[0]?.start}</h3>
-        <h3>{detail[0]?.end}</h3>
-        <h3>{detail[0]?.date}</h3>
-        <h3>{detail[0]?.name}</h3>
-        <img src={detail[0]?.image} alt="Imagen"></img>
-        <h3>{detail[0]?.adress}</h3>
-        <h3>{detail[0]?.description}</h3>
-        <h3>${detail[0]?.pricePerHour}</h3>
-        <h3>players:{detail?.map(g=>g.username).join(",")}</h3>
-        <button>Unirse!</button>
+        <img className={s.image} src={detail[0]?.image} alt="Imagen"></img>
+        <div className={s.flex}>
+        <h2>{detail[0]?.name}</h2>
+        <h4>{detail[0]?.sport}</h4>
+        <p>{detail[0]?.date}</p>
+        <p>{detail[0]?.start}</p>
+        <p>{detail[0]?.end}</p>
+        </div>
+        <p>{detail[0]?.adress}</p>
+        <p>{detail[0]?.description}</p>
+        <p>${detail[0]?.pricePerHour}</p>
+        <p>players:{detail?.map(g=>g.username).join(",")}</p>
+        <button className={s.button}>Unirse!</button>
     </div>)
 }
