@@ -13,6 +13,7 @@ export default function CarouselGamesInc() {
     },[dispatch]);
 
     const games = useSelector(state => state.GamesIncompleteReducer.gamesIncomplete)
+    console.log(games)
     return (
         <div>
             <div className={s.carousel}>
