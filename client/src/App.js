@@ -21,14 +21,15 @@ function App() {
           <Spinner animation="border" variant="light" role="status">
             <span className="visually-hidden">Loading...</span>
           </Spinner>
-      : isAuthenticated
-      ? <Route exact path="/" component={Home} />
-      : <Route exact path="/" component={Landing} />
-    }
+          : isAuthenticated
+            ? <Route exact path="/" component={Home} />
+            : <Route exact path="/" component={Landing} />
+      }
 
       <Route exact path="/gamesIncomplete" component={CarouselGamesInc} />
       <Route exact path="/gamesIncomplete/:gameid" component={DetailGamesInc} />
       <Route path="/fields" component={DetailFields} />
+
     </>
   );
 
