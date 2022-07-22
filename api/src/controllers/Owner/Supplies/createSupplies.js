@@ -1,9 +1,9 @@
 const { Complex, Supplies } = require("../../../db");
 
 async function createSupplies(req, res, next) {
-  const { name, sport, stock, price, complexId } = req.body; // se le pasa por body el id del complejo
+  const { name,image, sport, stock, price, complexId } = req.body; // se le pasa por body el id del complejo
   try {
-    const newSupplies = await Supplies.create({ name, sport, stock, price });
+    const newSupplies = await Supplies.create({ name, sport, stock, price,image });
 
     //FALTA LA RUTA DE CREACION DEL USUARIO/COMPLEJO para linkear a un complejo
 
