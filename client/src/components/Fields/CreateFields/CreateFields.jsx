@@ -9,6 +9,15 @@ export default function CreateFields() {
   const [sport, setSport] = useState({
     type:""
   });
+
+  const convertirTime = (state) => {
+    console.log(state)
+    var hour = state.slice(0,2)
+    var minutes = state.slice(3,6)
+    minutes = minutes/60
+    let timeNumber = parseInt(hour) + parseFloat(minutes)
+    return timeNumber
+  }
   
   const selectSport=(e)=>{
     setSport({
@@ -27,10 +36,10 @@ export default function CreateFields() {
     
 
       </span>
-      {sport.type==="futbol"?<FutbolFields/> :null}
-      {sport.type==="tenis"?<TenisFields/> :null}
-      {sport.type==="padel"?<PadelFields/> : null}
-      {sport.type==="basquet"?<BasquetFields/> :null}
+      {sport.type==="futbol"?<FutbolFields convertirTime={convertirTime}/> :null}
+      {sport.type==="tenis"?<TenisFields convertirTime={convertirTime}/> :null}
+      {sport.type==="padel"?<PadelFields convertirTime={convertirTime}/> : null}
+      {sport.type==="basquet"?<BasquetFields convertirTime={convertirTime}/> :null}
 
     </div>
     

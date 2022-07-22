@@ -3,7 +3,7 @@ import axios from "axios";
 import ModalsFieldsGames from "../../ModalsFieldsGames/ModalFieldsGames";
 
 
-export default function PadelFields() {
+export default function PadelFields({convertirTime}) {
     
     const [newField, setNewField] = useState({
       name: "",

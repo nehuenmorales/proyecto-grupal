@@ -5,7 +5,7 @@ import ModalsFieldsGames from "../../ModalsFieldsGames/ModalFieldsGames";
 
 
 
-export default function BasquetFields() {
+export default function BasquetFields({convertirTime}) {
     
     const [newField, setNewField] = useState({
       name: "",

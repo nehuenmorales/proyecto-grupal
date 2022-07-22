@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch } from "react-redux";
@@ -6,17 +6,21 @@ import { createGame } from "../../../redux/Games/gameActions";
 import { createField } from "../../../redux/OwnerFields/fieldsActions";
 
 
-export default function ModalsFieldsGames({ showModal, setShowModal, setNewField, newField, sport }) {
+export default function ModalsFieldsGames({ showModal, setShowModal, setNewField, newField, sport, convertirTime}) {
     const [date, setDate] = useState()
     const dispatch = useDispatch();
     const handleClose = () => setShowModal(false);
-    let turn = [];
-
+    let turn = []
+   
 
     const handleCreate = (e) => {
         e.preventDefault();
         console.log('soy modal con newfield', newField)
-        dispatch(createField(newField));
+        dispatch(createField({...newField,
+            durationPerTurn: convertirTime(newField.durationPerTurn),
+            start: convertirTime(newField.start),
+            end: convertirTime(newField.end)
+         }));
         turn?.map((e) => {
             dispatch(createGame({
                 date: date, 
@@ -24,7 +28,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
                 type: newField.capacity,
                 status: 'free',
                 start: e,
-                end: e + newField.durationPerTurn,
+                end: e + convertirTime(newField.durationPerTurn)
             }))
         })
         
@@ -43,18 +47,22 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
     };
 
     const appointments = (newField) => {
-        let array = [newField.start];
+        let duracion = convertirTime(newField.durationPerTurn)
+        let start = convertirTime(newField.start)
+        let end = convertirTime(newField.end)
+        let array = [start];
         let i = 0
-        if(newField.durationPerTurn > 0){
-        if (newField.end > newField.start) {
-            if((newField.end - newField.start) > newField.durationPerTurn){ 
-                while (array[i] + newField.durationPerTurn + newField.durationPerTurn <= newField.end ) {
+        
+        if(duracion > 0){
+        if (end > start) {
+            if((end - start) > duracion){ 
+                while (array[i] + duracion + duracion <= end ) {
                 if (array.length === 1) {
-                    let result = parseFloat(newField.start) + parseFloat(newField.durationPerTurn)
+                    let result = parseFloat(start) + parseFloat(duracion)
                     array.push(result)
                     i++
                 } else {
-                    let newResult = array[i] + newField.durationPerTurn
+                    let newResult = array[i] + duracion
                     array.push(newResult)
                     i++
                 }
@@ -64,17 +72,17 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
             console.log('soy turn', turn)
             return array;
         }
-        } else if (newField.start > newField.end) {
-            let corte = 24 + parseFloat(newField.end) //26 
+        } else if (start > end) {
+            let corte = 24 + parseFloat(end) //26 
             //23           1                           1 
-            if( (corte - newField.start) > newField.durationPerTurn ) {
-               while (array[i] + newField.durationPerTurn + newField.durationPerTurn <= corte ) {
+            if( (corte - start) > duracion ) {
+               while (array[i] + duracion + duracion <= corte ) {
                 if (array.length === 1) {
-                    let result = parseFloat(newField.start) + parseFloat(newField.durationPerTurn)
+                    let result = parseFloat(start) + parseFloat(duracion)
                     array.push(result)
                     i++
                 } else {
-                    let newResult = array[i] + newField.durationPerTurn
+                    let newResult = array[i] + duracion
                     array.push(newResult)
                     i++
                 }
@@ -123,8 +131,8 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
     }                
 }
 const handleDate = (e) => {
-    e.preventDefault()
     setDate(e.target.value)
+    console.log('soy date', date)
 }
 
     return (
@@ -137,20 +145,20 @@ const handleDate = (e) => {
                             <p>Selecciona los turnos que no se deben mostrar disponibles por cada día de la semana.</p>
                         </div>
                         <div>
-                            <select onClick={(e) => handleDate(e)}>
-                                <option value="Lunes">Lunes</option>
-                                <option value="Martes">Martes</option>
-                                <option value="Miércoles">Miércoles</option>
-                                <option value="Jueves">Jueves</option>
-                                <option value="Viernes">Viernes</option>
-                                <option value="Sábado">Sábado</option>
-                                <option value="Domingo">Domingo</option>
+                            <select onChange={(e) => handleDate(e)}>
+                                <option value="Lunes" >Lunes</option>
+                                <option value="Martes" >Martes</option>
+                                <option value="Miércoles" >Miércoles</option>
+                                <option value="Jueves" >Jueves</option>
+                                <option value="Viernes" >Viernes</option>
+                                <option value="Sábado" >Sábado</option>
+                                <option value="Domingo" >Domingo</option>
                             </select>
                         </div>
 
                     </Modal.Title>
                 </Modal.Header>
-                <Modal.Body>{appointments(newField)}</Modal.Body>
+                <Modal.Body>{newField.start && newField.end && newField.durationPerTurn ? appointments(newField) : null}</Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Atrás

@@ -5,7 +5,7 @@ import ModalsFieldsGames from "../../ModalsFieldsGames/ModalFieldsGames";
 
 
 
-export default function TenisFields() {
+export default function TenisFields({convertirTime}) {
     const [newField, setNewField] = useState({
       name: "",
       sport: "tenis",
