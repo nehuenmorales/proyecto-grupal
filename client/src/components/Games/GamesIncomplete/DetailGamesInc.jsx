@@ -28,7 +28,7 @@ export default function DetailGamesInc({match}) {
         </div>
         <p>{detail[0]?.adress}</p>
         <p>{detail[0]?.description}</p>
-        <p>${detail[0]?.pricePerHour}</p>
+        <p>${detail[0]?.pricePerTurn}</p>
         <p>players:{detail?.map(g=>g.username).join(",")}</p>
         <button className={s.button}>Unirse!</button>
     </div>)
