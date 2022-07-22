@@ -5,6 +5,8 @@ import ModalsFieldsGames from "../../ModalsFieldsGames/ModalFieldsGames";
 
 
 export default function FutbolFields({convertirTime}) {
+
+  let dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
     
     const [newField, setNewField] = useState({
       name: "",
@@ -269,7 +271,8 @@ export default function FutbolFields({convertirTime}) {
           </div>
           <button type="submit" disabled={!loading && !errors.name && !errors.durationPerTurn && !errors.start && !errors.end && !errors.available && !errors.pricePerTurn && !errors.capacity && !errors.description ? false :true } >SIGUIENTE</button>
         </form>
-        <ModalsFieldsGames showModal={showModal} setShowModal={setShowModal} setNewField={setNewField} sport={newField.sport} newField={newField} convertirTime={convertirTime}/>
+
+        <ModalsFieldsGames dias={dias[0]} showModal={showModal} setShowModal={setShowModal} setNewField={setNewField} sport={newField.sport} newField={newField} convertirTime={convertirTime}/>
         </div>
       )
 }

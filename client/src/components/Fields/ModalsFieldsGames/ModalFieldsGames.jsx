@@ -6,8 +6,8 @@ import { createGame } from "../../../redux/Games/gameActions";
 import { createField } from "../../../redux/OwnerFields/fieldsActions";
 
 
-export default function ModalsFieldsGames({ showModal, setShowModal, setNewField, newField, sport, convertirTime}) {
-    const [date, setDate] = useState()
+export default function ModalsFieldsGames({ dias ,showModal, setShowModal, setNewField, newField, sport, convertirTime}) {
+    //const [date, setDate] = useState()
     const dispatch = useDispatch();
     const handleClose = () => setShowModal(false);
     let turn = []
@@ -16,14 +16,15 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
     const handleCreate = (e) => {
         e.preventDefault();
         console.log('soy modal con newfield', newField)
-        dispatch(createField({...newField,
+        
+            const field=dispatch(createField({...newField,
             durationPerTurn: convertirTime(newField.durationPerTurn),
             start: convertirTime(newField.start),
             end: convertirTime(newField.end)
          }));
         turn?.map((e) => {
             dispatch(createGame({
-                date: date, 
+                date: dias, 
                 sport: newField.sport,
                 type: newField.capacity,
                 status: 'free',
@@ -32,7 +33,8 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
             }))
         })
         
-        setNewField({
+        if(dias==="Domingo"){
+            setNewField({
             name: "",
             sport: sport,
             available: "",
@@ -42,7 +44,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
             capacity: "",
             start: "",
             end: ""
-        });
+        });}
         alert("creaste la cancha")
     };
 
@@ -130,13 +132,14 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
      }
     }                
 }
-const handleDate = (e) => {
-    setDate(e.target.value)
-    console.log('soy date', date)
-}
+// const handleDate = (e) => {
+//     setDate(e.target.value)
+//     console.log('soy date', date)
+// }
 
     return (
         <>
+            
             <Modal show={showModal} onHide={handleClose} size="lg" aria-labelledby="example-modal-sizes-title-lg">
                 <Modal.Header closeButton>
                     <Modal.Title>
@@ -144,7 +147,8 @@ const handleDate = (e) => {
                             <h2>Esquema de turnos</h2>
                             <p>Selecciona los turnos que no se deben mostrar disponibles por cada día de la semana.</p>
                         </div>
-                        <div>
+                        <div>{dias}</div>
+                        {/* <div>
                             <select onChange={(e) => handleDate(e)}>
                                 <option value="Lunes" >Lunes</option>
                                 <option value="Martes" >Martes</option>
@@ -154,7 +158,7 @@ const handleDate = (e) => {
                                 <option value="Sábado" >Sábado</option>
                                 <option value="Domingo" >Domingo</option>
                             </select>
-                        </div>
+                        </div> */}
 
                     </Modal.Title>
                 </Modal.Header>

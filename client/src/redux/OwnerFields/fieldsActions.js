@@ -8,8 +8,8 @@ export const createField =(body)=>{
     return async function (dispatch){
         return axios.post("http://localhost:3001/owner/createField",body)
         .then((res)=> {
-            console.log("llega al reducer",res)
-            return dispatch({type:CREATE_FIELD,payload:res})})
+            console.log("llega al reducer",res.data)
+            dispatch({type:CREATE_FIELD,payload:res.data})})    
     }   
 }
 
