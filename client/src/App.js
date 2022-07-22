@@ -1,12 +1,17 @@
 import "./App.css";
 import React from "react";
 import { Route } from "react-router-dom";
+import CreateFields from "./components/Fields/CreateFields/CreateFields";
+import CreateSupplies from "./components/Supplies/CreateSupplies/createSupplies";
 //import Home from './Home.component';
 
 function App() {
   return(
     <>
-      <h1>Hola mundo!!:</h1>
+      <Route exact path={"/owner/createField"} component={CreateFields} />
+
+
+      <Route exact path={"/owner/createSupplie"} component={CreateSupplies}/>
     </>
   ) 
 }

@@ -18,33 +18,34 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       sport: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM("futbol", "basquet", "padel", "tenis"),
         allowNull: false,
       },
       available: {
         type: DataTypes.ENUM("true", "false"), // no puede ser un booleano porque rompe
         allowNull: false,
       },
-      pricePerHour: {
+      pricePerTurn: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
       description: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING,
         allowNull: false,
       },
+      
       capacity: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
       },
-      start:{
+      start: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
       },
       end: {
         type: DataTypes.STRING,
-        allowNull: false
-      }
+        allowNull: false,
+      },
     },
     {
       timestamps: false,
