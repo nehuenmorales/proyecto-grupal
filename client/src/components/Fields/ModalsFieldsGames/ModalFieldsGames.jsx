@@ -1,51 +1,66 @@
 import React, {useEffect, useState} from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createGame } from "../../../redux/Games/gameActions";
 import { createField } from "../../../redux/OwnerFields/fieldsActions";
 
 
-export default function ModalsFieldsGames({ dias ,showModal, setShowModal, setNewField, newField, sport, convertirTime}) {
+export default function ModalsFieldsGames({ showModal, setShowModal, setNewField, newField, sport, convertirTime}) {
     //const [date, setDate] = useState()
+    let dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
     const dispatch = useDispatch();
+    const field = useSelector((state) => state.fieldsReducer.field)
     const handleClose = () => setShowModal(false);
+    const [indice, setIndice] = useState(0)
     let turn = []
-   
+    
 
     const handleCreate = (e) => {
         e.preventDefault();
         console.log('soy modal con newfield', newField)
-        
-            const field=dispatch(createField({...newField,
-            durationPerTurn: convertirTime(newField.durationPerTurn),
-            start: convertirTime(newField.start),
-            end: convertirTime(newField.end)
-         }));
-        turn?.map((e) => {
-            dispatch(createGame({
-                date: dias, 
+        // totalGame?.map((e) => {
+        //
+        if(indice < 6) setIndice(indice + 1)
+        if(indice == 6) setIndice(0)
+        if(indice == 0) {
+            dispatch(createField({...newField,
+                durationPerTurn: convertirTime(newField.durationPerTurn),
+                start: convertirTime(newField.start),
+                end: convertirTime(newField.end)
+             }));
+        }
+        turn.map((e) => {
+            return dispatch(createGame({
+                date: dias[indice], 
                 sport: newField.sport,
                 type: newField.capacity,
                 status: 'free',
                 start: e,
-                end: e + convertirTime(newField.durationPerTurn)
+                end: e + convertirTime(newField.durationPerTurn),
+                fieldId: field.id
             }))
         })
         
-        if(dias==="Domingo"){
-            setNewField({
-            name: "",
-            sport: sport,
-            available: "",
-            pricePerTurn: "",
-            durationPerTurn: "",
-            description: "",
-            capacity: "",
-            start: "",
-            end: ""
-        });}
-        alert("creaste la cancha")
+        // })
+        // setNewField({
+        //     name: "",
+        //     sport: sport,
+        //     available: "",
+        //     pricePerTurn: "",
+        //     durationPerTurn: "",
+        //     description: "",
+        //     capacity: "",
+        //     start: "",
+        //     end: ""
+        // });
+        if(indice < 6){
+            alert("Turnos creados exitosamente")
+        }
+        if(indice == 6){
+            alert("Cancha y turnos creados exitosamente!")
+        }
+        
     };
 
     const appointments = (newField) => {
@@ -132,33 +147,19 @@ export default function ModalsFieldsGames({ dias ,showModal, setShowModal, setNe
      }
     }                
 }
-// const handleDate = (e) => {
-//     setDate(e.target.value)
-//     console.log('soy date', date)
-// }
+
+
 
     return (
         <>
-            
             <Modal show={showModal} onHide={handleClose} size="lg" aria-labelledby="example-modal-sizes-title-lg">
-                <Modal.Header closeButton>
+                <Modal.Header>
                     <Modal.Title>
                         <div>
                             <h2>Esquema de turnos</h2>
                             <p>Selecciona los turnos que no se deben mostrar disponibles por cada día de la semana.</p>
                         </div>
-                        <div>{dias}</div>
-                        {/* <div>
-                            <select onChange={(e) => handleDate(e)}>
-                                <option value="Lunes" >Lunes</option>
-                                <option value="Martes" >Martes</option>
-                                <option value="Miércoles" >Miércoles</option>
-                                <option value="Jueves" >Jueves</option>
-                                <option value="Viernes" >Viernes</option>
-                                <option value="Sábado" >Sábado</option>
-                                <option value="Domingo" >Domingo</option>
-                            </select>
-                        </div> */}
+                        <div>{dias[indice]}</div>
 
                     </Modal.Title>
                 </Modal.Header>
@@ -168,7 +169,7 @@ export default function ModalsFieldsGames({ dias ,showModal, setShowModal, setNe
                         Atrás
                     </Button>
                     <Button variant="primary" onClick={handleCreate}>
-                        Crear
+                        {indice < 6 ? 'aceptar' : 'finalizar' }
                     </Button>
                 </Modal.Footer>
             </Modal>
