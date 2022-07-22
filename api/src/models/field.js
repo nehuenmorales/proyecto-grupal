@@ -6,12 +6,6 @@ module.exports = (sequelize) => {
   sequelize.define(
     "field",
     {
-      id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
-        allowNull: true,
-        primaryKey: true,
-      },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -24,7 +18,7 @@ module.exports = (sequelize) => {
         type: DataTypes.ENUM("true", "false"), // no puede ser un booleano porque rompe
         allowNull: false,
       },
-      pricePerHour: {
+      pricePerTurn: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
@@ -34,13 +28,13 @@ module.exports = (sequelize) => {
       },
       capacity: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: false
       },
-      start: {
+      open:{
         type: DataTypes.STRING,
         allowNull: false,
       },
-      end: {
+      close: {
         type: DataTypes.STRING,
         allowNull: false,
       },

@@ -78,8 +78,8 @@ Complex.hasMany(Supplies);
 Field.belongsTo(Complex);
 Complex.hasMany(Field);
 
-Games.belongsTo(Field);
-Field.hasMany(Games);
+Games.belongsTo(Field, {foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
+Field.hasMany(Games, {foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
 
 Games.belongsTo(Tournament);
 Tournament.hasMany(Games);

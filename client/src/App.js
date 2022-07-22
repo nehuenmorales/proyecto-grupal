@@ -1,13 +1,15 @@
 import "./scss/custom.css";
 import React from "react";
-import { Redirect, Route } from "react-router-dom";
 import Landing from "./components/Landing/Landing";
 import { useAuth0 } from "@auth0/auth0-react";
 import Home from "./pages/Home/Home";
-import Register from "./components/Register/Register";
 import { Spinner } from "react-bootstrap";
+import { Route } from "react-router-dom";
+import CarouselGamesInc from "./components/Games/GamesIncomplete/CarouselGamesInc";
+import DetailGamesInc from "./components/Games/GamesIncomplete/DetailGamesInc"
 
 function App() {
+
   const { isAuthenticated, isLoading } = useAuth0();
 
   return (
@@ -23,7 +25,8 @@ function App() {
       : <Route exact path="/" component={Landing} />
     }
 
-      {/* <Route exact path="/register" component={Register} /> */}
+      <Route exact path="/gamesIncomplete" component={CarouselGamesInc} />
+      <Route exact path="/gamesIncomplete/:gameid" component={DetailGamesInc} />
     </>
   );
 
