@@ -2,6 +2,12 @@ import axios from "axios";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createSupplies } from "../../../../redux/OwnerSupplies/suppliesActions";
+import s from "../formsSupplies.module.css"
+import FloatingLabel from 'react-bootstrap/FloatingLabel'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button';
+
+
 
 
 export default function SuppliesFutbol (){
@@ -103,38 +109,48 @@ export default function SuppliesFutbol (){
             };
 
         return (
-            <div>
+            <div className={s.background}>
                 <form onSubmit={(e)=>handleSubmit(e)} encType='multipart/form-data'>
-                    <h4>Nombre</h4>
-                    <input
-                        type={"text"}
-                        onChange={(e)=>handleInputChange(e)}
-                        name="name"
-                        placeholder="Nombre del producto"
-                        
-                    />
-                    {errors.name ? <div>{errors.name}</div> : null}
-                    <h4>Stock</h4>
-
-                    <input
-                        type={"text"}
-                        onChange={(e)=>handleInputChange(e)}
-                        name="stock"
-                        placeholder="stock del producto"
-                        
-                    />
-                    {errors.stock ? <div>{errors.stock}</div> : null}
-                    <h4>Precio</h4>
-
-                    <input
-                    type={"text"}
-                    onChange={(e)=>handleInputChange(e)}
+                <FloatingLabel
+                    controlId="floatingInput"
+                    label="Nombre del producto"
+                    className={s.inputfield}
+                >
+                    <Form.Control type="text"
+                    name="name"
+                    placeholder="Nombre del producto"
+                    onChange={(e) => handleInputChange(e)} />
+                </FloatingLabel>
+                    
+                    {errors.name ? <div className={s.error}>{errors.name}</div> : null}
+                    <FloatingLabel
+                    controlId="floatingInput"
+                    label="stock del producto"
+                    className={s.inputfield}
+                >
+                    <Form.Control type="text"
+                    name="stock"
+                    placeholder="stock del producto"
+                    onChange={(e) => handleInputChange(e)} />
+                </FloatingLabel>
+                    
+                    
+                    {errors.stock ? <div className={s.error}>{errors.stock}</div> : null}
+                    <FloatingLabel
+                    controlId="floatingInput"
+                    label="precio del producto"
+                    className={s.inputfield}
+                >
+                    <Form.Control type="text"
                     name="price"
                     placeholder="precio del producto"
-                    />
-                    {errors.price ? <div>{errors.price}</div> : null}
+                    onChange={(e) => handleInputChange(e)} />
+                </FloatingLabel>
+                    
+                    
+                    {errors.price ? <div className={s.error}>{errors.price}</div> : null}
                     <div>
-                    <h3>Imagen de la del Producto</h3>
+                    <h3 className={s.titles}>Imagen de la del Producto</h3>
                     <input
                     name="image"
                     onChange={uploadImage}
@@ -142,7 +158,7 @@ export default function SuppliesFutbol (){
                     type='file'/>
                     </div>
                     {loading?<p>Cargando...</p>:null}
-                    <button type="submit" disabled={!loading&&!errors.name && !errors.stock && !errors.price ? false :true } >CREAR  PRODUCTO</button>
+                    <Button  variant="success" size="lg" type="submit" disabled={!loading&&!errors.name && !errors.stock && !errors.price ? false :true } >CREAR  PRODUCTO</Button>
 
                 </form>
             </div>
