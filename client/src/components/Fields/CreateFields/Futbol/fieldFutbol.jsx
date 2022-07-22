@@ -1,10 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
 import ModalsFieldsGames from "../../ModalsFieldsGames/ModalFieldsGames";
+import { createField } from "../../../../redux/OwnerFields/fieldsActions";
+import { useDispatch } from "react-redux";
 
 
 
 export default function FutbolFields({convertirTime}) {
+    const dispatch=useDispatch()
     
     const [newField, setNewField] = useState({
       name: "",
@@ -160,7 +163,12 @@ export default function FutbolFields({convertirTime}) {
     const handleModal = (e)=>{
       e.preventDefault();
       setShowModal(true)
-      
+      dispatch(createField({...newField,
+        durationPerTurn: convertirTime(newField.durationPerTurn),
+        start: convertirTime(newField.start),
+        end: convertirTime(newField.end)
+        
+     }));
     }
 
       return (

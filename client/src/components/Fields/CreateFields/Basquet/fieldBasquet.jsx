@@ -1,12 +1,14 @@
 import { useState } from "react";
 import axios from "axios";
 import ModalsFieldsGames from "../../ModalsFieldsGames/ModalFieldsGames";
-
+import { createField } from "../../../../redux/OwnerFields/fieldsActions";
+import { useDispatch } from "react-redux";
 
 
 
 export default function BasquetFields({convertirTime}) {
-    
+  const dispatch=useDispatch()
+  
     const [newField, setNewField] = useState({
       name: "",
       sport: "basquet",
@@ -44,10 +46,16 @@ export default function BasquetFields({convertirTime}) {
           validations.start = "Ingrese el horario de apertura"
         }else if(field.start < 0 || field.start > 24){
           validations.start = "Ingrese un horario válido"
+        }else if((field.start[3] !== '0' || field.start[4] !== '0') && (field.start[3] !== '3' || field.start[4] !== '0')){
+          console.log('soy error', field.start)
+          validations.start = 'Ingrese un horario terminado en 30 o 00'
         }else if(!field.end){
           validations.end = "Ingrese el horario de cierre"
         }else if(field.end<0 || field.end>24){
           validations.end = "Ingrese un horario válido"
+        }else if((field.end[3] !== '0' || field.end[4] !== '0') && (field.end[3] !== '3' || field.end[4] !== '0')){
+          console.log('soy error', field.start)
+          validations.end = 'Ingrese un horario terminado en 30 o 00'
         }else if(!field.pricePerTurn){
           validations.pricePerTurn = "Ingrese un precio por turno"
         }else if(!beNumber.test(field.pricePerTurn)){
@@ -71,15 +79,15 @@ export default function BasquetFields({convertirTime}) {
                 ...newField,
                 [e.target.name]: parseInt(e.target.value),
             });
-        }if(e.target.name==="start" || e.target.name==="end" || e.target.name==="durationPerTurn"){
-          let hour=e.target.value.slice(0,2)
-          let minutes=e.target.value.slice(3,6)
-          minutes=minutes/60
-          let timeNumber=parseInt(hour)+parseFloat(minutes)
-          setNewField({
-            ...newField,
-            [e.target.name]: timeNumber,
-          })
+        // }if(e.target.name==="start" || e.target.name==="end" || e.target.name==="durationPerTurn"){
+        //   let hour=e.target.value.slice(0,2)
+        //   let minutes=e.target.value.slice(3,6)
+        //   minutes=minutes/60
+        //   let timeNumber=parseInt(hour)+parseFloat(minutes)
+        //   setNewField({
+        //     ...newField,
+        //     [e.target.name]: timeNumber,
+        //   })
         }
         else{
             setNewField({
@@ -135,8 +143,13 @@ export default function BasquetFields({convertirTime}) {
     const handleModal = (e)=>{
       e.preventDefault();
       setShowModal(true)
+      dispatch(createField({...newField,
+        durationPerTurn: convertirTime(newField.durationPerTurn),
+        start: convertirTime(newField.start),
+        end: convertirTime(newField.end)
+        
+     }));
     }
-    
 
 
       return (
@@ -238,7 +251,7 @@ export default function BasquetFields({convertirTime}) {
           </div>
           <button type="submit" disabled={!loading && !errors.name && !errors.durationPerTurn && !errors.start && !errors.end && !errors.available && !errors.pricePerTurn && !errors.description ? false :true } >CREATE FIELD</button>
         </form>
-        <ModalsFieldsGames showModal={showModal} setShowModal={setShowModal} setNewField={setNewField} sport={newField.sport} newField={newField} />
+        <ModalsFieldsGames showModal={showModal} setShowModal={setShowModal} setNewField={setNewField} sport={newField.sport} newField={newField} convertirTime={convertirTime}/>
         </div>
       )
 }

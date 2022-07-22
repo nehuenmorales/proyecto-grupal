@@ -9,9 +9,9 @@ async function createGame (req, res){
             date, sport, type, status, result, link, start, end  
         });
         
-      // const fieldGame = await Field.findOne({
-      //   where: { id: fieldId },
-      // });
+      await newGame.update({
+        fieldId:fieldId
+      })
       // newGame.addField(fieldGame); 
         res.status(200).json(newGame);
       } catch (e) {

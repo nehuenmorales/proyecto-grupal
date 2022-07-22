@@ -13,24 +13,33 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
     const field = useSelector((state) => state.fieldsReducer.field)
     const handleClose = () => setShowModal(false);
     const [indice, setIndice] = useState(0)
-    let turn = []
+    // const [currentField,setCurrentField]=useState(field)
+    var turn = []
+
+    const cancelTurn=(e)=>{
+        if(turn.includes(parseInt(e.target.value))){
+        turnosDay=turn.filter((value)=> value != e.target.value)
+        turn=turn.filter((value)=> value != e.target.value)
+    }else{
+        turn.push(parseInt(e.target.value))
+        turnosDay=turn
+
+    }
+    console.log("turnos", turnosDay)
+    }
     
 
     const handleCreate = (e) => {
         e.preventDefault();
-        console.log('soy modal con newfield', newField)
+        
         // totalGame?.map((e) => {
         //
         if(indice < 6) setIndice(indice + 1)
         if(indice == 6) setIndice(0)
-        if(indice == 0) {
-            dispatch(createField({...newField,
-                durationPerTurn: convertirTime(newField.durationPerTurn),
-                start: convertirTime(newField.start),
-                end: convertirTime(newField.end)
-             }));
-        }
-        turn.map((e) => {
+        
+        
+        // console.log("holaaaaa",currentField)
+        turnosDay.map((e) => {
             return dispatch(createGame({
                 date: dias[indice], 
                 sport: newField.sport,
@@ -83,10 +92,10 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
                     array.push(newResult)
                     i++
                 }
-                console.log(array[i])
+                
             }
             turn= array;
-            console.log('soy turn', turn)
+            
             return array;
         }
         } else if (start > end) {
@@ -103,7 +112,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
                     array.push(newResult)
                     i++
                 }
-                console.log(array[i])
+                
             }
             for (let i = 0; i < array.length; i++) {
                 switch (array[i]) {
@@ -139,7 +148,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
                 }
             }
             turn = array;
-            console.log('soy turn', turn)
+            
             return array;
         }  
      }  else {
@@ -147,9 +156,10 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
      }
     }                
 }
+let turnos = appointments(newField)
 
-
-
+let turnosDay = appointments(newField)
+console.log('soy turnos day', turnosDay)
     return (
         <>
             <Modal show={showModal} onHide={handleClose} size="lg" aria-labelledby="example-modal-sizes-title-lg">
@@ -163,7 +173,10 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
 
                     </Modal.Title>
                 </Modal.Header>
-                <Modal.Body>{newField.start && newField.end && newField.durationPerTurn ? appointments(newField) : null}</Modal.Body>
+                <Modal.Body><div>
+                    {/* <button>holamami</button> */}
+                    {turnosDay?.map((e)=> <Button onClick={cancelTurn} key={e} value={e}>{e + 'hs'}-{e+1 + 'hs'}</Button>)}
+                    </div></Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Atrás
