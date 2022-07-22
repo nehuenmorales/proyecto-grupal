@@ -2,10 +2,8 @@ import { useAuth0, Auth0Context, User, } from '@auth0/auth0-react';
 import React, { useEffect } from 'react'
 import { Button, Container, Image, Nav, Navbar, OverlayTrigger, Spinner, Tooltip } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { postPlayer } from '../../redux/PlayerLogin/PlayerLoginActions';
-
+import './Home.css';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -36,13 +34,13 @@ const Home = () => {
           <Spinner animation="border" variant="light" role="status">
             <span className="visually-hidden">Loading...</span>
           </Spinner>
-          : null
+          : console.log(user)
       }
 
       {
         isAuthenticated ?
           <>
-            <Navbar bg="dark" variant="dark" shadow>
+            <Navbar bg="dark" variant="dark">
               <Container>
                 <Navbar.Brand href="#home">FaltaUno!</Navbar.Brand>
                 <Nav className="me-auto">
@@ -53,7 +51,7 @@ const Home = () => {
                   placement={"bottom"}
                   overlay={
                     <Tooltip id={`tooltip-${"bottom"}`}>
-                       {`${user.name} \n ${user.email}}`}
+                      {`${user.name} \n ${user.email}`}
                     </Tooltip>
                   }
                 >
@@ -65,12 +63,33 @@ const Home = () => {
                   } src={user.picture} roundedCircle />
 
                 </OverlayTrigger>
-                <Button variant="danger" style={{ "color": "white" }} onClick={() => logout({ returnTo: window.location.origin })}>
+                <Button className='d-flex justify-content-between align-items-center' variant="danger" style={{ "color": "white" }} onClick={() => logout({ returnTo: window.location.origin })}>
+                  <img width="20" className='m-1' src="https://img.icons8.com/ios-glyphs/30/FFFFFF/exit.png" />
                   Salir
                 </Button>
               </Container>
             </Navbar>
+            <Container>
+              <Card style={{ width: '15rem' }}>
+                <Card.Img style={{ width: '15rem'}} variant="top" src={user.picture} />
+                <Card.Body>
+                  <Card.Title>{user.name}</Card.Title>
+                  <Card.Text>
+                    email: {user.email}<br />
+                    Pais: {user['https://example.com/country']}
+                    Telefono: {user['https://example.com/phone_number']}
+                  </Card.Text>
+                  {
+                    user['https://example.com/rol'] === "owner" ?
+                    <Button variant="dark">
+                      Soy owner papa
+                    </Button>
+                    : null
+                  }
+                </Card.Body>
+              </Card>
 
+            </Container>
 
           </>
           : null
