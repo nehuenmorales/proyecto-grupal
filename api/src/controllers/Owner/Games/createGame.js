@@ -9,10 +9,11 @@ async function createGame (req, res){
             date, sport, type, status, result, link, start, end  
         });
         
-      // const fieldGame = await Field.findOne({
-      //   where: { id: fieldId },
-      // });
-      // newGame.addField(fieldGame); 
+        await newGame.update(
+          {
+              fieldId: fieldId,
+          },
+      )
         res.status(200).json(newGame);
       } catch (e) {
         console.log("fallo la creacion del partido", e);
