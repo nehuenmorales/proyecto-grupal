@@ -81,6 +81,13 @@ const Home = () => {
                   </Link>
                 </Col>
               </Row>
+              {
+                user['https://example.com/rol'] === 'owner' ?
+                  <Col>
+                    <Button>Soy Dueño</Button>
+                  </Col>
+                  : null
+              }
             </Container>
 
           </>

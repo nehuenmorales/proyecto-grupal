@@ -31,7 +31,7 @@ function App() {
       <Route exact path="/gamesIncomplete/:gameid" component={DetailGamesInc} />
       <Route path="/fields" component={DetailFields} />
       {/* <Route path="/allGames" component={AllGames} /> */}
-      <Route exact path="/allGames/:sport" render={({ match }) => <AllGames deporte={match.params.sport} match={match}/>} />
+      <Route exact path="/:sport" component={AllGames} />
 
     </>
   );
