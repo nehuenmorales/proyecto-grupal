@@ -8,6 +8,7 @@ import { Route } from "react-router-dom";
 import CarouselGamesInc from "./components/Games/GamesIncomplete/CarouselGamesInc";
 import DetailGamesInc from "./components/Games/GamesIncomplete/DetailGamesInc"
 import DetailFields from "./components/Fields/DetailFields/DetailFields.jsx";
+import ViewFields from './components/Fields/DetailFields/ViewFields.jsx';
 
 function App() {
 
@@ -28,7 +29,9 @@ function App() {
 
       <Route exact path="/gamesIncomplete" component={CarouselGamesInc} />
       <Route exact path="/gamesIncomplete/:gameid" component={DetailGamesInc} />
-      <Route path="/fields" component={DetailFields} />
+      <Route exact path="/fields/:sport" component={DetailFields} />
+      <Route exact path="/fields/:sport/:id" component={ViewFields} />
+
     </>
   );
 
