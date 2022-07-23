@@ -12,7 +12,7 @@ async function createGame (req, res){
         await newGame.update(
           {
               fieldId: fieldId,
-          },
+          }
       )
         res.status(200).json(newGame);
       } catch (e) {

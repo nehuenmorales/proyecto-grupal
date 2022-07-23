@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch, useSelector } from "react-redux";
 import { createGame } from "../../../redux/Games/gameActions";
 import { useHistory } from "react-router-dom";
+import s from './modals.module.css'
 
 export default function ModalsFieldsGames({ showModal, setShowModal, setNewField, newField, sport, convertirTime }) {
     let dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
@@ -11,22 +12,30 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
     const field = useSelector((state) => state.fieldsReducer.field)
     const handleClose = () => setShowModal(false);
     const [indice, setIndice] = useState(0)
-    var turn = []
+    const [duracion, setDuracion] = useState(0)
+    const [totalGame, setTotalGame] = useState([])
+
+    console.log(totalGame, 'total game')
 
     const history = useHistory()
 
     const cancelTurn = (e) => {
-        if (turn.includes(parseInt(e.target.value))) {
-            turnosDay = turn.filter((value) => value != e.target.value)
-            turn = turn.filter((value) => value != e.target.value)
-        } else {
-            turn.push(parseInt(e.target.value))
-            turnosDay = turn
+        if (totalGame.includes(parseFloat(e.target.value))) {
+            //turn = turn.filter((value) => value != e.target.value)
+            setTotalGame(totalGame.filter((value) => value != e.target.value))
+        } else{
+            //turn.push(parseInt(e.target.value))
+            setTotalGame([...totalGame, parseFloat(e.target.value)])
 
         }
-        console.log("turnos", turnosDay)
+        console.log('soy turn', turn)
     }
+    console.log('soy totalGame', totalGame)
 
+    useEffect(() => {
+        let duration = convertirTime(newField.durationPerTurn)
+        setDuracion(duration)
+    },[newField.durationPerTurn])
 
     const handleCreate = (e) => {
         e.preventDefault();
@@ -53,7 +62,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
 
 
         // console.log("holaaaaa",currentField)
-        turnosDay.map((e) => {
+        totalGame.map((e) => {
             return dispatch(createGame({
                 date: dias[indice],
                 sport: newField.sport,
@@ -65,10 +74,10 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
             }))
         })
         if (indice < 6) {
-            if(turnosDay.length === 0){
+            if(totalGame.length === 0){
                 alert(`No se agregaron turnos para el día ${dias[indice]}`)
             }
-            alert(`Turnos del dia ${dias[indice]} creados exitosamente`)
+            else alert(`Turnos del dia ${dias[indice]} creados exitosamente`)
         }
         if (indice == 6) {
             alert("Cancha y turnos creados exitosamente!")
@@ -100,7 +109,6 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
                         }
 
                     }
-                    turn = array;
 
                     return array;
                 }
@@ -153,7 +161,6 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
                                 break;
                         }
                     }
-                    turn = array;
 
                     return array;
                 }
@@ -162,10 +169,17 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
             }
         }
     }
-    let turnos = appointments(newField)
+    var turn = appointments(newField)
+    //let turnosDay = appointments(newField)
+    
+    useEffect(() => {
+        setTotalGame(appointments(newField))
+    },[newField])
 
-    let turnosDay = appointments(newField)
-    console.log('soy turnos day', turnosDay)
+    useEffect(() => {
+        setTotalGame(appointments(newField))
+    },[indice])
+    
     return (
         <>
             <Modal show={showModal} onHide={handleClose} size="lg" aria-labelledby="example-modal-sizes-title-lg">
@@ -180,8 +194,8 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body><div>
-                    {/* <button>holamami</button> */}
-                    {turnosDay?.map((e) => <Button onClick={cancelTurn} key={e} value={e}>{e + 'hs'}-{e + 1 + 'hs'}</Button>)}
+                    {/* <button>holamami</button> */console.log('turnnn', turn)}
+                    {turn?.map((e) => <Button onClick={cancelTurn} key={e} value={e}>{e + 'hs'}-{e + duracion + 'hs'}</Button>)}
                 </div></Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
