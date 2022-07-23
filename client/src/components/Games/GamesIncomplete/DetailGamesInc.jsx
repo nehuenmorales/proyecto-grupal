@@ -34,3 +34,4 @@ console.log(gameid)
         <button className={s.button}>Unirse!</button>
     </div>)
 }
+
