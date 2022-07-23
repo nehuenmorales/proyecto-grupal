@@ -3,283 +3,336 @@ import axios from "axios";
 import ModalsFieldsGames from "../../ModalsFieldsGames/ModalFieldsGames";
 import { createField } from "../../../../redux/OwnerFields/fieldsActions";
 import { useDispatch } from "react-redux";
+import Form from 'react-bootstrap/Form';
+import FloatingLabel from "react-bootstrap/esm/FloatingLabel";
+import InputGroup from 'react-bootstrap/InputGroup';
+import Button from "react-bootstrap/esm/Button";
+import Col from "react-bootstrap/esm/Col";
+import { Link } from "react-router-dom";
+import s from '../forms.module.css'
 
+export default function FutbolFields() {
+  const dispatch = useDispatch()
 
+  const [newField, setNewField] = useState({
+    name: "",
+    sport: "futbol",
+    available: "",
+    pricePerTurn: "",
+    durationPerTurn: "",
+    description: "",
+    capacity: "",
+    start: "",
+    end: ""
+  });
+  console.log(newField, 'soy newfield')
+  const [showModal, setShowModal] = useState(false)
 
-export default function FutbolFields({convertirTime}) {
-    const dispatch=useDispatch()
-    
-    const [newField, setNewField] = useState({
-      name: "",
-      sport: "futbol",
-      available:"",
-      pricePerTurn:"",
-      durationPerTurn:"",
-      description: "",
-      capacity:"",
-      start:"",
-      end:""
-    });
-    
-    const [showModal, setShowModal] = useState(false)
+  const [errors, setErrors] = useState({
+    name: "Debe ingresar un nombre",
+    available: "",
+    pricePerTurn: "",
+    durationPerTurn: "",
+    description: "",
+    capacity: "",
+    start: "",
+    end: ""
+  });
 
-    const [errors, setErrors] = useState({
-        name: "Debe ingresar un nombre",
-        available: "",
-        pricePerTurn: "",
-        durationPerTurn:"",
-        description: "",
-        capacity: "",
-        start: "",
-        end: ""
-      });
+  const convertirTime = (state) => {
+    console.log(state)
+    var hour = state.slice(0, 2)
+    var minutes = state.slice(3, 6)
+    minutes = minutes / 60
+    let timeNumber = parseInt(hour) + parseFloat(minutes)
+    return timeNumber
+  }
 
-      const [loading, setLoading] = useState(false)
-      
-      const validator = (field) => {// funcion que valida que todos los inputs tengan un valor "aceptable"
-        let validations = {};
-        const beNumber = /(^\d{1,10}$)/;
-        if(!field.name){
-          validations.name = "Ingrese un nombre"
-        }else if(field.name.length>30){
-          validations.name = "Superó el máximo de caracteres"
-        }else if(!field.start){
-          validations.start = "Ingrese el horario de apertura"
-        }else if(field.start < 0 || field.start > 24){
-          validations.start = "Ingrese un horario válido"
-        }else if((field.start[3] !== '0' || field.start[4] !== '0') && (field.start[3] !== '3' || field.start[4] !== '0')){
-          console.log('soy error', field.start)
-          validations.start = 'Ingrese un horario terminado en 30 o 00'
-        }else if(!field.end){
-          validations.end = "Ingrese el horario de cierre"
-        }else if(field.end<0 || field.end>24){
-          validations.end = "Ingrese un horario válido"
-        }else if((field.end[3] !== '0' || field.end[4] !== '0') && (field.end[3] !== '3' || field.end[4] !== '0')){
-          console.log('soy error', field.start)
-          validations.end = 'Ingrese un horario terminado en 30 o 00'
-        }else if(!field.pricePerTurn){
-          validations.pricePerTurn = "Ingrese un precio por turno"
-        }else if(!beNumber.test(field.pricePerTurn)){
-          validations.pricePerTurn = "Ingrese solo números"
-        }else if(!field.durationPerTurn){
-          validations.durationPerTurn = "Ingrese la duración del turno"
-        }else if((field.durationPerTurn[3] !== '0' || field.durationPerTurn[4] !== '0') && (field.durationPerTurn[3] !== '3' || field.durationPerTurn[4] !== '0')){
-          console.log('soy error', field.durationPerTurn)
-          validations.durationPerTurn = 'Ingrese un horario terminado en 30 o 00'
-        }else if(!field.description){
-          validations.description = "Ingrese una descripción de la cancha"
-        } else if(field.description.length > 140){
-          validations.description = "Alcanzó el limite de caracteres"
-        }else if(!field.capacity){
-          validations.capacity = "Ingrese la cantidad de jugadores totales de la cancha"
-        }else if(!beNumber.test(field.capacity)){
-          validations.capacity = "Ingrese solo numeros"
-        }else if(!field.available){
-          validations.available = "Indique si la cancha esta disponible"
-        }
-        return validations;
-      };
+  const [loading, setLoading] = useState(false)
 
-      const handleInputChange = (e) => {
-    
-        if (e.target.name === "pricePerTurn") {
-            setNewField({
-                ...newField,
-                [e.target.name]: parseInt(e.target.value),
-            });
-        // }if(e.target.name==="start" || e.target.name==="end" || e.target.name==="durationPerTurn"){
-        //   // var hour=e.target.value.slice(0,2)
-        //   // var minutes=e.target.value.slice(3,6)
-        //   // minutes=minutes/60
-        //   // let timeNumber=parseInt(hour)+parseFloat(minutes)
-        //   setNewField({
-        //     ...newField,
-        //     [e.target.name]: timeNumber, 
-        //   })              
-        //   if((e.target.value[3] !== '0' || e.target.value[4] !== '0') && (e.target.value[3] !== '3' || e.target.value[4] !== '0')){
-        //     // let errorTime={}
-        //     // errorTime.e.target.name = 'Ingrese un horario terminado en 30 o 00'
-        //     // setErr(errorTime)
-        //   }
-            
-        //     // return
-        //   }
-          }
-        else{
-            setNewField({
-                ...newField,
-                [e.target.name]: e.target.value,
-            });
-            // console.log(validator(e));
-            // console.log(e.target.value);
-        }
-        let errores = validator({ ...newField, [e.target.name]: e.target.value });
-        setErrors(errores);
-           
-            console.log(newField)
-        }
-      
-      
-      
-    
+  const validator = (field) => {// funcion que valida que todos los inputs tengan un valor "aceptable"
+    let validations = {};
+    const beNumber = /(^\d{1,10}$)/;
+    if (!field.name) {
+      validations.name = "Ingrese un nombre"
+    } else if (field.name.length > 30) {
+      validations.name = "Superó el máximo de caracteres"
+    } else if (!field.start) {
+      validations.start = "Ingrese el horario de apertura"
+    } else if (field.start < 0 || field.start > 24) {
+      validations.start = "Ingrese un horario válido"
+    } else if ((field.start[3] !== '0' || field.start[4] !== '0') && (field.start[3] !== '3' || field.start[4] !== '0')) {
+      console.log('soy error', field.start)
+      validations.start = 'Ingrese un horario terminado en 30 o 00'
+    } else if (!field.end) {
+      validations.end = "Ingrese el horario de cierre"
+    } else if (field.end < 0 || field.end > 24) {
+      validations.end = "Ingrese un horario válido"
+    } else if ((field.end[3] !== '0' || field.end[4] !== '0') && (field.end[3] !== '3' || field.end[4] !== '0')) {
+      console.log('soy error', field.start)
+      validations.end = 'Ingrese un horario terminado en 30 o 00'
+    } else if (!field.pricePerTurn) {
+      validations.pricePerTurn = "Ingrese un precio por turno"
+    } else if (!beNumber.test(field.pricePerTurn)) {
+      validations.pricePerTurn = "Ingrese solo números"
+    } else if (!field.durationPerTurn) {
+      validations.durationPerTurn = "Ingrese la duración del turno"
+    } else if ((field.durationPerTurn[3] !== '0' || field.durationPerTurn[4] !== '0') && (field.durationPerTurn[3] !== '3' || field.durationPerTurn[4] !== '0')) {
+      console.log('soy error', field.durationPerTurn)
+      validations.durationPerTurn = 'Ingrese un horario terminado en 30 o 00'
+    } else if (!field.description) {
+      validations.description = "Ingrese una descripción de la cancha"
+    } else if (field.description.length > 140) {
+      validations.description = "Alcanzó el limite de caracteres"
+    } else if (!field.capacity) {
+      validations.capacity = "Ingrese la cantidad de jugadores totales de la cancha"
+    } else if (!beNumber.test(field.capacity)) {
+      validations.capacity = "Ingrese solo numeros"
+    } else if (!field.available) {
+      validations.available = "Indique si la cancha esta disponible"
+    }
+    return validations;
+  };
 
-    const handleAvailable = (e) => {
-        console.log(e.target.value)
-        setNewField({
-        ...newField,
-        available: e.target.value,
-        });
-        setErrors({ ...errors, available:"" })
-        
-    };
+  const handleInputChange = (e) => {
 
-    const uploadImage = async (e) => {
-      const form = new FormData();
-      form.append("image", e.target.files[0]);
-      console.log(e.target.files);
-      const settings = {
-        "method": "POST",
-        "timeout": 0,
-        "processData": false,
-        "mimeType": "multipart/form-data",
-        "contentType": false,
-        "data": form
-      };
-      setLoading(true)
-      console.log('cargando..',loading)
-      
-      const respuesta = await axios("https://api.imgbb.com/1/upload?expiration=600&key=12d5944c0badc6235fe12ec6550754c8", settings)
-  
+    if (e.target.name === "pricePerTurn") {
       setNewField({
         ...newField,
-        image: respuesta.data.data.url,
+        [e.target.name]: parseInt(e.target.value),
       });
-      setLoading(false)
-  
-      console.log('soy respuesta img',respuesta.data.data.url);
-    };
-
-
-    const handleModal = (e)=>{
-      e.preventDefault();
-      setShowModal(true)
-      dispatch(createField({...newField,
-        durationPerTurn: convertirTime(newField.durationPerTurn),
-        start: convertirTime(newField.start),
-        end: convertirTime(newField.end)
-        
-     }));
     }
+    else {
+      setNewField({
+        ...newField,
+        [e.target.name]: e.target.value,
+      });
+    }
+    let errores = validator({ ...newField, [e.target.name]: e.target.value });
+    setErrors(errores);
 
-      return (
-        <div>
-            <form onSubmit={(e) => handleModal(e)} /*encType='multipart/form-data'*/>
-                <div>
-                    <h3>Nombre</h3>
-                    <input
-                    type="text"
+    console.log(newField)
+  }
+
+
+
+
+
+  const handleAvailable = (e) => {
+    console.log(e.target.value)
+    setNewField({
+      ...newField,
+      available: e.target.value,
+    });
+    setErrors({ ...errors, available: "" })
+
+  };
+
+  const uploadImage = async (e) => {
+    const form = new FormData();
+    form.append("image", e.target.files[0]);
+    console.log(e.target.files);
+    const settings = {
+      "method": "POST",
+      "timeout": 0,
+      "processData": false,
+      "mimeType": "multipart/form-data",
+      "contentType": false,
+      "data": form
+    };
+    setLoading(true)
+    console.log('cargando..', loading)
+
+    const respuesta = await axios("https://api.imgbb.com/1/upload?expiration=600&key=12d5944c0badc6235fe12ec6550754c8", settings)
+
+    setNewField({
+      ...newField,
+      image: respuesta.data.data.url,
+    });
+    setLoading(false)
+
+    console.log('soy respuesta img', respuesta.data.data.url);
+  };
+
+
+  const handleModal = (e) => {
+    e.preventDefault();
+    setShowModal(true)
+    dispatch(createField({
+      ...newField,
+      durationPerTurn: convertirTime(newField.durationPerTurn),
+      start: convertirTime(newField.start),
+      end: convertirTime(newField.end)
+
+    }));
+  }
+
+  return (
+    <div className={s.container}>
+      <div className={s.header}>
+        <Link to='/owner/select'>
+          <Button className={s.volverbtn}>Volver</Button>
+        </Link>
+        <h3 className={s.titulo}><i>Creando cancha de futbol</i></h3>
+      </div>
+
+
+      <form onSubmit={(e) => handleModal(e)} /*encType='multipart/form-data'*/>
+        <div className={s.contenedor}>
+          <div className={s.inputs}>
+
+            <div className={s.column}>
+              {/* NOMBRE DE LA CANCHA */}
+              <div className={s.input}>
+                <FloatingLabel
+                  controlId="floatingInput"
+                  label="Nombre de la cancha"
+                  className={s.inputfield}>
+                  <Form.Control type="text"
+                    className={s.inputfield}
+
                     name="name"
                     placeholder="Nombre de la cancha"
-                    onChange={(e) => handleInputChange(e)}
-                    />
-                    {errors.name ? <div>{errors.name}</div> : null}
+                    onChange={(e) => handleInputChange(e)} />
+                </FloatingLabel>
+                {errors.name ? <div className={s.error}>{errors.name}</div> : null}
+              </div>
+
+              {/* HORARIO DE LA CANCHA */}
+              <div className={s.columna}>
+                <h5 className={s.titles}>Horario de la cancha</h5>
+                <div className={s.cadacolumna}>
+                  <Col className={s.col}>
+                    <div className={s.columnahora}>
+                      <Form.Control className={s.inputcol} placeholder="Apertura" name="start" type="time" onChange={(e) => handleInputChange(e)} />
+                      {errors.start ? <div className={s.errorcol}>{errors.start}</div> : null}
+                    </div>
+                    <div className={s.columnahora}>
+                      <Form.Control className={s.inputcol} placeholder="Cierre" name="end" type="time" onChange={(e) => handleInputChange(e)} />
+                      {errors.end ? <div className={s.errorcol}>{errors.end}</div> : null}
+                    </div>
+                  </Col>
                 </div>
-                <div>
-                <h3>Horario de la cancha</h3>
-            <span><h5>Apertura:</h5>
-            <input
-              type="time"
-              name="start"
-              placeholder="Apertura"
-              onChange={(e) => handleInputChange(e)}
-            />
-            {errors.start ? <div>{errors.start}</div> : null}
-            </span>
-            <span>
-                <h5>Cierre</h5>
-                <input
-                type="time"
-                name="end"
-                placeholder="Cierre"
-                onChange={(e) => handleInputChange(e)}
-            />
-                {errors.end ? <div>{errors.end}</div> : null}
-            </span>
-          </div>
-          <div>
-            <h3>Precio por turno</h3>
-            <input
-              type="text"
-              name="pricePerTurn"
-              placeholder="Precio por turno"
-              onChange={(e) => handleInputChange(e)}
-            />
-            {errors.pricePerTurn ? <div>{errors.pricePerTurn}</div> : null}
-          </div>
-          <div>
-            <h3>Duracion por turno</h3>
-            <input
-              type="time"
-              name="durationPerTurn"
-              placeholder="Duración por turno"
-              onChange={(e) => handleInputChange(e)}
-            />
-            {errors.durationPerTurn ? <div>{errors.durationPerTurn}</div> : null}
-          </div>
-          <div>
-            <h3>Description</h3>
-            <input
-              type="text"
-              name="description"
-              placeholder="Descripción"
-              onChange={(e) => handleInputChange(e)}
-            />
-            {errors.description ? <div>{errors.description}</div> : null}
-          </div>
-          <div>
-            <h3>Capacidad total de jugadres</h3>
-            <input
-              type="text"
-              name="capacity"
-              placeholder="Capacidad"
-              onChange={(e) => handleInputChange(e)}
-            />
-            {errors.capacity ? <div>{errors.capacity}</div> : null}
-          </div>
-          <div>
-            <h3>¿Está disponible para usar?</h3>
-            
-            <button
-                type="button"
-                value="true"
-                name="true"
-                onClick={(e) => handleAvailable(e)}
-              >Disponible</button>
-              <button
-                type="button"
-                value="false"
-                name="false"
-                onClick={(e) => handleAvailable(e)}
-              >No disponible</button>
-              
-            
-            {errors.available ? <div>{errors.available}</div> : null}
+              </div>
 
-          </div>
-          <div>
-            <h3>Imagen de la cancha</h3>
-            <input
-            name="image"
-            onChange={uploadImage}
-            accept="image/*"
-            type='file'
-          />
-          {loading ? <p>Cargando...</p> : null}
-          </div>
-          <button type="submit" disabled={!loading && !errors.name && !errors.durationPerTurn && !errors.start && !errors.end && !errors.available && !errors.pricePerTurn && !errors.capacity && !errors.description ? false :true } >SIGUIENTE</button>
-        </form>
+              {/* PRECIO POR TURNO */}
+              <div className={s.precio}>
+                <InputGroup className={s.inputprecio}>
 
-        <ModalsFieldsGames showModal={showModal} setShowModal={setShowModal} setNewField={setNewField} sport={newField.sport} newField={newField} convertirTime={convertirTime}/>
+                  <InputGroup.Text className={s.inputpesos} >$</InputGroup.Text>
+                  <Form.Control type="text"
+                    className={s.inputcol}
+                    name="pricePerTurn"
+                    placeholder="Precio por turno"
+
+                    onChange={(e) => handleInputChange(e)}
+                  />
+                </InputGroup>
+                {errors.pricePerTurn ? <div className={s.error}>{errors.pricePerTurn}</div> : null}
+              </div>
+
+              {/* DURACION POR TURNO */}
+              <div className={s.duration}>
+                <h5 className={s.titles}>Duracion por turno</h5>
+                <Form.Control
+                  className={s.inputfield}
+                  placeholder="Duración por turno"
+                  name="durationPerTurn"
+                  type="time"
+                  onChange={(e) => handleInputChange(e)} />
+                {errors.durationPerTurn ? <div className={s.error}>{errors.durationPerTurn}</div> : null}
+              </div>
+            </div>
+            <div className={s.column}>
+              {/* DESCRIPCION DE LA CANCHA */}
+              <div>
+                <FloatingLabel
+                  controlId="floatingInput"
+                  label="Descripción de la cancha"
+                  className={s.inputfield}>
+                  <Form.Control type="textarea"
+                    name="description"
+                    placeholder="Descripción de la cancha"
+                    onChange={(e) => handleInputChange(e)} />
+                </FloatingLabel>
+                {errors.description ? <div className={s.error}>{errors.description}</div> : null}
+              </div>
+              {/* CAPACIDAD TOTAL DE JUGADORES */}
+              <div>
+                <FloatingLabel
+                  controlId="floatingInput"
+                  label="Capacidad de la cancha"
+                  className={s.inputfield}
+                >
+                  <Form.Control
+                    type="text"
+                    name="capacity"
+                    placeholder="Capacidad de la cancha"
+                    onChange={(e) => handleInputChange(e)} />
+                </FloatingLabel>
+                {errors.capacity ? <div className={s.error}>{errors.capacity}</div> : null}
+              </div>
+              {/* ESTA DISPONIBLE PARA USAR */}
+              <div>
+                <h5 className={s.titles}>¿Está disponible para usar?</h5>
+                <Button
+                  className={s.btndisp}
+                  type="button"
+                  value="true"
+                  name="true"
+                  variant="outline-secondary"
+                  onClick={(e) => handleAvailable(e)}
+                >Disponible</Button>
+                <Button
+                  className={s.btndisp}
+                  type="button"
+                  value="false"
+                  name="false"
+                  variant="outline-secondary"
+                  onClick={(e) => handleAvailable(e)}
+                >No disponible</Button>
+                {errors.available ? <div className={s.error}>{errors.available}</div> : null}
+              </div>
+              {/* IMAGEN DE LA CANCHA */}
+              <div>
+                <Form.Group
+                  controlId="formFile"
+                  className={s.inputfield}>
+                  <Form.Label className={s.titles}>Imagen de la cancha</Form.Label>
+                  <Form.Control
+                    type="file"
+                    name="image"
+                    onChange={uploadImage}
+                    accept="image/*" />
+                </Form.Group>
+                {loading ? <p>Cargando...</p> : null}
+
+              </div>
+            </div>
+          </div>
+          {/* BOTON SUBMIT */}
+          <div className={s.boton}>
+            <button className={s.btn} type="submit" disabled={
+              !loading &&
+                !errors.name &&
+                !errors.durationPerTurn &&
+                !errors.start &&
+                !errors.end &&
+                !errors.available &&
+                !errors.pricePerTurn &&
+                !errors.capacity &&
+                !errors.description ? false : true} >Siguiente</button>
+          </div>
         </div>
-      )
+      </form>
+
+      <ModalsFieldsGames
+        showModal={showModal}
+        setShowModal={setShowModal}
+        setNewField={setNewField}
+        sport={newField.sport}
+        newField={newField}
+        convertirTime={convertirTime} />
+    </div>
+  )
 }

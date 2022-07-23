@@ -1,0 +1,148 @@
+.container{
+    background-color: rgba(12, 19, 31, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100vh;
+    min-height: 100vh;
+
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content:flex-start;
+    background-color: rgba(17, 24, 37, 1);
+    width: 100%;
+}
+.contenedor{
+    display: flex;
+    flex-direction: column;
+}
+
+.boton{
+    display: flex;
+    justify-content: center;
+    margin: 2em;
+}
+
+.btn{
+    background-color:rgba(0, 184, 63, 1);
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+    padding-left: 45px;
+    padding-right: 45px;
+    box-shadow: 1px 1px 2px rgb(131, 131, 131);
+    color: white;
+    font-family: 'Inter', sans-serif; 
+    transition: .5s;
+}
+
+.btn:hover{
+    background-color: rgb(0, 150, 52);
+}
+
+
+.volverbtn{
+    margin: 1.2em;
+    transition: .5s;
+}
+
+.volverbtn:hover{
+    transform: scale(1.05);
+}
+
+.titulo{
+    font-size: 30px;
+    font-family: 'Inter', sans-serif;
+    padding: 20px; 
+    color: white;
+}
+.inputs{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+}
+.column{
+    width: 100vh;
+}
+.input{
+    margin: 30px;
+}
+.inputfield{
+    max-width: 35em;
+    margin:auto;
+    margin-top: 30px;
+    background-color: rgba(217, 217, 217, 0.15) !important;
+    border: none !important;
+}
+
+.titles{
+    color: rgba(18, 141, 255, 1);
+    font-size: 20px;
+    font-family: 'Inter', sans-serif;
+    margin-left: 45px;
+    padding: 0px;
+}
+
+.col{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.cadacolumna{
+    margin:30px;
+}
+
+.columnahora{
+    min-width: 260px;
+    margin-right: 22px;
+    margin-left: 22px;
+}
+
+.inputcol{
+    margin-right: 25px;
+    height: 55px;
+    background-color: rgba(217, 217, 217, 0.15) !important;
+    border: none !important;
+}
+
+.inputpesos{
+   background-color: rgba(217, 217, 217, 0.363) !important; 
+   border: none !important;
+   color: white !important;
+}
+
+.precio{
+    margin: auto;
+}
+
+.inputprecio{
+    max-width: 36em;
+    margin-bottom: 10px;
+    margin: auto;
+    height: 55px; 
+}
+
+.inputfield{
+    height: 55px;
+    
+}
+
+
+.error{
+    color: red;
+    font-size: 14px;
+    margin-left: 15px;
+}
+
+.errorcol{
+    text-align: center;
+    color: red;
+    font-size: 14px;
+}
