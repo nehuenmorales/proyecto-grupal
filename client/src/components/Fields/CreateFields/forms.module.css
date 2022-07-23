@@ -13,9 +13,14 @@
     flex-direction: row;
     align-items: flex-start;
     justify-content:flex-start;
-    background-color: rgba(17, 24, 37, 1);
+    background-image: url('../../../../utils/header-futbol.jpeg');
     width: 100%;
+    height: 170px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-shadow: 2px 2px 5px rgba(12, 19, 31, 1);
 }
+
 .contenedor{
     display: flex;
     flex-direction: column;
@@ -53,96 +58,167 @@
 .volverbtn:hover{
     transform: scale(1.05);
 }
+.titleheader{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    width: 110vh;
+    height: 170px;
+}
 
 .titulo{
     font-size: 30px;
     font-family: 'Inter', sans-serif;
     padding: 20px; 
     color: white;
+    font-weight: bold;
 }
+
 .inputs{
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    
+    justify-content: space-between;  
 }
+
 .column{
+    display: flex;
+    flex-direction: column;
     width: 100vh;
+    margin: 0 10%;
 }
-.input{
-    margin: 30px;
+
+.contenedorcol{
+    display: flex;
+    flex-direction: row;
 }
-.inputfield{
-    max-width: 35em;
-    margin:auto;
-    margin-top: 30px;
-    background-color: rgba(217, 217, 217, 0.15) !important;
+
+.inputhorario{
+    margin: 0px 15px 0px 0px;
+    margin-top: 0px;
     border: none !important;
+    border-radius: 10px;
+    height: 40px;
+    padding: 5px 3px 5px 15px;
+    background-color: rgba(217, 217, 217, 0.15) !important;
+    color: white;
+    min-width: 168px;  
+    cursor: pointer; 
+
 }
 
 .titles{
-    color: rgba(18, 141, 255, 1);
+    color: rgba(114, 77, 234, 1);
     font-size: 20px;
     font-family: 'Inter', sans-serif;
-    margin-left: 45px;
     padding: 0px;
-}
-
-.col{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.cadacolumna{
-    margin:30px;
-}
-
-.columnahora{
-    min-width: 260px;
-    margin-right: 22px;
-    margin-left: 22px;
-}
-
-.inputcol{
-    margin-right: 25px;
-    height: 55px;
-    background-color: rgba(217, 217, 217, 0.15) !important;
-    border: none !important;
-}
-
-.inputpesos{
-   background-color: rgba(217, 217, 217, 0.363) !important; 
-   border: none !important;
-   color: white !important;
-}
-
-.precio{
-    margin: auto;
-}
-
-.inputprecio{
-    max-width: 36em;
-    margin-bottom: 10px;
-    margin: auto;
-    height: 55px; 
+    margin: 25px 0px 5px 0px;
 }
 
 .inputfield{
-    height: 55px;
+    border: none !important;
+    border-radius: 10px;
+    height: 40px;
+    padding: 5px 3px 5px 15px;
+    background-color: rgba(217, 217, 217, 0.15) !important;
+    color: white;
+    min-width: 350px;  
+    cursor: pointer; 
+}
+
+.fileselect{
+    background-color: rgba(217, 217, 217, 0.15);
+    border-radius: 10px;
+    height: 40px;
+    color: white;
+    min-width: 350px;
+    cursor: pointer;
+}
+.fileselect::file-selector-button{
+    background-color: rgba(12, 19, 31, 1);
+    border-color: rgba(217, 217, 217, 0.15);
+    border-radius: 10px 0px 0px 10px;
+    height: 40px;
+    color: white;
+    padding: 0px 10px;
+}
+
+.subtitle{
+    color: rgba(114, 77, 234, 1);
+    margin: 5px 0px 0px 0px;
+}
+
+
+.inputpesos{
+    background-color: rgba(217, 217, 217, 0.15) !important;
+    border: none !important;
+    color: white !important;
+    color: white !important;
+}
+
+#precioinput{
+    min-width: 320px;
+}
+
+.btndisp{
+    background-color: rgba(217, 217, 217, 0.15) !important;
+    border: none !important;
+    color: white !important;
+    padding: 5px 5px 5px 5px !important;
+    margin: 0px 15px 0px 0px;
+    min-width: 168px;  
+    cursor: pointer;
+    transition: all .5s;
+    border-radius: 10px;
+    height: 40px;
     
 }
 
+.btndisp:hover{
+    transform: scale(0.95);
+}
+
+.btn{
+    height: 40px;
+    padding: 5px 100px 5px 100px !important;
+    font-size: 20px;
+
+}
 
 .error{
     color: red;
     font-size: 14px;
-    margin-left: 15px;
+    position: absolute;
+    z-index: 20;
 }
 
-.errorcol{
-    text-align: center;
-    color: red;
-    font-size: 14px;
-}
+.loader {
+    width: 350px;
+    height: 4.8px;
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.15);
+    position: relative;
+    overflow: hidden;
+  }
+  .loader::after {
+    content: '';  
+    width: 0%;
+    height: 4.8px;
+    background-color: #FFF;
+    background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.25) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.25) 50%, rgba(0, 0, 0, 0.25) 75%, transparent 75%, transparent);
+    background-size: 15px 15px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    animation: animFw 6s ease-in infinite;
+  }
+  
+  @keyframes animFw {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+      

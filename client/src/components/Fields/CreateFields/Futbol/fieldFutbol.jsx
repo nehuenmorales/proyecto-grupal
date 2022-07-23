@@ -10,6 +10,7 @@ import Button from "react-bootstrap/esm/Button";
 import Col from "react-bootstrap/esm/Col";
 import { Link } from "react-router-dom";
 import s from '../forms.module.css'
+import FormLabel from "react-bootstrap/esm/FormLabel";
 
 export default function FutbolFields() {
   const dispatch = useDispatch()
@@ -173,58 +174,53 @@ export default function FutbolFields() {
         <Link to='/owner/select'>
           <Button className={s.volverbtn}>Volver</Button>
         </Link>
-        <h3 className={s.titulo}><i>Creando cancha de futbol</i></h3>
+        <div className={s.titleheader}>
+          <h3 className={s.titulo}><i>Creando cancha de futbol</i></h3>
+        </div>
+
       </div>
 
 
       <form onSubmit={(e) => handleModal(e)} /*encType='multipart/form-data'*/>
         <div className={s.contenedor}>
           <div className={s.inputs}>
-
             <div className={s.column}>
               {/* NOMBRE DE LA CANCHA */}
               <div className={s.input}>
-                <FloatingLabel
-                  controlId="floatingInput"
-                  label="Nombre de la cancha"
-                  className={s.inputfield}>
-                  <Form.Control type="text"
-                    className={s.inputfield}
-
-                    name="name"
-                    placeholder="Nombre de la cancha"
-                    onChange={(e) => handleInputChange(e)} />
-                </FloatingLabel>
+                <h5 className={s.titles}>Nombre de la cancha</h5>
+                <input type="text"
+                  className={s.inputfield}
+                  name="name"
+                  onChange={(e) => handleInputChange(e)} />
                 {errors.name ? <div className={s.error}>{errors.name}</div> : null}
               </div>
 
               {/* HORARIO DE LA CANCHA */}
               <div className={s.columna}>
                 <h5 className={s.titles}>Horario de la cancha</h5>
-                <div className={s.cadacolumna}>
-                  <Col className={s.col}>
-                    <div className={s.columnahora}>
-                      <Form.Control className={s.inputcol} placeholder="Apertura" name="start" type="time" onChange={(e) => handleInputChange(e)} />
-                      {errors.start ? <div className={s.errorcol}>{errors.start}</div> : null}
-                    </div>
-                    <div className={s.columnahora}>
-                      <Form.Control className={s.inputcol} placeholder="Cierre" name="end" type="time" onChange={(e) => handleInputChange(e)} />
-                      {errors.end ? <div className={s.errorcol}>{errors.end}</div> : null}
-                    </div>
-                  </Col>
+                <div className={s.contenedorcol}>
+                  <div className={s.columnahora}>
+                    <p className={s.subtitle} >Apertura</p>
+                    <input className={s.inputhorario} placeholder="Apertura" name="start" type="time" onChange={(e) => handleInputChange(e)} />
+                    {errors.start ? <div className={s.error}>{errors.start}</div> : null}
+                  </div>
+                  <div className={s.columnahora}>
+                    <p className={s.subtitle}>Cierre</p>
+                    <input className={s.inputhorario} placeholder="Cierre" name="end" type="time" onChange={(e) => handleInputChange(e)} />
+                    {errors.end ? <p className={s.error}>{errors.end}</p> : null}
+                  </div>
                 </div>
               </div>
 
               {/* PRECIO POR TURNO */}
               <div className={s.precio}>
+                <h5 className={s.titles}>Precio por turno</h5>
                 <InputGroup className={s.inputprecio}>
-
                   <InputGroup.Text className={s.inputpesos} >$</InputGroup.Text>
-                  <Form.Control type="text"
-                    className={s.inputcol}
+                  <input type="text"
+                    className={s.inputfield}
+                    id={s.precioinput}
                     name="pricePerTurn"
-                    placeholder="Precio por turno"
-
                     onChange={(e) => handleInputChange(e)}
                   />
                 </InputGroup>
@@ -234,7 +230,7 @@ export default function FutbolFields() {
               {/* DURACION POR TURNO */}
               <div className={s.duration}>
                 <h5 className={s.titles}>Duracion por turno</h5>
-                <Form.Control
+                <input
                   className={s.inputfield}
                   placeholder="Duración por turno"
                   name="durationPerTurn"
@@ -246,67 +242,57 @@ export default function FutbolFields() {
             <div className={s.column}>
               {/* DESCRIPCION DE LA CANCHA */}
               <div>
-                <FloatingLabel
-                  controlId="floatingInput"
-                  label="Descripción de la cancha"
-                  className={s.inputfield}>
-                  <Form.Control type="textarea"
-                    name="description"
-                    placeholder="Descripción de la cancha"
-                    onChange={(e) => handleInputChange(e)} />
-                </FloatingLabel>
+                <h5 className={s.titles}>Descripcion de la cancha</h5>
+                <input
+                  className={s.inputfield}
+                  type="textarea"
+                  name="description"
+                  // placeholder="Descripción de la cancha"
+                  onChange={(e) => handleInputChange(e)} />
+
                 {errors.description ? <div className={s.error}>{errors.description}</div> : null}
               </div>
               {/* CAPACIDAD TOTAL DE JUGADORES */}
               <div>
-                <FloatingLabel
-                  controlId="floatingInput"
-                  label="Capacidad de la cancha"
+                <h5 className={s.titles}>Capacidad total de la cancha</h5>
+                <input
                   className={s.inputfield}
-                >
-                  <Form.Control
-                    type="text"
-                    name="capacity"
-                    placeholder="Capacidad de la cancha"
-                    onChange={(e) => handleInputChange(e)} />
-                </FloatingLabel>
+                  type="text"
+                  name="capacity"
+                  onChange={(e) => handleInputChange(e)} />
                 {errors.capacity ? <div className={s.error}>{errors.capacity}</div> : null}
               </div>
               {/* ESTA DISPONIBLE PARA USAR */}
               <div>
                 <h5 className={s.titles}>¿Está disponible para usar?</h5>
-                <Button
+                <button
                   className={s.btndisp}
                   type="button"
                   value="true"
                   name="true"
                   variant="outline-secondary"
                   onClick={(e) => handleAvailable(e)}
-                >Disponible</Button>
-                <Button
+                >Disponible</button>
+                <button
                   className={s.btndisp}
                   type="button"
                   value="false"
                   name="false"
                   variant="outline-secondary"
                   onClick={(e) => handleAvailable(e)}
-                >No disponible</Button>
+                >No disponible</button>
                 {errors.available ? <div className={s.error}>{errors.available}</div> : null}
               </div>
               {/* IMAGEN DE LA CANCHA */}
               <div>
-                <Form.Group
-                  controlId="formFile"
-                  className={s.inputfield}>
-                  <Form.Label className={s.titles}>Imagen de la cancha</Form.Label>
-                  <Form.Control
-                    type="file"
-                    name="image"
-                    onChange={uploadImage}
-                    accept="image/*" />
-                </Form.Group>
-                {loading ? <p>Cargando...</p> : null}
-
+                <h5 className={s.titles}>Imagen de la cancha</h5>
+                <input
+                  type="file"
+                  name="image"
+                  className={s.fileselect}
+                  onChange={uploadImage}
+                  accept="image/*" />
+                {loading ? <span class={s.loader}></span> : null}
               </div>
             </div>
           </div>

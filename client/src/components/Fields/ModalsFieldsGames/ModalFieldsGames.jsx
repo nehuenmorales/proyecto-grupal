@@ -3,6 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch, useSelector } from "react-redux";
 import { createGame } from "../../../redux/Games/gameActions";
+import { useHistory } from "react-router-dom";
 
 export default function ModalsFieldsGames({ showModal, setShowModal, setNewField, newField, sport, convertirTime }) {
     let dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
@@ -11,6 +12,8 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
     const handleClose = () => setShowModal(false);
     const [indice, setIndice] = useState(0)
     var turn = []
+
+    const history = useHistory()
 
     const cancelTurn = (e) => {
         if (turn.includes(parseInt(e.target.value))) {
@@ -69,8 +72,10 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
         }
         if (indice == 6) {
             alert("Cancha y turnos creados exitosamente!")
+            history.push("/owner/select")
         }
 
+        
     };
 
     const appointments = (newField) => {
