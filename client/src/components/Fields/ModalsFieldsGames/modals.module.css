@@ -27,7 +27,7 @@
     transform: scale(1.07);
 }
 .footer{
-    background-color: rgb(113, 113, 113);
+    background-color: rgb(169, 169, 169) !important;
 }
 
 .titulo{
@@ -46,7 +46,7 @@
     text-align: center;
     justify-content: center;
     flex-direction: column;
-    background-color: rgb(235, 235, 235);
+    background-color: rgb(255, 255, 255);
     margin: 0;
     padding: 20px 30px;
 }

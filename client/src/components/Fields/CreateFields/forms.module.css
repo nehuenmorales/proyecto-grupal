@@ -1,3 +1,9 @@
+.inputs{
+    display: flex;
+    flex-direction: row;
+    justify-content: center !important;
+    flex-wrap: wrap;
+}
 .container{
     background-color: rgba(12, 19, 31, 1);
     display: flex;
@@ -5,6 +11,7 @@
     align-items: center;
     min-width: 100vh;
     min-height: 100vh;
+    flex-wrap: wrap;
 
 }
 
@@ -74,16 +81,11 @@
     font-weight: bold;
 }
 
-.inputs{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;  
-}
-
 .column{
     display: flex;
     flex-direction: column;
-    width: 100vh;
+    flex-wrap: wrap;
+    /* width: 100vh; */
     margin: 0 10%;
 }
 
@@ -221,4 +223,10 @@
       width: 100%;
     }
   }
+  .btnContenedor{
+      display: flex;
+      flex-direction: row;
+  }
+
+  
       

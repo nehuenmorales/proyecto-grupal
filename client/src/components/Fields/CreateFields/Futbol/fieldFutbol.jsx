@@ -183,8 +183,8 @@ export default function FutbolFields() {
 
       <form onSubmit={(e) => handleModal(e)} /*encType='multipart/form-data'*/>
         <div className={s.contenedor}>
-          <div className={s.inputs}>
-            <div className={s.column}>
+          <div className='row d-flex justify-content-center align-items-center'>
+            <div className='col-md-6 col-sm-12 px-4'>
               {/* NOMBRE DE LA CANCHA */}
               <div className={s.input}>
                 <h5 className={s.titles}>Nombre de la cancha</h5>
@@ -239,7 +239,7 @@ export default function FutbolFields() {
                 {errors.durationPerTurn ? <div className={s.error}>{errors.durationPerTurn}</div> : null}
               </div>
             </div>
-            <div className={s.column}>
+            <div className='col-md-6 col-sm-12 px-4'>
               {/* DESCRIPCION DE LA CANCHA */}
               <div>
                 <h5 className={s.titles}>Descripcion de la cancha</h5>
@@ -265,6 +265,7 @@ export default function FutbolFields() {
               {/* ESTA DISPONIBLE PARA USAR */}
               <div>
                 <h5 className={s.titles}>¿Está disponible para usar?</h5>
+                <div className={s.btnContenedor}>
                 <button
                   className={s.btndisp}
                   type="button"
@@ -281,6 +282,7 @@ export default function FutbolFields() {
                   variant="outline-secondary"
                   onClick={(e) => handleAvailable(e)}
                 >No disponible</button>
+                </div>
                 {errors.available ? <div className={s.error}>{errors.available}</div> : null}
               </div>
               {/* IMAGEN DE LA CANCHA */}
