@@ -1,56 +1,61 @@
-// import React from "react";
-// import { useEffect} from "react";
-// import { useDispatch, useSelector } from "react-redux"
-// import { getGameSport } from "../../redux/games/gamesAction";
-// import gamesReducer from "../../redux/games/gamesReducer"
-
-// export default function AllGames(){
-//     const dispatch = useDispatch()
-//     const allGames = useSelector(state=> state.gamesReducer.gamesSport)
-
-
-//     return (
-//         <h1>hola</h1>
-//     )
-// }
-
-import React from "react";
+import React, { useState } from "react";
 import CardGames from "./cardGames.jsx";
-
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { getGameSport } from "../../redux/games/gamesAction";
-import gamesReducer from "../../redux/games/gamesReducer"
+import Carousel from "../Carousel/Carousel.jsx";
+import VerticalNavbar from "../VerticalNavbar/VerticalNavbar.jsx";
+import Tabs from "../Tabs/Tabs.jsx";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Button, Form, FormGroup, Spinner } from "react-bootstrap";
+import style from "./AllGames.module.css";
 
 export default function AllGames({ match }) {
-    const sport = match.params.sport
+    const { isLoading } = useAuth0();
+    const sport = match.params.sport;
     const dispatch = useDispatch();
-    const games = useSelector(state => state.gamesReducer.gamesSport)
+    const games = useSelector(state => state.gamesReducer.gamesSport);
+    const [arrayToCarousel, setArrayToCarousel] = useState([]);
 
     useEffect(() => {
         dispatch(getGameSport(sport));
+        setArrayToCarousel(games)
     }, [dispatch, sport]);
-    console.log("sport", sport)
+
+    // function searchByName(event) {
+    //     setArrayToCarousel(games.filter((item) => item.complex_name === event.target.value))
+    // }
+
 
     return (
-        <div>
+        <>
             {
-                games.length > 0 ?
+                isLoading ?
+                    <Spinner animation="border" variant="light" role="status">
+                        <span className="visually-hidden">Loading...</span>
+                    </Spinner>
+                    :
+                    <>
 
-                    games?.map((e) => {
-                        return (
-                            <CardGames
-                                key={e.id}
-                                name={e.name}
-                                start={e.start}
-                                end={e.end}
-                                date={e.date}
-                            />
-                        )
-                    })
-                    : <p style={{ "color": "white" }}>No hay resultados</p>
+                        <VerticalNavbar />
+                        <FormGroup className="d-flex flex-start align-items-center">
+                            <Form.Control className={style.input} size="sm" type="text" placeholder="Busca una cancha..." />
+                            <Button variant="success" className="m-1 text-white">Buscar</Button>
+
+                        </FormGroup>
+                        <Tabs match={match} />
+                        <p style={{
+                            "color": "white",
+                            "padding": "0 5em",
+                            "marginTop": "10px",
+                            "marginBottom": "0",
+                            "fontStyle": "italic"
+                        }}>Canchas disponibles</p>
+                        <Carousel array={arrayToCarousel} />
+                    </>
             }
-        </div>
+
+        </>
     );
 
 };
