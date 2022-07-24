@@ -3,7 +3,7 @@ const { getFields } = require('../controllers/Owner/Field/getFields');
 
 const router = Router();
 
-router.get('/', getFields)
+router.get('/:sport/:id', getFields)
 
 module.exports = router
 

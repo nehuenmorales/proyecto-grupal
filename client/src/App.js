@@ -9,6 +9,7 @@ import CarouselGamesInc from "./components/Games/GamesIncomplete/CarouselGamesIn
 import DetailGamesInc from "./components/Games/GamesIncomplete/DetailGamesInc"
 import DetailFields from "./components/Fields/DetailFields/DetailFields.jsx";
 import AllGames from "./components/AllGames/AllGames.jsx"
+import ViewFields from './components/Fields/DetailFields/ViewFields.jsx';
 
 function App() {
 
@@ -32,6 +33,9 @@ function App() {
       <Route path="/fields" component={DetailFields} />
       {/* <Route path="/allGames" component={AllGames} /> */}
       <Route exact path="/allGames/:sport" render={({ match }) => <AllGames deporte={match.params.sport} match={match}/>} />
+      <Route exact path="/fields/:sport" component={DetailFields} />
+      <Route exact path="/fields/:sport/:id" component={ViewFields} />
+
     </>
   );
 
