@@ -11,7 +11,6 @@ export const reducers = combineReducers({
     GamesIncompleteReducer: GamesIncompleteReducer,
     getFieldsR: getFieldsR,
     gamesReducer: gamesReducer,
-
 })
 
 export default reducers;
