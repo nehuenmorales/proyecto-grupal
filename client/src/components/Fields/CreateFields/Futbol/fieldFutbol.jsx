@@ -175,7 +175,7 @@ export default function FutbolFields() {
           <Button className={s.volverbtn}>Volver</Button>
         </Link>
         <div className={s.titleheader}>
-          <h3 className={s.titulo}><i>Creando cancha de futbol</i></h3>
+          <h3 className={s.titulo}><i>Futbol</i></h3>
         </div>
 
       </div>
@@ -183,8 +183,8 @@ export default function FutbolFields() {
 
       <form onSubmit={(e) => handleModal(e)} /*encType='multipart/form-data'*/>
         <div className={s.contenedor}>
-          <div className='row d-flex justify-content-center align-items-center'>
-            <div className='col-md-6 col-sm-12 px-4'>
+          <div className='row d-flex justify-content-center align-items-center px-5'>
+            <div className='col-md-6 col-sm-12 px-5'>
               {/* NOMBRE DE LA CANCHA */}
               <div className={s.input}>
                 <h5 className={s.titles}>Nombre de la cancha</h5>
@@ -239,7 +239,7 @@ export default function FutbolFields() {
                 {errors.durationPerTurn ? <div className={s.error}>{errors.durationPerTurn}</div> : null}
               </div>
             </div>
-            <div className='col-md-6 col-sm-12 px-4'>
+            <div className='col-md-6 col-sm-12 px-5'>
               {/* DESCRIPCION DE LA CANCHA */}
               <div>
                 <h5 className={s.titles}>Descripcion de la cancha</h5>

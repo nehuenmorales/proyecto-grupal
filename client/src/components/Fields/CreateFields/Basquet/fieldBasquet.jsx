@@ -5,6 +5,8 @@ import { createField } from "../../../../redux/OwnerFields/fieldsActions";
 import { useDispatch } from "react-redux";
 import Button from "react-bootstrap/esm/Button";
 import { Link } from "react-router-dom";
+import s from '../forms.module.css'
+import InputGroup from 'react-bootstrap/InputGroup';
 
 
 export default function BasquetFields() {
@@ -164,120 +166,131 @@ export default function BasquetFields() {
 
 
   return (
-    <div>
+    <div className={s.container}>
+    <div className={s.headerBasquet}>
       <Link to='/owner/select'>
-        <Button>Volver</Button>
+        <Button className={s.volverbtn}>Volver</Button>
       </Link>
-      <h1>Creando cancha de basquet</h1>
+      <div className={s.titleheader}>
+      <h3 className={s.titulo}>Basquet</h3>
+      </div>
+
+      </div>
 
       <form onSubmit={(e) => handleModal(e)} /*encType='multipart/form-data'*/>
-        <div>
-          <h3>Nombre</h3>
+      <div className={s.contenedor}> 
+      <div className='row d-flex justify-content-center align-items-center px-5'>
+      <div className='col-md-6 col-sm-12 px-5'>
+        <div className={s.input}>
+          <h5 className={s.titles}>Nombre de la cancha</h5>
           <input
             type="text"
             name="name"
+            className={s.inputfield}
             value={newField.name}
-
-            placeholder="Nombre de la cancha"
             onChange={(e) => handleInputChange(e)}
           />
-          {errors.name ? <div>{errors.name}</div> : null}
+          {errors.name ? <div className={s.error}>{errors.name}</div> : null}
         </div>
-        <div>
-          <h3>Horario de la cancha</h3>
-          <span><h5>Apertura:</h5>
-            <input
-              type="time"
-              name="start"
-              placeholder="apretura"
-              value={newField.start}
-
-              onChange={(e) => handleInputChange(e)}
-            />
-            {errors.start ? <div>{errors.start}</div> : null}
-          </span>
-          <span>
-            <h5>Cierre</h5>
-            <input
-              type="time"
-              name="end"
-              value={newField.end}
-
-              placeholder="cierre"
-              onChange={(e) => handleInputChange(e)}
-            />
-            {errors.end ? <div>{errors.end}</div> : null}
-          </span>
+        <div className={s.columna}>
+                <h5 className={s.titles}>Horario de la cancha</h5>
+                <div className={s.contenedorcol}>
+                  <div className={s.columnahora}>
+                    <p className={s.subtitle} >Apertura</p>
+                    <input className={s.inputhorario} placeholder="Apertura" name="start" type="time" onChange={(e) => handleInputChange(e)} />
+                    {errors.start ? <div className={s.error}>{errors.start}</div> : null}
+                  </div>
+                  <div className={s.columnahora}>
+                    <p className={s.subtitle}>Cierre</p>
+                    <input className={s.inputhorario} placeholder="Cierre" name="end" type="time" onChange={(e) => handleInputChange(e)} />
+                    {errors.end ? <p className={s.error}>{errors.end}</p> : null}
+                  </div>
+                </div>
+              </div>
+        <div className={s.precio}>
+          <h5 className={s.titles}>Precio por turno</h5>
+          <InputGroup className={s.inputprecio}>
+                  <InputGroup.Text className={s.inputpesos} >$</InputGroup.Text>
+                  <input type="text"
+                    className={s.inputfield}
+                    id={s.precioinput}
+                    name="pricePerTurn"
+                    onChange={(e) => handleInputChange(e)}
+                  />
+                </InputGroup>
+          {errors.pricePerTurn ? <div className={s.error}>{errors.pricePerTurn}</div> : null}
         </div>
+        <div className={s.duration}>
+        <h5 className={s.titles}>Duracion por turno</h5>
+             <input
+                  className={s.inputfield}
+                  placeholder="Duración por turno"
+                  name="durationPerTurn"
+                  type="time"
+                  onChange={(e) => handleInputChange(e)} />
+          {errors.durationPerTurn ? <div className={s.error}>{errors.durationPerTurn}</div> : null}
+        </div>
+        </div>
+        <div className='col-md-6 col-sm-12 px-5'>
         <div>
-          <h3>Precio por turno</h3>
+        <h5 className={s.titles}>Descripcion de la cancha</h5>
           <input
-            type="text"
-            name="pricePerTurn"
-            value={newField.pricePerTurn}
-
-            placeholder="precio por turno"
-            onChange={(e) => handleInputChange(e)}
-          />
-          {errors.pricePerTurn ? <div>{errors.pricePerTurn}</div> : null}
-        </div>
-        <div>
-          <h3>Duración por turno</h3>
-          <input
-            type="time"
-            name="durationPerTurn"
-            value={newField.durationPerTurn}
-
-            placeholder="duracion por turno"
-            onChange={(e) => handleInputChange(e)}
-          />
-          {errors.durationPerTurn ? <div>{errors.durationPerTurn}</div> : null}
-        </div>
-        <div>
-          <h3>Descripción</h3>
-          <input
+            className={s.inputfield}
             type="text"
             name="description"
             value={newField.description}
-
-            placeholder="descripcion"
             onChange={(e) => handleInputChange(e)}
           />
-          {errors.description ? <div>{errors.description}</div> : null}
+          {errors.description ? <div className={s.error}>{errors.description}</div> : null}
         </div>
 
         <div>
-          <h3>¿Esta disponible para usar?</h3>
-
-          <button
-            type="button"
-            value="true"
-            name="true"
-            onClick={(e) => handleAvailable(e)}
-          >Disponible</button>
-          <button
-            type="button"
-            value="false"
-            name="false"
-            onClick={(e) => handleAvailable(e)}
-          >No disponible</button>
-
-
-          {errors.available ? <div>{errors.available}</div> : null}
-
+                <h5 className={s.titles}>¿Está disponible para usar?</h5>
+                <div className={s.btnContenedor}>
+                <button
+                  className={s.btndisp}
+                  type="button"
+                  value="true"
+                  name="true"
+                  variant="outline-secondary"
+                  onClick={(e) => handleAvailable(e)}
+                >Disponible</button>
+                <button
+                  className={s.btndisp}
+                  type="button"
+                  value="false"
+                  name="false"
+                  variant="outline-secondary"
+                  onClick={(e) => handleAvailable(e)}
+                >No disponible</button>
+                </div>
+                {errors.available ? <div className={s.error}>{errors.available}</div> : null}
+              </div>
+              <div>
+                <h5 className={s.titles}>Imagen de la cancha</h5>
+                <input
+                  type="file"
+                  name="image"
+                  className={s.fileselect}
+                  onChange={uploadImage}
+                  accept="image/*" />
+                {loading ? <span class={s.loader}></span> : null}
+              </div>
         </div>
-        <div>
-          <h3>Imagen de la cancha</h3>
-          <input
-            name="image"
-            onChange={uploadImage}
-            accept="image/*"
-            type='file'
-
-          />
-          {loading ? <p>Cargando...</p> : null}
         </div>
-        <button type="submit" disabled={!loading && !errors.name && !errors.durationPerTurn && !errors.start && !errors.end && !errors.available && !errors.pricePerTurn && !errors.description ? false : true} >CREATE FIELD</button>
+        <div className={s.boton}>
+            <button className={s.btn} type="submit" disabled={
+              !loading &&
+                !errors.name &&
+                !errors.durationPerTurn &&
+                !errors.start &&
+                !errors.end &&
+                !errors.available &&
+                !errors.pricePerTurn &&
+                !errors.capacity &&
+                !errors.description ? false : true} >Siguiente</button>
+          </div>
+        </div>
       </form>
       <ModalsFieldsGames showModal={showModal} setShowModal={setShowModal} setNewField={setNewField} sport={newField.sport} newField={newField} convertirTime={convertirTime} />
     </div>
