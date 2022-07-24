@@ -181,31 +181,32 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
     },[indice])
     
     return (
-        <>
+        <div className={s.contenedor}>
             <Modal show={showModal} onHide={handleClose} size="lg" aria-labelledby="example-modal-sizes-title-lg">
-                <Modal.Header>
+                <Modal.Header className={s.contenedorTitle}>
                     <Modal.Title>
-                        <div>
-                            <h2>Esquema de turnos</h2>
-                            <p>Selecciona los turnos que no se deben mostrar disponibles por cada día de la semana.</p>
-                        </div>
-                        <div>{dias[indice]}</div>
-
+                            <h2 className={s.titulo}>Esquema de turnos</h2>
+                            <p className={s.subTitulo}>Selecciona en rojo los turnos que NO se deben crear</p>
                     </Modal.Title>
                 </Modal.Header>
-                <Modal.Body><div>
+                <Modal.Body className={s.contenedorBody}>
+                    <div >
+                <div className={s.dia}>{dias[indice]}</div>
+                <div className={s.turnos}>
                     {/* <button>holamami</button> */console.log('turnnn', turn)}
-                    {turn?.map((e) => <Button onClick={cancelTurn} key={e} value={e}>{e + 'hs'}-{e + duracion + 'hs'}</Button>)}
-                </div></Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
+                    {turn?.map((e) => totalGame?.includes(e) ? <button onClick={cancelTurn} className={s.botonVerde} key={e} value={e}>{e + 'hs'}-{e + duracion + 'hs'}</button> : <button onClick={cancelTurn} className={s.botonRojo} key={e} value={e}>{e + 'hs'}-{e + duracion + 'hs'}</button>)}
+                </div>
+                </div>
+                </Modal.Body>
+                <Modal.Footer className={s.footer}>
+                    <button variant="secondary" onClick={handleClose} className={s.modificar} style={{backgroundColor: 'rgba(12, 19, 31, 1)', border: 'none', padding: '7px 12px', color:'white'}}>
                         Modificar Cancha
-                    </Button>
-                    <Button variant="primary" onClick={handleCreate}>
+                    </button>
+                    <button variant="primary" onClick={handleCreate} className={s.crear} >
                         {indice < 6 ? 'Aceptar' : 'Finalizar'}
-                    </Button>
+                    </button>
                 </Modal.Footer>
             </Modal>
-        </>
+        </div>
     );
 }
