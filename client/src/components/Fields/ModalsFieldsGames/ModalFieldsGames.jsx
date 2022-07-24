@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createGame } from "../../../redux/Games/gameActions";
 import { useHistory } from "react-router-dom";
 import s from './modals.module.css'
+import swal from 'sweetalert';
 
 export default function ModalsFieldsGames({ showModal, setShowModal, setNewField, newField, sport, convertirTime }) {
     let dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
@@ -75,12 +76,13 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
         })
         if (indice < 6) {
             if(totalGame.length === 0){
-                alert(`No se agregaron turnos para el día ${dias[indice]}`)
+                swal('', `No se crearon turnos para el día ${dias[indice]}`, 'warning' )
             }
-            else alert(`Turnos del dia ${dias[indice]} creados exitosamente`)
+            else swal('', `Los turnos del dia ${dias[indice]} fueron creados exitosamente`, 'success')
         }
         if (indice == 6) {
-            alert("Cancha y turnos creados exitosamente!")
+
+            swal('', "Cancha y turnos creados exitosamente!", 'success')
             history.push("/owner/select")
         }
 
