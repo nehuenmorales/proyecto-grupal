@@ -294,16 +294,18 @@ export default function PadelFields() {
         </div>
         </div>
         <div className={s.boton}>
-            <button className={s.btn} type="submit" disabled={
-              !loading &&
-                !errors.name &&
-                !errors.durationPerTurn &&
-                !errors.start &&
-                !errors.end &&
-                !errors.available &&
-                !errors.pricePerTurn &&
-                !errors.capacity &&
-                !errors.description ? false : true} >Siguiente</button>
+            { !loading &&
+              !errors.name &&
+              !errors.durationPerTurn &&
+              !errors.start &&
+              !errors.end &&
+              !errors.available &&
+              !errors.pricePerTurn &&
+              !errors.capacity &&
+              !errors.description ?
+              <button className={s.btnVerde} type="submit" 
+              >Siguiente</button> : <button className={s.btnGris} type="submit" disabled >Siguiente</button>
+            }
           </div>
         </div>
       </form>
