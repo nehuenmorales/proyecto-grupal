@@ -4,6 +4,8 @@ import playerLoginReducer from './PlayerLogin/PlayerLoginReducer';
 import GamesIncompleteReducer from "./GamesIncomplete/gamesIncompleteReducer"
 import getFieldsR from './DetailField/DetailField-reducer';
 import gamesReducer from './games/gamesReducer'
+import getPlayersReducer from './Players/GetPlayersReducer'
+import complexReducer from './Complexes/ComplexReducer';
 
 export const reducers = combineReducers({
     reducer: reducer,
@@ -11,6 +13,8 @@ export const reducers = combineReducers({
     GamesIncompleteReducer: GamesIncompleteReducer,
     getFieldsR: getFieldsR,
     gamesReducer: gamesReducer,
+    getPlayersReducer: getPlayersReducer,
+    complexReducer: complexReducer
 })
 
 export default reducers;

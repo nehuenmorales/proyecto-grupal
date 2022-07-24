@@ -2,12 +2,9 @@ const { Player } = require("../../db.js");
 
 async function getPlayers(req, res, next) {
   try {
-    // let countries = await Country.findAll({
-    //   include: Activity,
-    //   order: [["id", "ASC"]],
-    // });
+    const allPlayers = await Player.findAll()
 
-    res.json({ msg: 'desde get player' });
+    res.send(allPlayers)
 
   } catch (error) {
     res.status(400).json(error);

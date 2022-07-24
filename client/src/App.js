@@ -10,6 +10,8 @@ import DetailGamesInc from "./components/Games/GamesIncomplete/DetailGamesInc"
 import DetailFields from "./components/Fields/DetailFields/DetailFields.jsx";
 import AllGames from "./components/AllGames/AllGames.jsx"
 import ViewFields from './components/Fields/DetailFields/ViewFields.jsx';
+import GetPlayers from "./components/Players/getPlayers";
+import GetComplex from "./components/Complexes/getComplex"
 
 function App() {
 
@@ -27,14 +29,17 @@ function App() {
       ? <Route exact path="/" component={Home} />
       : <Route exact path="/" component={Landing} />
     }
-
+       {/* leo rompiste todo con esta ruta que esta abajito, AREGLALO */}
+      <Route exact path="/:sport" component={AllGames} /> 
       <Route exact path="/gamesIncomplete" component={CarouselGamesInc} />
       <Route exact path="/gamesIncomplete/:gameid" component={DetailGamesInc} />
       <Route path="/fields" component={DetailFields} />
       {/* <Route path="/allGames" component={AllGames} /> */}
-      <Route exact path="/allGames/:sport" render={({ match }) => <AllGames deporte={match.params.sport} match={match}/>} />
+      {/* <Route exact path="/allGames/:sport" render={({ match }) => <AllGames deporte={match.params.sport} match={match}/>} /> */}
       <Route exact path="/fields/:sport" component={DetailFields} />
       <Route exact path="/fields/:sport/:id" component={ViewFields} />
+      <Route exact path="/players" component={GetPlayers} />
+      <Route exact path="/complex" component={GetComplex} />
 
     </>
   );
