@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDetailIncomplete } from '../../../redux/GamesIncomplete/gamesIncompleteActions';
+import VerticalNavbar from '../../VerticalNavbar/VerticalNavbar';
 import s from "./DetailGamesInc.module.css"
 //importar useAuth0()
 
@@ -10,6 +11,7 @@ export default function DetailGamesInc({match}) {
     const detail = useSelector(state => state.GamesIncompleteReducer.gamesDetail);
 // const {user} = useAuth0();
 console.log(gameid)
+console.log(detail)
   useEffect(()=>{
       dispatch(getDetailIncomplete(gameid))
     },[dispatch,gameid])
@@ -19,6 +21,7 @@ console.log(gameid)
 //    }
 
     return (<div className={s.background}>
+        <VerticalNavbar/>
         <img className={s.image} src={detail[0]?.image} alt="Imagen"></img>
         <div className={s.flex}>
         <h2>{detail[0]?.name}</h2>

@@ -48,15 +48,15 @@ function App() {
     }
        {/* leo rompiste todo con esta ruta que esta abajito, AREGLALO */}
       <Route exact path="/sport/:sport" component={AllGames} /> 
-      <Route exact path="/gamesIncomplete" component={CarouselGamesInc} />
-      <Route exact path="/gamesIncomplete/:gameid" component={DetailGamesInc} />
+      <Route exact path="/sport/:sport/gamesIncomplete" component={CarouselGamesInc} />
+      <Route exact path="/sport/:sport/gamesIncomplete/:gameid" component={DetailGamesInc} />
       {/* <Route exact path="/fields" component={DetailFields} /> */}
       {/* <Route path="/allGames" component={AllGames} /> */}
       {/* <Route exact path="/allGames/:sport" render={({ match }) => <AllGames deporte={match.params.sport} match={match}/>} /> */}
       <Route exact path="/fields/:sport" component={DetailFields} />
       {/* <Route exact path="/fields/:sport/:id" component={ViewFields} /> */}
-      <Route exact path="/players" component={GetPlayers} />
-      <Route exact path="/complex" component={GetComplex} />
+      <Route exact path="/sport/:sport/players" component={GetPlayers} />
+      <Route exact path="/sport/:sport/complex" component={GetComplex} />
 
 
       <Route exact path={"/owner/createSupplie"} component={CreateSupplies}/>

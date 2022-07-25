@@ -8,9 +8,11 @@ import basquetImage from '../../assets/images/basquetImage.png';
 import tenisImage from '../../assets/images/tenisImage.png';
 import paddleImage from '../../assets/images/paddleImage.png';
 import VerticalNavbar from '../../components/VerticalNavbar/VerticalNavbar';
+import { useDispatch } from 'react-redux';
 
 const Home = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
+
 
   return (
     <div>
@@ -29,8 +31,8 @@ const Home = () => {
               <Row>
                 <p className="fw-normal text-white fst-italic m-2">Elegí un deporte, vas a poder ver a los mejores de tu zona, desafiarlos y alquilar canchas</p>
                 <Col>
-                  <Link to="/sport/futbol" className='sport-container'>
-                    <span className='sport-span'>Futbol</span>
+                  <Link to="/sport/futbol" className='sport-container'>                   
+                    <span className='sport-span' >Futbol</span>
                     <Image rounded src={futbolImage} />
                   </Link>
                 </Col>
@@ -47,7 +49,7 @@ const Home = () => {
                   </Link>
                 </Col>
                 <Col>
-                  <Link to="/sport/padel" className='sport-container'>
+                  <Link to="/sport/padel"  className='sport-container'>
                     <span className='sport-span'>Padel</span>
                     <Image rounded src={paddleImage} />
                   </Link>

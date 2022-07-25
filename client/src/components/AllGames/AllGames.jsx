@@ -49,7 +49,7 @@ export default function AllGames({ match }) {
                             "marginTop": "10px",
                             "marginBottom": "0",
                             "fontStyle": "italic"
-                        }}>Canchas disponibles</p>
+                        }}>Turnos disponibles</p>
                         <Carousel array={games} />
                     </>
             }

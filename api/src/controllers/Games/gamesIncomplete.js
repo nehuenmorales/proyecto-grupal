@@ -23,12 +23,12 @@ async function gamesIncomplete(req,res,next){
 async function detailGameIncomplete(req, res){
     const { id } = req.params;
     try {
-        const detail= await conn.query(`(SELECT p.username, g.*, x.name,x.adress, f.name, f.capacity, f."pricePerTurn"
+        const detail= await conn.query(`(SELECT p.username, g.*,f.name, f.capacity, f."pricePerTurn"
             FROM players p
             JOIN player_games pg ON pg."playerId" = p.id
             JOIN games g ON pg."gameId" = g.id
             JOIN fields f ON g."fieldId" = f.id
-            JOIN complexes x ON f."complexId" = x.id
+            
             WHERE pg."gameId" = :id)`,
             {
                 replacements: { id: id},
