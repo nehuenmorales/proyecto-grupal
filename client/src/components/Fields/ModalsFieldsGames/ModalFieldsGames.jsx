@@ -22,10 +22,8 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
 
     const cancelTurn = (e) => {
         if (totalGame.includes(parseFloat(e.target.value))) {
-            //turn = turn.filter((value) => value != e.target.value)
             setTotalGame(totalGame.filter((value) => value != e.target.value))
         } else{
-            //turn.push(parseInt(e.target.value))
             setTotalGame([...totalGame, parseFloat(e.target.value)])
 
         }
@@ -171,6 +169,17 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
             }
         }
     }
+
+    const cambioHora = (num) => {
+        let numero = num.toString()
+        if(!numero.includes('.')){
+            return numero + ':00'
+        } else {
+            let resultado = numero.replace('.5', ':30')
+            return resultado
+        }
+    }
+
     var turn = appointments(newField)
     //let turnosDay = appointments(newField)
     
@@ -196,7 +205,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
                 <div className={s.dia}>{dias[indice]}</div>
                 <div className={s.turnos}>
                     {/* <button>holamami</button> */console.log('turnnn', turn)}
-                    {turn?.map((e) => totalGame?.includes(e) ? <button onClick={cancelTurn} className={s.botonVerde} key={e} value={e}>{e + 'hs'}-{e + duracion + 'hs'}</button> : <button onClick={cancelTurn} className={s.botonRojo} key={e} value={e}>{e + 'hs'}-{e + duracion + 'hs'}</button>)}
+                    {turn?.map((e) => totalGame?.includes(e) ? <button onClick={cancelTurn} className={s.botonVerde} key={e} value={e}>{cambioHora(e) + 'hs'}-{cambioHora(e + duracion) + 'hs'}</button> : <button onClick={cancelTurn} className={s.botonRojo} key={e} value={e}>{cambioHora(e) + 'hs'}-{cambioHora(e + duracion) + 'hs'}</button>)}
                 </div>
                 </div>
                 </Modal.Body>
