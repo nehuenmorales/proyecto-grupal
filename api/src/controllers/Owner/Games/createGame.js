@@ -4,16 +4,17 @@ async function createGame (req, res){
     const {
         date, sport, type, status, result, link, start, end, fieldId
       } = req.body;
+      console.log(req.body, "body back")
       try {
         const newGame = await Games.create({
-            date, sport, type, status, result, link, start, end  
+            date, sport, type, status, result, link, start, end, fieldId  
         });
         
-        await newGame.update(
-          {
-              fieldId: fieldId,
-          }
-      )
+      //   await newGame.update(
+      //     {
+      //         fieldId: fieldId,
+      //     }
+      // )
         res.status(200).json(newGame);
       } catch (e) {
         console.log("fallo la creacion del partido", e);
