@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDetailIncomplete } from '../../../redux/GamesIncomplete/gamesIncompleteActions';
+import VerticalNavbar from '../../VerticalNavbar/VerticalNavbar';
 import s from "./DetailGamesInc.module.css"
 //importar useAuth0()
 
@@ -9,6 +10,8 @@ export default function DetailGamesInc({match}) {
     const dispatch = useDispatch();
     const detail = useSelector(state => state.GamesIncompleteReducer.gamesDetail);
 // const {user} = useAuth0();
+console.log(gameid)
+console.log(detail)
   useEffect(()=>{
       dispatch(getDetailIncomplete(gameid))
     },[dispatch,gameid])
@@ -18,6 +21,7 @@ export default function DetailGamesInc({match}) {
 //    }
 
     return (<div className={s.background}>
+        <VerticalNavbar/>
         <img className={s.image} src={detail[0]?.image} alt="Imagen"></img>
         <div className={s.flex}>
         <h2>{detail[0]?.name}</h2>
@@ -28,8 +32,9 @@ export default function DetailGamesInc({match}) {
         </div>
         <p>{detail[0]?.adress}</p>
         <p>{detail[0]?.description}</p>
-        <p>${detail[0]?.pricePerHour}</p>
+        <p>${detail[0]?.pricePerTurn}</p>
         <p>players:{detail?.map(g=>g.username).join(",")}</p>
         <button className={s.button}>Unirse!</button>
     </div>)
 }
+

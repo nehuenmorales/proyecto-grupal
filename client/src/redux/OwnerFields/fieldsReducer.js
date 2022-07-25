@@ -3,6 +3,7 @@ import { CREATE_FIELD, PUT_FIELD } from "./fieldsActions";
 const initialState ={
     allFields:[],
     ownerFields:[],
+    field:{}
 }
 
 const reducer = (state = initialState , action)=>{
@@ -12,6 +13,7 @@ const reducer = (state = initialState , action)=>{
                 ...state,
                 allFields: [...state.allFields, action.payload],
                 ownerFields: [...state.ownerFields, action.payload],
+                field: action.payload,
             }
             
         default:

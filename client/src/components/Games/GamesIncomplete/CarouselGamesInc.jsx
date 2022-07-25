@@ -4,8 +4,10 @@ import { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { getGamesIncomplete } from "../../../redux/GamesIncomplete/gamesIncompleteActions";
 import s from "./CarouselGamesInc.css"
+import VerticalNavbar from "../../VerticalNavbar/VerticalNavbar";
+import Tabs from "../../Tabs/Tabs";
 
-export default function CarouselGamesInc() {
+export default function CarouselGamesInc({match}) {
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -13,8 +15,11 @@ export default function CarouselGamesInc() {
     },[dispatch]);
 
     const games = useSelector(state => state.GamesIncompleteReducer.gamesIncomplete)
+    console.log(games)
     return (
         <div>
+        <VerticalNavbar/>
+        <Tabs match={match}/>
             <div className={s.carousel}>
                 {games?.map((x) => {
                     return (

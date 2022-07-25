@@ -2,20 +2,25 @@ import React, { useEffect } from "react";
 //import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux";
 import {getAllFields} from '../../../redux/DetailField/DetailField-action';
+import Tabs from "../../Tabs/Tabs";
+import VerticalNavbar from "../../VerticalNavbar/VerticalNavbar";
 import FieldCard from "./FieldCard";
 
 
-export default function Detail() {
+export default function DetailFields({match}) {
     const dispatch = useDispatch();
-
     const field = useSelector ((state) => state.getFieldsR.fields)
-
+    const sport = match.params.sport;
+ console.log(sport, 'soy el parametro')
     useEffect(() => {
-        dispatch(getAllFields())
-    }, [dispatch])
+        dispatch(getAllFields(sport))
+    }, [dispatch,sport])
+   
    
     return (
         <div>
+        <VerticalNavbar/>
+        <Tabs match={match}/>
             {
                 field?.map((e) => {
                     return (
@@ -31,39 +36,5 @@ export default function Detail() {
                 })
             }
         </div>
-    //     <div>
-    //     {field && (
-    //         field.length === 0 ? (
-    //         <div>
-    //             <p>There is no fields created</p>
-    //             <p>Want to add some?</p>
-    //         </div>
-    //     ) : 
-    //     (
-    //         field?.map((fie,index) => {
-                
-    //                 <div key={index}>
-                       
-    //                         <FieldCard
-    //                             id={fie.id}
-    //                             name={fie.name}
-    //                             pricePerTurn={fie.pricePerTurn}
-    //                             description={fie.description}
-    //                             capacity={fie.capacity}
-    //                             open={fie.open}
-    //                             close={fie.close}
-    //                             image={fie.image}                                
-    //                         />
-                        
-                        
-    //                 </div>
-                    
-                
-    //         }
-    //         )
-    //     )
-    //     )}
-
-    // </div>
      )
 }

@@ -23,6 +23,10 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      durationPerTurn: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       description: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -31,11 +35,11 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: false
       },
-      open:{
+      start:{
         type: DataTypes.STRING,
         allowNull: false,
       },
-      close: {
+      end: {
         type: DataTypes.STRING,
         allowNull: false,
       },
