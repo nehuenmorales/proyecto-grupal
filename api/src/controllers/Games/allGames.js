@@ -13,10 +13,9 @@ async function getGames(req, res, next) {
             
         // })
 
-        const allGames= await conn.query(`(SELECT g.*, x.adress, x.image, f.name, f.capacity, f."pricePerTurn", f.description, x.name AS complex_name
+        const allGames= await conn.query(`(SELECT g.*, f.name, f.capacity, f."pricePerTurn", f.description
         FROM "games" g
         JOIN fields f ON g."fieldId" = f.id
-        JOIN complexes x ON f."complexId" = x.id
         WHERE g.status = 'free' AND g.sport = :sport)`,
             {
                 replacements: { sport: sport},

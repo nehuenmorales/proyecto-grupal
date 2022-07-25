@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getComplex } from '../../redux/Complexes/ComplexAction';
 import CardComplex from './cardComplex';
 import { useEffect } from 'react';
+import VerticalNavbar from '../VerticalNavbar/VerticalNavbar';
+import Tabs from '../Tabs/Tabs';
 
-const GetComplex = () => {
+const GetComplex = ({match}) => {
     const dispatch = useDispatch()
     const complex = useSelector(state => state.complexReducer.complex)
 
@@ -14,6 +16,8 @@ const GetComplex = () => {
     console.log(complex)
   return (
     <div>
+        <VerticalNavbar/>
+        <Tabs match={match} />
                 {complex?.map((x) => {
                     return (
                         <CardComplex

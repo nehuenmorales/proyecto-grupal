@@ -36,8 +36,10 @@ const VerticalNavbar = () => {
           </Nav>
           {
             user['https://example.com/rol'] === 'owner' ?
+            <>
               <Button onClick={() => history.push("/owner/select")} variant="success" className='m-2 text-white'>Crear cancha</Button>
-              : null
+              <Button onClick={() => history.push("/owner/createSupplie")} variant="success" className='m-2 text-white'>Crear elemento</Button>
+              </>: null
           }
           <OverlayTrigger
             key={"bottom"}

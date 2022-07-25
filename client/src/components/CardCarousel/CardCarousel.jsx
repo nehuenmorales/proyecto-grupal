@@ -10,10 +10,15 @@ const CardCarousel = ({ item }) => {
     <div key={item.id} className={style.cardCarousel}>
       <img src='https://ichef.bbci.co.uk/news/640/cpsprodpb/238D/production/_95410190_gettyimages-488144002.jpg'/>
       <h4 className={style.title}>{item.complex_name}</h4>
-      <p className={style.subtitle}>{item.name}</p>
+      <div className={style.subtitle}>
+      <p >{item.name}</p>
+      <p>{item.start} hs</p>
+      <p>{item.end} hs</p>
+      </div>
       <div className={style.location}>
         <img src={locationIcon}/>
         <p>{item.adress}</p>
+        
       </div>
     </div>
   )

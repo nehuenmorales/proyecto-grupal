@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 export default function CardComplex(props) {
     return (
         <Link>
+        
             <div>
                 <p>{props.name}</p>
                 <img src = {props.image}/>

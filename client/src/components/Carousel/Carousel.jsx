@@ -7,7 +7,7 @@ const Carousel = ({ array }) => {
   return (
     <div className={style.carouselContainer} >
       {
-        array.length > 0 ? 
+        array?.length > 0 ? 
           array.map( item => {
             return (
               <Link to={"/fields"}>

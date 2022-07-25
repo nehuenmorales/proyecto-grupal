@@ -29,25 +29,25 @@ const Home = () => {
               <Row>
                 <p className="fw-normal text-white fst-italic m-2">Elegí un deporte, vas a poder ver a los mejores de tu zona, desafiarlos y alquilar canchas</p>
                 <Col>
-                  <Link to="/futbol" className='sport-container'>
+                  <Link to="/sport/futbol" className='sport-container'>
                     <span className='sport-span'>Futbol</span>
                     <Image rounded src={futbolImage} />
                   </Link>
                 </Col>
                 <Col>
-                  <Link to="/basquet" className='sport-container'>
+                  <Link to="/sport/basquet" className='sport-container'>
                     <span className='sport-span'>Basquet</span>
                     <Image rounded src={basquetImage} />
                   </Link>
                 </Col>
                 <Col>
-                  <Link to="/tenis" className='sport-container'>
+                  <Link to="/sport/tenis" className='sport-container'>
                     <span className='sport-span'>Tenis</span>
                     <Image rounded src={tenisImage} />
                   </Link>
                 </Col>
                 <Col>
-                  <Link to="/padel" className='sport-container'>
+                  <Link to="/sport/padel" className='sport-container'>
                     <span className='sport-span'>Padel</span>
                     <Image rounded src={paddleImage} />
                   </Link>

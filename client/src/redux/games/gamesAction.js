@@ -7,11 +7,11 @@
     return dispatch =>{
       axios.get(`http://localhost:3001/games/${sport}`)
         .then(res => {
+          console.log("entro", res.data)
           dispatch({
             type: GET_GAME_SPORT,
             payload: res.data
           })
-          console.log("entro", res.data)
         })
         .catch (e=>
           console.log(e)

@@ -47,7 +47,7 @@ function App() {
       : <Route exact path="/" component={Landing} />
     }
        {/* leo rompiste todo con esta ruta que esta abajito, AREGLALO */}
-      <Route exact path="/:sport" component={AllGames} /> 
+      <Route exact path="/sport/:sport" component={AllGames} /> 
       <Route exact path="/gamesIncomplete" component={CarouselGamesInc} />
       <Route exact path="/gamesIncomplete/:gameid" component={DetailGamesInc} />
       <Route exact path="/fields" component={DetailFields} />

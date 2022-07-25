@@ -14,18 +14,17 @@ export default function AllGames({ match }) {
     const { isLoading } = useAuth0();
     const sport = match.params.sport;
     const dispatch = useDispatch();
-    const games = useSelector(state => state.gamesReducer.gamesSport);
-    const [arrayToCarousel, setArrayToCarousel] = useState([]);
-
+    const games = useSelector(state => state.games.gamesSport);
+    
     useEffect(() => {
         dispatch(getGameSport(sport));
-        setArrayToCarousel(games)
+        
     }, [dispatch, sport]);
 
     // function searchByName(event) {
     //     setArrayToCarousel(games.filter((item) => item.complex_name === event.target.value))
     // }
-
+   
 
     return (
         <>
@@ -51,7 +50,7 @@ export default function AllGames({ match }) {
                             "marginBottom": "0",
                             "fontStyle": "italic"
                         }}>Canchas disponibles</p>
-                        <Carousel array={arrayToCarousel} />
+                        <Carousel array={games} />
                     </>
             }
 

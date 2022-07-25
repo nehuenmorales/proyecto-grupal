@@ -5,9 +5,10 @@ const initialState = {
     gamesSport:[],
 }
 
-export default function gamesReducer (state = initialState, action){
+export default function games(state = initialState, action){
     switch (action.type) {    
         case GET_GAME_SPORT:
+            console.log("hola bro",action.payload)
             return {
                 ...state,
                 gamesSport: action.payload,
