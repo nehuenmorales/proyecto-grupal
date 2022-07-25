@@ -183,7 +183,7 @@ export default function SuppliesTenis() {
                                 !errors.stock &&
                                 !errors.price ?
                                 <button className={s.btnVerde} type="submit" 
-                                >Siguiente</button> : <button className={s.btnGris} type="submit" disabled >Siguiente</button>
+                                >Siguiente</button> : <button className={s.btnGris} type="submit" disabled >Crear</button>
                         }
 
                     </div>
