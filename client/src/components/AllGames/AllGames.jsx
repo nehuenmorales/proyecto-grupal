@@ -11,6 +11,7 @@ import { Button, Form, FormGroup, Spinner } from "react-bootstrap";
 import style from "./AllGames.module.css";
 
 export default function AllGames({ match }) {
+
     const { isLoading } = useAuth0();
     const sport = match.params.sport;
     const dispatch = useDispatch();
@@ -51,6 +52,7 @@ export default function AllGames({ match }) {
                             "marginBottom": "0",
                             "fontStyle": "italic"
                         }}>Canchas disponibles</p>
+                        
                         <Carousel array={arrayToCarousel} />
                     </>
             }
