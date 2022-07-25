@@ -8,11 +8,17 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button';
 import { Link } from "react-router-dom";
 import CardSupplie from "../CardSupplie/cardSupplie";
+import swal from 'sweetalert';
+import { useHistory } from "react-router-dom";
+
+
 
 
 
 export default function SuppliesBasquet() {
     const dispatch = useDispatch()
+    const history = useHistory()
+
 
     const [newSupplie, setNewSupplie] = useState({
         name: "",
@@ -80,9 +86,8 @@ export default function SuppliesBasquet() {
             price: "",
             image: ""
         });
-        alert("creaste un instrumento")
-
-        window.location.href = "/owner/createSupplie"
+        swal('', `Elemento creado exitosamente`, 'success')
+        history.push("/owner/createSupplie")
 
         //window.location.href = "/home"; aca nos llevaria al home en caso de que cuando se cree una nueva vaya al home
         //o se quede en la misma pag
