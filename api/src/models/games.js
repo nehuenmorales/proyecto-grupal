@@ -7,12 +7,6 @@ module.exports = (sequelize) => {
   sequelize.define(
     "games",
     {
-      id: {
-        type: DataTypes.UUID,
-        defaultValue: UUIDV4,
-        primaryKey: true,
-        
-      },
       date: {
         type: DataTypes.STRING, 
         allowNull: false,
@@ -27,7 +21,7 @@ module.exports = (sequelize) => {
       },
       status: {
         type: DataTypes.ENUM("free", "booked"),
-        allowNull: false,
+        defaultValue: "free",
       },
       result: {
         type: DataTypes.STRING,

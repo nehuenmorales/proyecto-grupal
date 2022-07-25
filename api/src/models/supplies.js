@@ -6,11 +6,6 @@ const { UUIDV4 } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('supplies', {
-    id:{
-        type: DataTypes.UUID,
-        defaultValue: UUIDV4,
-        primaryKey:true,
-    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
