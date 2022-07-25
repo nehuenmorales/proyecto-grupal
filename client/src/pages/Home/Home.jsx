@@ -21,7 +21,6 @@ const Home = () => {
           </Spinner>
           : console.log(user)
       }
-
       {
         isAuthenticated ?
           <>

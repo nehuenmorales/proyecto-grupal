@@ -5,13 +5,13 @@ import {getAllFields} from '../../../redux/DetailField/DetailField-action';
 import FieldCard from "./FieldCard";
 
 
-export default function Detail() {
+export default function DetailFields({match}) {
     const dispatch = useDispatch();
-
+    console.log(match.params.sport, "detalle")
     const field = useSelector ((state) => state.getFieldsR.fields)
 
     useEffect(() => {
-        dispatch(getAllFields())
+        dispatch(getAllFields(match.params.sport))
     }, [dispatch])
    
     return (
@@ -31,39 +31,5 @@ export default function Detail() {
                 })
             }
         </div>
-    //     <div>
-    //     {field && (
-    //         field.length === 0 ? (
-    //         <div>
-    //             <p>There is no fields created</p>
-    //             <p>Want to add some?</p>
-    //         </div>
-    //     ) : 
-    //     (
-    //         field?.map((fie,index) => {
-                
-    //                 <div key={index}>
-                       
-    //                         <FieldCard
-    //                             id={fie.id}
-    //                             name={fie.name}
-    //                             pricePerTurn={fie.pricePerTurn}
-    //                             description={fie.description}
-    //                             capacity={fie.capacity}
-    //                             open={fie.open}
-    //                             close={fie.close}
-    //                             image={fie.image}                                
-    //                         />
-                        
-                        
-    //                 </div>
-                    
-                
-    //         }
-    //         )
-    //     )
-    //     )}
-
-    // </div>
      )
 }

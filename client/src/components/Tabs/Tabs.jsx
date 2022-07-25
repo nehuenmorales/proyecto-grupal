@@ -11,13 +11,13 @@ const Tabs = ({ match }) => {
       "margin": "15px 0 30px 0"
     }} variant="pills" defaultActiveKey="/" >
       <Nav.Item >
-        <Nav.Link eventKey="link-1">Canchas</Nav.Link>
+        <Nav.Link eventKey="link-1" href={`/fields/${match.params.sport}`}>Canchas</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey="link-2">Jugadores</Nav.Link>
+        <Nav.Link eventKey="link-2" href='/players'>Jugadores</Nav.Link>
       </Nav.Item>
       <Nav.Item>
-        <Nav.Link eventKey="link-3">Productos</Nav.Link>
+        <Nav.Link eventKey="link-3" href='/complex'>Complejos</Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link eventKey="link-4">Torneos</Nav.Link>
