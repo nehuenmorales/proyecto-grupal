@@ -23,6 +23,7 @@ import AllGames from "./components/AllGames/AllGames.jsx"
 import ViewFields from './components/Fields/DetailFields/ViewFields.jsx';
 import GetPlayers from "./components/Players/getPlayers";
 import GetComplex from "./components/Complexes/getComplex"
+import HomeOwner from "./pages/HomeOwner/HomeOwner";
 
 function App() {
 
@@ -36,16 +37,18 @@ function App() {
       <Route exact path={"/owner/createField/padel"} component={fieldPadel} />
       <Route exact path={"/owner/createField/tenis"} component={fieldTenis} />
       <Route exact path={"/owner/createField"} component={CreateFields} />
-      {
+{/*       
         isLoading
           ?
           <Spinner animation="border" variant="light" role="status">
             <span className="visually-hidden">Loading...</span>
           </Spinner>
-      : isAuthenticated
-      ? <Route exact path="/" component={Home} />
-      : <Route exact path="/" component={Landing} />
-    }
+      : isAuthenticated */}
+      {/* ?  */}
+      <Route exact path="/" component={Home} />
+      {/* :  */}
+      <Route exact path="/" component={Landing} />
+      <Route exact path="/homeOwner" component={HomeOwner} />
        {/* leo rompiste todo con esta ruta que esta abajito, AREGLALO */}
       <Route exact path="/sport/:sport" component={AllGames} /> 
       <Route exact path="/sport/:sport/gamesIncomplete" component={CarouselGamesInc} />
