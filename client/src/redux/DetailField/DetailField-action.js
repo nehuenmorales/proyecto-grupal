@@ -13,10 +13,10 @@ export const GET_FIELDS = 'GET_FIELDS';
 //     }
 // }
 
-export function getAllFields(id,sport) {
+export function getAllFields(sport) {
   
     return dispatch =>{
-      axios.get(`http://localhost:3001/fields/${sport}/${id}`)
+      axios.get(`http://localhost:3001/fields/${sport}`)
         .then(res => {
           console.log(res.data,'actiooooon')
           dispatch({

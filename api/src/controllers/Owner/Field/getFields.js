@@ -32,15 +32,14 @@ async function getFields (req, res, next){
     const {id} = req.params
     const {sport} = req.params
     try{
-    const allGames= await conn.query(`(SELECT f.*, x.adress, x.image
+    const allGames= await conn.query(`(SELECT f.*
         FROM "fields" f
-        JOIN complexes x ON f."complexId" = x.id
-        WHERE f.sport = :sport 
-        AND f.id = :id)`,
+        WHERE f.sport = :sport)`,
                 {
-                    replacements: { sport: sport, id: id},
+                    replacements: { sport: sport},
                     type: QueryTypes.SELECT
-                })
+                }
+                )
                 res.send(allGames)
     }catch(e){
         console.log(e)

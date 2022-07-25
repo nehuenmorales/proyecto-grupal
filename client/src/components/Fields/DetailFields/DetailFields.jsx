@@ -7,12 +7,13 @@ import FieldCard from "./FieldCard";
 
 export default function DetailFields({match}) {
     const dispatch = useDispatch();
-    console.log(match.params.sport, "detalle")
     const field = useSelector ((state) => state.getFieldsR.fields)
-
+    const sport = match.params.sport;
+ console.log(sport, 'soy el parametro')
     useEffect(() => {
-        dispatch(getAllFields(match.params.sport))
-    }, [dispatch])
+        dispatch(getAllFields(sport))
+    }, [dispatch,sport])
+   
    
     return (
         <div>
