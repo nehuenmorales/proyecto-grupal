@@ -2,13 +2,13 @@ import './Home.css';
 import { useAuth0 } from '@auth0/auth0-react';
 import React from 'react';
 import { Link } from 'react-router-dom'
-import { Button, Col, Container, Image, Row, Spinner } from 'react-bootstrap';
+import {Col, Container, Image, Row, Spinner } from 'react-bootstrap';
 import futbolImage from '../../assets/images/futbolImage.png';
 import basquetImage from '../../assets/images/basquetImage.png';
 import tenisImage from '../../assets/images/tenisImage.png';
 import paddleImage from '../../assets/images/paddleImage.png';
 import VerticalNavbar from '../../components/VerticalNavbar/VerticalNavbar';
-import { useDispatch } from 'react-redux';
+
 
 const Home = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();

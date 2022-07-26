@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import CardGames from "./cardGames.jsx";
+import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { getGameSport } from "../../redux/Games/gamesAction";

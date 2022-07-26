@@ -16,7 +16,7 @@ export const GET_FIELDS = 'GET_FIELDS';
 export function getAllFields(sport) {
   
     return dispatch =>{
-      axios.get(`http://localhost:3001/fields/${sport}`)
+      axios.get(`/fields/${sport}`)
         .then(res => {
           console.log(res.data,'actiooooon')
           dispatch({

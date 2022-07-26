@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import imageLanding from "../../assets/images/playersLandingPage.png";
 import logo from "../../assets/images/logo.png";
-import { Button, Container, Navbar, Spinner } from "react-bootstrap"
-import { useDispatch } from "react-redux";
-import { postPlayer } from "../../redux/PlayerLogin/PlayerLoginActions";
+import { Button, Container, Navbar } from "react-bootstrap"
+
 
 const Landing = () => {
-  const { loginWithRedirect, user, isAuthenticated, isLoading, logout } = useAuth0();
+  const { loginWithRedirect} = useAuth0();
 
   const login = async () => { 
     await loginWithRedirect();    
@@ -35,7 +34,7 @@ const Landing = () => {
         <Container>
           <Navbar.Brand href="#home">
             <Link className="navbar-brand text-decoration-none text-white" to="/">
-              <img src={logo} className="img-fluid" width="60" />
+              <img src={logo} className="img-fluid" width="60" alt=""/>
               FaltaUno!
             </Link>
           </Navbar.Brand>

@@ -3,14 +3,11 @@ import axios from "axios";
 import ModalsFieldsGames from "../../ModalsFieldsGames/ModalFieldsGames";
 import { createField } from "../../../../redux/OwnerFields/fieldsActions";
 import { useDispatch } from "react-redux";
-import Form from 'react-bootstrap/Form';
-import FloatingLabel from "react-bootstrap/esm/FloatingLabel";
 import InputGroup from 'react-bootstrap/InputGroup';
 import Button from "react-bootstrap/esm/Button";
-import Col from "react-bootstrap/esm/Col";
 import { Link } from "react-router-dom";
 import s from '../forms.module.css'
-import FormLabel from "react-bootstrap/esm/FormLabel";
+
 
 export default function FutbolFields() {
   const dispatch = useDispatch()

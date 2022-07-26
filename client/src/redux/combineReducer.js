@@ -1,5 +1,4 @@
 import {combineReducers } from 'redux';
-import reducer from './Profiles/profiles-reducer'
 import fieldsReducer from "./OwnerFields/fieldsReducer"
 import gamesReducer from "./Games/gameReducer"
 import suppliesReducer from "./OwnerSupplies/suppliesReducer"
@@ -11,7 +10,6 @@ import getPlayersReducer from './Players/GetPlayersReducer'
 import complexReducer from './Complexes/ComplexReducer';
 
 export const reducers = combineReducers({
-    reducer: reducer,
     fieldsReducer:fieldsReducer,
     gamesReducer: gamesReducer,
     playerLoginReducer: playerLoginReducer,

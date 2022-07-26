@@ -1,4 +1,4 @@
-import { CREATE_FIELD, PUT_FIELD } from "./fieldsActions";
+import { CREATE_FIELD } from "./fieldsActions";
 
 const initialState ={
     allFields:[],

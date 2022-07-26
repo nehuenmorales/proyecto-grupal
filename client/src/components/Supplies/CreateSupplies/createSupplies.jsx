@@ -1,25 +1,9 @@
-import { useState } from "react";
-import SuppliesBasquet from "./Basquet/suppliesBasquet";
-import SuppliesFutbol from "./Futbol/suppliesFutbol";
-import SuppliesPadel from "./Padel/suppliesPadel";
-import SuppliesTenis from "./Tenis/suppliesTenis";
-import Button from 'react-bootstrap/Button';
 import  s from './createSupplies.module.css';
 import { Link } from 'react-router-dom'
 
 
 
 export default function CreateSupplies() {
-    const [sport, setSport] = useState({
-      type:""
-    });
-    
-    const selectSport=(e)=>{
-      setSport({
-        type:e.target.value,
-      });
-    }
-  
     return (
       <div className={s.container}>
         <h3 className={s.titulo}>Selecciona el deporte del producto a crear</h3>

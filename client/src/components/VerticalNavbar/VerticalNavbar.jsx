@@ -1,11 +1,11 @@
 import React from 'react';
-import { Navbar, Container, Row, Nav, OverlayTrigger, Tooltip, Image, Button } from 'react-bootstrap';
+import { Navbar, Container, Nav, OverlayTrigger, Tooltip, Image, Button } from 'react-bootstrap';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useHistory } from 'react-router-dom';
 
 const VerticalNavbar = () => {
 
-  const { user, isAuthenticated, isLoading, logout, getAccessTokenSilently } = useAuth0();
+  const { user, isLoading, logout} = useAuth0();
 
   const history = useHistory();
 
@@ -59,7 +59,7 @@ const VerticalNavbar = () => {
             } src={user.picture} roundedCircle />
           </OverlayTrigger>
           <Button className='d-flex justify-content-between align-items-center' variant="danger" style={{ "color": "white" }} onClick={() => logout({ returnTo: window.location.origin })}>
-            <img width="20" className='m-1' src="https://img.icons8.com/ios-glyphs/30/FFFFFF/exit.png" />
+            <img width="20" className='m-1' src="https://img.icons8.com/ios-glyphs/30/FFFFFF/exit.png" alt='foto' />
           </Button>
         </Container>
       </Navbar>
