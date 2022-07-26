@@ -7,12 +7,6 @@ module.exports = (sequelize) => {
   sequelize.define(
     "field",
     {
-      id: {
-        type: DataTypes.UUID,
-        defaultValue: UUIDV4,
-        allowNull: true,
-        primaryKey: true,
-      },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -29,22 +23,29 @@ module.exports = (sequelize) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
+      durationPerTurn: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       description: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      
       capacity: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: false
       },
-      start: {
+      start:{
         type: DataTypes.STRING,
         allowNull: false,
       },
       end: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      image: {
+        type: DataTypes.STRING,
+        allowNull: true,
       },
     },
     {

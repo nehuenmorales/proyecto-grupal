@@ -1,0 +1,94 @@
+
+.botonVerde{
+    padding: 5px 15px;
+    margin: 5px;
+    border-radius: 10px;
+    height: 40px;
+    border: none !important;
+    background-color: rgba(18, 141, 255, 1);
+    color: white;
+    transition: 600ms;
+}
+.botonVerde:hover{
+    transform: scale(1.07);
+}
+
+.botonRojo{
+    padding: 5px 15px;
+    margin: 5px;
+    border-radius: 10px;
+    height: 40px;
+    border: none !important;
+    background-color: red;
+    color: white;
+    transition: 600ms;
+}
+.botonRojo:hover{
+    transform: scale(1.07);
+}
+.footer{
+    background-color: rgb(169, 169, 169) !important;
+}
+
+.titulo{
+    color: rgb(235, 235, 235);
+    font-size: 1.1em;
+    font-weight: 700;
+    /* font-family: 'PT Serif', serif; */
+}
+.subTitulo{
+    color: rgb(235, 235, 235);
+    font-size: .7em;
+    font-weight: 500;
+}
+.contenedorBody{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    margin: 0;
+    padding: 20px 30px;
+}
+.turnos{
+    display: flex;
+    justify-content: center;
+    flex-direction: row !important;
+    flex-wrap: wrap;
+}
+.contenedorTitle{
+    padding: 20px 0 10px 30px;
+    background-color: rgba(12, 19, 31, 1);
+    margin: 0;
+}
+.dia{
+    color: rgba(12, 19, 31, 1);
+    font-size: 1.5em;
+    font-weight: 700;
+    padding: 0 0 15px 0;
+}
+.modificar{
+    background-color: rgba(12, 19, 31, 1);
+     border: none;
+     padding: 7px 20px;
+     color:white;
+     height: 40px;
+     width: 180px;
+     border-radius: 10px;
+     transition: 500ms;
+}
+.modificar:hover{
+    transform: scale(0.95);
+}
+.crear{
+     background-color: rgb(0, 150, 52);
+     border: none;
+     padding: 7px 20px;
+     color:white;
+     height: 40px;
+     border-radius: 10px;
+     transition: 500ms;
+}
+.crear:hover{
+    transform: scale(0.95);
+}
