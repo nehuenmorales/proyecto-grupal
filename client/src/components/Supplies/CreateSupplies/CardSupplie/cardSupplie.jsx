@@ -8,7 +8,7 @@ export default function CardSupplie({ newSupplie }) {
     //             image:""
     return (
         <div className={s.cardcontainer}>
-            {newSupplie.image ? <img className={s.image} src={newSupplie.image}></img> : <img className={s.image} src="https://api.iconify.design/material-symbols:hide-image-outline.svg" alt=''></img>}
+            {newSupplie.image ? <img className={s.image} src={newSupplie.image} alt=""></img> : <img className={s.image} src="https://api.iconify.design/material-symbols:hide-image-outline.svg" alt=''></img>}
             <div className={s.information}>
 
 

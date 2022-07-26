@@ -1,13 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Nav, } from 'react-bootstrap'
-import { useSelector } from 'react-redux'
 
 const Tabs = ({ match }) => {
-  console.log(match)
-  
-
-
-  
   return (
     <Nav style={{
       "padding": "0 5em",

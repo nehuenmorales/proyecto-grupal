@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch, useSelector } from "react-redux";
 import { createGame } from "../../../redux/Games/gameActions";
@@ -22,7 +21,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
 
     const cancelTurn = (e) => {
         if (totalGame.includes(parseFloat(e.target.value))) {
-            setTotalGame(totalGame.filter((value) => value != e.target.value))
+            setTotalGame(totalGame.filter((value) => value !== e.target.value))
         } else{
             setTotalGame([...totalGame, parseFloat(e.target.value)])
 
@@ -34,7 +33,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
     useEffect(() => {
         let duration = convertirTime(newField.durationPerTurn)
         setDuracion(duration)
-    },[newField.durationPerTurn])
+    },[newField.durationPerTurn,setDuracion,convertirTime])
 
     const handleCreate = (e) => {
         e.preventDefault();
@@ -42,7 +41,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
         // totalGame?.map((e) => {
         //
         if (indice < 6) setIndice(indice + 1)
-        if (indice == 6) {
+        if (indice === 6) {
             setIndice(0)
             setNewField({
                 name: "",
@@ -78,7 +77,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
             }
             else swal('', `Los turnos del dia ${dias[indice]} fueron creados exitosamente`, 'success')
         }
-        if (indice == 6) {
+        if (indice === 6) {
 
             swal('', "Cancha y turnos creados exitosamente!", 'success')
             history.push("/owner/select")

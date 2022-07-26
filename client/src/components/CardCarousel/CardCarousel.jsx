@@ -1,4 +1,3 @@
-import { User } from '@auth0/auth0-react';
 import React from 'react';
 import style from './CardCarousel.module.css';
 import locationIcon from "../../assets/icons/location.svg"

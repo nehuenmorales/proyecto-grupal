@@ -5,7 +5,7 @@
  export function getGameSport(sport) {
   
     return dispatch =>{
-      axios.get(`http://localhost:3001/games/${sport}`)
+      axios.get(`/games/${sport}`)
         .then(res => {
           console.log("entro", res.data)
           dispatch({
@@ -22,7 +22,7 @@
 
   // export function getAllFields(sport) {
   //   return dispatch =>{
-  //     axios.get(`http://localhost:3001/fields/${sport}`)
+  //     axios.get(`/fields/${sport}`)
   //       .then(res => {
   //         dispatch({
   //           type: GET_FIELDS,
