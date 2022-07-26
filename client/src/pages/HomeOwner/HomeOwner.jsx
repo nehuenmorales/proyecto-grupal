@@ -15,16 +15,10 @@ import axios from 'axios';
 
 const HomeOwner = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
-    const [logueado, setLogueado] = useState(false)
-    const [usuario, setUsuario] = useState()
     const dispatch = useDispatch()
 
     useEffect(() => {
-        // dispatch(getOwner(user.email))
-        if(!logueado){
         dispatch(getOwner(user.email))
-        setLogueado(true)
-        } 
     },[])
     
     
