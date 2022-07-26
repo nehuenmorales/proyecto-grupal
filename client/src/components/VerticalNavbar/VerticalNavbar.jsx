@@ -38,6 +38,7 @@ const VerticalNavbar = () => {
             user['https://example.com/rol'] === 'owner' ?
             <>
               <Button onClick={() => history.push("/owner/select")} variant="success" className='m-2 text-white'>Crear cancha</Button>
+              <Button onClick={() => history.push("/owner/createComplex")} variant="success" className='m-2 text-white'>Crear complejo</Button>
               <Button onClick={() => history.push("/owner/createSupplie")} variant="success" className='m-2 text-white'>Crear elemento</Button>
               </>: null
           }

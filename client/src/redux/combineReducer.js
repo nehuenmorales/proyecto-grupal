@@ -9,8 +9,10 @@ import getFieldsR from './DetailField/DetailField-reducer';
 import games from './Games/gamesReducer'
 import getPlayersReducer from './Players/GetPlayersReducer'
 import complexReducer from './Complexes/ComplexReducer';
+import getOwnerReducer from './GetOwner/getOwnerReducer';
 
 export const reducers = combineReducers({
+    getOwnerReducer: getOwnerReducer,
     reducer: reducer,
     fieldsReducer:fieldsReducer,
     gamesReducer: gamesReducer,
