@@ -1,4 +1,4 @@
-import { CREATE_GAME, PUT_GAME } from "./gameActions";
+import { CREATE_GAME} from "./gameActions";
 
 const initialState ={
     allGames:[],

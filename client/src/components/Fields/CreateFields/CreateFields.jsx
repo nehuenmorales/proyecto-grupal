@@ -1,16 +1,8 @@
-import { useState } from "react";
-import TenisFields from "./Tenis/fieldTenis"
-import FutbolFields from "./Futbol/fieldFutbol";
-import PadelFields from "./Padel/fieldPadel";
-import BasquetFields from "./Basquet/fieldBasquet";
-import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom'
 import s from './CreateFields.module.css'
 
 export default function CreateFields() {
-  const [sport, setSport] = useState({
-    type: ""
-  });
+
 
   // const convertirTime = (state) => {
   //   console.log(state)

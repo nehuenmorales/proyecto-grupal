@@ -1,4 +1,4 @@
-import { CREATE_SUPPLIES, PUT_SUPPLIES } from "./suppliesActions";
+import { CREATE_SUPPLIES} from "./suppliesActions";
 
 const initialState ={
     allSupplies:[],

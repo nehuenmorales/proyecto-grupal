@@ -5,7 +5,7 @@ export const GET_DETAIL_INCOMPLETE = "GET_DETAIL_INCOMPLETE"
 
 export function getGamesIncomplete() {
     return dispatch =>{
-      axios.get(`http://localhost:3001/games/gamesIncomplete`)   
+      axios.get(`/games/gamesIncomplete`)   
         .then(res => {
           dispatch({
             type: GET_GAMES_INCOMPLETE,
@@ -22,7 +22,7 @@ export function getGamesIncomplete() {
   export function getDetailIncomplete(gameid) {
     
     return dispatch =>{
-      axios.get(`http://localhost:3001/games/gamesIncomplete/${gameid}`)
+      axios.get(`/games/gamesIncomplete/${gameid}`)
         .then(res => {
           dispatch({
             type: GET_DETAIL_INCOMPLETE,
