@@ -37,26 +37,11 @@ export default function AllGames({ match }) {
 
                         <VerticalNavbar />
 
-
-                        <div >
-                                <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                    <p>Buscar por ubicacion</p>
-                                </label>
-                                </div>
-                                <div class="form-check">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked/>
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                    <p>Buscar por nombre de cancha</p>
-                                </label>
-                                </div>
                             <FormGroup className="d-flex flex-start align-items-center">
                                 <Form.Control className={style.input} size="sm" type="text" placeholder="Busca una cancha..." />
                                 <Button variant="success" className="m-1 text-white">Buscar</Button>
                             </FormGroup>
 
-                        </div>
                         <Tabs match={match} />
                         <p style={{
                             "color": "white",
