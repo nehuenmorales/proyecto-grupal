@@ -5,6 +5,21 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Button from "react-bootstrap/esm/Button";
 import { Link } from "react-router-dom";
 import Location from "../location";
+import './createComplex.css'
+
+function SoloLetras(input) {
+
+    var ExpRegLetrasEspacio = "^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$";
+    if (input.match(ExpRegLetrasEspacio) != null) {
+        return true;
+    }
+    else if (input.match(ExpRegLetrasEspacio) == null) {
+        return ("Ingrese solo letras")
+    }
+    else {
+        return true;
+    }
+}
 
 export default function CreateComplex() {
     const dispatch = useDispatch()
@@ -14,14 +29,18 @@ export default function CreateComplex() {
         image: "",
         description: "",
         sports: [],
-        adress: ""
+        adress: "",
+        city: "",
+        state: "",
     });
     const [errors, setErrors] = useState({
         name: "Debe ingresar un nombre",
         image: "",
         description: "",
         sports: "",
-        adress: ""
+        adress: "",
+        city: "",
+        state: "",
     });
 
     const [loading, setLoading] = useState(false)
@@ -33,6 +52,8 @@ export default function CreateComplex() {
 
     const validator = (complex) => {// funcion que valida que todos los inputs tengan un valor "aceptable"
         let validations = {};
+        let provinceValidation = SoloLetras(complex.state)
+        let cityValidation = SoloLetras(complex.city)
         const beNumber = /(^\d{1,10}$)/;
         if (!complex.name) {
             validations.name = "Ingrese un nombre"
@@ -42,10 +63,16 @@ export default function CreateComplex() {
             validations.description = "Ingrese una descripción de la cancha"
         } else if (complex.description.length > 140) {
             validations.description = "Alcanzó el limite de caracteres"
-        } else if (complex.sports.length === 0) {
+        } else if (complex.sports.length == 0) {
             validations.sports = "Ingrese un deporte"
-        } else if (!complex.adress) {
-            validations.adress = "Ingrese una dirección"
+        } else if (!complex.state) {
+            validations.state = "Ingrese la provincia en la que se encuentra el complejo"
+        } else if (provinceValidation !== true) {
+            validations.state = provinceValidation
+        } else if (!complex.city) {
+            validations.city = "Ingrese la ciudad en la que se encuentra el complejo"
+        } else if (cityValidation !== true) {
+            validations.city = cityValidation
         } else if (!complex.image) {
             validations.image = "Ingrese una imagen"
         }
@@ -84,26 +111,31 @@ export default function CreateComplex() {
             image: respuesta.data.data.url,
         });
         setLoading(false)
+        let errors = validator({ ...newComplex, [e.target.name]: e.target.value });
+        setErrors(errors);
 
         console.log('soy respuesta img', respuesta.data.data.url);
     };
 
     const handleInputSport = (e) => {
         console.log(e.target.value, 'soy value')
-        if (!sports.includes(e.target.value)) {
-            setSports([...sports, e.target.value])
-            setNewComplex({ ...newComplex, sports: [...sports, e.target.value] })
+        if (!newComplex.sports.includes(e.target.value)) {
+            setNewComplex({ ...newComplex, sports: [...newComplex.sports, e.target.value] })
         }
+        let errors = validator({ ...newComplex, sports: [...newComplex.sports, e.target.value] });
+        setErrors(errors);
+
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         //dispatch(createField(newComplex));
     }
+    console.log('soy errors', errors, 'y yo loading', loading)
 
 
     return (
-        <div >
+        <div className='contenedor bg-light'>
             <div >
                 <Link to='/owner/select'>
                     <Button>Volver</Button>
@@ -141,12 +173,30 @@ export default function CreateComplex() {
                             {/*DEPORTES */}
                             <div>
                                 <select onChange={(e) => handleInputSport(e)}>
-                                    <option value='futbol'>Futbol</option>
-                                    <option value='tenis'>Tenis</option>
-                                    <option value='padel'>Padel</option>
-                                    <option value='basquet'>Basquet</option>
+                                    <option name='futbol' value='futbol'>Futbol</option>
+                                    <option name='tenis' value='tenis'>Tenis</option>
+                                    <option name='padel' value='padel'>Padel</option>
+                                    <option name='basquet' value='basquet'>Basquet</option>
                                 </select>
                                 {errors.sports ? <div>{errors.sports}</div> : null}
+                            </div>
+                            {/* {UBICACION} */}
+                            <div>
+                                <h5>Ubicación de complejo</h5>
+                                <p>Provincia</p>
+                                <input
+                                    type="textarea"
+                                    name="state"
+                                    // placeholder="Descripción de la cancha"
+                                    onChange={(e) => handleInputChange(e)} />
+                                {errors.state ? <div>{errors.state}</div> : null}
+                                <p>Ciudad</p>
+                                <input
+                                    type="textarea"
+                                    name="city"
+                                    // placeholder="Descripción de la cancha"
+                                    onChange={(e) => handleInputChange(e)} />
+                                {errors.city ? <div>{errors.city}</div> : null}
                             </div>
                             {/* IMAGEN DE LA CANCHA */}
                             <div>
@@ -168,6 +218,8 @@ export default function CreateComplex() {
                                 !errors.description &&
                                 !errors.image &&
                                 !errors.adress &&
+                                !errors.city &&
+                                !errors.state &&
                                 !errors.sports ?
                                 <button type="submit"
                                 >Crear</button> : <button type="submit" disabled >Siguiente</button>

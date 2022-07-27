@@ -1,145 +1,176 @@
-import { useState } from "react";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import InputGroup from 'react-bootstrap/InputGroup';
-import Button from "react-bootstrap/esm/Button";
-import { Link } from "react-router-dom";
-import $ from 'jquery'
+import { useState, useMemo, useEffect } from "react";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
+import usePlacesAutocomplete, {
+    getGeocode,
+    getLatLng,
+} from "use-places-autocomplete";
+
+import Geocode from 'react-geocode';
+
+import {
+    Combobox,
+    ComboboxInput,
+    ComboboxPopover,
+    ComboboxList,
+    ComboboxOption,
+} from "@reach/combobox";
+import "@reach/combobox/styles.css";
+import './location.css'
+
+Geocode.setApiKey("AIzaSyAKB5T59AlV3HB94-JK8FKndeHPI6l24Po");
+Geocode.enableDebug();
+
 
 export default function Location() {
-    // var geocoder;
-    // var map;
-    // var marker;
+    const { isLoaded } = useLoadScript({
+        googleMapsApiKey: "AIzaSyAKB5T59AlV3HB94-JK8FKndeHPI6l24Po",
+        libraries: ["places"],
+    });
 
-    // /*
-    //  * Google Map with marker
-    //  */
-    // function initialize() {
-    //     var initialLat = $('.search_latitude').val();
-    //     var initialLong = $('.search_longitude').val();
-    //     initialLat = initialLat ? initialLat : 36.169648;
-    //     initialLong = initialLong ? initialLong : -115.141000;
-
-    //     var latlng = new google.maps.LatLng(initialLat, initialLong);
-    //     var options = {
-    //         zoom: 16,
-    //         center: latlng,
-    //         mapTypeId: google.maps.MapTypeId.ROADMAP
-    //     };
-
-    //     map = new google.maps.Map(document.getElementById("geomap"), options);
-
-    //     geocoder = new google.maps.Geocoder();
-
-    //     marker = new google.maps.Marker({
-    //         map: map,
-    //         draggable: true,
-    //         position: latlng
-    //     });
-
-    //     google.maps.event.addListener(marker, "dragend", function () {
-    //         var point = marker.getPosition();
-    //         map.panTo(point);
-    //         geocoder.geocode({ 'latLng': marker.getPosition() }, function (results, status) {
-    //             if (status == google.maps.GeocoderStatus.OK) {
-    //                 map.setCenter(results[0].geometry.location);
-    //                 marker.setPosition(results[0].geometry.location);
-    //                 $('.search_addr').val(results[0].formatted_address);
-    //                 $('.search_latitude').val(marker.getPosition().lat());
-    //                 $('.search_longitude').val(marker.getPosition().lng());
-    //             }
-    //         });
-    //     });
-
-    // }
-
-    // $(document).ready(function () {
-    //     //load google map
-    //     initialize();
-
-    //     /*
-    //      * autocomplete location search
-    //      */
-    //     var PostCodeid = '#search_location';
-    //     $(function () {
-    //         $(PostCodeid).autocomplete({
-    //             source: function (request, response) {
-    //                 geocoder.geocode({
-    //                     'address': request.term
-    //                 }, function (results, status) {
-    //                     response($.map(results, function (item) {
-    //                         return {
-    //                             label: item.formatted_address,
-    //                             value: item.formatted_address,
-    //                             lat: item.geometry.location.lat(),
-    //                             lon: item.geometry.location.lng()
-    //                         };
-    //                     }));
-    //                 });
-    //             },
-    //             select: function (event, ui) {
-    //                 $('.search_addr').val(ui.item.value);
-    //                 $('.search_latitude').val(ui.item.lat);
-    //                 $('.search_longitude').val(ui.item.lon);
-    //                 var latlng = new google.maps.LatLng(ui.item.lat, ui.item.lon);
-    //                 marker.setPosition(latlng);
-    //                 initialize();
-    //             }
-    //         });
-    //     });
-
-    //     /*
-    //      * Point location on google map
-    //      */
-    //     $('.get_map').click(function (e) {
-    //         var address = $(PostCodeid).val();
-    //         geocoder.geocode({ 'address': address }, function (results, status) {
-    //             if (status == google.maps.GeocoderStatus.OK) {
-    //                 map.setCenter(results[0].geometry.location);
-    //                 marker.setPosition(results[0].geometry.location);
-    //                 $('.search_addr').val(results[0].formatted_address);
-    //                 $('.search_latitude').val(marker.getPosition().lat());
-    //                 $('.search_longitude').val(marker.getPosition().lng());
-    //             } else {
-    //                 alert("Geocode was not successful for the following reason: " + status);
-    //             }
-    //         });
-    //         e.preventDefault();
-    //     });
-
-    //     //Add listener to marker for reverse geocoding
-    //     google.maps.event.addListener(marker, 'drag', function () {
-    //         geocoder.geocode({ 'latLng': marker.getPosition() }, function (results, status) {
-    //             if (status == google.maps.GeocoderStatus.OK) {
-    //                 if (results[0]) {
-    //                     $('.search_addr').val(results[0].formatted_address);
-    //                     $('.search_latitude').val(marker.getPosition().lat());
-    //                     $('.search_longitude').val(marker.getPosition().lng());
-    //                 }
-    //             }
-    //         });
-    //     });
-    // });
-
-      
-    return (
-        <div >
-            <form>
-                <div class="form-group input-group">
-                    <input type="text" id="search_location" class="form-control" placeholder="Search location" />
-                    <div class="input-group-btn">
-                        <button class="btn btn-default get_map" type="submit">
-                            Locate
-                        </button>
-                    </div>
-                </div>
-            </form>
-            <div id="geomap"></div>
-
-            <h4>Location Details</h4>
-            <p>Address: <input type="text" class="search_addr" size="45" /></p>
-            <p>Latitude: <input type="text" class="search_latitude" size="30" /></p>
-            <p>Longitude: <input type="text" class="search_longitude" size="30" /></p>
-        </div>
-    )
+    if (!isLoaded) return <div>Loading...</div>;
+    return <Map />;
 }
+
+function Map() {
+    // const center = useMemo(() => ({ lat: 43.45, lng: -80.49 }), []);
+    // const [ latLng, setLatLng ] = useState({ lat: 43.45, lng: -80.49 })
+    const [selected, setSelected] = useState(null);
+    const [centerState, setCenterState] = useState({ lat: 43.45, lng: -80.49 });
+    const [location, setLocation] = useState(
+        {
+            lat: null,
+            lng: null,
+            city: '',
+            address: ''
+        }
+    )
+
+
+    useEffect(() => {
+        console.log('soy yo:)', location)
+    }, [location])
+
+    var options = {
+        enableHighAccuracy: true,
+        maximumAge: 0
+    }
+
+    navigator.geolocation.watchPosition(success, error, options);
+
+    function success(position) {
+        const coordenadas = position.coords;
+        setLocation(
+            {
+                ...location,
+                lat: coordenadas.latitude,
+                lng: coordenadas.longitude
+            }
+        );
+
+        setCenterState(
+            {
+                lat: coordenadas.latitude,
+                lng: coordenadas.longitude
+            }
+        )
+    };
+
+    function error(error) {
+        console.warn('ERROR(' + error.code + '): ' + error.message);
+    };
+
+    const onMarkerDragEnd = async (event) => {
+        console.log(event.latLng.lat())
+        const newLat = await event.latLng.lat();
+        const newLng = await event.latLng.lng();
+
+        setCenterState({
+            lat: newLat,
+            lng: newLng,
+        })
+        Geocode.fromLatLng(newLat, newLng).then(
+            response => {
+                console.log(response.results);
+                const { formatted_address } = response.results[0];
+                setLocation({
+                    ...location,
+                    lat: newLat,
+                    lng: newLng,
+                    address: formatted_address,
+                })
+            },
+            error => {
+                console.error(error);
+            }
+        );
+    };
+
+    return (
+        <>
+            <div className="places-container">
+                <PlacesAutocomplete setCenterState={setCenterState} setSelected={setSelected} />
+            </div>
+
+            <GoogleMap
+                zoom={10}
+                center={centerState}
+                mapContainerClassName="map-container"
+            >
+                {selected &&
+                    <Marker
+                        draggable={true}
+                        onDragEnd={onMarkerDragEnd}
+                        position={centerState}
+                    />
+                }
+            </GoogleMap>
+
+            <div>
+                Latitud: {location.lat},<br/>
+                Longitud: {location.lng},<br/>
+                Direccion: {location.address},<br/>
+                Pais: {location.country}<br/>
+            </div>
+        </>
+    );
+}
+
+const PlacesAutocomplete = ({ setSelected, setCenterState }) => {
+    const {
+        ready,
+        value,
+        setValue,
+        suggestions: { status, data },
+        clearSuggestions,
+    } = usePlacesAutocomplete();
+
+    const handleSelect = async (address) => {
+        setValue(address, false);
+        clearSuggestions();
+
+        const results = await getGeocode({ address });
+        const { lat, lng } = await getLatLng(results[0]);
+        setCenterState({ lat, lng })
+        setSelected({ lat, lng });
+    };
+
+    return (
+        <Combobox onSelect={handleSelect}>
+            <ComboboxInput
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+                disabled={!ready}
+                className="combobox-input"
+                placeholder="Search an address"
+            />
+            <ComboboxPopover>
+                <ComboboxList>
+                    {status === "OK" &&
+                        data.map(({ place_id, description }) => (
+                            <ComboboxOption key={place_id} value={description} />
+                        ))}
+                </ComboboxList>
+            </ComboboxPopover>
+        </Combobox>
+    );
+};
