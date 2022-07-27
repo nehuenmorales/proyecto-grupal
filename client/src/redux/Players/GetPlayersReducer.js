@@ -1,7 +1,8 @@
-import{GET_PLAYERS} from "./GetPlayersAction"
+import{GET_PLAYERS, GET_SEARCH_PLAYER} from "./GetPlayersAction"
 
 const initialState = {
-    players: []
+    players: [],
+    playerSearch: [],
 }
 
 export default function getPlayersReducer (state = initialState, action){
@@ -10,6 +11,11 @@ export default function getPlayersReducer (state = initialState, action){
             return {
                 ...state,
                 players: action.payload,
+            }
+        case GET_SEARCH_PLAYER:
+            return {
+                ...state,
+                playerSearch: action.payload
             }
         default:
             return state;

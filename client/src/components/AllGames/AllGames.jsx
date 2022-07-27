@@ -31,11 +31,6 @@ export default function AllGames({ match }) {
     return (
         <>
             {
-                isLoading ?
-                    <Spinner animation="border" variant="light" role="status">
-                        <span className="visually-hidden">Loading...</span>
-                    </Spinner>
-                    :
                     <>
 
                         <VerticalNavbar />
