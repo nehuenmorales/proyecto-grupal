@@ -5,7 +5,8 @@ const { getSearchField } = require('../controllers/Owner/Field/getSearchFields')
 const router = Router();
 
 router.get('/:sport', getFields)
-router.get('/getSearchField', getSearchField)
+router.get('/getSearchField/:sport', getSearchField)
+
 
 module.exports = router
 

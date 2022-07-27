@@ -19,6 +19,14 @@
     }
   }
 
+  // export const getSearchGame=(input,sport)=>{
+  //   return async function (dispatch){
+  //     return axios.get("/owner/createGame",body)
+  //     .then((res)=> {
+  //         console.log("llega al reducer",res)
+  //         return dispatch({type:CREATE_GAME,payload:res})})
+  // }   }
+
 
   // export function getAllFields(sport) {
   //   return dispatch =>{

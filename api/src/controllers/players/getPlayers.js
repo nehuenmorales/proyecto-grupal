@@ -1,7 +1,9 @@
+const { Op } = require("sequelize");
 const { Player } = require("../../db.js");
 
 async function getPlayers(req, res, next) {
-  let name = req.query.name
+  const name = req.query.name
+  console.log(name)
   if(!name){
     try {
       const allPlayers = await Player.findAll()
@@ -19,7 +21,7 @@ async function getPlayers(req, res, next) {
               [Op.iLike]: `%${name}%`,
             },
           },
-          order: [["name", "ASC"]],
+          // order: [["nombre", "ASC"]],
         });
         res.send(players);
       } catch (error) {
