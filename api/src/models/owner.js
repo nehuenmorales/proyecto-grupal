@@ -18,16 +18,16 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
+        primaryKey: true,
       },
       telephone: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       username: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
-        primaryKey: true,
+        unique: true
       },
     },
     {

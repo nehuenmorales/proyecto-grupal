@@ -10,6 +10,7 @@ const { deleteSupplies } = require("../controllers/Owner/Supplies/deleteSupplies
 const { getBookedGames } = require("../controllers/Owner/Games/getBookedGames");
 
 const { createOwner } = require("../controllers/Owner/owner/createOwner");
+const { getOwner } = require("../controllers/Owner/owner/getOwner");
 
 const router = Router();
 
@@ -30,5 +31,7 @@ router.put("/modifyGame/:id", modifyGame);
 router.delete("/deleteSupplies/:id", deleteSupplies);
 
 router.get("/getBookedGames", getBookedGames);
+
+router.get("/getOwner/:id", getOwner);
 
 module.exports = router;
