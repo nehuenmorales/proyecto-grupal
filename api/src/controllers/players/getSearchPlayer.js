@@ -9,21 +9,21 @@ async function getSearchPlayer(req, res, next) {
     try {
       let fields = await Player.findAll({
         where:{
-          
+
                 email:{
                     [Op.iLike]: `%${name}%`,
                   },
-                
+
         },
-        
+
         order:[["name","ASC"]]
     });
     res.send(fields);
       } catch (error) {
         res.status(400).send("la cancha no existe");
       }
-  
-  
+
+
 }
 
 

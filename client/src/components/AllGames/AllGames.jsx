@@ -36,11 +36,12 @@ export default function AllGames({ match }) {
                     <>
 
                         <VerticalNavbar />
-                        <FormGroup className="d-flex flex-start align-items-center">
-                            <Form.Control className={style.input} size="sm" type="text" placeholder="Busca una cancha..." />
-                            <Button variant="success" className="m-1 text-white">Buscar</Button>
 
-                        </FormGroup>
+                            <FormGroup className="d-flex flex-start align-items-center">
+                                <Form.Control className={style.input} size="sm" type="text" placeholder="Busca una cancha..." />
+                                <Button variant="success" className="m-1 text-white">Buscar</Button>
+                            </FormGroup>
+
                         <Tabs match={match} />
                         <p style={{
                             "color": "white",
