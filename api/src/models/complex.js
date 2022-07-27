@@ -32,12 +32,12 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    city: {
-      type: DataTypes.STRING,
+    lat: {
+      type: DataTypes.FLOAT,
       allowNull: false,
     },
-    state: {
-      type: DataTypes.STRING,
+    lng: {
+      type: DataTypes.FLOAT,
       allowNull: false,
     }
   },

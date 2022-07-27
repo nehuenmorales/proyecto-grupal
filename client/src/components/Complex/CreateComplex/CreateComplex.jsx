@@ -49,7 +49,7 @@ export default function CreateComplex() {
 
     const validator = (complex) => {// funcion que valida que todos los inputs tengan un valor "aceptable"
         let validations = {};
-        let stateValidation = SoloLetras(complex.state)
+        let provinceValidation = SoloLetras(complex.state)
         let cityValidation = SoloLetras(complex.city)
         const beNumber = /(^\d{1,10}$)/;
         if (!complex.name) {
@@ -64,8 +64,8 @@ export default function CreateComplex() {
             validations.sports = "Ingrese un deporte"
         } else if (!complex.state) {
             validations.state = "Ingrese la provincia en la que se encuentra el complejo"
-        } else if (stateValidation !== true) {
-            validations.state = stateValidation
+        } else if (provinceValidation !== true) {
+            validations.state = provinceValidation
         } else if (!complex.city) {
             validations.city = "Ingrese la ciudad en la que se encuentra el complejo"
         } else if (cityValidation !== true) {
@@ -132,7 +132,7 @@ export default function CreateComplex() {
 
 
     return (
-        <div className='contenedor'>
+        <div className='contenedor bg-light'>
             <div >
                 <Link to='/owner/select'>
                     <Button>Volver</Button>
@@ -186,20 +186,14 @@ export default function CreateComplex() {
                                     name="state"
                                     // placeholder="Descripción de la cancha"
                                     onChange={(e) => handleInputChange(e)} />
+                                {errors.state ? <div>{errors.state}</div> : null}
                                 <p>Ciudad</p>
                                 <input
                                     type="textarea"
                                     name="city"
                                     // placeholder="Descripción de la cancha"
                                     onChange={(e) => handleInputChange(e)} />
-                                <p>Ubicación</p>
-                                <input
-                                    type="textarea"
-                                    name="adress"
-                                    // placeholder="Descripción de la cancha"
-                                    onChange={(e) => handleInputChange(e)} />
-
-                                {errors.adress ? <div>{errors.adress}</div> : null}
+                                {errors.city ? <div>{errors.city}</div> : null}
                             </div>
                             {/* IMAGEN DE LA CANCHA */}
                             <div>
