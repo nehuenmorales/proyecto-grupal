@@ -149,7 +149,7 @@ export default function CreateComplex() {
                     <div >
                         {/* NOMBRE DE LA CANCHA */}
                         <div>
-                            <h5>Nombre de la cancha</h5>
+                            <h5>Nombre del complejo</h5>
                             <input type="text"
                                 name="name"
                                 onChange={(e) => handleInputChange(e)} />
@@ -158,7 +158,7 @@ export default function CreateComplex() {
                         <div className='col-md-6 col-sm-12 px-5'>
                             {/* DESCRIPCION DE LA CANCHA */}
                             <div>
-                                <h5>Descripcion de la cancha</h5>
+                                <h5>Descripcion del complejo</h5>
                                 <input
                                     type="textarea"
                                     name="description"
@@ -169,6 +169,7 @@ export default function CreateComplex() {
                             </div>
                             {/*DEPORTES */}
                             <div>
+                                <h5>¿Con canchas de qué deportes cuenta el complejo?</h5>
                                 <select onChange={(e) => handleInputSport(e)}>
                                     <option name='futbol' value='futbol'>Futbol</option>
                                     <option name='tenis' value='tenis'>Tenis</option>
@@ -194,6 +195,7 @@ export default function CreateComplex() {
                                     // placeholder="Descripción de la cancha"
                                     onChange={(e) => handleInputChange(e)} />
                                 {errors.city ? <div>{errors.city}</div> : null}
+                                <Location />
                             </div>
                             {/* IMAGEN DE LA CANCHA */}
                             <div>
@@ -227,7 +229,6 @@ export default function CreateComplex() {
 
 
             </form>
-            <Location />
 
         </div>
     )
