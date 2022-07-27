@@ -22,9 +22,7 @@ async function getSearchField(req, res, next) {
                 }}
         ]},
         include: [ {
-            model: Field,
-            
-            
+            model: Field,   
         } ],
         order:[["rating","ASC"]]
     });

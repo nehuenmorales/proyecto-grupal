@@ -1,6 +1,8 @@
  import axios from "axios";
 
  export const GET_GAME_SPORT = "GET_GAME_SPORT"
+ export const GET_SEARCH_GAME_SPORT = "GET_SEARCH_GAME_SPORT"
+
  
  export function getGameSport(sport) {
   
@@ -10,6 +12,23 @@
           console.log("entro", res.data)
           dispatch({
             type: GET_GAME_SPORT,
+            payload: res.data
+          })
+        })
+        .catch (e=>
+          console.log(e)
+        ) 
+    }
+  }
+  
+  export function getSearchGames(input,sport) {
+  
+    return dispatch =>{
+      axios.get(`/games/${sport}/searchGame?name=${input}`)
+        .then(res => {
+          console.log("entro", res.data)
+          dispatch({
+            type: GET_SEARCH_GAME_SPORT,
             payload: res.data
           })
         })

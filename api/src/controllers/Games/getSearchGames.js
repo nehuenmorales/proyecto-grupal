@@ -15,7 +15,7 @@ async function getSearchGames(req, res, next) {
                     [Op.eq]: sport,
                     },
                 [Op.or]:[
-                    {city:{
+                    {adress:{
                         [Op.iLike]: `%${name}%`,
                       }},
                     {'$fields.name$':{

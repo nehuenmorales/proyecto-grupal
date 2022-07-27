@@ -8,12 +8,15 @@ import Tabs from "../Tabs/Tabs.jsx";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Button, Form, FormGroup, Spinner } from "react-bootstrap";
 import style from "./AllGames.module.css";
+import SearchBar from "../SearchBar/SearchBar.jsx"
 
 export default function AllGames({ match }) {
     const { isLoading } = useAuth0();
     const sport = match.params.sport;
     const dispatch = useDispatch();
     const games = useSelector(state => state.games.gamesSport);
+    const gamesSearch = useSelector(state => state.games.gamesSportSearch);
+
     
     useEffect(() => {
         dispatch(getGameSport(sport));
@@ -37,10 +40,8 @@ export default function AllGames({ match }) {
 
                         <VerticalNavbar />
 
-                            <FormGroup className="d-flex flex-start align-items-center">
-                                <Form.Control className={style.input} size="sm" type="text" placeholder="Busca una cancha..." />
-                                <Button variant="success" className="m-1 text-white">Buscar</Button>
-                            </FormGroup>
+                        <SearchBar filtro="turnos" sport={sport} />
+
 
                         <Tabs match={match} />
                         <p style={{
@@ -50,7 +51,13 @@ export default function AllGames({ match }) {
                             "marginBottom": "0",
                             "fontStyle": "italic"
                         }}>Turnos disponibles</p>
-                        <Carousel array={games} />
+                        {
+                            
+                         gamesSearch?
+                         <Carousel array={gamesSearch} />
+                         : <Carousel array={games} />
+
+                        }
                     </>
             }
 
