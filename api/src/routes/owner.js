@@ -16,6 +16,8 @@ const { getCities } = require("../controllers/apiCities/getCities.js");
 
 const router = Router();
 
+router.get("/getOwner/:id", getOwner);
+
 router.post("/createField", createField);
 
 router.put("/modifyField/:id", modifyField);
@@ -33,8 +35,6 @@ router.put("/modifyGame/:id", modifyGame);
 router.delete("/deleteSupplies/:id", deleteSupplies);
 
 router.get("/getBookedGames", getBookedGames);
-
-router.get("/getOwner/:id", getOwner);
 
 router.post('/createComplex', createComplex)
 
