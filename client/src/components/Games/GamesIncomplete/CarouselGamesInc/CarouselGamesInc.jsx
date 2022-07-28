@@ -1,11 +1,12 @@
 import React from "react";
-import CardGamesInc from "./CardGamesInc";
+import CardGamesInc from "../CardGamesInc/CardGamesInc";
 import { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { getGamesIncomplete } from "../../../redux/GamesIncomplete/gamesIncompleteActions";
+import { getGamesIncomplete } from "../../../../redux/GamesIncomplete/gamesIncompleteActions";
 import s from "./CarouselGamesInc.css"
-import VerticalNavbar from "../../VerticalNavbar/VerticalNavbar";
-import Tabs from "../../Tabs/Tabs";
+import VerticalNavbar from "../../../VerticalNavbar/VerticalNavbar";
+import Tabs from "../../../Tabs/Tabs";
+import Carousel from "../../../Carousel/Carousel";
 
 export default function CarouselGamesInc({match}) {
     const dispatch = useDispatch();
@@ -15,12 +16,13 @@ export default function CarouselGamesInc({match}) {
     },[dispatch]);
 
     const games = useSelector(state => state.GamesIncompleteReducer.gamesIncomplete)
-    console.log(games)
+
     return (
         <div>
         <VerticalNavbar/>
         <Tabs match={match}/>
-            <div className={s.carousel}>
+        <Carousel key={1} array={games} type='games'/>
+            {/* <div className={s.carousel}>
                 {games?.map((x) => {
                     return (
                         <CardGamesInc
@@ -34,8 +36,7 @@ export default function CarouselGamesInc({match}) {
                         />
                     );
                 })}
-                
-            </div>
+            </div> */}
         </div>   
     );
 

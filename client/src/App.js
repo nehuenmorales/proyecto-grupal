@@ -16,8 +16,8 @@ import SuppliesBasquet from "./components/Supplies/CreateSupplies/Basquet/suppli
 import SuppliesPadel from "./components/Supplies/CreateSupplies/Padel/suppliesPadel";
 import SuppliesTenis from "./components/Supplies/CreateSupplies/Tenis/suppliesTenis";
 //import Home from './Home.component';
-import CarouselGamesInc from "./components/Games/GamesIncomplete/CarouselGamesInc";
-import DetailGamesInc from "./components/Games/GamesIncomplete/DetailGamesInc"
+import CarouselGamesInc from "./components/Games/GamesIncomplete/CarouselGamesInc/CarouselGamesInc";
+import DetailGamesInc from "./components/Games/GamesIncomplete/DetailGamesInc/DetailGamesInc"
 import DetailFields from "./components/Fields/DetailFields/DetailFields.jsx";
 import AllGames from "./components/AllGames/AllGames.jsx"
 import ViewFields from './components/Fields/DetailFields/ViewFields.jsx';
@@ -55,7 +55,7 @@ function App() {
        {/* leo rompiste todo con esta ruta que esta abajito, AREGLALO */}
       <Route exact path="/sport/:sport" component={AllGames} /> 
       <Route exact path="/sport/:sport/gamesIncomplete" component={CarouselGamesInc} />
-      <Route exact path="/sport/:sport/gamesIncomplete/:gameid" component={DetailGamesInc} />
+      <Route exact path="/sport/gamesIncomplete/:gameid" component={DetailGamesInc} />
       {/* <Route exact path="/fields" component={DetailFields} /> */}
       {/* <Route path="/allGames" component={AllGames} /> */}
       {/* <Route exact path="/allGames/:sport" render={({ match }) => <AllGames deporte={match.params.sport} match={match}/>} /> */}

@@ -1,0 +1,19 @@
+.cardPlayer{
+  display: flex;
+  align-items: center;
+  padding: .3em 1em;
+  width: 300px;
+  height: 70px;
+  background-color: #202c41bc;
+  margin: 10px;
+  border-radius: 35px;
+  color: white;
+  text-transform: capitalize;
+}
+
+.cardPlayer img {
+  margin-right: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}

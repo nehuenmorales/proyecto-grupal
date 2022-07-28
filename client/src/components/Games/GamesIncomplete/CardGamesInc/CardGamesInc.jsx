@@ -4,7 +4,7 @@ import s from "./CardGamesInc.module.css"
 
 export default function CardGamesInc(props) {
     return (
-        <Link style={{"textDecoration":"none"}} to={`/sport/1234ss/gamesIncomplete/${props.gameid}`}>
+        <Link to={`/sport/gamesIncomplete/${props.gameid}`}>
             <div className={s.background}>
                 <h2>{props.name}</h2>
                 <p>{props.sport}</p>

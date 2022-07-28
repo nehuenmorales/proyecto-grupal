@@ -3,16 +3,16 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import imageLanding from "../../assets/images/playersLandingPage.png";
 import logo from "../../assets/images/logo.png";
-import { Button, Container, Navbar } from "react-bootstrap"
+import { Button, Col, Container, Image, Navbar, Row } from "react-bootstrap"
 
 
 const Landing = () => {
-  const { loginWithRedirect} = useAuth0();
+  const { loginWithRedirect } = useAuth0();
 
-  const login = async () => { 
-    await loginWithRedirect();    
+  const login = async () => {
+    await loginWithRedirect();
   }
-  
+
   // const userToBack = {
   //   name: user?.given_name,
   //   lastName: user?.family_name,
@@ -21,7 +21,7 @@ const Landing = () => {
   //   telephone: user?.length > 0 ? user['https://example.com/phone_number'] : "3511",
   //   city: user?.length > 0 ? user['https://example.com/country'] : "cba" 
   // };
-  
+
   // useEffect( () =>{
   //   dispatch(postPlayer(userToBack));
   //   console.log('entra');
@@ -34,7 +34,7 @@ const Landing = () => {
         <Container>
           <Navbar.Brand href="#home">
             <Link className="navbar-brand text-decoration-none text-white" to="/">
-              <img src={logo} className="img-fluid" width="60" alt=""/>
+              <img src={logo} className="img-fluid" width="60" alt="" />
               FaltaUno!
             </Link>
           </Navbar.Brand>
@@ -50,23 +50,31 @@ const Landing = () => {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-
-      <nav className="navbar bg-dark">
-        <div className="container d-flex justify-content-between">
-          <div>
-          </div>
-        </div>
-      </nav>
+      <Container className="p-4">
+        <Row xs={1} md={2}>
+          <Col md={5}>
+            <Image
+              className="img-fluid"
+              style={{
+                width: "450px",
+              }}
+              fluid
+              src={imageLanding}
+              alt="Jugadores de diferentes deportes."
+            />
+          </Col>
+          <Col md={5} className="d-flex justify-content-md-center flex-column align-items-center">
+            <h1 className="text-white">
+              Llegamos para revolucionar
+              el  deporte amateur.
+            </h1>
+            <p className="text-primary align-self-start">Y llevarlo a otro nivel.</p>
+            <Button className="align-self-start text-white" variant="success">Reserva tu cancha!</Button>
+          </Col>
+        </Row>
+      </Container>
       <div className="container">
         <div className="row mt-3">
-          <img
-            className="img-fluid"
-            style={{
-              width: "450px",
-            }}
-            src={imageLanding}
-            alt="Jugadores de diferentes deportes."
-          />
         </div>
       </div>
 

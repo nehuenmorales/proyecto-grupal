@@ -55,6 +55,13 @@
   position: relative;
 }
 
+.freeOrBucket{
+  font-size: 16px;
+  margin-top: 30px;
+  font-style: normal;
+  font-weight: 500;
+}
+
 .location p {
   width: 200px;
   margin-top: 15px;

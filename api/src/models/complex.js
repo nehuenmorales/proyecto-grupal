@@ -28,7 +28,7 @@ module.exports = (sequelize) => {
         max: 5,
       },
     },
-    adress: {
+    address: {
       type: DataTypes.STRING,
       allowNull: false,
     },

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDetailIncomplete } from '../../../redux/GamesIncomplete/gamesIncompleteActions';
-import VerticalNavbar from '../../VerticalNavbar/VerticalNavbar';
+import { getDetailIncomplete } from '../../../../redux/GamesIncomplete/gamesIncompleteActions';
+import VerticalNavbar from '../../../VerticalNavbar/VerticalNavbar';
 import s from "./DetailGamesInc.module.css"
 //importar useAuth0()
 
