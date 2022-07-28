@@ -16,6 +16,7 @@ export default function AllGames({ match }) {
     const dispatch = useDispatch();
     const games = useSelector(state => state.games.gamesSport);
     const gamesSearch = useSelector(state => state.games.gamesSportSearch);
+    console.log("soygames",games)
 
     
     useEffect(() => {
@@ -48,7 +49,7 @@ export default function AllGames({ match }) {
                         }}>Turnos disponibles</p>
                         {
                             
-                         gamesSearch?
+                         gamesSearch.length?
                          <Carousel array={gamesSearch} />
                          : <Carousel array={games} />
 
