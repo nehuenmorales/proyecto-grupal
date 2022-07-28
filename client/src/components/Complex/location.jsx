@@ -21,30 +21,20 @@ Geocode.setApiKey("AIzaSyAKB5T59AlV3HB94-JK8FKndeHPI6l24Po");
 Geocode.enableDebug();
 
 
-export default function Location() {
+export default function Location({selected, setSelected, centerState, setCenterState, location, setLocation}) {
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: "AIzaSyAKB5T59AlV3HB94-JK8FKndeHPI6l24Po",
         libraries: ["places"],
     });
 
     if (!isLoaded) return <div>Loading...</div>;
-    return <Map />;
+    return <Map selected={selected} setSelected={setSelected} centerState={centerState} setCenterState={setCenterState} location={location} setLocation={setLocation}/>;
 }
 
-function Map() {
+function Map({selected, setSelected, centerState, setCenterState, location, setLocation}) {
     // const center = useMemo(() => ({ lat: 43.45, lng: -80.49 }), []);
     // const [ latLng, setLatLng ] = useState({ lat: 43.45, lng: -80.49 })
-    const [selected, setSelected] = useState(null);
-    const [centerState, setCenterState] = useState({ lat: 43.45, lng: -80.49 });
-    const [location, setLocation] = useState(
-        {
-            lat: null,
-            lng: null,
-            city: '',
-            address: ''
-        }
-    )
-
+    
 
     useEffect(() => {
         console.log('soy yo:)', location)
@@ -80,7 +70,7 @@ function Map() {
     };
 
     const onMarkerDragEnd = async (event) => {
-        console.log(event.latLng.lat())
+        console.log(event, 'soy eventttt')
         const newLat = await event.latLng.lat();
         const newLng = await event.latLng.lng();
 
@@ -90,7 +80,7 @@ function Map() {
         })
         Geocode.fromLatLng(newLat, newLng).then(
             response => {
-                console.log(response.results);
+                console.log('capaz soy yo', response.results);
                 const { formatted_address } = response.results[0];
                 setLocation({
                     ...location,
@@ -129,7 +119,6 @@ function Map() {
                 Latitud: {location.lat},<br/>
                 Longitud: {location.lng},<br/>
                 Direccion: {location.address},<br/>
-                Pais: {location.country}<br/>
             </div>
         </>
     );

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import InputGroup from 'react-bootstrap/InputGroup';
@@ -6,13 +6,15 @@ import Button from "react-bootstrap/esm/Button";
 import { Link } from "react-router-dom";
 import Location from "../location";
 import './createComplex.css'
+import { createComplex } from "../../../redux/OwnerComplex/complexActions";
+import { Autocomplete } from "@react-google-maps/api";
 function SoloLetras(input) {
 
     var ExpRegLetrasEspacio = "^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$";
-    if (input.match(ExpRegLetrasEspacio) != null) {
+    if (input?.match(ExpRegLetrasEspacio) != null) {
         return true;
     }
-    else if (input.match(ExpRegLetrasEspacio) == null) {
+    else if (input?.match(ExpRegLetrasEspacio) == null) {
         return ("Ingrese solo letras")
     }
     else {
@@ -22,22 +24,40 @@ function SoloLetras(input) {
 
 export default function CreateComplex() {
     const dispatch = useDispatch()
+    const [cityInput, setCityInput] = useState([])
+    const [click, setClick] = useState(false)
+    const [input, setInput] = useState('')
+    const [cities, setCities] = useState([])
+    const [selected, setSelected] = useState(null);
+    const [centerState, setCenterState] = useState({ lat: 43.45, lng: -80.49 });
+    const [location, setLocation] = useState(
+        {
+            lat: null,
+            lng: null,
+            city: '',
+            address: ''
+        }
+    )
+
 
     const [newComplex, setNewComplex] = useState({
         name: "",
         image: "",
         description: "",
         sports: [],
-        adress: "",
+        address: "",
         city: "",
         state: "",
+        country: "",
+        lat: "",
+        lng: "",
     });
     const [errors, setErrors] = useState({
         name: "Debe ingresar un nombre",
         image: "",
         description: "",
         sports: "",
-        adress: "",
+        address: "",
         city: "",
         state: "",
     });
@@ -45,7 +65,23 @@ export default function CreateComplex() {
     const [loading, setLoading] = useState(false)
 
     let owner = useSelector((state) => state.getOwnerReducer.owner)
-    console.log('soy ownerrr desde crear complejo', owner)
+    
+
+    useEffect(() => {
+        axios.get('http://localhost:3001/owner/getCities')
+        .then((resp) => {
+        console.log('cities',resp.data)
+        setCities(resp.data)})
+        
+    },[])
+
+
+    useEffect(() => {
+        let dividir = location.address.split(',')
+        setNewComplex({ ...newComplex, address: location.address, lat: location.lat, lng: location.lng, country: dividir[dividir.length - 1], state: dividir[dividir.length - 2] })
+        let errors = validator({ ...newComplex, address: location.address });
+        setErrors(errors);
+    }, [location.address])
 
     const validator = (complex) => {// funcion que valida que todos los inputs tengan un valor "aceptable"
         let validations = {};
@@ -54,20 +90,16 @@ export default function CreateComplex() {
         const beNumber = /(^\d{1,10}$)/;
         if (!complex.name) {
             validations.name = "Ingrese un nombre"
-        } else if (complex.name.length > 30) {
+        } else if (complex.name?.length > 30) {
             validations.name = "Superó el máximo de caracteres"
         } else if (!complex.description) {
-            validations.description = "Ingrese una descripción de la cancha"
-        } else if (complex.description.length > 140) {
+            validations.description = "Ingrese una descripción del complejo"
+        } else if (complex.description?.length > 140) {
             validations.description = "Alcanzó el limite de caracteres"
-        } else if (complex.sports.length == 0) {
+        } else if (complex.sports?.length == 0) {
             validations.sports = "Ingrese un deporte"
-        } else if (!complex.state) {
-            validations.state = "Ingrese la provincia en la que se encuentra el complejo"
-        } else if (provinceValidation !== true) {
-            validations.state = provinceValidation
-        } else if (!complex.city) {
-            validations.city = "Ingrese la ciudad en la que se encuentra el complejo"
+        } else if (!complex.address) {
+            validations.address = "Marque en el mapa donde se ubica el complejo"
         } else if (cityValidation !== true) {
             validations.city = cityValidation
         } else if (!complex.image) {
@@ -84,7 +116,6 @@ export default function CreateComplex() {
         let errores = validator({ ...newComplex, [e.target.name]: e.target.value });
         setErrors(errores);
     }
-    console.log('soy nuevo complejo', newComplex)
 
     const uploadImage = async (e) => {
         const form = new FormData();
@@ -99,7 +130,6 @@ export default function CreateComplex() {
             "data": form
         };
         setLoading(true)
-        console.log('cargando..', loading)
 
         const respuesta = await axios("https://api.imgbb.com/1/upload?expiration=600&key=12d5944c0badc6235fe12ec6550754c8", settings)
 
@@ -110,25 +140,49 @@ export default function CreateComplex() {
         setLoading(false)
         let errors = validator({ ...newComplex, [e.target.name]: e.target.value });
         setErrors(errors);
-
-        console.log('soy respuesta img', respuesta.data.data.url);
     };
 
     const handleInputSport = (e) => {
-        console.log(e.target.value, 'soy value')
-        if (!newComplex.sports.includes(e.target.value)) {
+        if (!newComplex.sports?.includes(e.target.value)) {
             setNewComplex({ ...newComplex, sports: [...newComplex.sports, e.target.value] })
         }
         let errors = validator({ ...newComplex, sports: [...newComplex.sports, e.target.value] });
         setErrors(errors);
 
     }
+    function autocomplete(ev) {
+        const value = ev.target.value;
+        const results = cities.filter(city => {
+        return city.toLowerCase().startsWith(value.toLowerCase());
+       })
+       console.log('results',results)
+       setCityInput(results)
+  
+      }      
+
+    const handleChangeCity = (ev) => {
+        setInput(ev.target.value)
+        autocomplete(ev)
+    }
+
+    const onClickCity = (ev) => {
+        ev.preventDefault()
+        setInput(ev.target.value)
+        setCityInput([])
+        setClick(true)
+        setNewComplex({...newComplex, city: (ev.target.value).toLowerCase()})
+        let errors = validator({ ...newComplex, city: ev.target.value });
+        setErrors(errors);
+    }
+    console.log(input, 'input')
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        //dispatch(createField(newComplex));
+        dispatch(createComplex({ ...newComplex, ownerEmail: owner.email }));
     }
-    console.log('soy errors', errors, 'y yo loading', loading)
+    console.log('owner', owner)
+    console.log('errores', errors)
+    console.log('newComplex', newComplex)
 
 
     return (
@@ -181,21 +235,44 @@ export default function CreateComplex() {
                             {/* {UBICACION} */}
                             <div>
                                 <h5>Ubicación de complejo</h5>
-                                <p>Provincia</p>
-                                <input
-                                    type="textarea"
-                                    name="state"
-                                    // placeholder="Descripción de la cancha"
-                                    onChange={(e) => handleInputChange(e)} />
-                                {errors.state ? <div>{errors.state}</div> : null}
-                                <p>Ciudad</p>
-                                <input
-                                    type="textarea"
-                                    name="city"
-                                    // placeholder="Descripción de la cancha"
-                                    onChange={(e) => handleInputChange(e)} />
+                                <h6>Ciudad</h6>
+                                <div class="container">
+                                    <form>
+                                        <input
+                                            placeholder="Search for a country"
+                                            aria-label='Search for a country'
+                                            aria-autocomplete='both'
+                                            aria-controls='autocomplete-results'
+                                            value={input}
+                                            onChange={(ev) => handleChangeCity(ev)}
+                                        />
+                                            <button
+                                                type='submit'
+                                                aria-label='Search'
+                                            >
+                                                <svg viewBox='0 0 24 24'>
+                                                    <path d='M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z' />
+                                                </svg>
+                                            </button>
+                                            <div>
+                                            <ul
+                                                id='autocomplete-results'
+                                                role='listbox'
+                                                aria-label='Search for a country'
+                                            >{
+                                                cityInput ? cityInput?.map((elem, index) => {
+                                                    return (
+                                                        <li id={index}><button onClick={(e) => onClickCity(e)} value={elem}>{elem}</button></li>
+                                                    )
+                                                }) : null
+                                            }
+                                             {!click ? <div>Debes seleccionar una ciudad</div> : null}
+                                            </ul>
+                                            </div>
+                                    </form>
+                                </div>
                                 {errors.city ? <div>{errors.city}</div> : null}
-                                <Location />
+                                <Location selected={selected} setSelected={setSelected} centerState={centerState} setCenterState={setCenterState} location={location} setLocation={setLocation} />
                             </div>
                             {/* IMAGEN DE LA CANCHA */}
                             <div>
@@ -216,8 +293,6 @@ export default function CreateComplex() {
                                 !errors.name &&
                                 !errors.description &&
                                 !errors.image &&
-                                !errors.adress &&
-                                !errors.city &&
                                 !errors.state &&
                                 !errors.sports ?
                                 <button type="submit"

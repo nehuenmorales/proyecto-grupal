@@ -5,27 +5,37 @@ async function createComplex(req, res, next) {
     name,
     sports,
     description,
-    adress,
-    image, // aca configurar magui y lara
-    ownerId,
+    address,
+    country,
+    state,
+    city,
+    lat,
+    lng,
+    image, 
+    ownerEmail,
   } = req.body;
   try {
-    const newField = await Complex.create({
+    const newComplex = await Complex.create({
       name,
       sports,
       description,
-      adress,
-      image,
-      ownerId
+      adress: address,
+      country,
+      state,
+      city,
+      lat,
+      lng,
+      image
     });
+     
+        await newComplex.update(
+          {
+              ownerEmail: ownerEmail,
+          }
+      )
 
-    //FALTA LA RUTA DE CREACION DEL USUARIO/COMPLEJO para linkear a un complejo
-
-    // busco el complejo que crea la cancha
-    // const complexField = await Complex.findOne({
-    //   where: { id: complexId },
-    // });
-    // newField.addField(complexField); // asocio la cancha con el complejo
+    
+    
     console.log('creado correctamente')
     res.status(200).json(newField);
   } catch (e) {

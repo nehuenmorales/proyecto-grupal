@@ -1,15 +1,14 @@
 import axios from "axios";
 
 export const CREATE_COMPLEX = "CREATE_COMPLEX";
-export const PUT_FIELD = "PUT_FIELD";
 
 export const createComplex =(body)=>{
-    console.log("llega a las actions",body)
+    console.log("llega a las actions create complex",body)
     return async function (dispatch){
-        return axios.post("http://localhost:3001/owner/createField",body)
+        return axios.post("http://localhost:3001/owner/createComplex",body)
         .then((res)=> {
-            console.log("llega al reducer",res.data)
-            return dispatch({type:CREATE_FIELD,payload:res.data})})    
+            console.log("llega al reducer create complex",res.data)
+            return dispatch({type:CREATE_COMPLEX,payload:res.data})})    
     }   
 }
 
