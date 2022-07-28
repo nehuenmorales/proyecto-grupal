@@ -11,12 +11,12 @@ const GetComplex = ({match}) => {
     const dispatch = useDispatch()
     const sport = match.params.sport;
     const complex = useSelector(state => state.complexReducer.complex)
-    const searchComplex = useSelector(state => state.complexReducer.searchComplex)
+    const searchComplex = useSelector(state => state.complexReducer.complexSearch)
 
     useEffect(() => {
         dispatch(getComplex());
     }, [dispatch]);
-    console.log(complex)
+    console.log(searchComplex)
   return (
     <div>
         <VerticalNavbar/>
@@ -26,7 +26,7 @@ const GetComplex = ({match}) => {
 
 
                 {
-                searchComplex?
+                searchComplex.length?
                 searchComplex.map((x) => {
                     return (
                         <CardComplex

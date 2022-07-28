@@ -27,7 +27,7 @@ export default function DetailFields({match}) {
         <SearchBar sport={sport} filtro="canchas" />
         <Tabs match={match}/>
             {
-                searchField?
+                searchField.length?
                 searchField.map((e) => {
                     return (
                         <FieldCard 

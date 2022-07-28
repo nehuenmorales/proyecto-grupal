@@ -4,8 +4,8 @@ const { Op, QueryTypes } = require("sequelize");
 
 
 async function getSearchGames(req, res, next) {
-    let sport=req.params.sport
-    let name = req.query.name
+    const sport=req.params.sport
+    const name = req.query.name
     console.log(sport,name)
     // const agarrarloqueneceistamos=(ele)=>{
     //   const infields=[]
@@ -31,13 +31,13 @@ async function getSearchGames(req, res, next) {
     // }
 
     try {
-        let fields = await conn.query(`(SELECT g.*, f.name, f.capacity, f."pricePerTurn", f.description,x.adress,x.name AS complexname
+        let games = await conn.query(`(SELECT g.*, f.name, f.capacity, f."pricePerTurn", f.description,x.adress,x.name AS complexname
         FROM "games" g
         JOIN fields f ON g."fieldId" = f.id
         JOIN complexes x ON f."complexId"=x.id
-        WHERE g.status = 'free' AND g.sport = :sport AND x.adress LIKE :name OR f.name LIKE  :name ' )`,{
+        WHERE g.status = 'free' AND g.sport = :sport AND (x.adress LIKE :name OR f.name LIKE :name) )`,{
           replacements: { sport: sport,
-            name:`'%${name}%'`
+            name:`%${name}%`
             },
           type: QueryTypes.SELECT
       })
@@ -76,9 +76,10 @@ async function getSearchGames(req, res, next) {
         // });
 
         // // fields=agarrarloqueneceistamos(fields)
-        res.send(fields);
+        res.send(games);
       } catch (error) {
-        res.status(400).send("la cancha no existe");
+        console.log(error)
+        res.status(400).send(error);
       }
 
     }

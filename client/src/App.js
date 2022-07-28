@@ -6,10 +6,10 @@ import Home from "./pages/Home/Home";
 import { Spinner } from "react-bootstrap";
 import { Route } from "react-router-dom";
 import CreateFields from "./components/Fields/CreateFields/CreateFields";
-import fieldFutbol from "./components/Fields/CreateFields/Futbol/fieldFutbol.jsx"
-import fieldBasquet from "./components/Fields/CreateFields/Basquet/fieldBasquet.jsx"
-import fieldPadel from "./components/Fields/CreateFields/Padel/fieldPadel.jsx"
-import fieldTenis from "./components/Fields/CreateFields/Tenis/fieldTenis.jsx"
+import fieldFutbol from "./components/Fields/CreateFields/Futbol/fieldFutbol.jsx";
+import fieldBasquet from "./components/Fields/CreateFields/Basquet/fieldBasquet.jsx";
+import fieldPadel from "./components/Fields/CreateFields/Padel/fieldPadel.jsx";
+import fieldTenis from "./components/Fields/CreateFields/Tenis/fieldTenis.jsx";
 import CreateSupplies from "./components/Supplies/CreateSupplies/createSupplies";
 import SuppliesFutbol from "./components/Supplies/CreateSupplies/Futbol/suppliesFutbol";
 import SuppliesBasquet from "./components/Supplies/CreateSupplies/Basquet/suppliesBasquet";
@@ -22,7 +22,8 @@ import DetailFields from "./components/Fields/DetailFields/DetailFields.jsx";
 import AllGames from "./components/AllGames/AllGames.jsx"
 import ViewFields from './components/Fields/DetailFields/ViewFields.jsx';
 import GetPlayers from "./components/Players/getPlayers";
-import GetComplex from "./components/Complexes/getComplex"
+import GetComplex from "./components/Complexes/getComplex";
+ import PlayerProfile from "./components/Profile/Profile";
 
 function App() {
 
@@ -57,6 +58,7 @@ function App() {
       {/* <Route exact path="/fields/:sport/:id" component={ViewFields} /> */}
       <Route exact path="/sport/:sport/players" component={GetPlayers} />
       <Route exact path="/sport/:sport/complex" component={GetComplex} />
+      <Route exact path="/profile" component={PlayerProfile} />
 
 
       <Route exact path={"/owner/createSupplie"} component={CreateSupplies}/>

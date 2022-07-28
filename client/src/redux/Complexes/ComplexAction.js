@@ -17,10 +17,11 @@ export const GET_SEARCH_COMPLEX = "GET_SEARCH_COMPLEX"
         ) 
     }
   }
-  export function getSearchComplex(sport,input) {
+  export function getSearchComplex(input,sport) {
     return dispatch =>{
-      axios.get(`/${sport}/searchComplex?name=${input}`)
+      axios.get(`/complex/${sport}/searchComplex?name=${input}`)
         .then(res => {
+          console.log("hola soy la action", res.data)
           dispatch({
             type: GET_SEARCH_COMPLEX,
             payload: res.data

@@ -11,18 +11,20 @@ const GetPlayers = ({match}) => {
     const dispatch = useDispatch()
     const sport = match.params.sport;
     const players = useSelector(state => state.getPlayersReducer.players)
-    const playerSearch = useSelector(state => state.getPlayersReducer.searchplayer);
+    const playerSearch = useSelector(state => state.getPlayersReducer.playerSearch);
+    console.log("playerSearch", playerSearch)
 
     useEffect(() => {
         dispatch(getPlayers());
     }, [dispatch]);
+    
   return (
     <div>
         <VerticalNavbar/>
         <SearchBar filtro="jugadores" sport={sport} />
         <Tabs match={match}/>
                 {
-                playerSearch?
+                playerSearch.length?
                 playerSearch.map((x) => {
                     return (
                         <CardPlayers

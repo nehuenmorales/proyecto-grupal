@@ -32,7 +32,7 @@ export function getAllFields(sport) {
     }
   }
 
-  export function getSearchFields(sport, input) {
+  export function getSearchFields(input, sport) {
   
     return dispatch =>{
       axios.get(`/fields/${sport}/getSearchField?name=${input}`)
