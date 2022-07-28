@@ -1,8 +1,9 @@
-import { GET_GAMES_INCOMPLETE,GET_DETAIL_INCOMPLETE } from "./gamesIncompleteActions";
+import { GET_GAMES_INCOMPLETE,GET_DETAIL_INCOMPLETE,PUT_GAME } from "./gamesIncompleteActions";
 
 const initialState = {
     gamesIncomplete: [],
     gamesDetail:[],
+    putGame:[]
 }
 
 export default function GamesIncompleteReducer (state = initialState, action){
@@ -17,6 +18,11 @@ export default function GamesIncompleteReducer (state = initialState, action){
                 ...state,
                 gamesDetail: action.payload
             }
+        case PUT_GAME:
+            return {
+                ...state,
+                putGame: action.payload,
+         };
         default:
             return state;
     }

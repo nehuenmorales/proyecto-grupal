@@ -1,17 +1,23 @@
 import axios from "axios";
 
 export const GET_FIELDS = 'GET_FIELDS';
+export const GET_FIELDS_BY_ID = 'GET_FIELDS_BY_ID';
 
-
-// export default function getAllFields(sport) {
-//     console.log('entro a la action')
-//     return async function (dispatch) {
-    
-//         const response = await axios.get(`http://localhost:3001/fields/${sport}`);
-//         return dispatch({ type: GET_FIELDS, payload: response.data })
-        
-//     }
-// }
+export function getFieldById(id) {
+  
+    return dispatch =>{
+      axios.get(`/fields/detail/${id}`)
+        .then(res => {
+          dispatch({
+            type: GET_FIELDS_BY_ID,
+            payload: res.data
+          })
+        })
+        .catch (e=>
+          console.log(e)
+        ) 
+    }
+  }
 
 export function getAllFields(sport) {
   

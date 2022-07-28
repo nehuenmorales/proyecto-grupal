@@ -1,24 +1,27 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getDetailIncomplete } from '../../../redux/GamesIncomplete/gamesIncompleteActions';
+import { getDetailIncomplete, putGame } from '../../../redux/GamesIncomplete/gamesIncompleteActions';
 import VerticalNavbar from '../../VerticalNavbar/VerticalNavbar';
 import s from "./DetailGamesInc.module.css"
-//importar useAuth0()
+import { useAuth0 } from '@auth0/auth0-react';
+import swal from 'sweetalert';
 
 export default function DetailGamesInc({match}) {
     const gameid = match.params.gameid;
     const dispatch = useDispatch();
     const detail = useSelector(state => state.GamesIncompleteReducer.gamesDetail);
-// const {user} = useAuth0();
-console.log(gameid)
-console.log(detail)
+    const {user} = useAuth0();
+    console.log(detail)
+    console.log(gameid,"game id Detail")
+    console.log(user.email,"email Detail")
   useEffect(()=>{
       dispatch(getDetailIncomplete(gameid))
     },[dispatch,gameid])
 
-//    function HandleDispatch(){
-    
-//    }
+   function HandleDispatch(){
+    dispatch(putGame(gameid, { email: user.email }))
+    swal('', `Te uniste Correctamente al juego!`, 'success')
+   }
 
     return (<div className={s.background}>
         <VerticalNavbar/>
@@ -34,7 +37,7 @@ console.log(detail)
         <p>{detail[0]?.description}</p>
         <p>${detail[0]?.pricePerTurn}</p>
         <p>players:{detail?.map(g=>g.username).join(",")}</p>
-        <button className={s.button}>Unirse!</button>
+        <button onClick={()=>{HandleDispatch()}} className={s.button}>Unirse!</button>
     </div>)
 }
 

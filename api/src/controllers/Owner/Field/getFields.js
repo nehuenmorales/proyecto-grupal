@@ -1,32 +1,24 @@
-//const {Field} = require("../../../db")
-//const {Op} = require('sequelize')
 const { QueryTypes } = require('sequelize');
 const { conn } = require('../../../db.js');
 
-// async function getFieldById (id) {
-//     let fields = await Field.findAll({
-//         where: {
-//                 id:{
-//                     [Op.iLike]:`%${id}%`
-//                 }
-//         },
-//     })
-//     return fields
-// }
-
-// const getFields = async (req, res) =>{
-//     const {id} = req.params
-//     try {
-//         if(id){
-//         let field = await getFieldById(id)
-//         if(field) return res.json(field)
-//     }
-//     let fields = await Field.findAll()
-//     console.log(fields)
-//     res.json(fields)        
-//     } catch (error) {
-//      res.status(404).send("No se pudieron obtener las canchas")    
-//     }}
+async function detailFields (req, res, next){
+    const {id} = req.params
+    try{
+    const detail= await conn.query(`(SELECT g.*, f.name, f."pricePerTurn", f."durationPerTurn", f.capacity, f.start AS open, f.end AS close
+        FROM "games" g
+        JOIN fields f ON g."fieldId" = f.id
+        WHERE g.status = 'free' 
+        AND f.id = :id)`,
+                {
+                    replacements: { id: id},
+                    type: QueryTypes.SELECT
+                }
+                )
+                res.send(detail)
+    }catch(e){
+        console.log(e)
+    }
+}
 
 async function getFields (req, res, next){
     const {id} = req.params
@@ -46,5 +38,5 @@ async function getFields (req, res, next){
     }
 }
 
-module.exports = {getFields}
+module.exports = {getFields,detailFields}
 

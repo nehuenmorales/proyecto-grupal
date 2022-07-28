@@ -1,6 +1,7 @@
  import axios from "axios";
 
  export const GET_GAME_SPORT = "GET_GAME_SPORT"
+ export const GET_GAMES_BY_ID = 'GET_GAMES_BY_ID';
  
  export function getGameSport(sport) {
   
@@ -20,17 +21,18 @@
   }
 
 
-  // export function getAllFields(sport) {
-  //   return dispatch =>{
-  //     axios.get(`/fields/${sport}`)
-  //       .then(res => {
-  //         dispatch({
-  //           type: GET_FIELDS,
-  //           payload: res.data
-  //         })
-  //       })
-  //       .catch (e=>
-  //         console.log(e)
-  //       ) 
-  //   }
-  // }
+  export function getGamesById(id) {
+    
+      return dispatch =>{
+        axios.get(`/games/detail/${id}`)
+          .then(res => {
+            dispatch({
+              type: GET_GAMES_BY_ID,
+              payload: res.data
+            })
+          })
+          .catch (e=>
+            console.log(e)
+          ) 
+      }
+    }

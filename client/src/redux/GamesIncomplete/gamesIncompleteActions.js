@@ -1,7 +1,8 @@
 import axios from "axios";
 
 export const GET_GAMES_INCOMPLETE = "GET_GAMES_INCOMPLETE";
-export const GET_DETAIL_INCOMPLETE = "GET_DETAIL_INCOMPLETE"
+export const GET_DETAIL_INCOMPLETE = "GET_DETAIL_INCOMPLETE";
+export const PUT_GAME = "PUT_GAME";
 
 export function getGamesIncomplete() {
     return dispatch =>{
@@ -33,5 +34,17 @@ export function getGamesIncomplete() {
           console.log(e)
         ) 
     }
+  }
+
+  export function putGame(id, email) {
+    console.log(id,email,"actions put")
+    return async function (dispatch) {
+      const {data} = await axios.put(
+        `/games/gamesIncomplete/${id}`,
+        email
+      );
+      console.log(data, "action data")
+      dispatch({type: PUT_GAME, payload: data});
+    };
   }
 

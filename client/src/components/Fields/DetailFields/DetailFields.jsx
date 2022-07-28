@@ -25,6 +25,7 @@ export default function DetailFields({match}) {
                 field?.map((e) => {
                     return (
                         <FieldCard 
+                        id={e.id}
                         key={e.id}
                         name={e.name}
                         sport={e.sport}
