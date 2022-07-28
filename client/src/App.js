@@ -1,7 +1,7 @@
 import "./scss/custom.css";
 import React from "react";
 import Landing from "./components/Landing/Landing";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useAuth0, User } from "@auth0/auth0-react";
 import Home from "./pages/Home/Home";
 import { Spinner } from "react-bootstrap";
 import { Route } from "react-router-dom";
@@ -23,10 +23,12 @@ import AllGames from "./components/AllGames/AllGames.jsx"
 import ViewFields from './components/Fields/DetailFields/ViewFields.jsx';
 import GetPlayers from "./components/Players/getPlayers";
 import GetComplex from "./components/Complexes/getComplex"
+import HomeOwner from "./pages/HomeOwner/HomeOwner";
+import CreateComplex from "./components/Complex/CreateComplex/CreateComplex";
 
 function App() {
 
-  const { isAuthenticated, isLoading } = useAuth0();
+  const { isAuthenticated, isLoading, user } = useAuth0();
 
   return (
     <>
@@ -36,16 +38,20 @@ function App() {
       <Route exact path={"/owner/createField/padel"} component={fieldPadel} />
       <Route exact path={"/owner/createField/tenis"} component={fieldTenis} />
       <Route exact path={"/owner/createField"} component={CreateFields} />
-      {
-        isLoading
+      
+      {  isLoading
           ?
           <Spinner animation="border" variant="light" role="status">
             <span className="visually-hidden">Loading...</span>
           </Spinner>
       : isAuthenticated
-      ? <Route exact path="/" component={Home} />
-      : <Route exact path="/" component={Landing} />
-    }
+      ? user['https://example.com/rol'] === 'owner' 
+      ?
+      <Route exact path="/" component={HomeOwner} /> 
+      :
+      <Route exact path="/" component={Home} />
+      : 
+      <Route exact path="/" component={Landing} />}
        {/* leo rompiste todo con esta ruta que esta abajito, AREGLALO */}
       <Route exact path="/sport/:sport" component={AllGames} /> 
       <Route exact path="/sport/:sport/gamesIncomplete" component={CarouselGamesInc} />
@@ -64,6 +70,9 @@ function App() {
       <Route exact path={"/owner/createSupplie/tenis"} component={SuppliesTenis}/>
       <Route exact path={"/owner/createSupplie/padel"} component={SuppliesPadel}/>
       <Route exact path={"/owner/createSupplie/basquet"} component={SuppliesBasquet}/>
+
+      <Route exact path={"/owner/createComplex"} component={CreateComplex}/>
+
 
 
     </>

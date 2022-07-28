@@ -10,6 +10,9 @@ const { deleteSupplies } = require("../controllers/Owner/Supplies/deleteSupplies
 const { getBookedGames } = require("../controllers/Owner/Games/getBookedGames");
 
 const { createOwner } = require("../controllers/Owner/owner/createOwner");
+const { getOwner } = require("../controllers/Owner/owner/getOwner");
+const { createComplex } = require('../controllers/Owner/Complex/createComplex');
+const { getCities } = require("../controllers/apiCities/getCities.js");
 
 const router = Router();
 
@@ -30,5 +33,11 @@ router.put("/modifyGame/:id", modifyGame);
 router.delete("/deleteSupplies/:id", deleteSupplies);
 
 router.get("/getBookedGames", getBookedGames);
+
+router.get("/getOwner/:id", getOwner);
+
+router.post('/createComplex', createComplex)
+
+router.get('/getCities', getCities)
 
 module.exports = router;

@@ -7,7 +7,7 @@ async function getOwner(req, res, next) {
        where:{
            email: id
        }})
-    return res.json(owner).status(200);ls
+    return res.json(owner).status(200);
   } catch (err) {
     return res.status(400).json(new Error(err));
   }
