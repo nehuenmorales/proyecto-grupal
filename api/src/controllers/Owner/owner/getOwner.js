@@ -1,10 +1,10 @@
 const { Owner } = require("../../../db");
 
 async function getOwner(req, res, next) {
-    // const {email} = req.params
+    const {id} = req.params
     // console.log(email, 'soy id')
     try {
-      const allPlayers = await Owner.findAll()
+      const allPlayers = await Owner.findByPk(id)
   
       res.send(allPlayers)
   

@@ -16,7 +16,7 @@ const { getCities } = require("../controllers/apiCities/getCities.js");
 
 const router = Router();
 
-router.get("/getOwner", getOwner);
+router.get("/getOwner/:id", getOwner);
 
 router.post("/createField", createField);
 
