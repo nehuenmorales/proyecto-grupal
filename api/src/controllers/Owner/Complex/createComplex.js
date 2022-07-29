@@ -26,14 +26,15 @@ async function createComplex(req, res, next) {
       city,
       lat,
       lng,
-      image
+      image,
+      ownerId
     });
      
-        await newComplex.update(
-          {
-              ownerId: ownerId,
-          }
-      )
+      //   await newComplex.update(
+      //     {
+      //         ownerId: ownerId,
+      //     }
+      // )
 
     
     
