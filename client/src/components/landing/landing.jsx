@@ -6,6 +6,7 @@ import logo from "../../assets/images/logo.png";
 import { Button, Container, Navbar } from "react-bootstrap"
 
 
+
 const Landing = () => {
   const { loginWithRedirect} = useAuth0();
 

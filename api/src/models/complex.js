@@ -28,10 +28,30 @@ module.exports = (sequelize) => {
         max: 5,
       },
     },
-    adress: {
+    address: {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    state: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    city: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    country: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    lat: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    },
+    lng: {
+      type: DataTypes.FLOAT,
+      allowNull: false,
+    }
   },
   {
     timestamps: false,
