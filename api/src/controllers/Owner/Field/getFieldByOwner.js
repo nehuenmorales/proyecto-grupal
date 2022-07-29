@@ -11,16 +11,12 @@ async function getFieldByOwner (req, res){
         for (let i = 0; i < getComplex.length; i++) {
            filtrados.push(getComplex[i].id)
         }
-        for (let j = 0; j < filtrados.length; j++) {
-             result = [...result, await Field.findAll({
-                where: {complexId : filtrados[j]}
-             })]
-        }
+        
         console.log('soy result', result)
         // const getField = await Field.findAll({
         //     where: {complexId : filtrados}
         // })
-        res.status(200).json(result);
+        res.status(200).json(filtrados);
       } catch (e) {
         console.log(e);
         res.status(400).json({ msg: "no hay reservas" });

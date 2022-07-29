@@ -7,11 +7,11 @@ import Button from "react-bootstrap/esm/Button";
 export default function FieldList() {
     const [field, setField] = useState([])
     let owner = useSelector((state) => state.getOwnerReducer.owner)
-
+    console.log('soy fieldddd', field)
     useEffect(() => {
         axios.get(`https://falta-uno-1.herokuapp.com/owner/getFieldByOwner/${owner.id}`)
             .then(res => setField(res.data))
-    })
+    }, [])
 
     return (
         <div>
