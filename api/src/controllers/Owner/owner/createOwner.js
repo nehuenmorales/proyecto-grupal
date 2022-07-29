@@ -3,7 +3,7 @@ const { Owner } = require("../../../db");
 async function createOwner(req, res, next) {
   let { name, lastName, email, telephone, username } = req.body;
   try {
-    player = await Owner.create({
+    const player = await Owner.create({
       name: name,
       lastName: lastName,
       email: email,
