@@ -7,22 +7,24 @@ import { getSupplies } from '../../../redux/OwnerSupplies/suppliesActions';
 import { useAuth0 } from '@auth0/auth0-react';
 
 export default function GameDetail({match}) {
-    
-    const gameid = match.params.id;
-    const dispatch = useDispatch();
-    const detail = useSelector(state => state.games.gameDetail);
-    const [showModal, setShowModal] = useState(false)
+  
+  const gameid = match.params.id;
+  const dispatch = useDispatch();
+  const detail = useSelector(state => state.games.gameDetail);
+  const supplies = useSelector(state => state.suppliesReducer.supplies) 
+  const [showModal, setShowModal] = useState(false)
     
 console.log(detail)
 
   useEffect(()=>{
       dispatch(getGamesById(gameid))
     },[dispatch,gameid])
-
-  
+    
+    
     const handleModal = (e) => {
-        e.preventDefault();
-        setShowModal(true)
+      e.preventDefault();
+      setShowModal(true)
+      dispatch(getSupplies(gameid,detail[0]?.sport))
         // dispatch(getSupplies(gameid,detail[0]?.sport))
       }
 
@@ -46,6 +48,7 @@ console.log(detail)
         sport={detail[0]?.sport}
         id={gameid}
         price={detail[0]?.pricePerTurn}
+        supplies={supplies}
         />
     </div>)
 }

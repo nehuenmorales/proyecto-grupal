@@ -6,36 +6,37 @@ import { getSupplies } from "../../../redux/OwnerSupplies/suppliesActions";
 import swal from 'sweetalert';
 import { useAuth0 } from '@auth0/auth0-react';
 
-export default function ModalGames({showModal, setShowModal, sport, id, price}) {
+export default function ModalGames({showModal, setShowModal, sport, id, price,supplies}) {
     
     const dispatch = useDispatch();
     const handleClose = () => setShowModal(false);
     const history = useHistory()
     const sports = ["single","dobles"]
     const [ isPublic, setIsPublic ] = useState()
-    const supplies = useSelector(state => state.suppliesReducer.supplies)    
+    // const supplies = useSelector(state => state.suppliesReducer.supplies)    
     const [ leitoTheBest, setLeitoBest ] = useState(0);
-    const [ local, setLocal ] = useState();
+    const [ local, setLocal ] = useState([]);
     
 
     useEffect(()=>{
-        dispatch(getSupplies(id,sport))
         setLeitoBest(price)
-    },[dispatch, id, sport])
-
+        setLocal(supplies.map(sup=>Object.assign({},sup)))
+        
+    },[dispatch,supplies])
+    
     const suma = (supplie) => {
-        setLocal(supplies)
+
+        let porfa= local.filter(e=>e.id===supplie.id)
+        if(supplie.stock>porfa[0].stock)return;
         if((supplie.stock-1) < 0) return;
         setLeitoBest(leitoTheBest + supplie.price)
         supplie.stock--;
     }
     
     const resta = (supplie) => {
-        let porfa= local.filter(e=>e.id===supplie.id)
-        console.log("este",porfa)
-        console.log("este otro",porfa[0].stock)
         if( supplie.stock  < 0 ) return;
-        if(supplie.stock>porfa[0].stock)
+        let porfa= local.filter(e=>e.id===supplie.id)
+        if(supplie.stock+1>porfa[0].stock)return;
         if(( leitoTheBest - supplie.price) < price ) return;
         setLeitoBest(leitoTheBest - supplie.price)
         supplie.stock++
