@@ -12,7 +12,7 @@ async function createComplex(req, res, next) {
     lat,
     lng,
     image, 
-    ownerEmail,
+    ownerId,
   } = req.body;
   try {
     const newComplex = await Complex.create({
@@ -30,7 +30,7 @@ async function createComplex(req, res, next) {
      
         await newComplex.update(
           {
-              ownerEmail: ownerEmail,
+              ownerId: ownerId,
           }
       )
 

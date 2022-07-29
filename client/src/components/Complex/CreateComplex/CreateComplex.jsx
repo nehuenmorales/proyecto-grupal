@@ -178,7 +178,7 @@ export default function CreateComplex() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(createComplex({ ...newComplex, ownerEmail: owner.email }));
+        dispatch(createComplex({ ...newComplex, ownerId: owner.sub }));
     }
     console.log('owner', owner)
     console.log('errores', errors)
