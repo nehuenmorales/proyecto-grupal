@@ -13,44 +13,34 @@ export default function ModalGames({showModal, setShowModal, sport, id, price}) 
     const history = useHistory()
     const sports = ["single","dobles"]
     const [ isPublic, setIsPublic ] = useState()
-    const [ total, setTotal ] = useState(0)
-    const supplies = useSelector(state => state.suppliesReducer.supplies)
-    var cart = [];
+    const supplies = useSelector(state => state.suppliesReducer.supplies)    
+    const [ leitoTheBest, setLeitoBest ] = useState(0);
+    const [ local, setLocal ] = useState();
+    
 
     useEffect(()=>{
         dispatch(getSupplies(id,sport))
-        setTotal(price);
+        setLeitoBest(price)
     },[dispatch, id, sport])
 
-    useEffect(() => {
-        if(cart.length === 0){
-            supplies?.map( supplie => {
-                const obj = {
-                    ...supplie,
-                    quantity: 0
-                }
-                cart.push(obj)
-            })
-            console.log('ahora yo soy el cart poke yo si ando :)', cart);
-        }
-    },[supplies])
-
-      function addItemToCart(id) {
-        console.log('estas añadiendo un item de ', id)
-        console.log(cart,"soy cartsito")
-        cart.map( item => {
-            if(item.id === id){
-                console.log('soy yo', item)
-            }
-        })
-        console.log('¿se añadio?, fijate ailuuuu ', cart)
-      }
-
-      const removeItemToCart = ( { id } ) => {
-        console.log('estas eliminando un item de ', id)
+    const suma = (supplie) => {
+        setLocal(supplies)
+        if((supplie.stock-1) < 0) return;
+        setLeitoBest(leitoTheBest + supplie.price)
+        supplie.stock--;
+    }
     
-      }
-    
+    const resta = (supplie) => {
+        let porfa= local.filter(e=>e.id===supplie.id)
+        console.log("este",porfa)
+        console.log("este otro",porfa[0].stock)
+        if( supplie.stock  < 0 ) return;
+        if(supplie.stock>porfa[0].stock)
+        if(( leitoTheBest - supplie.price) < price ) return;
+        setLeitoBest(leitoTheBest - supplie.price)
+        supplie.stock++
+    }
+       
       return (
         <div>
             <Modal show={showModal} onHide={handleClose} size="lg" aria-labelledby="example-modal-sizes-title-lg">
@@ -103,7 +93,7 @@ export default function ModalGames({showModal, setShowModal, sport, id, price}) 
                     {
                             supplies?.map( supplie => { 
                             return(
-                                supplie.stock > 0 ?
+            
 
                                     <Card style={{ width: '13rem' }}>
                                       <Card.Img variant="top" src={supplie.image} />
@@ -115,20 +105,19 @@ export default function ModalGames({showModal, setShowModal, sport, id, price}) 
                                         </Card.Text>
 
                                         <Button 
-                                        onClick={() => removeItemToCart(supplie)} variant="danger">-</Button>
-                                        <p> {supplie.stock} </p>
+                                        onClick={() => resta(supplie)} variant="danger">-</Button>
+
                                         <Button 
-                                        onClick={() => addItemToCart(supplie)}  variant="primary">+</Button>
+                                        onClick={() => suma(supplie)}  variant="primary">+</Button>
 
                                      </Card.Body>
                                   </Card>
-                                : null
                                 )
                             })
                         }
                         </Container>
 
-
+                        <p>total $ {leitoTheBest}</p>
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
