@@ -6,6 +6,7 @@ module.exports = (sequelize) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      primaryKey: true
     },
     image: {
       type: DataTypes.STRING, //DataTypes.BLOB("Long")
@@ -51,11 +52,7 @@ module.exports = (sequelize) => {
     lng: {
       type: DataTypes.FLOAT,
       allowNull: false,
-    },
-    ownerId: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+    }
   },
   {
     timestamps: false,
