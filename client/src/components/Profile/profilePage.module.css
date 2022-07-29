@@ -17,4 +17,11 @@
 
 .info{
     margin-right: 25em;
+    display: flex;
+    flex-direction: column;
+}
+
+.input{
+    display: flex;
+    flex-direction: column;
 }

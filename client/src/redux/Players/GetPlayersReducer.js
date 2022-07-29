@@ -1,4 +1,4 @@
-import{GET_PLAYERS, GET_SEARCH_PLAYER, GET_PLAYER_PROFILE} from "./GetPlayersAction"
+import{GET_PLAYERS, GET_SEARCH_PLAYER, GET_PLAYER_PROFILE,PUT_PLAYER_MODIFY} from "./GetPlayersAction"
 
 const initialState = {
     players: [],
@@ -24,6 +24,11 @@ export default function getPlayersReducer (state = initialState, action){
             return {
                 ...state,
                 playerProfile: action.payload[0]
+            }
+        case PUT_PLAYER_MODIFY:
+            return {
+                ...state,
+                playerProfile: action.payload,
             }
         default:
             return state;
