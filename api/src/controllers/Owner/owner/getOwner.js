@@ -11,7 +11,7 @@ async function getOwner(req, res, next) {
     //        email: email
     //    }}
       )
-    res.json({msg: owner }).status(200);
+      res.send(owner)
   } catch (err) {
     console.log(err, 'error')
     res.status(400).json({msg:'no se encontro nada'});
