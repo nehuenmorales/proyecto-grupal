@@ -41,7 +41,7 @@ async function createComplex(req, res, next) {
     
     
     console.log('creado correctamente')
-    res.status(200).json(newField);
+    res.status(200).json(newComplex);
   } catch (e) {
     console.log("fallo la creacion de la cancha", e);
     res.status(400).json({ msg: "fallo la creacion de la cancha" });
