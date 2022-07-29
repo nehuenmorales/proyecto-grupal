@@ -19,7 +19,7 @@ const HomeOwner = () => {
 
     useEffect(() => {
         console.log(user.email, 'user.email')
-        dispatch(getOwner(user.email))
+        
     },[user.email])
     
     
