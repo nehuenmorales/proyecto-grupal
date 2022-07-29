@@ -1,6 +1,7 @@
 const { Complex, Field } = require("../../../db");
 
 async function createComplex(req, res, next) {
+  console.log('body', req.body)
   const {
     name,
     sports,

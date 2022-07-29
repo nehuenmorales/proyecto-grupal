@@ -65,6 +65,7 @@ export default function CreateComplex() {
     const [loading, setLoading] = useState(false)
 
     let owner = useSelector((state) => state.getOwnerReducer.owner)
+    console.log('owner', owner)
     
 
     useEffect(() => {
