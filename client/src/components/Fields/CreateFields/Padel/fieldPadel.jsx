@@ -41,7 +41,7 @@ export default function PadelFields() {
   });
 
   useEffect(() => {
-    axios.get('http://localhost:3001/owner/getNameComplex')
+    axios.get('https://falta-uno-1.herokuapp.com/owner/getNameComplex')
       .then((res) => {
         setComplexName(res.data)
       })
