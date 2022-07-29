@@ -69,7 +69,7 @@ export default function CreateComplex() {
     
 
     useEffect(() => {
-        axios.get('http://localhost:3001/owner/getCities')
+        axios.get('https://falta-uno-1.herokuapp.com/owner/getCities')
         .then((resp) => {
         console.log('cities',resp.data)
         setCities(resp.data)})
@@ -181,7 +181,7 @@ export default function CreateComplex() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(createComplex({ ...newComplex, ownerId: owner.id }));
+        dispatch(createComplex({ ...newComplex, id: newComplex.name, ownerId: owner.id }));
     }
     console.log('owner', owner)
     console.log('errores', errors)

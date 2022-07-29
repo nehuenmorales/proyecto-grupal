@@ -5,6 +5,7 @@ async function createComplex(req, res, next) {
   const {
     name,
     sports,
+    id,
     description,
     address,
     country,
@@ -19,6 +20,7 @@ async function createComplex(req, res, next) {
     const newComplex = await Complex.create({
       name,
       sports,
+      id,
       description,
       address: address,
       country,
