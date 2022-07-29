@@ -1,9 +1,10 @@
 const { Owner } = require("../../../db");
 
 async function createOwner(req, res, next) {
-  let { name, lastName, email, telephone, username } = req.body;
+  let { name, lastName, email, telephone, username, id } = req.body;
   try {
     const player = await Owner.create({
+      id: id,
       name: name,
       lastName: lastName,
       email: email,
