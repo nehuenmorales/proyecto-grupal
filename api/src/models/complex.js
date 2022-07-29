@@ -5,7 +5,9 @@ module.exports = (sequelize) => {
   sequelize.define("complex", {
     id: {
       type: DataTypes.UUIDV4,
-      defaultValue: UUIDV4
+      allowNull: false,
+      defaultValue: UUIDV4,
+      primaryKey: true
     },
     name: {
       type: DataTypes.STRING,
