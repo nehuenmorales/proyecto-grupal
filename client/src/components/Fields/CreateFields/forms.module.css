@@ -242,6 +242,23 @@
     transform: scale(0.95);
 }
 
+.btnCeleste{
+    background-color: rgba(18, 141, 255, 1) !important;
+    border: none !important;
+    color: white !important;
+    padding: 5px 5px 5px 5px !important;
+    margin: 0px 15px 0px 0px;
+    min-width: 168px;  
+    cursor: pointer;
+    transition: all .5s;
+    border-radius: 10px;
+    height: 40px;
+}
+
+.btnCeleste:hover{
+    transform: scale(0.95);
+}
+
 .btn{
     height: 40px;
     padding: 5px 100px 5px 100px !important;

@@ -40,7 +40,7 @@ const HomeOwner = () => {
                     <div className='container'>
                             <p className="fw-normal text-white fst-italic m-2">Administrá tus publicaciones</p>
                             <div className='containercards'>
-                                    <Link to="/" style={{textDecoration:"none"}}>
+                                    <Link to="/complexOwner" style={{textDecoration:"none"}}>
                                         <div className='cards' id='complejo'>
                                             <p className='deporte' >COMPLEJO</p>
                                         </div>

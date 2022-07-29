@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import s from './CreateFields.module.css'
+import Button from "react-bootstrap/esm/Button";
+
 
 export default function CreateFields() {
 
@@ -16,6 +18,11 @@ export default function CreateFields() {
 
   return (
     <div className={s.container}>
+       <div style = {{'padding': '10px'}}>
+        <Link to='/'>
+          <Button>Volver</Button>
+        </Link>
+      </div>
       <h3 className={s.titulo}><i>Selecciona el deporte</i> </h3>
       <div className={s.containercards}>
         <Link to='/owner/createField/futbol' style={{textDecoration:"none"}}>

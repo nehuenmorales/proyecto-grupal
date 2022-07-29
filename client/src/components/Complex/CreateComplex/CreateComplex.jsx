@@ -30,6 +30,7 @@ export default function CreateComplex() {
     const [cities, setCities] = useState([])
     const [selected, setSelected] = useState(null);
     const [centerState, setCenterState] = useState({ lat: 43.45, lng: -80.49 });
+    const [complexName, setComplexName] = useState([])
     const [location, setLocation] = useState(
         {
             lat: null,
@@ -73,7 +74,11 @@ export default function CreateComplex() {
         .then((resp) => {
         console.log('cities',resp.data)
         setCities(resp.data)})
-        
+
+        axios.get('http://localhost:3001/owner/getNameComplex')
+        .then((res) => {
+            setComplexName(res.data)
+        })  
     },[])
 
 
@@ -91,7 +96,10 @@ export default function CreateComplex() {
         const beNumber = /(^\d{1,10}$)/;
         if (!complex.name) {
             validations.name = "Ingrese un nombre"
-        } else if (complex.name?.length > 30) {
+        } else if (complexName.includes(complex.name)) {
+            validations.name = "Nombre no disponible. Ingrese uno nuevo"
+        }
+        else if (complex.name?.length > 30) {
             validations.name = "Superó el máximo de caracteres"
         } else if (!complex.description) {
             validations.description = "Ingrese una descripción del complejo"
@@ -181,7 +189,7 @@ export default function CreateComplex() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(createComplex({ ...newComplex, ownerId: owner.id }));
+        dispatch(createComplex({ ...newComplex, ownerId: owner.id, id: newComplex.name}));
     }
     console.log('owner', owner)
     console.log('errores', errors)
@@ -191,7 +199,7 @@ export default function CreateComplex() {
     return (
         <div className='contenedor bg-light'>
             <div >
-                <Link to='/owner/select'>
+                <Link to='/'>
                     <Button>Volver</Button>
                 </Link>
                 <div>

@@ -25,6 +25,7 @@ import GetPlayers from "./components/Players/getPlayers";
 import GetComplex from "./components/Complexes/getComplex"
 import HomeOwner from "./pages/HomeOwner/HomeOwner";
 import CreateComplex from "./components/Complex/CreateComplex/CreateComplex";
+import ComplexList from "./components/DetailOwner/ComplexList";
 
 function App() {
 
@@ -72,6 +73,7 @@ function App() {
       <Route exact path={"/owner/createSupplie/basquet"} component={SuppliesBasquet}/>
 
       <Route exact path={"/owner/createComplex"} component={CreateComplex}/>
+      <Route exact path={"owner/complexOwner"} component={ComplexList}/>
 
 
 

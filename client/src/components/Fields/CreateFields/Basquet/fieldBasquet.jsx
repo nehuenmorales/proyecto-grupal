@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import axios from "axios";
 import ModalsFieldsGames from "../../ModalsFieldsGames/ModalFieldsGames";
 import { createField } from "../../../../redux/OwnerFields/fieldsActions";
@@ -11,6 +11,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 
 export default function BasquetFields() {
   const dispatch = useDispatch()
+  const [complexName, setComplexName] = useState([])
 
   const [newField, setNewField] = useState({
     name: "",
@@ -21,13 +22,15 @@ export default function BasquetFields() {
     description: "",
     capacity: 10,
     start: "",
-    end: ""
+    end: "", 
+    complexId: ''
   });
 
   const [showModal, setShowModal] = useState(false)
 
   const [errors, setErrors] = useState({
-    name: "Debe ingresar un nombre",
+    complexId: 'Ingrese el complejo al que pertenece la cancha',
+    name: "",
     available: "",
     pricePerTurn: "",
     durationPerTurn: "",
@@ -35,6 +38,13 @@ export default function BasquetFields() {
     start: "",
     end: ""
   });
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/owner/getNameComplex')
+    .then((res) => {
+        setComplexName(res.data)
+    })  
+},[])
 
   const [loading, setLoading] = useState(false)
 
@@ -50,7 +60,11 @@ export default function BasquetFields() {
   const validator = (field) => {// funcion que valida que todos los inputs tengan un valor "aceptable"
     let validations = {};
     const beNumber = /(^\d{1,10}$)/;
-    if (!field.name) {
+    if (!field.complexId) {
+      validations.complexId = "Ingrese el complejo al que pertenece la cancha"
+    } else if (!complexName.includes(field.complexId)) {
+      validations.complexId = `${field.complexId} no existe`
+    }else if (!field.name) {
       validations.name = "Ingrese un nombre"
     } else if (field.name.length > 30) {
       validations.name = "Superó el máximo de caracteres"
@@ -177,10 +191,22 @@ export default function BasquetFields() {
 
       </div>
 
+
       <form onSubmit={(e) => handleModal(e)} /*encType='multipart/form-data'*/>
       <div className={s.contenedor}> 
       <div className='row d-flex justify-content-center align-items-center px-5'>
       <div className='col-md-6 col-sm-12 px-5'>
+      <div className={s.input}>
+          <h5 className={s.titles}>Nombre del complejo</h5>
+          <input
+            type="text"
+            name="complexId"
+            className={s.inputfield}
+            value={newField.complexId}
+            onChange={(e) => handleInputChange(e)}
+          />
+          {errors.complexId ? <div className={s.error}>{errors.complexId}</div> : null}
+        </div>
         <div className={s.input}>
           <h5 className={s.titles}>Nombre de la cancha</h5>
           <input
@@ -220,6 +246,8 @@ export default function BasquetFields() {
                 </InputGroup>
           {errors.pricePerTurn ? <div className={s.error}>{errors.pricePerTurn}</div> : null}
         </div>
+        </div>
+        <div className='col-md-6 col-sm-12 px-5'>
         <div className={s.duration}>
         <h5 className={s.titles}>Duracion por turno</h5>
              <input
@@ -230,8 +258,6 @@ export default function BasquetFields() {
                   onChange={(e) => handleInputChange(e)} />
           {errors.durationPerTurn ? <div className={s.error}>{errors.durationPerTurn}</div> : null}
         </div>
-        </div>
-        <div className='col-md-6 col-sm-12 px-5'>
         <div>
         <h5 className={s.titles}>Descripcion de la cancha</h5>
           <input
@@ -247,15 +273,33 @@ export default function BasquetFields() {
         <div>
                 <h5 className={s.titles}>¿Está disponible para usar?</h5>
                 <div className={s.btnContenedor}>
-                <button
+                {newField.available === "true" ? <button
+                    className={s.btnCeleste}
+                    type="button"
+                    value="true"
+                    name="true"
+                    variant="outline-secondary"
+                    onClick={(e) => handleAvailable(e)}
+                  >Disponible</button>
+                  : <button
                   className={s.btndisp}
                   type="button"
                   value="true"
                   name="true"
                   variant="outline-secondary"
                   onClick={(e) => handleAvailable(e)}
-                >Disponible</button>
-                <button
+                >Disponible</button>}
+                {
+                newField.available === "false" ?
+                  <button
+                    className={s.btnCeleste}
+                    type="button"
+                    value="false"
+                    name="false"
+                    variant="outline-secondary"
+                    onClick={(e) => handleAvailable(e)}
+                  >No disponible</button> : 
+                  <button
                   className={s.btndisp}
                   type="button"
                   value="false"
@@ -263,6 +307,7 @@ export default function BasquetFields() {
                   variant="outline-secondary"
                   onClick={(e) => handleAvailable(e)}
                 >No disponible</button>
+                  }
                 </div>
                 {errors.available ? <div className={s.error}>{errors.available}</div> : null}
               </div>
@@ -281,6 +326,7 @@ export default function BasquetFields() {
         <div className={s.boton}>
             { !loading &&
               !errors.name &&
+              !errors.complexId &&
               !errors.durationPerTurn &&
               !errors.start &&
               !errors.end &&

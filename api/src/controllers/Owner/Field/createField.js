@@ -26,7 +26,7 @@ async function createField(req, res, next) {
       start,
       end, // aca configurar magui y lara
       image,
-    
+      complexId,
     });
 
     //FALTA LA RUTA DE CREACION DEL USUARIO/COMPLEJO para linkear a un complejo

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import axios from "axios";
 import ModalsFieldsGames from "../../ModalsFieldsGames/ModalFieldsGames";
 import { createField } from "../../../../redux/OwnerFields/fieldsActions";
@@ -11,6 +11,8 @@ import s from '../forms.module.css'
 
 export default function FutbolFields() {
   const dispatch = useDispatch()
+  const [complexName, setComplexName] = useState([])
+
 
   const [newField, setNewField] = useState({
     name: "",
@@ -21,13 +23,22 @@ export default function FutbolFields() {
     description: "",
     capacity: "",
     start: "",
-    end: ""
+    end: "", 
+    complexId: ""
   });
   console.log(newField, 'soy newfield')
   const [showModal, setShowModal] = useState(false)
 
+  useEffect(() => {
+    axios.get('http://localhost:3001/owner/getNameComplex')
+    .then((res) => {
+        setComplexName(res.data)
+    })  
+},[])
+
   const [errors, setErrors] = useState({
-    name: "Debe ingresar un nombre",
+    complexId: 'Ingrese el complejo al que pertenece la cancha',
+    name: "",
     available: "",
     pricePerTurn: "",
     durationPerTurn: "",
@@ -51,7 +62,12 @@ export default function FutbolFields() {
   const validator = (field) => {// funcion que valida que todos los inputs tengan un valor "aceptable"
     let validations = {};
     const beNumber = /(^\d{1,10}$)/;
-    if (!field.name) {
+    if (!field.complexId) {
+      validations.complexId = "Ingrese el complejo al que pertenece la cancha"
+    } else if (!complexName.includes(field.complexId)) {
+      validations.complexId = `${field.complexId} no existe`
+    }
+    else if (!field.name) {
       validations.name = "Ingrese un nombre"
     } else if (field.name.length > 30) {
       validations.name = "Superó el máximo de caracteres"
@@ -182,6 +198,18 @@ export default function FutbolFields() {
         <div className={s.contenedor}>
           <div className='row d-flex justify-content-center align-items-center px-5'>
             <div className='col-md-6 col-sm-12 px-5'>
+              {/* NOMBRE DEL COMPLEJO */}
+              <div className={s.input}>
+                <h5 className={s.titles}>Nombre del complejo</h5>
+                <input
+                  type="text"
+                  name="complexId"
+                  className={s.inputfield}
+                  value={newField.complexId}
+                  onChange={(e) => handleInputChange(e)}
+                />
+                {errors.complexId ? <div className={s.error}>{errors.complexId}</div> : null}
+              </div>
               {/* NOMBRE DE LA CANCHA */}
               <div className={s.input}>
                 <h5 className={s.titles}>Nombre de la cancha</h5>
@@ -263,15 +291,33 @@ export default function FutbolFields() {
               <div>
                 <h5 className={s.titles}>¿Está disponible para usar?</h5>
                 <div className={s.btnContenedor}>
-                <button
+                  {newField.available === "true" ? <button
+                    className={s.btnCeleste}
+                    type="button"
+                    value="true"
+                    name="true"
+                    variant="outline-secondary"
+                    onClick={(e) => handleAvailable(e)}
+                  >Disponible</button>
+                  : <button
                   className={s.btndisp}
                   type="button"
                   value="true"
                   name="true"
                   variant="outline-secondary"
                   onClick={(e) => handleAvailable(e)}
-                >Disponible</button>
-                <button
+                >Disponible</button>}
+                {
+                newField.available === "false" ?
+                  <button
+                    className={s.btnCeleste}
+                    type="button"
+                    value="false"
+                    name="false"
+                    variant="outline-secondary"
+                    onClick={(e) => handleAvailable(e)}
+                  >No disponible</button> : 
+                  <button
                   className={s.btndisp}
                   type="button"
                   value="false"
@@ -279,6 +325,7 @@ export default function FutbolFields() {
                   variant="outline-secondary"
                   onClick={(e) => handleAvailable(e)}
                 >No disponible</button>
+                  }
                 </div>
                 {errors.available ? <div className={s.error}>{errors.available}</div> : null}
               </div>
@@ -299,18 +346,19 @@ export default function FutbolFields() {
           <div className={s.boton}>
             {
               !loading &&
-              !errors.name &&
-              !errors.durationPerTurn &&
-              !errors.start &&
-              !errors.end &&
-              !errors.available &&
-              !errors.pricePerTurn &&
-              !errors.capacity &&
-              !errors.description ?
-              <button className={s.btnVerde} type="submit" 
-              >Siguiente</button> : <button className={s.btnGris} type="submit" disabled >Siguiente</button>
+                !errors.name &&
+                !errors.complexId &&
+                !errors.durationPerTurn &&
+                !errors.start &&
+                !errors.end &&
+                !errors.available &&
+                !errors.pricePerTurn &&
+                !errors.capacity &&
+                !errors.description ?
+                <button className={s.btnVerde} type="submit"
+                >Siguiente</button> : <button className={s.btnGris} type="submit" disabled >Siguiente</button>
             }
-            
+
           </div>
           {/* <div className={s.boton}>
             <button className={s.btn} type="submit" disabled={

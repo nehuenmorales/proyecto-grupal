@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import ModalsFieldsGames from "../../ModalsFieldsGames/ModalFieldsGames";
 import { createField } from "../../../../redux/OwnerFields/fieldsActions";
@@ -12,6 +12,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 
 export default function PadelFields() {
   const dispatch = useDispatch()
+  const [complexName, setComplexName] = useState([])
 
   const [newField, setNewField] = useState({
     name: "",
@@ -22,13 +23,15 @@ export default function PadelFields() {
     description: "",
     capacity: 4,
     start: "",
-    end: ""
+    end: "",
+    complexId: ""
   });
 
   const [showModal, setShowModal] = useState(false)
 
   const [errors, setErrors] = useState({
-    name: "Debe ingresar un nombre",
+    complexId: 'Ingrese el complejo al que pertenece la cancha',
+    name: "",
     available: "",
     pricePerTurn: "",
     durationPerTurn: "",
@@ -37,13 +40,20 @@ export default function PadelFields() {
     end: ""
   });
 
+  useEffect(() => {
+    axios.get('http://localhost:3001/owner/getNameComplex')
+      .then((res) => {
+        setComplexName(res.data)
+      })
+  }, [])
+
   const [loading, setLoading] = useState(false)
 
   const convertirTime = (state) => {
     console.log(state)
-    var hour = state.slice(0,2)
-    var minutes = state.slice(3,6)
-    minutes = minutes/60
+    var hour = state.slice(0, 2)
+    var minutes = state.slice(3, 6)
+    minutes = minutes / 60
     let timeNumber = parseInt(hour) + parseFloat(minutes)
     return timeNumber
   }
@@ -51,7 +61,12 @@ export default function PadelFields() {
   const validator = (field) => {// funcion que valida que todos los inputs tengan un valor "aceptable"
     let validations = {};
     const beNumber = /(^\d{1,10}$)/;
-    if (!field.name) {
+    if (!field.complexId) {
+      validations.complexId = "Ingrese el complejo al que pertenece la cancha"
+    } else if (!complexName.includes(field.complexId)) {
+      validations.complexId = `${field.complexId} no existe`
+    }
+    else if (!field.name) {
       validations.name = "Ingrese un nombre"
     } else if (field.name.length > 30) {
       validations.name = "Superó el máximo de caracteres"
@@ -182,32 +197,43 @@ export default function PadelFields() {
 
   return (
     <div className={s.container}>
-    <div className={s.headerPadel}>
-      <Link to='/owner/select'>
-        <Button className={s.volverbtn}>Volver</Button>
-      </Link>
-      <div className={s.titleheader}>
-      <h3 className={s.titulo}>Padel</h3>
-      </div>
+      <div className={s.headerPadel}>
+        <Link to='/owner/select'>
+          <Button className={s.volverbtn}>Volver</Button>
+        </Link>
+        <div className={s.titleheader}>
+          <h3 className={s.titulo}>Padel</h3>
+        </div>
 
       </div>
 
       <form onSubmit={(e) => handleModal(e)} /*encType='multipart/form-data'*/>
-      <div className={s.contenedor}> 
-      <div className='row d-flex justify-content-center align-items-center px-5'>
-      <div className='col-md-6 col-sm-12 px-5'>
-        <div className={s.input}>
-          <h5 className={s.titles}>Nombre de la cancha</h5>
-          <input
-            type="text"
-            name="name"
-            className={s.inputfield}
-            value={newField.name}
-            onChange={(e) => handleInputChange(e)}
-          />
-          {errors.name ? <div className={s.error}>{errors.name}</div> : null}
-        </div>
-        <div className={s.columna}>
+        <div className={s.contenedor}>
+          <div className='row d-flex justify-content-center align-items-center px-5'>
+            <div className='col-md-6 col-sm-12 px-5'>
+              <div className={s.input}>
+                <h5 className={s.titles}>Nombre del complejo</h5>
+                <input
+                  type="text"
+                  name="complexId"
+                  className={s.inputfield}
+                  value={newField.complexId}
+                  onChange={(e) => handleInputChange(e)}
+                />
+                {errors.complexId ? <div className={s.error}>{errors.complexId}</div> : null}
+              </div>
+              <div className={s.input}>
+                <h5 className={s.titles}>Nombre de la cancha</h5>
+                <input
+                  type="text"
+                  name="name"
+                  className={s.inputfield}
+                  value={newField.name}
+                  onChange={(e) => handleInputChange(e)}
+                />
+                {errors.name ? <div className={s.error}>{errors.name}</div> : null}
+              </div>
+              <div className={s.columna}>
                 <h5 className={s.titles}>Horario de la cancha</h5>
                 <div className={s.contenedorcol}>
                   <div className={s.columnahora}>
@@ -222,9 +248,9 @@ export default function PadelFields() {
                   </div>
                 </div>
               </div>
-        <div className={s.precio}>
-          <h5 className={s.titles}>Precio por turno</h5>
-          <InputGroup className={s.inputprecio}>
+              <div className={s.precio}>
+                <h5 className={s.titles}>Precio por turno</h5>
+                <InputGroup className={s.inputprecio}>
                   <InputGroup.Text className={s.inputpesos} >$</InputGroup.Text>
                   <input type="text"
                     className={s.inputfield}
@@ -233,44 +259,62 @@ export default function PadelFields() {
                     onChange={(e) => handleInputChange(e)}
                   />
                 </InputGroup>
-          {errors.pricePerTurn ? <div className={s.error}>{errors.pricePerTurn}</div> : null}
-        </div>
-        <div className={s.duration}>
-        <h5 className={s.titles}>Duracion por turno</h5>
-             <input
+                {errors.pricePerTurn ? <div className={s.error}>{errors.pricePerTurn}</div> : null}
+              </div>
+            </div>
+            <div className='col-md-6 col-sm-12 px-5'>
+              <div className={s.duration}>
+                <h5 className={s.titles}>Duracion por turno</h5>
+                <input
                   className={s.inputfield}
                   placeholder="Duración por turno"
                   name="durationPerTurn"
                   type="time"
                   onChange={(e) => handleInputChange(e)} />
-          {errors.durationPerTurn ? <div className={s.error}>{errors.durationPerTurn}</div> : null}
-        </div>
-        </div>
-        <div className='col-md-6 col-sm-12 px-5'>
-        <div>
-        <h5 className={s.titles}>Descripcion de la cancha</h5>
-          <input
-            className={s.inputfield}
-            type="text"
-            name="description"
-            value={newField.description}
-            onChange={(e) => handleInputChange(e)}
-          />
-          {errors.description ? <div className={s.error}>{errors.description}</div> : null}
-        </div>
+                {errors.durationPerTurn ? <div className={s.error}>{errors.durationPerTurn}</div> : null}
+              </div>
+              <div>
+                <h5 className={s.titles}>Descripcion de la cancha</h5>
+                <input
+                  className={s.inputfield}
+                  type="text"
+                  name="description"
+                  value={newField.description}
+                  onChange={(e) => handleInputChange(e)}
+                />
+                {errors.description ? <div className={s.error}>{errors.description}</div> : null}
+              </div>
 
-        <div>
+              <div>
                 <h5 className={s.titles}>¿Está disponible para usar?</h5>
                 <div className={s.btnContenedor}>
-                <button
+                {newField.available === "true" ? <button
+                    className={s.btnCeleste}
+                    type="button"
+                    value="true"
+                    name="true"
+                    variant="outline-secondary"
+                    onClick={(e) => handleAvailable(e)}
+                  >Disponible</button>
+                  : <button
                   className={s.btndisp}
                   type="button"
                   value="true"
                   name="true"
                   variant="outline-secondary"
                   onClick={(e) => handleAvailable(e)}
-                >Disponible</button>
-                <button
+                >Disponible</button>}
+                {
+                newField.available === "false" ?
+                  <button
+                    className={s.btnCeleste}
+                    type="button"
+                    value="false"
+                    name="false"
+                    variant="outline-secondary"
+                    onClick={(e) => handleAvailable(e)}
+                  >No disponible</button> : 
+                  <button
                   className={s.btndisp}
                   type="button"
                   value="false"
@@ -278,6 +322,7 @@ export default function PadelFields() {
                   variant="outline-secondary"
                   onClick={(e) => handleAvailable(e)}
                 >No disponible</button>
+                  }
                 </div>
                 {errors.available ? <div className={s.error}>{errors.available}</div> : null}
               </div>
@@ -291,11 +336,12 @@ export default function PadelFields() {
                   accept="image/*" />
                 {loading ? <span class={s.loader}></span> : null}
               </div>
-        </div>
-        </div>
-        <div className={s.boton}>
-            { !loading &&
+            </div>
+          </div>
+          <div className={s.boton}>
+            {!loading &&
               !errors.name &&
+              !errors.complexId &&
               !errors.durationPerTurn &&
               !errors.start &&
               !errors.end &&
@@ -303,7 +349,7 @@ export default function PadelFields() {
               !errors.pricePerTurn &&
               !errors.capacity &&
               !errors.description ?
-              <button className={s.btnVerde} type="submit" 
+              <button className={s.btnVerde} type="submit"
               >Siguiente</button> : <button className={s.btnGris} type="submit" disabled >Siguiente</button>
             }
           </div>

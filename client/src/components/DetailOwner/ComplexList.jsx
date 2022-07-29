@@ -1,0 +1,26 @@
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import axios from "axios";
+
+export default function ComplexList(){
+    const [complex, setComplex] = useState([])
+    let owner = useSelector((state) => state.getOwnerReducer.owner)
+    useEffect(()=> {
+        axios.get(`http://localhost:3001/owner/getComplexByOwner/${owner.id}`)
+        .then(res => setComplex(res.data))
+    })
+
+    return (
+        <div>
+            {complex?.map((e) => {
+                return (
+                    <div key={e.id} >
+                        <img src={e.image} alt="" />
+                        <p>{e.name}</p>
+                        <p>{e.address}</p>
+                    </div>
+                )
+            })}
+        </div>
+    )
+}
