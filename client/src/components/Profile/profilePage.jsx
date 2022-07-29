@@ -2,9 +2,14 @@ import { useEffect, useState } from "react"
 import { useDispatch,  useSelector } from "react-redux"
 import { getPlayersProfile, putPlayer } from "../../redux/Players/GetPlayersAction"
 import s from "./profilePage.module.css"
+import axios from "axios"
 
 export default function ProfileData({email,user}) {
     const mail=email
+    const [cities, setCities] = useState([])
+     const [input, setInput] = useState('')
+     const [click, setClick] = useState(false)
+    const [cityInput, setCityInput] = useState([])
     const dispatch=useDispatch()
     const [flag,setFlag]=useState(false)
     const player = useSelector(state => state.getPlayersReducer.playerProfile);
@@ -62,6 +67,10 @@ export default function ProfileData({email,user}) {
         
     useEffect(()=>{
         dispatch(getPlayersProfile(mail))
+        axios.get('http://localhost:3001/owner/getCities')
+            .then((resp) => {
+            console.log('cities',resp.data)
+            setCities(resp.data)})
     },[dispatch])
 
     useEffect(()=>{
@@ -100,6 +109,25 @@ export default function ProfileData({email,user}) {
         setButtonEdit({name:false,lastName:false,telephone:false,username:false,city:false})
     }
 
+     const handleChangeCity = (ev) => {
+        setInput(ev.target.value)
+        autocomplete(ev)
+    }
+    const onClickCity = (ev) => {
+        ev.preventDefault()
+        setInput(ev.target.value)
+        setCityInput([])
+        setClick(true)
+    }
+     function autocomplete(ev) {
+        const value = ev.target.value;
+        const results = cities.filter(city => {
+        return city.toLowerCase().startsWith(value.toLowerCase());
+       })
+       console.log('results',results)
+       setCityInput(results)
+  
+      }    
 
 
         return (
@@ -132,8 +160,49 @@ export default function ProfileData({email,user}) {
                     
                     {errors.username?<h5>{errors.username}</h5>:null}
 
-                    {buttonedit.city?<h6>Ciudad: <input name="city" onChange={(e)=> onChange(e)} defaultValue={profile.city}/> <button value="city" onClick={(e)=>editProfile(e.target.value)}>X</button> </h6>
-                    :<h6>Ciudad: {profile.city} <button value="city" onClick={(e)=>editProfile(e.target.value)}>X</button> </h6>}
+                    {buttonedit.city?
+                    
+                    <h6>Ciudad: <input name="city" onChange={(e)=> onChange(e)} defaultValue={profile.city}/> <button value="city" onClick={(e)=>editProfile(e.target.value)}>X</button> </h6>
+                    
+                    :
+                    <div class="container">
+                            <form>
+                                <input
+                                  placeholder="Search for a country"
+                                  aria-label='Search for a country'
+                                  aria-autocomplete='both'
+                                  aria-controls='autocomplete-results'
+                                  value={input}
+                                  onChange={(ev) => handleChangeCity(ev)}
+                                />
+                                <button
+                                 type='submit'
+                                 aria-label='Search'
+                                >
+                                <svg viewBox='0 0 24 24'>
+                                     <path d='M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z' />
+                                     </svg>
+                                </button>
+                                    <div>
+                                    <ul
+                                      id='autocomplete-results'
+                                      role='listbox'
+                                      aria-label='Search for a country'
+                                    >{
+                                    cityInput ? cityInput?.map((elem, index) => {
+                                            return (
+                                                        <li id={index}><button onClick={(e) => onClickCity(e)} value={elem}>{elem}</button></li>
+                                                    )
+                                                }) : null
+                                            }
+                                             {!click ? <div>Debes seleccionar una ciudad</div> : null}
+                                            </ul>
+                                            </div>
+                                    </form>
+                        </div>
+                    // <h6>Ciudad: {profile.city} <button value="city" onClick={(e)=>editProfile(e.target.value)}>X</button> </h6>
+                    
+                    }
                     
                     <h4>Elo: {player.elo}</h4>
                     
