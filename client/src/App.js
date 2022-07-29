@@ -73,7 +73,7 @@ function App() {
       <Route exact path={"/owner/createSupplie/basquet"} component={SuppliesBasquet}/>
 
       <Route exact path={"/owner/createComplex"} component={CreateComplex}/>
-      <Route exact path={"owner/complexOwner"} component={ComplexList}/>
+      <Route exact path={"/complexOwner"} component={ComplexList}/>
 
 
 

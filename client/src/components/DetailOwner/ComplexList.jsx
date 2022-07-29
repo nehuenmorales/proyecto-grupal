@@ -5,6 +5,7 @@ import axios from "axios";
 export default function ComplexList(){
     const [complex, setComplex] = useState([])
     let owner = useSelector((state) => state.getOwnerReducer.owner)
+
     useEffect(()=> {
         axios.get(`https://falta-uno-1.herokuapp.com/owner/getComplexByOwner/${owner.id}`)
         .then(res => setComplex(res.data))
@@ -12,6 +13,7 @@ export default function ComplexList(){
 
     return (
         <div>
+            <p>holis</p>
             {complex?.map((e) => {
                 return (
                     <div key={e.id} >
