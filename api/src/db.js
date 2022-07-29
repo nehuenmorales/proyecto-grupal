@@ -115,8 +115,8 @@ Tournament.hasMany(Games);
 Products.belongsTo(Sponsors);
 Sponsors.hasMany(Products);
 
-Complex.belongsTo(Owner);
-Owner.hasMany(Complex);
+Complex.belongsTo(Owner, {foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
+Owner.hasMany(Complex, {foreignKey: { allowNull: false }, onDelete: 'CASCADE' });
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');
