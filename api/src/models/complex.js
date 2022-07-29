@@ -3,12 +3,12 @@ const { UUIDV4 } = require('sequelize');
 
 module.exports = (sequelize) => {
   sequelize.define("complex", {
-    id: {
-      type: DataTypes.UUIDV4,
-      allowNull: false,
-      defaultValue: UUIDV4,
-      primaryKey: true
-    },
+    // id: {
+    //   type: DataTypes.UUIDV4,
+    //   allowNull: false,
+    //   defaultValue: UUIDV4,
+    //   primaryKey: true
+    // },
     name: {
       type: DataTypes.STRING,
       allowNull: false

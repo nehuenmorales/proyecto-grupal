@@ -25,7 +25,7 @@ function SoloLetras(input) {
 export default function CreateComplex() {
     const dispatch = useDispatch()
     const [cityInput, setCityInput] = useState([])
-    const [click, setClick] = useState(false)
+   // const [click, setClick] = useState(false)
     const [input, setInput] = useState('')
     const [cities, setCities] = useState([])
     const [selected, setSelected] = useState(null);
@@ -101,9 +101,11 @@ export default function CreateComplex() {
             validations.sports = "Ingrese un deporte"
         } else if (!complex.address) {
             validations.address = "Marque en el mapa donde se ubica el complejo"
-        } else if (cityValidation !== true) {
-            validations.city = cityValidation
-        } else if (!complex.image) {
+        } 
+        // else if (cityValidation !== true) {
+        //     validations.city = cityValidation
+        // } 
+        else if (!complex.image) {
             validations.image = "Ingrese una imagen"
         }
         return validations;
@@ -170,7 +172,7 @@ export default function CreateComplex() {
         ev.preventDefault()
         setInput(ev.target.value)
         setCityInput([])
-        setClick(true)
+        //setClick(true)
         setNewComplex({...newComplex, city: (ev.target.value).toLowerCase()})
         let errors = validator({ ...newComplex, city: ev.target.value });
         setErrors(errors);
@@ -267,7 +269,7 @@ export default function CreateComplex() {
                                                     )
                                                 }) : null
                                             }
-                                             {!click ? <div>Debes seleccionar una ciudad</div> : null}
+                                             {/* {!click ? <div>Debes seleccionar una ciudad</div> : null} */}
                                             </ul>
                                             </div>
                                     </form>
