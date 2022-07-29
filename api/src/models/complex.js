@@ -3,10 +3,13 @@ const { UUIDV4 } = require('sequelize');
 
 module.exports = (sequelize) => {
   sequelize.define("complex", {
+    id: {
+      type: DataTypes.UUIDV4,
+      defaultValue: UUIDV4
+    },
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
-      primaryKey: true
+      allowNull: false
     },
     image: {
       type: DataTypes.STRING, //DataTypes.BLOB("Long")
