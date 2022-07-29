@@ -6,7 +6,7 @@ export const PUT_FIELD = "PUT_FIELD";
 export const createField =(body)=>{
     console.log("llega a las actions",body)
     return async function (dispatch){
-        return axios.post("/owner/createField",body)
+        return axios.post("https://falta-uno-1.herokuapp.com/owner/createField",body)
         .then((res) => {console.log(res.data) 
             return res})
         .then((res)=> {

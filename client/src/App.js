@@ -25,8 +25,8 @@ import GetPlayers from "./components/Players/getPlayers";
 import GetComplex from "./components/Complexes/getComplex"
 import HomeOwner from "./pages/HomeOwner/HomeOwner";
 import CreateComplex from "./components/Complex/CreateComplex/CreateComplex";
-import ComplexList from "./components/DetailOwner/ComplexList";
-import FieldList from "./components/DetailOwner/FieldList";
+import ComplexList from "./components/DetailOwner/Complexes/ComplexList";
+import FieldList from "./components/DetailOwner/Fields/FieldList";
 
 function App() {
 

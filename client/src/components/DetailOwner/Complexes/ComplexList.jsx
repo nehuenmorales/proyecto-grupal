@@ -20,13 +20,23 @@ export default function ComplexList() {
                     <Button>Volver</Button>
                 </Link>
             </div>
-
+            <h3>Tus complejos</h3>
             {complex?.map((e) => {
                 return (
-                    <div key={e.id} >
-                        <img src={e.image} alt="" />
-                        <p>{e.name}</p>
-                        <p>{e.address}</p>
+                    <div key={e.id} style={{ backgroundImage: `url(${e.image})`}}>
+                        <div className="field-card" >
+                            <p>{e.rating}</p>
+                            <p>{e.name}</p>
+                            <p>{e.address}</p>
+                        </div>
+                        <div style={{backgroundColor: "white"}}>
+                            <p>Deportes</p>
+                            {e.sports.map(sport => {
+                                return (
+                                    <div>{sport}</div>
+                                )
+                            })}
+                        </div>
                     </div>
                 )
             })}

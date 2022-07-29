@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { Link } from 'react-router-dom'
 import Button from "react-bootstrap/esm/Button";
+import "./FieldList.css"
 
 export default function FieldList() {
     const [field, setField] = useState([])
@@ -14,20 +15,25 @@ export default function FieldList() {
     }, [])
 
     return (
-        <div>
+        <div className="fieldlist-container">
             <div style={{ 'padding': '10px' }}>
                 <Link to='/'>
                     <Button>Volver</Button>
                 </Link>
             </div>
+            <h3>Tus canchas</h3>
             {field?.map((e) => {
                 return (
-                    <div key={e.id} >
-                        <p>{e.name}</p>
-                        <p>{e.sport}</p>
-                        <p>{e.address}</p>
-                    </div>
-                )
+                e.fields?.map((el) => {
+                    console.log('el', el)
+                    return (
+                  <div key={el.id} >
+                    
+                            <p>{el.name}</p>
+                            <p>{el.sport}</p>
+                        </div>
+                    )
+                }))
             })}
         </div>
     )
