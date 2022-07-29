@@ -6,8 +6,8 @@ async function getFieldByOwner (req, res){
         const getComplex = await Complex.findAll({
           where:{ownerId : id}
         });
-        const result = []
-        const filtrados = [];
+        let result = []
+        let filtrados = [];
         for (let i = 0; i < getComplex.length; i++) {
            filtrados.push(getComplex[i].id)
         }
