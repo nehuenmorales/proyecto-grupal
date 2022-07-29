@@ -295,9 +295,10 @@ export default function CreateComplex() {
                             !loading &&
                                 !errors.name &&
                                 !errors.description &&
-                                !errors.image &&
+                                !errors.address &&
                                 !errors.state &&
-                                !errors.sports ?
+                                !errors.sports  &&
+                                !errors.image ?
                                 <button type="submit"
                                 >Crear</button> : <button type="submit" disabled >Crear</button>
                         }
