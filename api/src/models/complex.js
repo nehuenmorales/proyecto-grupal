@@ -51,7 +51,11 @@ module.exports = (sequelize) => {
     lng: {
       type: DataTypes.FLOAT,
       allowNull: false,
-    }
+    },
+    ownerId: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   },
   {
     timestamps: false,
