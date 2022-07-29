@@ -25,7 +25,7 @@ function SoloLetras(input) {
 export default function CreateComplex() {
     const dispatch = useDispatch()
     const [cityInput, setCityInput] = useState([])
-   // const [click, setClick] = useState(false)
+    const [click, setClick] = useState(false)
     const [input, setInput] = useState('')
     const [cities, setCities] = useState([])
     const [selected, setSelected] = useState(null);
@@ -102,9 +102,9 @@ export default function CreateComplex() {
         } else if (!complex.address) {
             validations.address = "Marque en el mapa donde se ubica el complejo"
         } 
-        // else if (cityValidation !== true) {
-        //     validations.city = cityValidation
-        // } 
+        else if (cityValidation !== true) {
+            validations.city = cityValidation
+        } 
         else if (!complex.image) {
             validations.image = "Ingrese una imagen"
         }
@@ -172,7 +172,7 @@ export default function CreateComplex() {
         ev.preventDefault()
         setInput(ev.target.value)
         setCityInput([])
-        //setClick(true)
+        setClick(true)
         setNewComplex({...newComplex, city: (ev.target.value).toLowerCase()})
         let errors = validator({ ...newComplex, city: ev.target.value });
         setErrors(errors);
@@ -181,7 +181,7 @@ export default function CreateComplex() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(createComplex({ ...newComplex, id: newComplex.name, ownerId: owner.id }));
+        dispatch(createComplex({ ...newComplex, ownerId: owner.id }));
     }
     console.log('owner', owner)
     console.log('errores', errors)
@@ -269,7 +269,7 @@ export default function CreateComplex() {
                                                     )
                                                 }) : null
                                             }
-                                             {/* {!click ? <div>Debes seleccionar una ciudad</div> : null} */}
+                                             {!click ? <div>Debes seleccionar una ciudad</div> : null}
                                             </ul>
                                             </div>
                                     </form>
@@ -299,7 +299,7 @@ export default function CreateComplex() {
                                 !errors.state &&
                                 !errors.sports ?
                                 <button type="submit"
-                                >Crear</button> : <button type="submit" disabled >Siguiente</button>
+                                >Crear</button> : <button type="submit" disabled >Crear</button>
                         }
 
                     </div>
