@@ -17,5 +17,5 @@ async function getFieldByOwner (req, res){
 }
 
 module.exports = {
-    getComplexByOwner,
+    getFieldByOwner,
   };

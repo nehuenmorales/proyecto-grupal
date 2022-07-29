@@ -32,6 +32,7 @@ export default function FutbolFields() {
   useEffect(() => {
     axios.get('https://falta-uno-1.herokuapp.com/owner/getNameComplex')
     .then((res) => {
+      console.log(res.data, 'soy res.data')
         setComplexName(res.data)
     })  
 },[])

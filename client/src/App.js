@@ -26,6 +26,7 @@ import GetComplex from "./components/Complexes/getComplex"
 import HomeOwner from "./pages/HomeOwner/HomeOwner";
 import CreateComplex from "./components/Complex/CreateComplex/CreateComplex";
 import ComplexList from "./components/DetailOwner/ComplexList";
+import FieldList from "./components/DetailOwner/FieldList";
 
 function App() {
 
@@ -74,6 +75,7 @@ function App() {
 
       <Route exact path={"/owner/createComplex"} component={CreateComplex}/>
       <Route exact path={"/complexOwner"} component={ComplexList}/>
+      <Route exact path={"/fieldOwner"} component={FieldList}/>
 
 
 
