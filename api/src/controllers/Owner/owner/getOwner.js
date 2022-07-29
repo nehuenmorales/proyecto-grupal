@@ -1,15 +1,15 @@
 const { Owner } = require("../../../db");
 
 async function getOwner(req, res, next) {
-    const {email} = req.params
-    console.log(email, 'soy id')
+    // const {email} = req.params
+    // console.log(email, 'soy id')
   try {
     console.log('entro al controller')
-   const owner = await Owner.findOne(
-    {
-       where:{
-           email: email
-       }}
+   const owner = await Owner.findAll(
+    // {
+    //    where:{
+    //        email: email
+    //    }}
       )
     res.json({msg: owner }).status(200);
   } catch (err) {
