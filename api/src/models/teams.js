@@ -11,13 +11,17 @@ module.exports = (sequelize) => {
         allowNull: false,
       },
       rating: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        defaultValue: 0,
+        type: DataTypes.FLOAT,
+        allowNull: true,
+        defaultValue: 2.5,
+        validate: {
+          min: 1,
+          max: 5,
+        },
       },
       elo: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: true,
         defaultValue: 0,
       },
       image: {
@@ -25,7 +29,7 @@ module.exports = (sequelize) => {
         allowNull: false,
         unique: true,
       },
-      sports: {
+      sport: {
         type: DataTypes.STRING,
         allowNull: false,
       },
