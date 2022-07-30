@@ -29,6 +29,7 @@ export default function ComplexList() {
 
             <div className="container-complexcard">
                 {complex?.map((e) => {
+                    console.log('soy e. image', e.image)
                     return (
                         <div key={e.id} style={{ backgroundImage: `url(${e.image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', maxHeight: '320px', width: '300px' }} className="complexcard">
 
