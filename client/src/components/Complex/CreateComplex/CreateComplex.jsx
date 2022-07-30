@@ -8,6 +8,9 @@ import Location from "../location";
 import './createComplex.css'
 import { createComplex } from "../../../redux/OwnerComplex/complexActions";
 import { Autocomplete } from "@react-google-maps/api";
+import { useHistory } from "react-router-dom";
+import swal from 'sweetalert';
+
 function SoloLetras(input) {
 
     var ExpRegLetrasEspacio = "^[ a-zA-ZñÑáéíóúÁÉÍÓÚ]+$";
@@ -66,7 +69,7 @@ export default function CreateComplex() {
     const [loading, setLoading] = useState(false)
 
     let owner = useSelector((state) => state.getOwnerReducer.owner)
-    console.log('owner', owner)
+    const history = useHistory()
     
 
     useEffect(() => {
@@ -105,13 +108,12 @@ export default function CreateComplex() {
             validations.description = "Ingrese una descripción del complejo"
         } else if (complex.description?.length > 140) {
             validations.description = "Alcanzó el limite de caracteres"
-        } else if (complex.sports?.length == 0) {
+        }  else if (complex.sports?.length == 0) {
             validations.sports = "Ingrese un deporte"
+        } else if (!complex.image) {
+            validations.image = "Debe ingresar una imagen"
         } else if (!complex.address) {
             validations.address = "Marque en el mapa donde se ubica el complejo"
-        } 
-        else if (cityValidation !== true) {
-            validations.city = cityValidation
         } 
         else if (!complex.image) {
             validations.image = "Ingrese una imagen"
@@ -149,7 +151,7 @@ export default function CreateComplex() {
             image: respuesta.data.data.url,
         });
         setLoading(false)
-        let errors = validator({ ...newComplex, [e.target.name]: e.target.value });
+        let errors = validator({ ...newComplex, image: e.target.value });
         setErrors(errors);
     };
 
@@ -174,6 +176,7 @@ export default function CreateComplex() {
     const handleChangeCity = (ev) => {
         setInput(ev.target.value)
         autocomplete(ev)
+        setClick(false)
     }
 
     const onClickCity = (ev) => {
@@ -185,11 +188,44 @@ export default function CreateComplex() {
         let errors = validator({ ...newComplex, city: ev.target.value });
         setErrors(errors);
     }
-    console.log(input, 'input')
+
+    const onClickSport = (ev) => {
+        const filtrado = newComplex.sports.filter((e) => {
+            return e !== ev.target.value
+        })
+        setNewComplex({...newComplex, sports: filtrado})
+        let errors = validator({ ...newComplex, sports: filtrado });
+        setErrors(errors);
+
+    }
+    console.log(newComplex, 'new complex')
 
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(createComplex({ ...newComplex, ownerId: owner.id, id: newComplex.name}));
+        setNewComplex({
+            name: "",
+            image: "",
+            description: "",
+            sports: [],
+            address: "",
+            city: "",
+            state: "",
+            country: "",
+            lat: "",
+            lng: "",
+        })
+        setErrors({
+        name: "Debe ingresar un nombre",
+        image: "",
+        description: "",
+        sports: "",
+        address: "",
+        city: "",
+        state: "",
+        })
+        swal('', "Complejo creado exitosamente!", 'success')
+        history.push("/")
     }
     console.log('owner', owner)
     console.log('errores', errors)
@@ -197,75 +233,106 @@ export default function CreateComplex() {
 
 
     return (
-        <div className='contenedor bg-light'>
-            <div >
-                <Link to='/'>
+        <div className='contenedorCreateComplex'>
+            <div className="divSup">
+                <Link to='/' className="botonVolver">
                     <Button>Volver</Button>
                 </Link>
-                <div>
-                    <h3><i>Futbol</i></h3>
+                <div className="tituloComplejo">
+                    <h3 className="fw-normal text-white fst-italic m-9" style={{fontSize: '.7em'}}>Creando complejo</h3>
                 </div>
 
             </div>
 
 
-            <form onSubmit={(e) => handleSubmit(e)} /*encType='multipart/form-data'*/>
-                <div >
-                    <div >
+            <form onSubmit={(e) => handleSubmit(e)} /*encType='multipart/form-data'*/ autocomplete="off" >
+                    <div className="contenedorInputs">
                         {/* NOMBRE DE LA CANCHA */}
-                        <div>
-                            <h5>Nombre del complejo</h5>
+                        <div className="contenedorIzquierda">
+                        <div className='divInputs'>
+                            {/* <h3>Nombre del complejo</h3> */}
                             <input type="text"
                                 name="name"
+                                className="inpuName"
+                                placeholder="Nombre del complejo"
                                 onChange={(e) => handleInputChange(e)} />
-                            {errors.name ? <div >{errors.name}</div> : null}
+                            {errors.name ? <div className="errores">{errors.name}</div> : null}
                         </div>
-                        <div className='col-md-6 col-sm-12 px-5'>
                             {/* DESCRIPCION DE LA CANCHA */}
-                            <div>
-                                <h5>Descripcion del complejo</h5>
+                            <div className='divInputs'>
+                                {/* <h5>Descripcion del complejo</h5> */}
                                 <input
                                     type="textarea"
                                     name="description"
-                                    // placeholder="Descripción de la cancha"
+                                    className="inpuName"
+                                    placeholder="Descripción del complejo"
                                     onChange={(e) => handleInputChange(e)} />
 
-                                {errors.description ? <div>{errors.description}</div> : null}
+                                {errors.description ? <div className="errores">{errors.description}</div> : null}
                             </div>
                             {/*DEPORTES */}
-                            <div>
-                                <h5>¿Con canchas de qué deportes cuenta el complejo?</h5>
-                                <select onChange={(e) => handleInputSport(e)}>
+                            <div className='divInputsSport'>
+                               
+                                <h5 >¿Con canchas de qué deportes cuenta el complejo?</h5>
+                                <div className="deportesElegidos">
+                                    <div>
+                                <select onChange={(e) => handleInputSport(e)} className='selectSports'>
                                     <option name='futbol' value='futbol'>Futbol</option>
                                     <option name='tenis' value='tenis'>Tenis</option>
                                     <option name='padel' value='padel'>Padel</option>
                                     <option name='basquet' value='basquet'>Basquet</option>
                                 </select>
-                                {errors.sports ? <div>{errors.sports}</div> : null}
+                                </div>
+                                <div className="derechaSports">
+                                {newComplex.sports.length > 0 ? newComplex.sports.map((e) => {
+                                    return (
+                                            <button className="deportes" value={e} onClick={(ev) => onClickSport(ev)}> {e.charAt(0).toUpperCase() + e.slice(1)}</button>
+                                    )
+                                }) : null}
+                                </div>
+                                </div>
+                                {errors.sports ? <div className="errores">{errors.sports}</div> : null}
                             </div>
-                            {/* {UBICACION} */}
-                            <div>
-                                <h5>Ubicación de complejo</h5>
-                                <h6>Ciudad</h6>
-                                <div class="container">
-                                    <form>
+                            {/* IMAGEN DE LA CANCHA */}
+                            <div className='divInputsImage'>
+                                <h5>Imagen del complejo</h5>
+                                <input
+                                    type="file"
+                                    name="image"
+                                    className="inputImage"
+                                    onChange={uploadImage}
+                                    accept="image/*" />
+                                {loading ? <span></span> : null}
+                                {errors.image ?  <div className="errores">{errors.image}</div> : null}
+                            </div>
+                            <h5 style={{fontSize: '1.5em'}}>Ubicación de complejo</h5>
+                                {/* <h6>Ciudad</h6> */}
+                                <div class="containerDerecha">
+                                   
+                                    <form className="formCity">
+                                        <div className="inputCity">
                                         <input
-                                            placeholder="Search for a country"
                                             aria-label='Search for a country'
                                             aria-autocomplete='both'
                                             aria-controls='autocomplete-results'
                                             value={input}
+                                            className="inpuName"
+                                            placeholder='Ingrese una ciudad'
                                             onChange={(ev) => handleChangeCity(ev)}
                                         />
-                                            <button
+                                       {!click ? <div className="errores">Debes seleccionar una ciudad</div> : null}
+                                        </div>
+                                        
+                                            {/* <button
                                                 type='submit'
                                                 aria-label='Search'
                                             >
                                                 <svg viewBox='0 0 24 24'>
                                                     <path d='M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z' />
                                                 </svg>
-                                            </button>
-                                            <div>
+                                            </button> */}
+                                            <div className="contenedorScroll">
+                                            <div className="scroll">
                                             <ul
                                                 id='autocomplete-results'
                                                 role='listbox'
@@ -273,48 +340,42 @@ export default function CreateComplex() {
                                             >{
                                                 cityInput ? cityInput?.map((elem, index) => {
                                                     return (
-                                                        <li id={index}><button onClick={(e) => onClickCity(e)} value={elem}>{elem}</button></li>
+                                                    <div key={index} className='opcionesCity'>
+                                                        <li id={index}><button className='botonCity' onClick={(e) => onClickCity(e)} value={elem}>{elem}</button></li>
+                                                        </div>
                                                     )
                                                 }) : null
-                                            }
-                                             {!click ? <div>Debes seleccionar una ciudad</div> : null}
+                                            }  {errors.city ? <div className="errores">{errors.city}</div> : null}
+
                                             </ul>
                                             </div>
+                                            </div>
+                                           
+                                            
+                                           
                                     </form>
                                 </div>
-                                {errors.city ? <div>{errors.city}</div> : null}
-                                <Location selected={selected} setSelected={setSelected} centerState={centerState} setCenterState={setCenterState} location={location} setLocation={setLocation} />
                             </div>
-                            {/* IMAGEN DE LA CANCHA */}
-                            <div>
-                                <h5>Imagen del complejo</h5>
-                                <input
-                                    type="file"
-                                    name="image"
-                                    onChange={uploadImage}
-                                    accept="image/*" />
-                                {loading ? <span></span> : null}
+                            <div className="contenedorDerecha">
+                                <Location  selected={selected} setSelected={setSelected} centerState={centerState} setCenterState={setCenterState} location={location} setLocation={setLocation} />
                             </div>
                         </div>
-                    </div>
                     {/* BOTON SUBMIT */}
-                    <div >
+                    <div className='contenedorBoton'>
                         {
                             !loading &&
+                             click &&
                                 !errors.name &&
                                 !errors.description &&
                                 !errors.address &&
                                 !errors.state &&
                                 !errors.sports  &&
                                 !errors.image ?
-                                <button type="submit"
-                                >Crear</button> : <button type="submit" disabled >Crear</button>
+                                <button type="submit" className='botonActivo'
+                                >Crear</button> : <button type="submit" className='btnGris' disabled >Crear</button>
                         }
 
                     </div>
-                </div>
-
-
             </form>
 
         </div>

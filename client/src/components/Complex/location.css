@@ -3,3 +3,49 @@
   height: 500px;
   background-color: black;
 }
+.placesAutocomplete{
+  background-color: aqua;
+  color: azure;
+}
+.combobox-input{
+  background-color: #111825;
+    text-decoration: none !important;
+    /* border: none ; */
+    outline: none !important;
+    border-color: white;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width: 290px;
+    color: white;
+    font-size: 1.1em;
+    margin: 0 0 30px 0;
+}
+.combobox-input:focus{
+  background-color: #111825;
+  text-decoration: none !important;
+  /* border: none ; */
+  outline: none !important;
+  border-color: white;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  width: 290px;
+  color: white;
+  font-size: 1.1em;
+}
+.combobox-input::placeholder{
+  color: white;
+  font-size: 1.1em;
+}
+.map-container{
+  height: 350px;
+  width: 500px;
+  border-radius: 20px;
+}
+.direccion{
+  margin: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
