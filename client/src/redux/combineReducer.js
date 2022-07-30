@@ -8,6 +8,7 @@ import getFieldsR from './DetailField/DetailField-reducer';
 import games from './Games/gamesReducer'
 import getPlayersReducer from './Players/GetPlayersReducer'
 import complexReducer from './Complexes/ComplexReducer';
+import paymentsReducer from './Payments/paymentsReducer';
 
 export const reducers = combineReducers({
     fieldsReducer:fieldsReducer,
@@ -19,8 +20,7 @@ export const reducers = combineReducers({
     getPlayersReducer: getPlayersReducer,
     complexReducer: complexReducer,
     suppliesReducer:suppliesReducer,
-
-    
+    paymentsReducer: paymentsReducer,
 })
 
 export default reducers;

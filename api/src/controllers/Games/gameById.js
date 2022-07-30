@@ -24,8 +24,8 @@ async function detailGame (req, res, next){
 
 const pagarProducto = async (req, res, next) => {
     const gameId = req.params.id
-    const datos  = req.body.items
-    const booking = await conn.query(`SELECT * 
+    const datos  = req.body
+    const booking = await conn.query(`SELECT g.*, f.*
     FROM games g 
     JOIN fields f ON g."fieldId" = f.id
     WHERE g.id = :id`,
@@ -33,9 +33,11 @@ const pagarProducto = async (req, res, next) => {
         replacements: { id: gameId},
         type: QueryTypes.SELECT
     })
+    // let plata = booking.name
+    // console.log(booking, "soy booking")
 
     let preference = {
-        transaction_amount: parseInt(booking.pricePerTurn*1.15),
+        // transaction_amount: booking.pricePerTurn*1.15,
         payer: {
             name: datos.nombre,
             surname: datos.apellido,
@@ -56,11 +58,14 @@ const pagarProducto = async (req, res, next) => {
         },
         items: [
             {
-                id: booking.id,
-                name: booking.name,
-                date: booking.date,
-                sport: booking.sport
+                id: booking[0].id,
+                name: booking[0].name,
+                date: booking[0].date,
+                sport: booking[0].sport,
+                quantity: 1,
+                unit_price: booking[0].pricePerTurn,
             }
+
         ],
         back_urls: {
             "success": 'http://localhost:3000/feedback/${}',
