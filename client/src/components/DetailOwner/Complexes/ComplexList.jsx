@@ -48,7 +48,7 @@ export default function ComplexList() {
                                     {e.sports.map(sport => {
                                         if (sport === 'futbol') {
                                             return (
-                                                <img src="https://cdn-icons.flaticon.com/png/512/4892/premium/4892438.png?token=exp=1659190928~hmac=6ba132a127691994398cd69c81b1d2af" alt="" style={{ height: '25px' }} className="sport-icon" />
+                                                <img src="https://cdn-icons.flaticon.com/png/512/4892/premium/4892438.png?token=exp=1659223244~hmac=6844f5a1ed7c449c8687e491ea380565" alt="" style={{ height: '25px' }} className="sport-icon" />
                                             )
                                         } else if (sport === 'tenis') {
                                             return (
@@ -56,7 +56,7 @@ export default function ComplexList() {
                                             )
                                         } else if (sport === 'padel') {
                                             return (
-                                                <img src="https://cdn.icon-icons.com/icons2/2305/PNG/512/paddle_sport_padel_icon_141852.png" alt="" style={{ height: '30px' }} className="sport-icon" />
+                                                <img src="https://cdn-icons-png.flaticon.com/512/6769/6769795.png" alt="" style={{ height: '30px' }} className="sport-icon" />
                                             )
                                         } else {
                                             return (
