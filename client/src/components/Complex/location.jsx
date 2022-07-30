@@ -21,7 +21,7 @@ Geocode.setApiKey("AIzaSyAKB5T59AlV3HB94-JK8FKndeHPI6l24Po");
 Geocode.enableDebug();
 
 
-export default function Location({selected, setSelected, centerState, setCenterState, location, setLocation}) {
+export default function Location({ selected, setSelected, centerState, setCenterState, location, setLocation}) {
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: "AIzaSyAKB5T59AlV3HB94-JK8FKndeHPI6l24Po",
         libraries: ["places"],
@@ -31,7 +31,7 @@ export default function Location({selected, setSelected, centerState, setCenterS
     return <Map selected={selected} setSelected={setSelected} centerState={centerState} setCenterState={setCenterState} location={location} setLocation={setLocation}/>;
 }
 
-function Map({selected, setSelected, centerState, setCenterState, location, setLocation}) {
+function Map({ selected, setSelected, centerState, setCenterState, location, setLocation}) {
     // const center = useMemo(() => ({ lat: 43.45, lng: -80.49 }), []);
     // const [ latLng, setLatLng ] = useState({ lat: 43.45, lng: -80.49 })
     
@@ -98,13 +98,14 @@ function Map({selected, setSelected, centerState, setCenterState, location, setL
     return (
         <>
             <div className="places-container">
-                <PlacesAutocomplete setCenterState={setCenterState} setSelected={setSelected} />
+                <PlacesAutocomplete  setCenterState={setCenterState} setSelected={setSelected} />
             </div>
-
+            <div>
             <GoogleMap
                 zoom={10}
                 center={centerState}
                 mapContainerClassName="map-container"
+                
             >
                 {selected &&
                     <Marker
@@ -114,11 +115,11 @@ function Map({selected, setSelected, centerState, setCenterState, location, setL
                     />
                 }
             </GoogleMap>
-
-            <div>
-                Latitud: {location.lat},<br/>
-                Longitud: {location.lng},<br/>
-                Direccion: {location.address},<br/>
+            </div>
+            <div className="fw-normal text-white fst-italic m-3" style={{margin: '15px', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                {/* Latitud: {location.lat},<br/>
+                Longitud: {location.lng},<br/> */}
+                Dirección: {location.address},<br/>
             </div>
         </>
     );
@@ -150,7 +151,7 @@ const PlacesAutocomplete = ({ setSelected, setCenterState }) => {
                 onChange={(e) => setValue(e.target.value)}
                 disabled={!ready}
                 className="combobox-input"
-                placeholder="Search an address"
+                placeholder="Ingrese una ubicación"
             />
             <ComboboxPopover>
                 <ComboboxList>
