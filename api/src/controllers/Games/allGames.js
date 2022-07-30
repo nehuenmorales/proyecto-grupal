@@ -20,6 +20,22 @@ async function getGames(req, res, next) {
     }
 }
 
+async function prebooked(req, res, next) {
+    const{id,privacy,requirements,link,type,status}=req.body
+    try {
+        const game= await Games.findOne({where:{id:id}})
+         await game.update({
+            privacy:privacy,
+            requirements:requirements,
+            link:link,
+            type:type,
+            status:status,
+         })
+        res.send(allGames)
+    }catch(e) {
+        console.log(e)
+    }
+}
 // async function getFields(req, res, next){
 //     const {id} = req.params
 //     const {sport} = req.params
@@ -39,6 +55,7 @@ async function getGames(req, res, next) {
 // }
 
 module.exports = {
-    getGames
+    getGames,
+    prebooked,
 }
 

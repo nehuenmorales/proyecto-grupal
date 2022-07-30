@@ -42,6 +42,10 @@ module.exports = (sequelize) => {
       privacy:{
         type: DataTypes.ENUM("public", "private"),
         defaultValue: "public",
+      },
+      requirements:{
+        type:DataTypes.STRING,
+        allowNull:true,
       }
     },
     {

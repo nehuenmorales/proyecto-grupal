@@ -1,4 +1,4 @@
-import{GET_GAME_SPORT,GET_GAMES_BY_ID} from "./gamesAction"
+import{GET_GAME_SPORT,GET_GAMES_BY_ID,UPDATE_GAME} from "./gamesAction"
 
 const initialState = {
     gamesSport:[],
@@ -16,6 +16,10 @@ export default function games(state = initialState, action){
             return{
                 ...state,
                 gameDetail: action.payload,
+            }
+        case UPDATE_GAME:
+            return{
+                ...state
             }
         default:
             return state;
