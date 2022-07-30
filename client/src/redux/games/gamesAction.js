@@ -2,6 +2,7 @@
 
  export const GET_GAME_SPORT = "GET_GAME_SPORT"
  export const GET_SEARCH_GAME_SPORT = "GET_SEARCH_GAME_SPORT"
+ export const GAMES_ORDER = "GAMES_ORDER"
 
  
  export function getGameSport(sport) {
@@ -36,6 +37,14 @@
           console.log(e)
         ) 
     }
+  }
+
+
+  export function gamesOrderByPrice (order){
+      return {
+       type: GAMES_ORDER,
+       payload: order
+  };
   }
 
   // export const getSearchGame=(input,sport)=>{

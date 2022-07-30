@@ -2,7 +2,7 @@ import React from 'react';
 import style from './CardCarousel.module.css';
 import locationIcon from "../../assets/icons/location.svg"
 const CardCarousel = ({ item }) => {
-  console.log(item)
+  
 
 
   return (

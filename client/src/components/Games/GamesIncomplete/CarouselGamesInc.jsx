@@ -17,17 +17,16 @@ export default function CarouselGamesInc({match}) {
     },[dispatch]);
 
     const games = useSelector(state => state.GamesIncompleteReducer.gamesIncomplete)
-    const searchGames = useSelector(state => state.GamesIncompleteReducer.searchGamesIncomplete)
+    const searchGames = useSelector(state => state.GamesIncompleteReducer.gamesSearchIncomplete)
 
     console.log(games)
     return (
         <div>
         <VerticalNavbar/>
-        <SearchBar filtro="gamesIncomplit" sport={sport} />
+        <SearchBar filtro="faltauno" sport={sport} />
         <Tabs match={match}/>
             <div className={s.carousel}>
-                {
-                searchGames?
+                {searchGames.length?
                 searchGames.map((x) => {
                     return (
                         <CardGamesInc
@@ -41,8 +40,8 @@ export default function CarouselGamesInc({match}) {
                         />
                     );
                 })
-                :    
-                games?.map((x) => {
+                :
+                games.map((x) => {
                     return (
                         <CardGamesInc
                             key={x.gameid}

@@ -1,4 +1,4 @@
-import { GET_GAMES_INCOMPLETE,GET_DETAIL_INCOMPLETE, GET_SEARCH_GAMES_INCOMPLETE } from "./gamesIncompleteActions";
+import { GET_GAMES_INCOMPLETE,GET_DETAIL_INCOMPLETE, GET_SEARCH_GAMES_INCOMPLETE,ORDER_GAMES_INCOMPLETE } from "./gamesIncompleteActions";
 
 const initialState = {
     gamesIncomplete: [],
@@ -24,8 +24,66 @@ export default function GamesIncompleteReducer (state = initialState, action){
             //let filtrado=action.payload.filter((e)=>e.name)
             return{
                 ...state,
-                gamesIncomplete: action.payload,
+                gamesSearchIncomplete: action.payload,
 
+            }
+        case ORDER_GAMES_INCOMPLETE:
+            let ordenado=[]
+            console.log("soy el reducer",state.gamesIncomplete)
+            if (state.gamesSearchIncomplete.length) {
+                ordenado=state.gamesSearchIncomplete.slice()
+                if(action.payload==="mayorAmenor"){
+                    ordenado=ordenado.sort(function (a, b) {
+                        if (parseInt(a.freeplace) < parseInt(b.freeplace)) {
+                          return 1;
+                        }
+                        if (parseInt(a.freeplace) > parseInt(b.freeplace)) {
+                          return  -1;
+                        }
+                
+                        return 0;
+                })}else{
+                    ordenado=ordenado.sort(function (a, b) {
+                        if (parseInt(a.freeplace) < parseInt(b.freeplace)) {
+                          return -1;
+                        }
+                        if (parseInt(a.freeplace) > parseInt(b.freeplace)) {
+                          return  1;
+                        }
+                
+                        return 0;
+                })}
+                return{
+                    ...state,
+                    gamesSearchIncomplete:ordenado
+                }
+            }else{
+                ordenado=state.gamesIncomplete.slice()
+                if(action.payload==="mayorAmenor"){
+                    ordenado=ordenado.sort(function (a, b) {
+                        if (parseInt(a.freeplace) < parseInt(b.freeplace)) {
+                          return 1;
+                        }
+                        if (parseInt(a.freeplace) > parseInt(b.freeplace)) {
+                          return  -1;
+                        }
+                
+                        return 0;
+                })}else{
+                    ordenado=ordenado.sort(function (a, b) {
+                        if (parseInt(a.freeplace) < parseInt(b.freeplace)) {
+                          return -1;
+                        }
+                        if (parseInt(a.freeplace) > parseInt(b.freeplace)) {
+                          return  1;
+                        }
+                
+                        return 0;
+                })}
+                return{
+                    ...state,
+                    gamesIncomplete:ordenado
+                }
             }
         default:
             return state;

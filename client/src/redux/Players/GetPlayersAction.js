@@ -4,6 +4,8 @@ export const GET_PLAYERS = "GET_PLAYERS"
 export const GET_SEARCH_PLAYER = "GET_SEARCH_PLAYER"
 export const GET_PLAYER_PROFILE = "GET_PLAYER_PROFILE"
 export const PUT_PLAYER_MODIFY = "PUT_PLAYER_MODIFY"
+export const ORDER_BY_ELO = "ORDER_BY_ELO"
+
  
  export function getPlayers() {
     return dispatch =>{
@@ -67,4 +69,13 @@ export const PUT_PLAYER_MODIFY = "PUT_PLAYER_MODIFY"
           console.log(e)
         ) 
     }
+  }
+
+  export function orderByElo() {
+    return dispatch=>{
+      dispatch({
+      type: ORDER_BY_ELO,
+      })
+    }
+
   }

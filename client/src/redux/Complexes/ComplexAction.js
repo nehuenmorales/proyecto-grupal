@@ -2,6 +2,8 @@ import axios from "axios";
 
 export const GET_COMPLEX = "GET_COMPLEX"
 export const GET_SEARCH_COMPLEX = "GET_SEARCH_COMPLEX"
+export const ORDER_COMPLEX = "ORDER_COMPLEX"
+
  
  export function getComplex() {
     return dispatch =>{
@@ -32,3 +34,10 @@ export const GET_SEARCH_COMPLEX = "GET_SEARCH_COMPLEX"
         ) 
     }
   }
+
+  export function orderComplexRating (order){
+    return {
+     type: ORDER_COMPLEX,
+     payload: order
+};
+}

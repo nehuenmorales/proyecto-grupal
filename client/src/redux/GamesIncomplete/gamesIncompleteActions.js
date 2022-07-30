@@ -3,6 +3,8 @@ import axios from "axios";
 export const GET_GAMES_INCOMPLETE = "GET_GAMES_INCOMPLETE";
 export const GET_DETAIL_INCOMPLETE = "GET_DETAIL_INCOMPLETE";
 export const GET_SEARCH_GAMES_INCOMPLETE = "GET_SEARCH_GAMES_INCOMPLETE";
+export const ORDER_GAMES_INCOMPLETE = "ORDER_GAMES_INCOMPLETE";
+
 
 
 export function getGamesIncomplete() {
@@ -36,14 +38,14 @@ export function getGamesIncomplete() {
         ) 
     }
   }
-  export function getSearchGamesIncomplete(input) {
+  export function getSearchGamesIncomplete(input,sport) {
     return dispatch =>{
-      axios.get(`/games/gamesIncomplete`)   
+      axios.get(`/games/${sport}/searchGameIncomplete?name=${input}`)   
         .then(res => {
           dispatch({
             type: GET_SEARCH_GAMES_INCOMPLETE,
             payload: res.data,
-            input:input
+            
           })
         })
         .catch(e=>
@@ -53,3 +55,9 @@ export function getGamesIncomplete() {
     }
   }
 
+  export function gamesIncompleteOrderByAmount (order){
+    return {
+     type: ORDER_GAMES_INCOMPLETE,
+     payload: order
+};
+}

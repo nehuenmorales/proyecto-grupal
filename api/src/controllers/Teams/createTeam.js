@@ -1,0 +1,49 @@
+const { Teams , Player } = require("../../db.js");
+const { Op } = require("sequelize");
+
+
+async function createTeam(req, res, next) {
+  const {
+    name,
+    rating,
+    elo,
+    image,
+    sports,
+    playerEmail
+  } = req.body;
+  try {
+    const newTeam = await Teams.create({
+      name,
+      rating,
+      elo,
+      image,
+      sports,
+    });
+    const player= await Player.findOne(
+      {
+        where:{
+          email:{
+            [Op.eq]: playerEmail,
+      },
+     },}
+    )
+    await newTeam.addPlayer(player)
+
+    //FALTA LA RUTA DE CREACION DEL USUARIO/COMPLEJO para linkear a un complejo
+
+    // busco el complejo que crea la cancha
+    // const complexField = await Complex.findOne({
+    //   where: { id: complexId },
+    // });
+    // newField.addField(complexField); // asocio la cancha con el complejo
+    console.log('creado correctamente')
+    res.status(200).json(newTeam);
+  } catch (e) {
+    console.log("fallo la creacion de la cancha", e);
+    res.status(400).json({ msg: "fallo la creacion de la cancha" });
+  }
+}
+
+module.exports = {
+  createTeam,
+};
