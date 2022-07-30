@@ -17,40 +17,52 @@ import SuppliesPadel from "./components/Supplies/CreateSupplies/Padel/suppliesPa
 import SuppliesTenis from "./components/Supplies/CreateSupplies/Tenis/suppliesTenis";
 //import Home from './Home.component';
 import CarouselGamesInc from "./components/Games/GamesIncomplete/CarouselGamesInc";
-import DetailGamesInc from "./components/Games/GamesIncomplete/DetailGamesInc"
+import DetailGamesInc from "./components/Games/GamesIncomplete/DetailGamesInc";
 import DetailFields from "./components/Fields/DetailFields/DetailFields.jsx";
-import AllGames from "./components/AllGames/AllGames.jsx"
-import ViewFields from './components/Fields/DetailFields/ViewFields.jsx';
+import AllGames from "./components/AllGames/AllGames.jsx";
+import ViewFields from "./components/Fields/DetailFields/ViewFields.jsx";
 import GetPlayers from "./components/Players/getPlayers";
 import GetComplex from "./components/Complexes/getComplex";
- import PlayerProfile from "./components/Profile/Profile";
+import PlayerProfile from "./components/Profile/Profile";
+
+import { TeamsContainer } from "./components/Teams/TeamContainer";
 
 function App() {
-
   const { isAuthenticated, isLoading } = useAuth0();
 
   return (
     <>
       <Route exact path={"/owner/select"} component={CreateFields} />
       <Route exact path={"/owner/createField/futbol"} component={fieldFutbol} />
-      <Route exact path={"/owner/createField/basquet"} component={fieldBasquet} />
+      <Route
+        exact
+        path={"/owner/createField/basquet"}
+        component={fieldBasquet}
+      />
       <Route exact path={"/owner/createField/padel"} component={fieldPadel} />
       <Route exact path={"/owner/createField/tenis"} component={fieldTenis} />
       <Route exact path={"/owner/createField"} component={CreateFields} />
-      {
-        isLoading
-          ?
-          <Spinner animation="border" variant="light" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
-      : isAuthenticated
-      ? <Route exact path="/" component={Home} />
-      : <Route exact path="/" component={Landing} />
-    }
-       {/* leo rompiste todo con esta ruta que esta abajito, AREGLALO */}
-      <Route exact path="/sport/:sport" component={AllGames} /> 
-      <Route exact path="/sport/:sport/gamesIncomplete" component={CarouselGamesInc} />
-      <Route exact path="/sport/:sport/gamesIncomplete/:gameid" component={DetailGamesInc} />
+      {isLoading ? (
+        <Spinner animation="border" variant="light" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </Spinner>
+      ) : isAuthenticated ? (
+        <Route exact path="/" component={Home} />
+      ) : (
+        <Route exact path="/" component={Landing} />
+      )}
+      {/* leo rompiste todo con esta ruta que esta abajito, AREGLALO */}
+      <Route exact path="/sport/:sport" component={AllGames} />
+      <Route
+        exact
+        path="/sport/:sport/gamesIncomplete"
+        component={CarouselGamesInc}
+      />
+      <Route
+        exact
+        path="/sport/:sport/gamesIncomplete/:gameid"
+        component={DetailGamesInc}
+      />
       {/* <Route exact path="/fields" component={DetailFields} /> */}
       {/* <Route path="/allGames" component={AllGames} /> */}
       {/* <Route exact path="/allGames/:sport" render={({ match }) => <AllGames deporte={match.params.sport} match={match}/>} /> */}
@@ -59,18 +71,31 @@ function App() {
       <Route exact path="/sport/:sport/players" component={GetPlayers} />
       <Route exact path="/sport/:sport/complex" component={GetComplex} />
       <Route exact path="/profile" component={PlayerProfile} />
+      <Route exact path="/equipos" component={TeamsContainer} />
 
-
-      <Route exact path={"/owner/createSupplie"} component={CreateSupplies}/>
-      <Route exact path={"/owner/createSupplie/futbol"} component={SuppliesFutbol}/>
-      <Route exact path={"/owner/createSupplie/tenis"} component={SuppliesTenis}/>
-      <Route exact path={"/owner/createSupplie/padel"} component={SuppliesPadel}/>
-      <Route exact path={"/owner/createSupplie/basquet"} component={SuppliesBasquet}/>
-
-
+      <Route exact path={"/owner/createSupplie"} component={CreateSupplies} />
+      <Route
+        exact
+        path={"/owner/createSupplie/futbol"}
+        component={SuppliesFutbol}
+      />
+      <Route
+        exact
+        path={"/owner/createSupplie/tenis"}
+        component={SuppliesTenis}
+      />
+      <Route
+        exact
+        path={"/owner/createSupplie/padel"}
+        component={SuppliesPadel}
+      />
+      <Route
+        exact
+        path={"/owner/createSupplie/basquet"}
+        component={SuppliesBasquet}
+      />
     </>
   );
-
 }
 
 export default App;
