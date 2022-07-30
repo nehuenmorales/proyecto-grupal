@@ -1,0 +1,125 @@
+.complexList{
+    background-color: rgba(12, 19, 31, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100vh;
+    min-height: 100vh;
+    flex-wrap: wrap;
+}
+
+.volverbtn{
+    margin: 1.2em;
+    transition: .5s;
+}
+
+.volverbtn:hover{
+    transform: scale(1.05);
+}
+
+.titulo-complejos{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    padding-left: 2em;
+    color: white;
+}
+
+
+
+.nav-bar{
+    display: flex;
+    justify-content: space-around;
+}
+
+.container-complexcard{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.complexcard{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 450px;
+    max-width: 300px;
+    margin: 1em;
+    border-radius: 8px 8px 10px 10px;
+    
+    box-shadow: 2px 2px 5px black;
+}
+
+.etiqueta{
+    background-color: rgba(17, 24, 37, 1);
+    padding: 10px;
+    border-radius: 20px 20px 8px 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 50px;
+}
+
+.sport-title{
+    font-size: 16px;
+    font-family: 'Inter', sans-serif;
+    color: white;
+}
+
+.content-card{
+    display: flex;
+    flex-direction: column;
+    height: 250px;
+    justify-content: space-between;
+}
+
+.div-rating{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 0px 15px 0px 0px;
+    margin-top: 1em;
+}
+
+.complex-rating{
+    font-size: 15px;
+    font-weight: 700;
+    color: white;
+}
+
+.rating-img{
+    height: 20px;
+  
+}
+
+.name-address{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    margin:  0 1em 0 1em;
+    height: 320px;
+}
+
+.complex-name{
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0px;
+    font-family: 'Inter', sans-serif;
+    color: rgb(255, 255, 255);
+    text-shadow: 1px 1px 3px black;
+}
+
+.complex-address{
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    color: white;
+}
+
+.sport-icon{
+    margin:5px;
+}
