@@ -4,6 +4,8 @@ export const POST_PAYMENT = 'POST_PAYMENT';
 export const RESET_URL_PAYMENT = 'RESET_URL_PAYMENT';
 
 export function postPayments(id, datos) {
+    console.log('soy el id', id);
+    console.log('soy los datos del usuario', datos);
     return dispatch => {
       axios.post(`games/comprar/${id}`, datos)
       .then((res) => {
@@ -11,6 +13,7 @@ export function postPayments(id, datos) {
             type: POST_PAYMENT,
             payload: res.data
             })
+            window.location.href = res.data.global.init_point
       })
       .catch((err) => {
         console.log(err);

@@ -79,7 +79,7 @@ const pagarProducto = async (req, res, next) => {
     .then(function (response) {
         console.log(response) 
         res.json({
-            global: response.body.id,
+            global: response.body,
         })
     })
     .catch(function (err) {
