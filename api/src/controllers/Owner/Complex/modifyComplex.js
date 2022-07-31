@@ -18,6 +18,7 @@ async function modifyComplex(req, res, next) {
         where: { id: id },
       }
     )
+    console.log(updateComplex, 'soy update ')
     res.status(200).send(updateComplex);
   } catch (error) {
     console.log("error en la moficacion del field");
