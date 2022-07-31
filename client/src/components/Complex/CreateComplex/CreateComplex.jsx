@@ -45,7 +45,6 @@ export default function CreateComplex() {
     let owner = useSelector((state) => state.getOwnerReducer.owner)
 
     const [newComplex, setNewComplex] = useState({
-        ownerId:"",
         name: "",
         image: "",
         description: "",
