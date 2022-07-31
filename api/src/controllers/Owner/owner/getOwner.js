@@ -5,7 +5,7 @@ async function getOwner(req, res, next) {
     // console.log(email, 'soy id')
     console.log('holaaaaaaaaaaaa', id)
     try {
-      const allPlayers = await Owner.findByPk(id)
+      const allPlayers = await Owner.findAll()
       console.log(allPlayers, 'playersssss')
   
       res.send(allPlayers)
