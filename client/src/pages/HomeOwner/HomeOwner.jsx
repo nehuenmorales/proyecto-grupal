@@ -51,7 +51,7 @@ const HomeOwner = () => {
                                             <p className='deporte' >CANCHAS</p>
                                         </div>
                                     </Link>
-                                    <Link to="/" style={{textDecoration:"none"}}>
+                                    <Link to="/suppliesOwner" style={{textDecoration:"none"}}>
                                         <div className='cards' id='elementos'>
                                             <p className='deporte' >ELEMENTOS</p>
                                         </div>

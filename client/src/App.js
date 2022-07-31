@@ -27,6 +27,7 @@ import HomeOwner from "./pages/HomeOwner/HomeOwner";
 import CreateComplex from "./components/Complex/CreateComplex/CreateComplex";
 import ComplexList from "./components/DetailOwner/Complexes/ComplexList";
 import FieldList from "./components/DetailOwner/Fields/FieldList";
+import SuppliesList from "./components/DetailOwner/Supplies/SuppliesList";
 
 function App() {
 
@@ -76,6 +77,7 @@ function App() {
       <Route exact path={"/owner/createComplex"} component={CreateComplex}/>
       <Route exact path={"/complexOwner"} component={ComplexList}/>
       <Route exact path={"/fieldOwner"} component={FieldList}/>
+      <Route exact path={"/suppliesOwner"} component={SuppliesList}/>
 
 
 
