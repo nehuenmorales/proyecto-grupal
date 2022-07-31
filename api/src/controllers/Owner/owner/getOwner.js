@@ -6,6 +6,7 @@ async function getOwner(req, res, next) {
     console.log('holaaaaaaaaaaaa', id)
     try {
       const allPlayers = await Owner.findByPk(id)
+      console.log(allPlayers, 'playersssss')
   
       res.send(allPlayers)
   
