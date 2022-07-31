@@ -1,6 +1,7 @@
 const { QueryTypes } = require('sequelize');
 const { conn } = require('../../db.js');
 const { mercadopago } = require('../../utils/mercadoPago')
+const { Games } = require ("../../db.js")   
 
 
 async function detailGame (req, res, next){
@@ -34,7 +35,16 @@ const pagarProducto = async (req, res, next) => {
         type: QueryTypes.SELECT
     })
     // let plata = booking.name
-    // console.log(booking, "soy booking")
+    // console.log(booking, "soy booking"
+
+    const reservado = await Games.update({
+        status: 'booked'
+    },{
+        where: {
+            id: gameId
+        }
+    })
+    console.log(reservado, "soy reservado")
 
     
 
