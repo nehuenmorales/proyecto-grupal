@@ -10,8 +10,12 @@ import getPlayersReducer from './Players/GetPlayersReducer'
 import complexReducer from './Complexes/ComplexReducer';
 import getOwnerReducer from './GetOwner/getOwnerReducer';
 import complexReducerOwner from './OwnerComplex/complexReducer';
+import complexDetailReducer from './OwnerComplex/ComplexDetailOwner/ComplexDetailReducer';
+import modifyComplexReducer from './OwnerComplex/ModifyComplex/modifyComplexReducer'
 
 export const reducers = combineReducers({
+    modifyComplexReducer: modifyComplexReducer,
+    complexDetailReducer: complexDetailReducer,
     complexReducerOwner: complexReducerOwner,
     getOwnerReducer: getOwnerReducer,
     fieldsReducer:fieldsReducer,

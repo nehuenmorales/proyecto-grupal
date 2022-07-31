@@ -31,7 +31,7 @@ export default function ComplexList() {
             <div className="container-complexcard">
                 {complex?.map((e) => {
                     return (
-                        <Link to={`owner/complexDetail/${e.id}`}>
+                        <Link to={`owner/complexDetail/${e.id}`} style={{textDecoration: "none"}}>
                         <div key={e.id} style={{ backgroundImage: `url(${e.image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', maxHeight: '320px', width: '300px' }} className="complexcard">
 
                             <div className="content-card">
