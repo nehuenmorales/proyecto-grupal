@@ -13,17 +13,16 @@ export default function ComplexList() {
     useEffect(() => {
         axios.get(`https://falta-uno-1.herokuapp.com/owner/getComplexByOwner/${owner.id}`)
             .then(res => {
-                console.log(res.data, 'soy complejos')
                 setComplex(res.data)})
     }, [])
 
     return (
-        <div className="complexList">
-            <div className="nav-bar">
-                <Link to='/'>
-                    <Button className="volverbtn">Volver</Button>
+        <div className="fieldlist-container">
+            <div style={{ 'padding': '10px' , 'display': 'flex','flexDirection':'row', 'justifyContent': 'space-around', 'alignItems':'center' }}>
+                <Link to='/' style={{ 'padding': '10px' , 'width': '25%'}}>
+                    <Button>Volver</Button>
                 </Link>
-                <VerticalNavbar />
+                <VerticalNavbar/>
             </div>
             <div className="titulo-complejos">
                 <h5>Tus complejos</h5>
@@ -31,8 +30,8 @@ export default function ComplexList() {
 
             <div className="container-complexcard">
                 {complex?.map((e) => {
-                    console.log('soy e. image', e.image)
                     return (
+                        <Link to={`owner/complexDetail/${e.id}`}>
                         <div key={e.id} style={{ backgroundImage: `url(${e.image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', maxHeight: '320px', width: '300px' }} className="complexcard">
 
                             <div className="content-card">
@@ -71,6 +70,7 @@ export default function ComplexList() {
 
                             </div>
                         </div>
+                        </Link>
                     )
                 })}
             </div>

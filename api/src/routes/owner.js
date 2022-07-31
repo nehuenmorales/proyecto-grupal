@@ -16,6 +16,9 @@ const { getNameComplex} = require("../controllers/Complex/getNameComplex.js");
 const {getComplexByOwner} = require("../controllers/Owner/Complex/getComplexByOwner.js")
 const {getSuppliesByOwner} = require("../controllers/Owner/Supplies/getSuppliesByOwner.js");
 const {getFieldByOwner} = require("../controllers/Owner/Field/getFieldByOwner.js");
+const {getComplexDetail} = require("../controllers/Owner/Complex/getComplexDetail");
+
+
 
 const router = Router();
 
@@ -28,6 +31,8 @@ router.get("/getComplexByOwner/:id", getComplexByOwner)
 router.get("/getFieldByOwner/:id", getFieldByOwner)
 
 router.get("/getSuppliesByOwner/:id", getSuppliesByOwner)
+
+router.get("/getComplexDetail/:id", getComplexDetail)
 
 router.post("/createField", createField);
 

@@ -126,7 +126,6 @@ export default function BasquetFields() {
     let errors = validator({ ...newField, [e.target.name]: e.target.value });
     setErrors(errors);
 
-    console.log(newField)
   }
 
 
@@ -153,7 +152,6 @@ export default function BasquetFields() {
       "data": form
     };
     setLoading(true)
-    console.log('cargando..', loading)
 
     const respuesta = await axios("https://api.imgbb.com/1/upload?expiration=600&key=12d5944c0badc6235fe12ec6550754c8", settings)
 
@@ -162,8 +160,6 @@ export default function BasquetFields() {
       image: respuesta.data.data.url,
     });
     setLoading(false)
-
-    console.log('soy respuesta img', respuesta.data.data.url);
   };
 
   const handleModal = (e) => {

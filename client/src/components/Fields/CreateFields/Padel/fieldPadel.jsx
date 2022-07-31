@@ -139,7 +139,6 @@ export default function PadelFields() {
     let errores = validator({ ...newField, [e.target.name]: e.target.value });
     setErrors(errores);
 
-    console.log(newField)
   }
 
 
@@ -147,7 +146,6 @@ export default function PadelFields() {
 
 
   const handleAvailable = (e) => {
-    console.log(e.target.value)
     setNewField({
       ...newField,
       available: e.target.value,
@@ -169,8 +167,6 @@ export default function PadelFields() {
       "data": form
     };
     setLoading(true)
-    console.log('cargando..', loading)
-
     const respuesta = await axios("https://api.imgbb.com/1/upload?expiration=600&key=12d5944c0badc6235fe12ec6550754c8", settings)
 
     setNewField({
@@ -179,7 +175,6 @@ export default function PadelFields() {
     });
     setLoading(false)
 
-    console.log('soy respuesta img', respuesta.data.data.url);
   };
 
 

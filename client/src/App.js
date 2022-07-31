@@ -28,6 +28,8 @@ import CreateComplex from "./components/Complex/CreateComplex/CreateComplex";
 import ComplexList from "./components/DetailOwner/Complexes/ComplexList";
 import FieldList from "./components/DetailOwner/Fields/FieldList";
 import SuppliesList from "./components/DetailOwner/Supplies/SuppliesList";
+import ComplexDetail from "./components/DetailOwner/Complexes/complexDetail";
+
 
 function App() {
 
@@ -78,7 +80,7 @@ function App() {
       <Route exact path={"/complexOwner"} component={ComplexList}/>
       <Route exact path={"/fieldOwner"} component={FieldList}/>
       <Route exact path={"/suppliesOwner"} component={SuppliesList}/>
-
+      <Route exact path="/owner/complexDetail/:id" render={({ match }) => {return <ComplexDetail id={match.params.id} />;}}/>
 
 
     </>

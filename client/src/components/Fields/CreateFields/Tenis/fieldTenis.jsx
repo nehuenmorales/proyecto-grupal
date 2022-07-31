@@ -139,7 +139,6 @@ export default function TenisFields() {
     let errores = validator({ ...newField, [e.target.name]: e.target.value });
     setErrors(errores);
 
-    console.log(newField)
   }
 
 
@@ -169,7 +168,6 @@ export default function TenisFields() {
       "data": form
     };
     setLoading(true)
-    console.log('cargando..', loading)
 
     const respuesta = await axios("https://api.imgbb.com/1/upload?expiration=600&key=12d5944c0badc6235fe12ec6550754c8", settings)
 
@@ -179,7 +177,6 @@ export default function TenisFields() {
     });
     setLoading(false)
 
-    console.log('soy respuesta img', respuesta.data.data.url);
   };
 
 

@@ -26,13 +26,11 @@ export default function FutbolFields() {
     end: "", 
     complexId: ""
   });
-  console.log(newField, 'soy newfield')
   const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
     axios.get('https://falta-uno-1.herokuapp.com/owner/getNameComplex')
     .then((res) => {
-      console.log(res.data, 'soy res.data')
         setComplexName(res.data)
     })  
 },[])
@@ -125,8 +123,6 @@ export default function FutbolFields() {
     }
     let errores = validator({ ...newField, [e.target.name]: e.target.value });
     setErrors(errores);
-
-    console.log(newField)
   }
 
 
@@ -134,7 +130,6 @@ export default function FutbolFields() {
 
 
   const handleAvailable = (e) => {
-    console.log(e.target.value)
     setNewField({
       ...newField,
       available: e.target.value,
@@ -165,8 +160,6 @@ export default function FutbolFields() {
       image: respuesta.data.data.url,
     });
     setLoading(false)
-
-    console.log('soy respuesta img', respuesta.data.data.url);
   };
 
 

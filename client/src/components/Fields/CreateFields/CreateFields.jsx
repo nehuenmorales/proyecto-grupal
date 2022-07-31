@@ -5,17 +5,6 @@ import Button from "react-bootstrap/esm/Button";
 
 export default function CreateFields() {
 
-
-  // const convertirTime = (state) => {
-  //   console.log(state)
-  //   var hour = state.slice(0,2)
-  //   var minutes = state.slice(3,6)
-  //   minutes = minutes/60
-  //   let timeNumber = parseInt(hour) + parseFloat(minutes)
-  //   return timeNumber
-  // }
-
-
   return (
     <div className={s.container}>
        <div style = {{'padding': '10px'}}>

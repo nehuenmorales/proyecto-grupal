@@ -70,7 +70,6 @@ export default function CreateComplex() {
 
     
     const history = useHistory()
-    console.log('soy ownerr', owner)
     
 
     useEffect(() => {
@@ -202,7 +201,6 @@ export default function CreateComplex() {
 
     }
 
-    console.log(newComplex, 'new complex')
 
     const handleSubmit = (e) => {
         e.preventDefault();

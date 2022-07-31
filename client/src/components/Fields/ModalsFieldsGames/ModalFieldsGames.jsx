@@ -16,8 +16,6 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
     const [duracion, setDuracion] = useState(0)
     const [totalGame, setTotalGame] = useState([])
 
-    console.log(totalGame, 'total game')
-
     const history = useHistory()
 
     const cancelTurn = (e) => {
@@ -27,9 +25,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
             setTotalGame([...totalGame, parseFloat(e.target.value)])
 
         }
-        console.log('soy turn', turn)
     }
-    console.log('soy totalGame', totalGame)
 
     useEffect(() => {
         let duration = convertirTime(newField.durationPerTurn)
@@ -182,7 +178,6 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
     }
 
     var turn = appointments(newField)
-    //let turnosDay = appointments(newField)
     
     useEffect(() => {
         setTotalGame(appointments(newField))

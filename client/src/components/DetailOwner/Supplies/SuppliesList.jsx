@@ -10,7 +10,6 @@ import VerticalNavbar from '../../../components/VerticalNavbar/VerticalNavbar';
 export default function SuppliesList() {
     const [supplies, setSupplies] = useState([])
     let owner = useSelector((state) => state.getOwnerReducer.owner)
-    console.log('soy supplies', supplies)
     useEffect(() => {
         axios.get(`https://falta-uno-1.herokuapp.com/owner/getSuppliesByOwner/${owner.id}`)
             .then(res => setSupplies(res.data))
@@ -28,7 +27,6 @@ export default function SuppliesList() {
             {supplies?.map((el) => {
                 return (
                 el.supplies?.map((e) => {
-                    console.log('el', e)
                     return (
                         <div key={e.id} style={{ backgroundImage: `url(${e.image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', maxHeight: '300px', width: '270px' }} className="complexcard">
 
