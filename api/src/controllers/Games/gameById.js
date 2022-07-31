@@ -36,6 +36,8 @@ const pagarProducto = async (req, res, next) => {
     // let plata = booking.name
     // console.log(booking, "soy booking")
 
+    
+
     let preference = {
         // transaction_amount: booking.pricePerTurn*1.15,
         payer: {
@@ -48,8 +50,8 @@ const pagarProducto = async (req, res, next) => {
             },
             address: {
                 zip_code:datos.postal,
-                street_name: datos.barrio,
-                street_number: parseInt(datos.street_number)
+                // street_name: datos.barrio,
+                // street_number: parseInt(datos.street_number)
             },
             identification: {
                 type: datos.tipo,
@@ -74,6 +76,8 @@ const pagarProducto = async (req, res, next) => {
         },
         auto_return: "approved",
     };
+
+
 
     mercadopago.preferences.create(preference)
     .then(function (response) {

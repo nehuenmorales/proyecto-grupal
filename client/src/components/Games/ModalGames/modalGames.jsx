@@ -85,8 +85,8 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
         email: '',
         telefono: '',
         postal: '',
-        barrio: '',
-        street_number: '',
+        // barrio: '',
+        // street_number: '',
         tipo: 'dni',
         dni: '',
     });
@@ -251,26 +251,6 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
                                 onChange={(e) => handleChangeUserData(e)}
                                 type="number"
                                 placeholder="Tu código Postal"
-                                autoFocus
-                            />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-                            <Form.Label>Nombre de tu barrio</Form.Label>
-                            <Form.Control
-                                name="barrio"
-                                onChange={(e) => handleChangeUserData(e)}
-                                type="text"
-                                placeholder="Tu código Postal"
-                                autoFocus
-                            />
-                        </Form.Group>
-                        <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
-                            <Form.Label>Número de calle</Form.Label>
-                            <Form.Control
-                                name="street_number"
-                                onChange={(e) => handleChangeUserData(e)}
-                                type="number"
-                                placeholder="Número de calle"
                                 autoFocus
                             />
                         </Form.Group>
