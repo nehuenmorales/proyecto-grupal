@@ -42,9 +42,10 @@ export default function CreateComplex() {
             address: ''
         }
     )
-
+    let owner = useSelector((state) => state.getOwnerReducer.owner)
 
     const [newComplex, setNewComplex] = useState({
+        ownerId:"",
         name: "",
         image: "",
         description: "",
@@ -68,7 +69,7 @@ export default function CreateComplex() {
 
     const [loading, setLoading] = useState(false)
 
-    let owner = useSelector((state) => state.getOwnerReducer.owner)
+    
     const history = useHistory()
     console.log('soy ownerr', owner)
     
@@ -164,6 +165,7 @@ export default function CreateComplex() {
         setErrors(errors);
 
     }
+
     function autocomplete(ev) {
         const value = ev.target.value;
         const results = cities.filter(city => {
@@ -191,6 +193,7 @@ export default function CreateComplex() {
     }
 
     const onClickSport = (ev) => {
+        ev.preventDefault()
         const filtrado = newComplex.sports.filter((e) => {
             return e !== ev.target.value
         })
@@ -199,11 +202,12 @@ export default function CreateComplex() {
         setErrors(errors);
 
     }
+
     console.log(newComplex, 'new complex')
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(createComplex({ ...newComplex, ownerId: owner.id, id: newComplex.name}));
+        dispatch(createComplex({ ...newComplex, id: newComplex.name, ownerId: owner.id}));
         setNewComplex({
             name: "",
             image: "",

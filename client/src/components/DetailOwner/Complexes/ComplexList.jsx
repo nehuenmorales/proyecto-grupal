@@ -12,7 +12,9 @@ export default function ComplexList() {
 
     useEffect(() => {
         axios.get(`https://falta-uno-1.herokuapp.com/owner/getComplexByOwner/${owner.id}`)
-            .then(res => setComplex(res.data))
+            .then(res => {
+                console.log(res.data, 'soy complejos')
+                setComplex(res.data)})
     }, [])
 
     return (
