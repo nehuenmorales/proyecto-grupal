@@ -4,6 +4,7 @@ import { createTeam, getTeamsUser } from "../../redux/Teams/teamsActions";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import { useEffect } from "react";
+import s from './diseñoTeams/modelCreateTeam.module.css'
 
 export function ModalCreateTeam({ email, setShowModal, showModal }) {
   let dispatch = useDispatch();
@@ -21,6 +22,8 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
     name: "Ingrese el nombre del equipo",
     sport: "Ingrese el deporte del equipo",
   });
+
+  const [flagSport,setFlagSport]=useState(false)
 
   const validator = (e) => {
     // meter al estado y modificar a partir de ahi
@@ -56,12 +59,18 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
     if (name === "sport") {
       if (value === "tenis" || value === "padel") {
         setInput({ ...input, amountPlayers: 2 });
+        setFlagSport(false)
         return;
       }
 
       if (value === "basquet") {
         setInput({ ...input, amountPlayers: 5 });
+        setFlagSport(false)
+
         return;
+      }else{
+        setFlagSport(true)
+
       }
     }
     setInput({ ...input, [name]: value });
@@ -135,21 +144,23 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
   const [inputValue, setInputValue] = useState("");
 
   const handleChangeInvite = (ev) => {
-    console.log("soy los jugadores", players);
-    console.log("quesoy", ev.target.value);
     setInpute(ev.target.value);
     autocomplete(ev);
   };
   const onClickInvite = (ev) => {
-    setInvitations([...invitations, ev.target.value]);
-    ev.preventDefault();
-    setInpute(ev.target.value);
-    setPlayerInput([]);
-    setClick(true);
-    setInputValue("");
-    setIntegrantes([...integrantes, ev.target.value]);
-    console.log("soy el valor cuando haces click", ev.target.value);
-    console.log("soy integrantes", integrantes);
+    if (input.amountPlayers === integrantes.length){
+      return;
+    }else if(input.amountPlayers === ""){
+      return;
+    }else{
+      ev.preventDefault();
+      setInvitations([...invitations, ev.target.value]);
+      setInpute(ev.target.value);
+      setPlayerInput([]);
+      setClick(true);
+      setInputValue("");
+      setIntegrantes([...integrantes, ev.target.value]);
+    }
   };
   function autocomplete(ev) {
     ev.preventDefault();
@@ -181,13 +192,19 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div>
+          <div className={s.flex} >
+            
+            
+            <div > 
+
+            <div className={s.columnLeft}>
             <div>Nombre del Equipo</div>
-            <input
-              type="text"
-              name="name"
-              onChange={(e) => handleInputChange(e)}
-            />
+              <input
+                type="text"
+                name="name"
+                onChange={(e) => handleInputChange(e)}
+              />
+              <div/>
             {errors.name ? <h6>{errors.name}</h6> : null}
             <div>
               <h5>Seleccione un deporte</h5>
@@ -208,7 +225,7 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
                   Tenis
                 </option>
               </select>
-              {input.sport === "futbol" ? (
+              {flagSport ? (
                 <div>
                   <h5>Tipo de juego</h5>
                   <button
@@ -241,6 +258,10 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
               ) : null}
               {errors.sport ? <h6>{errors.sport}</h6> : null}
             </div>
+            </div>
+            
+            <div className={s.container} >
+
             <div>
               <h5>Imagen</h5>
               <input
@@ -253,7 +274,7 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
             </div>
 
             {/* SELECCIONAR PLAYERS */}
-            <div class="container">
+            <div>
               <form>
                 <h6>
                   Integrantes
@@ -310,6 +331,8 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
                 </div>
               </form>
             </div>
+            </div>
+          </div>
           </div>
         </Modal.Body>
         <Modal.Footer style={{ backgroundColor: "rgb(133, 133, 133);" }}>

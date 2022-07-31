@@ -1,0 +1,14 @@
+.columnLeft{
+    display:grid;
+    align-items: center;
+    justify-content: left;
+}
+.container{
+    display: grid;
+    align-items: center;
+    justify-content:right;
+    
+}
+.flex{
+    display: flex;
+}
