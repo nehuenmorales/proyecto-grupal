@@ -11,7 +11,7 @@ async function modifyComplex(req, res, next) {
     // }
     const updateComplex = await Complex.update(
       {
-        desciption: req.body.desciption,
+        description: req.body.desciption,
         sports: req.body.sports
       },
       {
