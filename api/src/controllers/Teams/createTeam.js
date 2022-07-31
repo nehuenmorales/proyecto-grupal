@@ -7,13 +7,15 @@ async function createTeam(req, res, next) {
     name,
     image,
     sport,
-    playerEmail
+    playerEmail,
+    amountPlayers
   } = req.body;
   try {
     const newTeam = await Teams.create({
       name,
       image,
       sport,
+      amountPlayers,
     });
     const player= await Player.findOne(
       {

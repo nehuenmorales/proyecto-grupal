@@ -13,7 +13,6 @@ module.exports = (sequelize) => {
       rating: {
         type: DataTypes.FLOAT,
         allowNull: true,
-        defaultValue: 2.5,
         validate: {
           min: 1,
           max: 5,
@@ -26,13 +25,17 @@ module.exports = (sequelize) => {
       },
       image: {
         type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
+        allowNull: true,
+        
       },
       sport: {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      amountPlayers:{
+        type:DataTypes.INTEGER,
+        allowNull:false,
+      }
     },
     {
       timestamps: false,

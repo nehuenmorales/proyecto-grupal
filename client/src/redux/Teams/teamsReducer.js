@@ -1,7 +1,7 @@
-import { CREATE_TEAM } from "./teamsActions";// aca traer las variables de las actions
+import { CREATE_TEAM, GET_TEAM_USER } from "./teamsActions";// aca traer las variables de las actions
 
 const initialState ={
-    teams:[],
+    userTeams:[],
 }
 
 const teamsReducer = (state = initialState , action)=>{
@@ -9,8 +9,14 @@ const teamsReducer = (state = initialState , action)=>{
         case CREATE_TEAM:
             return{
                 ...state,
-                teams: [...state.teams, action.payload],
+                userTeams: [...state.teams, action.payload],
                 
+            }
+        case GET_TEAM_USER:
+            console.log("lo que llego",action.payload)
+            return {
+                ...state,
+                userTeams: action.payload
             }
             
         default:
