@@ -1,14 +1,30 @@
-.columnLeft{
-    display:grid;
-    align-items: center;
-    justify-content: left;
+.columnLeft {
+  display: grid;
+  align-items: center;
+  width: 50%;
+  justify-content: left;
 }
-.container{
-    display: grid;
-    align-items: center;
-    justify-content:right;
-    
+.column {
+  display: grid;
+  align-items: center;
+  width: 50%;
+  justify-content: left;
 }
-.flex{
-    display: flex;
+.flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.input {
+  width: 200px;
+  border-radius: 7px;
+  margin-top: 10px;
+}
+.campo {
+  display: grid;
+  justify-content: left;
+  align-items: center;
+}
+.titulos {
+  margin: 0%;
 }

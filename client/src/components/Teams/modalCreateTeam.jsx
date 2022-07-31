@@ -4,7 +4,7 @@ import { createTeam, getTeamsUser } from "../../redux/Teams/teamsActions";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import { useEffect } from "react";
-import s from './diseñoTeams/modelCreateTeam.module.css'
+import s from "./diseñoTeams/modelCreateTeam.module.css";
 
 export function ModalCreateTeam({ email, setShowModal, showModal }) {
   let dispatch = useDispatch();
@@ -23,7 +23,7 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
     sport: "Ingrese el deporte del equipo",
   });
 
-  const [flagSport,setFlagSport]=useState(false)
+  const [flagSport, setFlagSport] = useState(false);
 
   const validator = (e) => {
     // meter al estado y modificar a partir de ahi
@@ -59,18 +59,17 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
     if (name === "sport") {
       if (value === "tenis" || value === "padel") {
         setInput({ ...input, amountPlayers: 2 });
-        setFlagSport(false)
+        setFlagSport(false);
         return;
       }
 
       if (value === "basquet") {
         setInput({ ...input, amountPlayers: 5 });
-        setFlagSport(false)
+        setFlagSport(false);
 
         return;
-      }else{
-        setFlagSport(true)
-
+      } else {
+        setFlagSport(true);
       }
     }
     setInput({ ...input, [name]: value });
@@ -148,11 +147,11 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
     autocomplete(ev);
   };
   const onClickInvite = (ev) => {
-    if (input.amountPlayers === integrantes.length){
+    if (input.amountPlayers === integrantes.length) {
       return;
-    }else if(input.amountPlayers === ""){
+    } else if (input.amountPlayers === "") {
       return;
-    }else{
+    } else {
       ev.preventDefault();
       setInvitations([...invitations, ev.target.value]);
       setInpute(ev.target.value);
@@ -192,147 +191,144 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className={s.flex} >
-            
-            
-            <div > 
-
+          <div className={s.flex}>
             <div className={s.columnLeft}>
-            <div>Nombre del Equipo</div>
-              <input
-                type="text"
-                name="name"
-                onChange={(e) => handleInputChange(e)}
-              />
-              <div/>
-            {errors.name ? <h6>{errors.name}</h6> : null}
-            <div>
-              <h5>Seleccione un deporte</h5>
-              <select name="sport" onChange={(e) => handleInputChange(e)}>
-                <option hidden selected>
-                  Deporte
-                </option>
-                <option value={"futbol"} name="sport">
-                  Futbol
-                </option>
-                <option value={"basquet"} name="sport">
-                  Basquet
-                </option>
-                <option value={"padel"} name="sport">
-                  Padel
-                </option>
-                <option value={"tenis"} name="sport">
-                  Tenis
-                </option>
-              </select>
-              {flagSport ? (
-                <div>
-                  <h5>Tipo de juego</h5>
-                  <button
-                    name="amountPlayers"
-                    value={11}
-                    onClick={(e) => handleInputChange(e)}
-                  >
-                    Futbol 11
-                  </button>
-                  <button
-                    name="amountPlayers"
-                    value={7}
-                    onClick={(e) => handleInputChange(e)}
-                  >
-                    Futbol 7
-                  </button>
-                  <button
-                    name="amountPlayers"
-                    value={5}
-                    onClick={(e) => handleInputChange(e)}
-                  >
-                    Futbol 5
-                  </button>
-                </div>
-              ) : null}
-              {input.sport === "futbol" ? (
-                !input.amountPlayers ? (
-                  <h5>Elija el tipo de Juego</h5>
-                ) : null
-              ) : null}
-              {errors.sport ? <h6>{errors.sport}</h6> : null}
-            </div>
-            </div>
-            
-            <div className={s.container} >
-
-            <div>
-              <h5>Imagen</h5>
-              <input
-                type="file"
-                name="image"
-                accept="image/*"
-                onChange={uploadImage}
-              />
-              {loading ? <span>Cargando...</span> : null}
-            </div>
-
-            {/* SELECCIONAR PLAYERS */}
-            <div>
-              <form>
-                <h6>
-                  Integrantes
-                  <input
-                    placeholder="Invita a un jugador"
-                    aria-label="Invita a los jugadores"
-                    aria-autocomplete="both"
-                    aria-controls="autocomplete-results"
-                    defaultVlue={inputValue}
-                    onChange={(ev) => handleChangeInvite(ev)}
-                  />
-                </h6>
-                <div>
-                  <ul
-                    id="autocomplete-results"
-                    role="listbox"
-                    aria-label="Search for a country"
-                  >
-                    {playerInput
-                      ? playerInput?.map((elem, index) => {
-                          return (
-                            <li id={index}>
-                              <button
-                                onClick={(e) => onClickInvite(e)}
-                                value={elem.email}
-                              >
-                                {elem.name} {elem.lastName}
-                              </button>
-                            </li>
-                          );
-                        })
-                      : null}
-                    {!click ? <div>Debes seleccionar un jugador</div> : null}
-                  </ul>
+              <div className={s.campo}>
+                <h5 className={s.titulos}>Nombre del Equipo</h5>
+                <input
+                  className={s.input}
+                  type="text"
+                  name="name"
+                  onChange={(e) => handleInputChange(e)}
+                />
+              </div>
+              {errors.name ? <h6>{errors.name}</h6> : null}
+              <div>
+                <h5>Seleccione un deporte</h5>
+                <select name="sport" onChange={(e) => handleInputChange(e)}>
+                  <option hidden selected>
+                    Deporte
+                  </option>
+                  <option value={"futbol"} name="sport">
+                    Futbol
+                  </option>
+                  <option value={"basquet"} name="sport">
+                    Basquet
+                  </option>
+                  <option value={"padel"} name="sport">
+                    Padel
+                  </option>
+                  <option value={"tenis"} name="sport">
+                    Tenis
+                  </option>
+                </select>
+                {flagSport ? (
                   <div>
-                    <ul>
-                      {integrantes
-                        ? integrantes.map((e) => {
+                    <h5>Tipo de juego</h5>
+                    <button
+                      name="amountPlayers"
+                      value={11}
+                      onClick={(e) => handleInputChange(e)}
+                    >
+                      Futbol 11
+                    </button>
+                    <button
+                      name="amountPlayers"
+                      value={7}
+                      onClick={(e) => handleInputChange(e)}
+                    >
+                      Futbol 7
+                    </button>
+                    <button
+                      name="amountPlayers"
+                      value={5}
+                      onClick={(e) => handleInputChange(e)}
+                    >
+                      Futbol 5
+                    </button>
+                  </div>
+                ) : null}
+                {input.sport === "futbol" ? (
+                  !input.amountPlayers ? (
+                    <h5>Elija el tipo de Juego</h5>
+                  ) : null
+                ) : null}
+                {errors.sport ? <h6>{errors.sport}</h6> : null}
+              </div>
+            </div>
+
+            <div className={s.column}>
+              <div>
+                <h5>Imagen</h5>
+                <input
+                  type="file"
+                  name="image"
+                  accept="image/*"
+                  onChange={uploadImage}
+                />
+                {loading ? <span>Cargando...</span> : null}
+              </div>
+
+              {/* SELECCIONAR PLAYERS */}
+              <div>
+                <form>
+                  <div>
+                    <h5>Integrantes</h5>
+                    <input
+                      className={s.input}
+                      placeholder="Invita a un jugador"
+                      aria-label="Invita a los jugadores"
+                      aria-autocomplete="both"
+                      aria-controls="autocomplete-results"
+                      defaultVlue={inputValue}
+                      onChange={(ev) => handleChangeInvite(ev)}
+                    />
+                  </div>
+                  <div>
+                    <ul
+                      id="autocomplete-results"
+                      role="listbox"
+                      aria-label="Search for a country"
+                    >
+                      {playerInput
+                        ? playerInput?.map((elem, index) => {
                             return (
-                              <div>
-                                <p>{e}</p>
+                              <li id={index}>
                                 <button
-                                  value={e}
-                                  onClick={(e) => deleteInvitation(e)}
+                                  onClick={(e) => onClickInvite(e)}
+                                  value={elem.email}
                                 >
-                                  X
+                                  {elem.name} {elem.lastName}
                                 </button>
-                              </div>
+                              </li>
                             );
                           })
                         : null}
+                      {!click ? <div>Debes seleccionar un jugador</div> : null}
                     </ul>
+                    <div>
+                      <ul>
+                        {integrantes
+                          ? integrantes.map((e) => {
+                              return (
+                                <div>
+                                  <p>{e}</p>
+                                  <button
+                                    value={e}
+                                    onClick={(e) => deleteInvitation(e)}
+                                  >
+                                    X
+                                  </button>
+                                </div>
+                              );
+                            })
+                          : null}
+                      </ul>
+                    </div>
                   </div>
-                </div>
-              </form>
+                </form>
+              </div>
             </div>
-            </div>
-          </div>
           </div>
         </Modal.Body>
         <Modal.Footer style={{ backgroundColor: "rgb(133, 133, 133);" }}>
