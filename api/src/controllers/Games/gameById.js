@@ -65,12 +65,12 @@ const pagarProducto = async (req, res, next) => {
                 date: booking[0].date,
                 sport: booking[0].sport,
                 quantity: 1,
-                unit_price: booking[0].pricePerTurn,
+                unit_price: datos.total,
             }
 
         ],
         back_urls: {
-            "success": 'http://localhost:3000/feedback/${}',
+            "success": 'http://localhost:3000/feedback/${gameId}',
             "failure": 'http://localhost:3000/feedback/${}',
             "pending": 'http://localhost:3000/feedback/${}',
         },

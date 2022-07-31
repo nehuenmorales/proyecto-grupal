@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Button, Card, Container, Form } from 'react-bootstrap';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { updateGame } from "../../../redux/Games/gamesAction";
-import swal from 'sweetalert';
-import { useAuth0 } from '@auth0/auth0-react';
 import { postPayments, resetUrlPayment } from "../../../redux/Payments/paymentsAction";
 import { validateText } from "../../../hooks/useValidateFormUser"
 export default function ModalGames({ showModal, setShowModal, sport, id, price, supplies }) {
@@ -54,7 +52,7 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
         setBody({ ...body, [e.target.name]: e.target.value, status: "pending", id: id })
     }
 
-    function validateValue({ privacy, type, status }) {
+    function validateValue({ privacy, type}) {
         let errors = {}
         if (!privacy) {
             errors.privacy = "Seleccione la privacidad"
@@ -74,6 +72,11 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
         if (Object.values(error).length === 0) {
             dispatch(updateGame(id, body))
         }
+        setUserData({
+            ...userData,
+            total: leitoTheBest,
+            
+        })
         setPagar(true)
     }
 
@@ -89,6 +92,7 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
         // street_number: '',
         tipo: 'dni',
         dni: '',
+        total:0
     });
 
     const handleCloseData = () => setPagar(false);
@@ -97,7 +101,8 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
     const handleChangeUserData = (e) => {
         setUserData({
             ...userData,
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
+            
         })
         console.log(userData)
     }
