@@ -4,6 +4,7 @@ import { getComplexDetail } from "../../../redux/OwnerComplex/ComplexDetailOwner
 import { Link } from 'react-router-dom'
 import Button from "react-bootstrap/esm/Button";
 import './complexDetail.css'
+import { modifyComplex } from "../../../redux/OwnerComplex/ModifyComplex/modifyComplexAction";
 
 export default function ComplexDetail({id}){
     const dispatch = useDispatch()
@@ -34,6 +35,7 @@ export default function ComplexDetail({id}){
     }
     const handleSubmit = (ev) => {
         ev.preventDefault()
+        dispatch(modifyComplex(change, id))
         
     }
     const eliminarDeporte = (ev) => {
