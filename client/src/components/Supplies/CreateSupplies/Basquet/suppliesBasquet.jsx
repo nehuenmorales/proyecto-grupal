@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { createSupplies } from "../../../../redux/OwnerSupplies/suppliesActions";
 import s from "../formsSupplies.module.css"
@@ -17,9 +17,10 @@ import { useHistory } from "react-router-dom";
 export default function SuppliesBasquet() {
     const dispatch = useDispatch()
     const history = useHistory()
-
+    const [complexName, setComplexName] = useState([])
 
     const [newSupplie, setNewSupplie] = useState({
+        complexId: "",
         name: "",
         sport: "basquet",
         stock: "",
@@ -27,16 +28,28 @@ export default function SuppliesBasquet() {
         image: ""
     })
     const [errors, setErrors] = useState({
-        name: "Ingrese el nombre del producto",
+        complexId: 'Ingrese el complejo al que pertenece la cancha',
+        name: "",
         sport: "",
         stock: "",
         price: ""
     })
+    useEffect(() => {
+        axios.get('https://falta-uno-1.herokuapp.com/owner/getNameComplex')
+        .then((res) => {
+          console.log(res.data, 'soy res.data')
+            setComplexName(res.data)
+        })  
+    },[])
     const [loading, setLoading] = useState(false)
     const validator = (supplies) => {// funcion que valida que todos los inputs tengan un valor "aceptable"
         let validations = {};
         const beNumber = /(^\d{1,10}$)/;
-        if (!supplies.name) {
+        if (!supplies.complexId) {
+            validations.complexId = "Ingrese el complejo al que pertenece la cancha"
+          } else if (!complexName.includes(supplies.complexId)) {
+            validations.complexId = `${supplies.complexId} no existe`
+          } else if (!supplies.name) {
             validations.name = "Ingrese el nombre del producto"
         } else if (supplies.name.length > 30) {
             validations.name = "Superó el máximo de caracteres"
@@ -131,6 +144,18 @@ export default function SuppliesBasquet() {
                 
                     <div className={s.inputsandcard}>
                         <div className={s.izquierda}>
+                             {/* NOMBRE DEL COMPLEJO */}
+              <div className={s.input}>
+                <h5 className={s.titles}>Nombre del complejo</h5>
+                <input
+                  type="text"
+                  name="complexId"
+                  className={s.inputfield}
+                  value={newSupplie.complexId}
+                  onChange={(e) => handleInputChange(e)}
+                />
+                {errors.complexId ? <div className={s.error}>{errors.complexId}</div> : null}
+              </div>
                     <div >
                         <h5 className={s.titles}>Nombre del elemento</h5>
                         <input
