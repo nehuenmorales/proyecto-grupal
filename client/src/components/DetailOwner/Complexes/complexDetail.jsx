@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import Button from "react-bootstrap/esm/Button";
 import './complexDetail.css'
 import { modifyComplex } from "../../../redux/OwnerComplex/ModifyComplex/modifyComplexAction";
+import swal from 'sweetalert';
+import { useHistory } from "react-router-dom";
 
 export default function ComplexDetail({id}){
     const dispatch = useDispatch()
@@ -20,6 +22,7 @@ export default function ComplexDetail({id}){
 
     console.log('soy complex', complex)
     console.log('change', change)
+    const history = useHistory()
 
     console.log(id)
     useEffect(() => {
@@ -59,6 +62,8 @@ export default function ComplexDetail({id}){
     const handleSubmit = (ev) => {
         ev.preventDefault()
         dispatch(modifyComplex(change, id))
+        swal('', "Complejo modificado exitosamente!", 'success')
+        history.push("/")
         
     }
     const eliminarDeporte = (ev) => {
