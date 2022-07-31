@@ -208,6 +208,7 @@ export default function SuppliesBasquet() {
                     <div className={s.boton}>
                         {
                             !loading &&
+                            !errors.complexId &&
                                 !errors.name &&
                                 !errors.stock &&
                                 !errors.price ?
