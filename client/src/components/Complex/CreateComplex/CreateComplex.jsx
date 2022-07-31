@@ -70,6 +70,7 @@ export default function CreateComplex() {
 
     let owner = useSelector((state) => state.getOwnerReducer.owner)
     const history = useHistory()
+    console.log('soy ownerr', owner)
     
 
     useEffect(() => {
@@ -227,9 +228,6 @@ export default function CreateComplex() {
         swal('', "Complejo creado exitosamente!", 'success')
         history.push("/")
     }
-    console.log('owner', owner)
-    console.log('errores', errors)
-    console.log('newComplex', newComplex)
 
 
     return (

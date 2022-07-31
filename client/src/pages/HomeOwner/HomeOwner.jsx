@@ -20,6 +20,7 @@ const HomeOwner = () => {
     useEffect(() => {
         console.log(user.email, 'user.email')
         dispatch(getOwner(user.sub))
+        console.log('user.sub', user.sub)
         
     },[user.email])
     
