@@ -76,7 +76,7 @@ async function createTeam(req, res, next) {
     //   where: { id: complexId },
     // });
     // newField.addField(complexField); // asocio la cancha con el complejo
-    res.status(200).json(newTeam);
+    res.status(200).json(player);
   } catch (e) {
     console.log("fallo la creacion de la cancha", e);
     res.status(400).json(e);
