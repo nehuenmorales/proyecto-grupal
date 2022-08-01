@@ -1,47 +1,35 @@
 const { Complex, Field } = require("../../../db");
 
 async function createComplex(req, res, next) {
-  console.log('body', req.body)
   const {
     name,
     sports,
-    id,
     description,
-    address,
-    country,
-    state,
-    city,
-    lat,
-    lng,
-    image, 
+    adress,
+    image, // aca configurar magui y lara
     ownerId,
+    city,
   } = req.body;
   try {
-    const newComplex = await Complex.create({
+    const newField = await Complex.create({
       name,
       sports,
-      id,
       description,
-      address: address,
-      country,
-      state,
-      city,
-      lat,
-      lng,
+      adress,
       image,
-      ownerId
+      ownerId,
+      city
     });
-     
-      //   await newComplex.update(
-      //     {
-      //         ownerId: ownerId,
-      //     }
-      // )
 
-    
-    
+    //FALTA LA RUTA DE CREACION DEL USUARIO/COMPLEJO para linkear a un complejo
+
+    // busco el complejo que crea la cancha
+    // const complexField = await Complex.findOne({
+    //   where: { id: complexId },
+    // });
+    // newField.addField(complexField); // asocio la cancha con el complejo
     console.log('creado correctamente')
-    res.status(200).json(newComplex);
+    res.status(200).json(newField);
   } catch (e) {
     console.log("fallo la creacion de la cancha", e);
     res.status(400).json({ msg: "fallo la creacion de la cancha" });
