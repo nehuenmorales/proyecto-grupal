@@ -1,6 +1,5 @@
 import "./scss/custom.css";
 import React from "react";
-import Landing from "./components/landing/landing";
 import { useAuth0} from "@auth0/auth0-react";
 import Home from "./pages/Home/Home";
 import { Spinner } from "react-bootstrap";
@@ -31,6 +30,7 @@ import GameDetail from "./components/Games/GameDetail/gameDetail.jsx"
 import ViewFields from "./components/Fields/DetailFields/DetailFields";
 import GetPlayers from "./components/Players/getPlayers";
 import PlayerProfile from "./components/Profile/Profile";
+import LandingPage from "./components/LandingPage/landingPage.jsx"
 
 import { TeamsContainer } from "./components/Teams/TeamContainer";
 
@@ -62,7 +62,7 @@ function App() {
       :
       <Route exact path="/" component={Home} />
       : 
-      <Route exact path="/" component={Landing} />}
+      <Route exact path="/" component={LandingPage} />}
        {/* leo rompiste todo con esta ruta que esta abajito, AREGLALO */}
       {/* <Route exact path="/sport/:sport" component={AllGames} />  */}
       <Route exact path="/sport/:sport/gamesIncomplete" component={CarouselGamesInc} />

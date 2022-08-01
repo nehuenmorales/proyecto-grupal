@@ -7,7 +7,7 @@ import { Button, Container, Navbar } from "react-bootstrap"
 
 
 
-const Landing = () => {
+const LandingPage = () => {
   const { loginWithRedirect} = useAuth0();
 
   const login = async () => { 
@@ -75,4 +75,4 @@ const Landing = () => {
   );
 };
 
-export default Landing;
+export default LandingPage;
