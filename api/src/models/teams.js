@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
     "teams",
     {
       id:{
-        type:DataTypes.UUIDV4,
+        type:DataTypes.UUID,
         allowNull: false,
         defaultValue: UUIDV4,
         primaryKey: true
