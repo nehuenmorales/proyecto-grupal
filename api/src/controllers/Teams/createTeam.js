@@ -6,17 +6,17 @@ const { QueryTypes } = require("sequelize");
 async function createTeam(req, res, next) {
   const { name, image, sport, playerEmail, amountPlayers } = req.body;
   try {
-    const newTeam = await conn.query(
-      `(INSERT INTO teams(name,  image, sport, "amountPlayers")
-       VALUES (:name,:image, :sport, :amountplayers);)`,
-      {
-        replacements: { name:name,
-         image:image,
-        sport:sport,
-      amountplayers:amountPlayers},
-        type: QueryTypes.SELECT,
-      }
-    );
+    // const newTeam = await conn.query(
+    //   `(INSERT INTO teams(name,  image, sport, "amountPlayers")
+    //    VALUES (:name,:image, :sport, :amountplayers))`,
+    //   {
+    //     replacements: { name:name,
+    //      image:image,
+    //     sport:sport,
+    //   amountplayers:amountPlayers},
+    //     type: QueryTypes.SELECT,
+    //   }
+    // );
     const player = await Player.findOne({
       where: {
         email: {
@@ -24,7 +24,7 @@ async function createTeam(req, res, next) {
         },
       },
     });
-    await newTeam.addPlayer(player);
+    // await newTeam.addPlayer(player);
 
     //FALTA LA RUTA DE CREACION DEL USUARIO/COMPLEJO para linkear a un complejo
 
