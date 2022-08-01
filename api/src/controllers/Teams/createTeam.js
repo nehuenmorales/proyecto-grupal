@@ -54,12 +54,12 @@ async function createTeam(req, res, next) {
   console.log(req.body)
   console.log("soy el email",playerEmail)
   try {
-    const newTeam = await Teams.create({
-      name,
-      image,
-      sport,
-      amountPlayers,
-    });
+    // const newTeam = await Teams.create({
+    //   name,
+    //   image,
+    //   sport,
+    //   amountPlayers,
+    // });
     const player = await Player.findOne({
       where: {
         email: {
