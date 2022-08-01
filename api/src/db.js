@@ -97,8 +97,8 @@ Tournament.belongsToMany(Teams, {
 Player.belongsToMany(Games, { through: "player_games", timestamps: false });
 Games.belongsToMany(Player, { through: "player_games", timestamps: false });
 
-Teams.belongsTo(Games);
-Games.hasMany(Teams);
+// Teams.belongsTo(Games);
+// Games.hasMany(Teams);
 
 Supplies.belongsTo(Complex);
 Complex.hasMany(Supplies);

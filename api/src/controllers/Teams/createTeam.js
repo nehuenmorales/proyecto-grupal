@@ -51,6 +51,7 @@ const { Op } = require("sequelize");
 
 async function createTeam(req, res, next) {
   const { name, image, sport, playerEmail, amountPlayers } = req.body;
+  console.log(req.body)
   try {
     const newTeam = await Teams.create({
       name,
