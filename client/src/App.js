@@ -15,12 +15,10 @@ import SuppliesFutbol from "./components/Supplies/CreateSupplies/Futbol/supplies
 import SuppliesBasquet from "./components/Supplies/CreateSupplies/Basquet/suppliesBasquet";
 import SuppliesPadel from "./components/Supplies/CreateSupplies/Padel/suppliesPadel";
 import SuppliesTenis from "./components/Supplies/CreateSupplies/Tenis/suppliesTenis";
-//import Home from './Home.component';
 import CarouselGamesInc from "./components/Games/GamesIncomplete/CarouselGamesInc";
 import DetailGamesInc from "./components/Games/GamesIncomplete/DetailGamesInc"
 import DetailFields from "./components/Fields/DetailFields/DetailFields.jsx";
 import AllGames from "./components/AllGames/AllGames.jsx"
-import ViewFields from './components/Fields/DetailFields/ViewFields.jsx';
 import GetPlayers from "./components/Players/getPlayers";
 import GetComplex from "./components/Complexes/getComplex"
 import HomeOwner from "./pages/HomeOwner/HomeOwner";
@@ -29,7 +27,8 @@ import ComplexList from "./components/DetailOwner/Complexes/ComplexList";
 import FieldList from "./components/DetailOwner/Fields/FieldList";
 import SuppliesList from "./components/DetailOwner/Supplies/SuppliesList";
 import ComplexDetail from "./components/DetailOwner/Complexes/complexDetail";
-
+import FieldById from "./components/Fields/DetailFields/FieldById.jsx"
+import GameDetail from "./components/Games/GameDetail/gameDetail.jsx"
 
 function App() {
 
@@ -61,20 +60,16 @@ function App() {
       <Route exact path="/sport/:sport" component={AllGames} /> 
       <Route exact path="/sport/:sport/gamesIncomplete" component={CarouselGamesInc} />
       <Route exact path="/sport/:sport/gamesIncomplete/:gameid" component={DetailGamesInc} />
-      {/* <Route exact path="/fields" component={DetailFields} /> */}
-      {/* <Route path="/allGames" component={AllGames} /> */}
-      {/* <Route exact path="/allGames/:sport" render={({ match }) => <AllGames deporte={match.params.sport} match={match}/>} /> */}
+      <Route exact path="/fields/detail/:id" component={FieldById} />
       <Route exact path="/fields/:sport" component={DetailFields} />
-      {/* <Route exact path="/fields/:sport/:id" component={ViewFields} /> */}
       <Route exact path="/sport/:sport/players" component={GetPlayers} />
       <Route exact path="/sport/:sport/complex" component={GetComplex} />
-
-
       <Route exact path={"/owner/createSupplie"} component={CreateSupplies}/>
       <Route exact path={"/owner/createSupplie/futbol"} component={SuppliesFutbol}/>
       <Route exact path={"/owner/createSupplie/tenis"} component={SuppliesTenis}/>
       <Route exact path={"/owner/createSupplie/padel"} component={SuppliesPadel}/>
       <Route exact path={"/owner/createSupplie/basquet"} component={SuppliesBasquet}/>
+      <Route exact path={"/games/detail/:id"} component={GameDetail}/>
 
       <Route exact path={"/owner/createComplex"} component={CreateComplex}/>
       <Route exact path={"/complexOwner"} component={ComplexList}/>

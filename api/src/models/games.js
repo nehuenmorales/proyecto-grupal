@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
         allowNull: true,
       },
       status: {
-        type: DataTypes.ENUM("free", "booked"),
+        type: DataTypes.ENUM("free","pending","booked"),
         defaultValue: "free",
       },
       result: {
@@ -38,6 +38,14 @@ module.exports = (sequelize) => {
       end: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      privacy:{
+        type: DataTypes.ENUM("public", "private"),
+        defaultValue: "public",
+      },
+      requirements:{
+        type:DataTypes.STRING,
+        allowNull:true,
       }
     },
     {

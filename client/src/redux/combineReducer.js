@@ -12,6 +12,7 @@ import getOwnerReducer from './GetOwner/getOwnerReducer';
 import complexReducerOwner from './OwnerComplex/complexReducer';
 import complexDetailReducer from './OwnerComplex/ComplexDetailOwner/ComplexDetailReducer';
 import modifyComplexReducer from './OwnerComplex/ModifyComplex/modifyComplexReducer'
+import paymentsReducer from './Payments/paymentsReducer';
 
 export const reducers = combineReducers({
     modifyComplexReducer: modifyComplexReducer,
@@ -27,8 +28,7 @@ export const reducers = combineReducers({
     getPlayersReducer: getPlayersReducer,
     complexReducer: complexReducer,
     suppliesReducer:suppliesReducer,
-
-    
+    paymentsReducer: paymentsReducer,
 })
 
 export default reducers;

@@ -5,17 +5,10 @@ const { conn } = require('../../db.js');
 async function getGames(req, res, next) {
     const {sport} = req.params
     try {
-        // const allGames = await Games.findAll({
-        //     where: {
-        //         status:"free",
-        //         sport: sport 
-        //     },
-            
-        // })
-
-        const allGames= await conn.query(`(SELECT g.*, f.name, f.capacity, f."pricePerTurn", f.description
+        const allGames= await conn.query(`(SELECT g.*, f.name, f.capacity,x.name,x.adress,x.city,f."pricePerTurn", f.description
         FROM "games" g
         JOIN fields f ON g."fieldId" = f.id
+        JOIN complexes x ON x.id= f."complexId"
         WHERE g.status = 'free' AND g.sport = :sport)`,
             {
                 replacements: { sport: sport},
@@ -27,6 +20,22 @@ async function getGames(req, res, next) {
     }
 }
 
+async function prebooked(req, res, next) {
+    const{id,privacy,requirements,link,type,status}=req.body
+    try {
+        const game= await Games.findOne({where:{id:id}})
+         await game.update({
+            privacy:privacy,
+            requirements:requirements,
+            link:link,
+            type:type,
+            status:status,
+         })
+        res.send(allGames)
+    }catch(e) {
+        console.log(e)
+    }
+}
 // async function getFields(req, res, next){
 //     const {id} = req.params
 //     const {sport} = req.params
@@ -46,6 +55,7 @@ async function getGames(req, res, next) {
 // }
 
 module.exports = {
-    getGames
+    getGames,
+    prebooked,
 }
 

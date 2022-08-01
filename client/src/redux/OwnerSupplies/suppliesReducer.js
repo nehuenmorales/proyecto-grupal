@@ -1,8 +1,9 @@
-import { CREATE_SUPPLIES} from "./suppliesActions";
+import { CREATE_SUPPLIES,GET_SUPPLIES} from "./suppliesActions";
 
 const initialState ={
     allSupplies:[],
     ownerSupplies:[],
+    supplies:[],
 }
 
 const reducer = (state = initialState , action)=>{
@@ -13,6 +14,12 @@ const reducer = (state = initialState , action)=>{
                 allSupplies: [...state.allSupplies, action.payload],
                 ownerSupplies: [...state.ownerSupplies, action.payload],
             }
+        case GET_SUPPLIES:
+            console.log("entro",state.supplies)
+            return{
+                ...state,
+                supplies:action.payload
+            }    
             
         default:
             return state
