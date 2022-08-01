@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    
     margin-top: 3em;
 
 }
@@ -38,7 +39,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 1em;
+    margin-top: 1.5em;
+    text-align: center;
 }
 
 .input{
@@ -49,4 +51,24 @@
     color: white;
     border:0px
     
+}
+.option{
+    background-color: #d9d9d915;
+    font-family: 'Inter', sans-serif; 
+    color: black;
+}
+.buttonfinal{
+    width: 16em;
+    height: 3em;
+    border-radius: 1em;
+    background-color: #00B83F;
+    font-family: 'Inter', sans-serif;
+    color: white; 
+    border: 0px solid;
+
+}
+.containerButtonFinal{
+    margin-top: 3em;
+    display: flex;
+    justify-content: center;
 }

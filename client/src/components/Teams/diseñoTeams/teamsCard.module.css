@@ -16,6 +16,7 @@
 .container{
     height: 20em;
     width: 30em;
+    min-width: 30em;
     background-color: rgb(164, 161, 178);
     margin-bottom: 10px;
     border-radius: 3em;
@@ -26,12 +27,16 @@
 
 }
 .image{
+    background-size: cover;
+    background-repeat: none;
+    background-position: center;
     height: 12.5em;
     width: 100%;
     min-height: 12.5em;
     max-height: 12.5em;
     border-top-left-radius: 3em;
     border-top-right-radius: 3em;
+
 }
 .points{
     display: flex;
@@ -58,6 +63,7 @@ h5{
 .conteinerCard{
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
 }
 
 .button{
@@ -74,4 +80,10 @@ h5{
     display: flex;
     justify-content: center;
 }
+.titleTeams{
+    margin-left: 3em;
+    color: white;
+    font-family: 'Inter', sans-serif;
+}
+
 

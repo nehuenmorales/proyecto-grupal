@@ -11,7 +11,7 @@ async function getSearchComplex(req, res, next) {
             where:{
                 sports: { [Op.contains]: [sport] },
                 [Op.or]:[
-                    {adress:{
+                    {city:{
                         [Op.iLike]: `%${name}%`,
                       }},
                     {name:{

@@ -16,3 +16,24 @@
   background: rgba(255, 255, 255, 0.339);
   
 }
+
+.containerSearchBar{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.select{
+  height: auto;
+  margin-left: 2em;
+  font-family: 'Inter', sans-serif;
+  border-radius: 5em ;
+  background-color: #d9d9d915;
+  color: rgba(255, 255, 255, 0.77);
+}
+.containerFilters{
+  margin-left: 2em;
+  display: flex;
+  align-items: center;
+  
+}

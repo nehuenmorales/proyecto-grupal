@@ -6,7 +6,7 @@ async function searchGamesIncomplete(req,res,next){
     const name = req.query.name
 
     try{
-        const player= await conn.query(`(SELECT count_player_by_game.*, f.capacity - enrolled_amount AS freePlace, f.*,x.adress,x.name AS complexname
+        const player= await conn.query(`(SELECT count_player_by_game.*, f.capacity - enrolled_amount AS freePlace, f.*,x.city,x.name AS complexname
             FROM (
                 SELECT g.id as gameid,g.sport,g.start AS startHour,g.end AS endHour,g."fieldId" ,count(*) AS enrolled_amount
                 FROM games g
@@ -15,7 +15,7 @@ async function searchGamesIncomplete(req,res,next){
             ) count_player_by_game
             JOIN fields f ON count_player_by_game."fieldId" = f.id
             JOIN complexes x ON f."complexId"=x.id
-            WHERE enrolled_amount < f.capacity AND count_player_by_game.sport = :sport AND (x.adress LIKE :name OR f.name LIKE :name ))`,{
+            WHERE enrolled_amount < f.capacity AND count_player_by_game.sport = :sport AND (x.city LIKE :name OR f.name LIKE :name ))`,{
                 replacements: { sport: sport,
                   name:`%${name}%`
                   },

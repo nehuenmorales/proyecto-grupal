@@ -18,15 +18,15 @@ export default function TeamsCard({props}) {
     return (
         <div className={s.container}>
                 <Link>
-                {props.image?<img src={props.image} className={s.image} alt="Imagen del equipo" />:<div className={s.defaultImage}></div> }
+                {props.image?<div className={s.image} style={{"backgroundImage":`url(${props.image})`}}></div>:<div className={s.defaultImage}></div> }
                     </Link>
                 <div className={s.points}>
-                {props.rating===5?<h5><i class="fa-solid fa-star" style={{"color":"gold"}}  ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i></h5>
+                {props.rating===5?<h5><i class="fa-solid fa-star" style={{color:"gold"}}  ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i></h5>
                 :props.rating===4?<h5><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i></h5>
                 :props.rating===3?<h5><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i></h5>
                 :props.rating===2?<h5><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i></h5>
                 :props.rating===1?<i class="fa-solid fa-star" style={{"color":"gold"}} ></i>:<h5><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i></h5>}
-                <h5>Puntos :{props.elo}</h5>
+                <h5>Puntos: {props.elo}</h5>
                 </div>
                 <h2 className={s.teamname}>{props.name}</h2>
         </div>

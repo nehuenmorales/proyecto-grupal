@@ -96,7 +96,10 @@ export default function ProfileData({ email, user }) {
     validador(e);
   };
 
-  const editProfile = (value) => {
+  const editProfile = (value,e) => {
+    if(e){
+      e.preventDefault()
+    }
     if (buttonedit[value]) {
       setButtonEdit({ ...buttonedit, [value]: false });
     } else {
@@ -123,10 +126,10 @@ export default function ProfileData({ email, user }) {
     autocomplete(ev);
   };
   const onClickCity = (ev) => {
+    ev.preventDefault();
     setChangesToProfile({ ...profile, city: ev.target.value });
     setButtonEdit({ ...buttonedit, city: false });
     setFlag(true);
-    ev.preventDefault();
     setInput(ev.target.value);
     setCityInput([]);
     setClick(true);
@@ -150,7 +153,7 @@ export default function ProfileData({ email, user }) {
             <div className={s.info}>
               {buttonedit.name ? (
                 <div className={s.containerData} >
-                  <div>
+                  
                   <h6>
                   Nombre:{" "}
                   </h6>
@@ -160,10 +163,10 @@ export default function ProfileData({ email, user }) {
                     onChange={(e) => onChange(e)}
                     defaultValue={profile.name}
                   />{" "}
-                  </div>
+                  
                   <button
-                    value="name"
-                    onClick={(e) => editProfile(e.target.value)}
+                    name="name"
+                    onClick={(e) => editProfile("name")}
                     className={s.buttonEdit}
                   >
                    <i class="fa-solid fa-pen-to-square"></i>
@@ -171,14 +174,14 @@ export default function ProfileData({ email, user }) {
                 </div>
               ) : (
                 <div className={s.containerData} >
-                  <div>
+                  
                   <h6>
                   Nombre: {profile.name}{" "}
                   </h6>
-                  </div>
+                  
                   <button
-                    value="name"
-                    onClick={(e) => editProfile(e.target.value)}
+                    name="name"
+                    onClick={(e) => editProfile("name")}
                     className={s.buttonEdit}
                   >
                     <i class="fa-solid fa-pen-to-square"></i>
@@ -190,7 +193,7 @@ export default function ProfileData({ email, user }) {
 
               {buttonedit.lastName ? (
                 <div className={s.containerData} >
-                  <div>
+
                   <h6>
                   Apellido:{" "}
                   </h6>
@@ -200,10 +203,10 @@ export default function ProfileData({ email, user }) {
                     onChange={(e) => onChange(e)}
                     defaultValue={profile.lastName}
                   />{" "}
-                  </div>
+                  
                   <button
-                    value="lastName"
-                    onClick={(e) => editProfile(e.target.value)}
+                    name="lastName"
+                    onClick={(e) => editProfile("lastName")}
                     className={s.buttonEdit}
                   >
                     <i class="fa-solid fa-pen-to-square"></i>
@@ -211,14 +214,14 @@ export default function ProfileData({ email, user }) {
                 </div>
               ) : (
                 <div className={s.containerData} >
-                  <div>
+                  
                   <h6>
                   Apellido: {profile.lastName}{" "}
                   </h6>
-                  </div>
+                 
                   <button
-                    value="lastName"
-                    onClick={(e) => editProfile(e.target.value)}
+                    name="lastName"
+                    onClick={(e) => editProfile("lastName")}
                     className={s.buttonEdit}
                   >
                     <i class="fa-solid fa-pen-to-square"></i>
@@ -227,12 +230,14 @@ export default function ProfileData({ email, user }) {
               )}
 
               {errors.lastName ? <h5>{errors.lastName}</h5> : null}
+              <div className={s.containerData}>
 
-              <h4>Email: {player.email}</h4>
+              <h6>Email: {player.email}</h6>
+              </div>
 
               {buttonedit.telephone ? (
                 <div className={s.containerData} >
-                  <div>
+                  
                   <h6>
                   Telefono:{" "}
                   </h6>
@@ -242,10 +247,10 @@ export default function ProfileData({ email, user }) {
                     onChange={(e) => onChange(e)}
                     defaultValue={profile.telephone}
                   />{" "}
-                  </div>
+                  
                   <button
-                    value="telephone"
-                    onClick={(e) => editProfile(e.target.value)}
+                    name="telephone"
+                    onClick={(e) => editProfile("telephone")}
                     className={s.buttonEdit}
                   >
                     <i class="fa-solid fa-pen-to-square"></i>
@@ -253,14 +258,14 @@ export default function ProfileData({ email, user }) {
                 </div>
               ) : (
                 <div className={s.containerData} >
-                  <div>
+                  
                   <h6>
                   Telefono: {profile.telephone}{" "}
                   </h6>
-                  </div>
+                 
                   <button
-                    value="telephone"
-                    onClick={(e) => editProfile(e.target.value)}
+                    name="telephone"
+                    onClick={(e) => editProfile("telephone")}
                     className={s.buttonEdit}
                   >
                     <i class="fa-solid fa-pen-to-square"></i>
@@ -272,11 +277,11 @@ export default function ProfileData({ email, user }) {
 
               {buttonedit.username ? (
                 <div className={s.containerData} >
-                  <div>
+                  
                   <h6>
                   Nombre de usuario:{" "}
                   </h6>
-                  </div>
+                  
                   <input 
                     className={s.input}
                     name="username"
@@ -284,8 +289,8 @@ export default function ProfileData({ email, user }) {
                     defaultValue={profile.username}
                   />{" "}
                   <button
-                    value="username"
-                    onClick={(e) => editProfile(e.target.value)}
+                    name="username"
+                    onClick={(e) => editProfile("username")}
                     className={s.buttonEdit}
                   >
                     <i class="fa-solid fa-pen-to-square"></i>
@@ -293,14 +298,14 @@ export default function ProfileData({ email, user }) {
                 </div>
               ) : (
                 <div className={s.containerData} >
-                  <div>
+                  
                   <h6>
                   Nombre de usuario: {profile.username}{" "}
                   </h6>
-                  </div>
+                 
                   <button
-                    value="username"
-                    onClick={(e) => editProfile(e.target.value)}
+                    name="username"
+                    onClick={(e) => editProfile("username")}
                     className={s.buttonEdit}
                   >
                     <i class="fa-solid fa-pen-to-square"></i>
@@ -312,8 +317,9 @@ export default function ProfileData({ email, user }) {
 
               {
                 buttonedit.city ? (
-                  <div class="container">
+                  <div >
                     <form>
+                      <div className={s.containerData}>
                       <h6>
                         Ciudad:
                         <input 
@@ -336,11 +342,12 @@ export default function ProfileData({ email, user }) {
                                 </button> */}
                       <button
                         value="city"
-                        onClick={(e) => editProfile(e.target.value)}
+                        onClick={(e) => editProfile("city",e)}
                         className={s.buttonEdit}
                       >
                         <i class="fa-solid fa-pen-to-square"></i>
                       </button>
+                      </div>
                       <div>
                         <ul
                           id="autocomplete-results"
@@ -369,31 +376,38 @@ export default function ProfileData({ email, user }) {
                     </form>
                   </div>
                 ) : (
+                  <div className={s.containerData}>
                   <h6>
                     Ciudad: {profile.city}
+                  </h6>
                     <button
                       value="city"
-                      onClick={(e) => editProfile(e.target.value)}
+                      onClick={(e) => editProfile("city")}
                       className={s.buttonEdit}
                     >
                     <i class="fa-solid fa-pen-to-square"></i>
 
                     </button>{" "}
-                  </h6>
+                  </div>
                 )
                 // <h6>Ciudad: {profile.city} <button value="city" onClick={(e)=>editProfile(e.target.value)}>X</button> </h6>
               }
-
-              <h4>Elo: {player.elo}</h4>
+              <div className={s.containerData}>
+              
+                <h6>Elo: {player.elo}</h6>
+              </div>
 
               {flag &&
               !errors.name &&
               !errors.lastName &&
               !errors.telephone &&
               !errors.username ? (
-                <button onClick={(e) => onSubmit(e)}>
-                  Efectuar cambios al usuario
+                <div className={s.containerButtonFinal}>
+
+                <button className={s.buttonfinal} onClick={(e) => onSubmit(e)}>
+                  Guardar cambios al usuario
                 </button>
+                </div>
               ) : null}
             </div>
           </div>

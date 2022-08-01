@@ -7,13 +7,13 @@ const initialState ={
 const teamsReducer = (state = initialState , action)=>{
     switch (action.type) {
         case CREATE_TEAM:
+            console.log("lo que llego",action.payload)
             return{
                 ...state,
                 userTeams: [...state.teams, action.payload],
                 
             }
         case GET_TEAM_USER:
-            console.log("lo que llego",action.payload)
             return {
                 ...state,
                 userTeams: action.payload

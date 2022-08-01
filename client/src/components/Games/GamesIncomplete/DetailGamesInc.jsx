@@ -30,7 +30,7 @@ console.log(detail)
         <p>{detail[0]?.start}</p>
         <p>{detail[0]?.end}</p>
         </div>
-        <p>{detail[0]?.adress}</p>
+        <p>{detail[0]?.city}</p>
         <p>{detail[0]?.description}</p>
         <p>${detail[0]?.pricePerTurn}</p>
         <p>players:{detail?.map(g=>g.username).join(",")}</p>

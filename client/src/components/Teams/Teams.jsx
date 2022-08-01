@@ -24,7 +24,7 @@ export function Teams({ email }) {
   return (
     <>
       <div>
-        <h2>Mis equipos</h2>
+        <h2 className={s.titleTeams} >Mis equipos</h2>
       </div>
       <div className={s.conteinerCard}>
         {userTeams.length
