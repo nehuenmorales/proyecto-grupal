@@ -6,17 +6,17 @@
 // async function createTeam(req, res, next) {
 //   const { name, image, sport, playerEmail, amountPlayers } = req.body;
 //   try {
-//     // const newTeam = await conn.query(
-//     //   `(INSERT INTO teams(name,  image, sport, "amountPlayers")
-//     //    VALUES (:name,:image, :sport, :amountplayers))`,
-//     //   {
-//     //     replacements: { name:name,
-//     //      image:image,
-//     //     sport:sport,
-//     //   amountplayers:amountPlayers},
-//     //     type: QueryTypes.SELECT,
-//     //   }
-//     // );
+//     const newTeam = await conn.query(
+//       `(INSERT INTO teams(name,  image, sport, "amountPlayers")
+//        VALUES (:name,:image, :sport, :amountplayers))`,
+//       {
+//         replacements: { name:name,
+//          image:image,
+//         sport:sport,
+//       amountplayers:amountPlayers},
+//         type: QueryTypes.SELECT,
+//       }
+//     );
 //     const player = await Player.findOne({
 //       where: {
 //         email: {
@@ -52,6 +52,7 @@ const { Op } = require("sequelize");
 async function createTeam(req, res, next) {
   const { name, image, sport, playerEmail, amountPlayers } = req.body;
   console.log(req.body)
+  console.log("soy el email",playerEmail)
   try {
     const newTeam = await Teams.create({
       name,
