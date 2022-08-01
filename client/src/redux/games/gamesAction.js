@@ -5,6 +5,7 @@ export const GET_GAMES_BY_ID = 'GET_GAMES_BY_ID';
 export const UPDATE_GAME="UPDATE_GAME"
  export const GET_SEARCH_GAME_SPORT = "GET_SEARCH_GAME_SPORT"
  export const GAMES_ORDER = "GAMES_ORDER"
+ export const CREATE_GAME = "CREATE_GAME";
 
  
 export function getGameSport(sport) {
@@ -91,3 +92,14 @@ export function updateGame(id,body) {
           ) 
       }
     }
+
+
+export const createGame =(body)=>{
+    console.log("llega a las actions",body)
+    return async function (dispatch){
+        return axios.post("https://falta-uno-1.herokuapp.com/owner/createGame",body)
+        .then((res)=> {
+            console.log("llega al reducer",res)
+            return dispatch({type:CREATE_GAME,payload:res})})
+    }   
+}

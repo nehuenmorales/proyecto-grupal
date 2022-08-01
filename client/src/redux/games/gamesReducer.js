@@ -1,10 +1,11 @@
-import{GET_GAMES_BY_ID,UPDATE_GAME} from "./gamesAction"
-import{GET_GAME_SPORT, GET_SEARCH_GAME_SPORT, GAMES_ORDER} from "./gamesAction"
+import{GET_GAME_SPORT, GET_SEARCH_GAME_SPORT, GAMES_ORDER, CREATE_GAME,GET_GAMES_BY_ID,UPDATE_GAME} from "./gamesAction"
 
 const initialState = {
     gamesSport:[],
     gameDetail:{},
-    gamesSportSearch:[]
+    gamesSportSearch:[],
+    allGames:[],
+    ownerGames:[],
 }
 
 export default function games(state = initialState, action){
@@ -86,7 +87,12 @@ export default function games(state = initialState, action){
                     gamesSport:ordenado
                 }
             }
-        
+            case CREATE_GAME:
+                return{
+                    ...state,
+                    allGames: [...state.allGames, action.payload],
+                    ownerGames: [...state.ownerGames, action.payload],
+                }
         default:
             return state;
     }
