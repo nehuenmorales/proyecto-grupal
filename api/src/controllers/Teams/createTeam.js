@@ -1,24 +1,30 @@
-const { Teams, Player } = require("../../db.js");
+const { Teams, Player, conn } = require("../../db.js");
 const { Op } = require("sequelize");
+const { QueryTypes } = require("sequelize");
+
 
 async function createTeam(req, res, next) {
   const { name, image, sport, playerEmail, amountPlayers } = req.body;
   try {
-    const newField = await Teams.create({
-      name,
-      sport,
-      image,
-      amountPlayers
-      
+    const newTeam = await conn.query(
+      `(INSERT INTO teams(:name,  :image, :sport, :"amountPlayers")
+       VALUES ('hola','hola', 'hola', 4);)`,
+      {
+        replacements: { name:name,
+         image:image,
+        sport:sport,
+      amountPlayers:amountPlayers},
+        type: QueryTypes.SELECT,
+      }
+    );
+    const player = await Player.findOne({
+      where: {
+        email: {
+          [Op.eq]: playerEmail,
+        },
+      },
     });
-    // const player = await Player.findOne({
-    //   where: {
-    //     email: {
-    //       [Op.eq]: playerEmail,
-    //     },
-    //   },
-    // });
-    // await newTeam.addPlayer(player);
+    await newTeam.addPlayer(player);
 
     //FALTA LA RUTA DE CREACION DEL USUARIO/COMPLEJO para linkear a un complejo
 
