@@ -67,7 +67,7 @@ async function createTeam(req, res, next) {
         },
       },
     });
-    await newTeam.addPlayer(player);
+    // await newTeam.addPlayer(player);
 
     //FALTA LA RUTA DE CREACION DEL USUARIO/COMPLEJO para linkear a un complejo
 
