@@ -12,7 +12,7 @@ async function gamesIncomplete(req,res,next){
                 GROUP BY g.id
             ) count_player_by_game
             JOIN fields f ON count_player_by_game."fieldId" = f.id
-            WHERE enrolled_amount < f.capacity)`)
+            WHERE enrolled_amount < f.capacity AND privacy='public')`)
 
         res.status(200).send(player[0])
     }catch(e){
@@ -42,25 +42,24 @@ async function detailGameIncomplete(req, res){
     }
 }
 
-// async function updateGame(req,res){
-//     try{
-//        const {id}= req.params
-//         const{email}=req.body
-//         const player= Player.findOne({ where: { email: email } })
-//         const update= await conn.query(`(INSERT INTO player_games ("playerId","gameId")
-//             VALUES (:pId,:gId))`,{
-//             replacements: { pId:player.id, gId:id},
-//             type: QueryTypes.SELECT
-//         })
-//         res.send(update) 
-//     }catch(e){
-//         console.log(e)
-//     }
-   
-// }
+async function updateGame(req,res){
+    try{
+       let {id}= req.params
+       id=parseInt(id)
+        const player= await Player.findOne({ where: { email: req.body.email} })
+        const update= await conn.query(`INSERT INTO player_games ("playerId","gameId") VALUES(:pId,:gId)`,{
+            replacements: { pId:player.id, gId:id},
+            type: QueryTypes.SELECT
+        })
+        res.send(update) 
+    }catch(e){
+        console.log(e)
+    }
+}
 
 module.exports = {
     gamesIncomplete,
-    detailGameIncomplete
+    detailGameIncomplete,
+    updateGame
   };
 

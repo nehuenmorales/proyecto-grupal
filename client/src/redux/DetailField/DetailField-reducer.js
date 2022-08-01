@@ -1,8 +1,9 @@
-import { GET_FIELDS } from './DetailField-action';
+import { GET_FIELDS,GET_FIELDS_BY_ID } from './DetailField-action';
 
 
 const initialState = {
-    fields: []
+    fields: [],
+    detailFields:[]
 };
 
 export default function getFieldsR (state = initialState,  action){
@@ -12,8 +13,13 @@ export default function getFieldsR (state = initialState,  action){
             return {
                 ...state,
                 fields: action.payload
-            }   
-        default:
-            return state;
+            }
+            case GET_FIELDS_BY_ID:
+            return {
+                ...state,
+                detailFields: action.payload
+            }  
+            default:
+                return state;
     }
 }
