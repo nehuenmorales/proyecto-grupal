@@ -6,7 +6,7 @@ export const PUT_GAME = "PUT_GAME";
 
 export function getGamesIncomplete() {
     return dispatch =>{
-      axios.get(`/games/gamesIncomplete`)   
+      axios.get(`https://falta-uno-1.herokuapp.com/games/gamesIncomplete`)   
         .then(res => {
           dispatch({
             type: GET_GAMES_INCOMPLETE,
@@ -23,7 +23,7 @@ export function getGamesIncomplete() {
   export function getDetailIncomplete(gameid) {
     
     return dispatch =>{
-      axios.get(`/games/gamesIncomplete/${gameid}`)
+      axios.get(`https://falta-uno-1.herokuapp.com/games/gamesIncomplete/${gameid}`)
         .then(res => {
           dispatch({
             type: GET_DETAIL_INCOMPLETE,
@@ -40,7 +40,7 @@ export function getGamesIncomplete() {
     console.log(id,email,"actions put")
     return async function (dispatch) {
       const {data} = await axios.put(
-        `/games/gamesIncomplete/${id}`,
+        `https://falta-uno-1.herokuapp.com/games/gamesIncomplete/${id}`,
         email
       );
       console.log(data, "action data")

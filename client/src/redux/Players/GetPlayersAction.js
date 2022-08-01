@@ -4,7 +4,7 @@ export const GET_PLAYERS = "GET_PLAYERS"
  
  export function getPlayers() {
     return dispatch =>{
-      axios.get(`/player/getPlayers`)
+      axios.get(`https://falta-uno-1.herokuapp.com/player/getPlayers`)
         .then(res => {
           dispatch({
             type: GET_PLAYERS,

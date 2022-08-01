@@ -6,7 +6,7 @@ export const UPDATE_GAME="UPDATE_GAME"
  
 export function getGameSport(sport) {
   return dispatch =>{
-      axios.get(`/games/${sport}`)
+      axios.get(`https://falta-uno-1.herokuapp.com/games/${sport}`)
         .then(res => {
           console.log("entro", res.data)
           dispatch({
@@ -24,7 +24,7 @@ export function getGameSport(sport) {
 export function getGamesById(id) {
     
       return dispatch =>{
-        axios.get(`/games/detail/${id}`)
+        axios.get(`https://falta-uno-1.herokuapp.com/games/detail/${id}`)
           .then(res => {
             dispatch({
               type: GET_GAMES_BY_ID,
@@ -43,7 +43,7 @@ export function updateGame(id,body) {
   console.log("update body",body)
     
       return dispatch =>{
-        axios.put(`/games/updateGame`,body)
+        axios.put(`https://falta-uno-1.herokuapp.com/games/updateGame`,body)
           .then(res => {
             dispatch({
               type: UPDATE_GAME,

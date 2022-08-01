@@ -7,7 +7,7 @@ export function postPayments(id, datos) {
     console.log('soy el id', id);
     console.log('soy los datos del usuario', datos);
     return dispatch => {
-      axios.post(`games/comprar/${id}`, datos)
+      axios.post(`https://falta-uno-1.herokuapp.com/games/comprar/${id}`, datos)
       .then((res) => {
         dispatch({
             type: POST_PAYMENT,
