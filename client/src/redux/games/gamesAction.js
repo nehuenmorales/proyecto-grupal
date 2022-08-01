@@ -26,7 +26,7 @@ export function getGameSport(sport) {
   export function getSearchGames(input,sport) {
   
     return dispatch =>{
-      axios.get(`/games/${sport}/searchGame?name=${input}`)
+      axios.get(`https://falta-uno-1.herokuapp.com/games/${sport}/searchGame?name=${input}`)
         .then(res => {
           console.log("entro", res.data)
           dispatch({

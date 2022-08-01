@@ -41,7 +41,7 @@ export function getGamesIncomplete() {
   }
   export function getSearchGamesIncomplete(input,sport) {
     return dispatch =>{
-      axios.get(`/games/${sport}/searchGameIncomplete?name=${input}`)   
+      axios.get(`https://falta-uno-1.herokuapp.com/games/${sport}/searchGameIncomplete?name=${input}`)   
         .then(res => {
           dispatch({
             type: GET_SEARCH_GAMES_INCOMPLETE,

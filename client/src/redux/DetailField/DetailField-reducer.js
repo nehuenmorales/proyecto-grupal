@@ -1,5 +1,5 @@
 import { GET_FIELDS,GET_FIELDS_BY_ID } from './DetailField-action';
-import { GET_FIELDS, GET_SEARCH_FIELDS } from './DetailField-action';
+import { GET_SEARCH_FIELDS } from './DetailField-action';
 
 
 const initialState = {

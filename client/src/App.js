@@ -1,7 +1,7 @@
 import "./scss/custom.css";
 import React from "react";
 import Landing from "./components/Landing/Landing";
-import { useAuth0, User } from "@auth0/auth0-react";
+import { useAuth0} from "@auth0/auth0-react";
 import Home from "./pages/Home/Home";
 import { Spinner } from "react-bootstrap";
 import { Route } from "react-router-dom";
@@ -28,15 +28,14 @@ import SuppliesList from "./components/DetailOwner/Supplies/SuppliesList";
 import ComplexDetail from "./components/DetailOwner/Complexes/complexDetail";
 import FieldById from "./components/Fields/DetailFields/FieldById.jsx"
 import GameDetail from "./components/Games/GameDetail/gameDetail.jsx"
-import AllGames from "./components/AllGames/AllGames.jsx";
-import ViewFields from "./components/Fields/DetailFields/ViewFields.jsx";
+import ViewFields from "./components/Fields/DetailFields/DetailFields";
 import GetPlayers from "./components/Players/getPlayers";
 import PlayerProfile from "./components/Profile/Profile";
 
 import { TeamsContainer } from "./components/Teams/TeamContainer";
 
 function App() {
-  const { isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated, isLoading } = useAuth0();
 
   return (
     <>
@@ -65,11 +64,11 @@ function App() {
       : 
       <Route exact path="/" component={Landing} />}
        {/* leo rompiste todo con esta ruta que esta abajito, AREGLALO */}
-      <Route exact path="/sport/:sport" component={AllGames} /> 
+      {/* <Route exact path="/sport/:sport" component={AllGames} />  */}
       <Route exact path="/sport/:sport/gamesIncomplete" component={CarouselGamesInc} />
       <Route exact path="/sport/:sport/gamesIncomplete/:gameid" component={DetailGamesInc} />
       <Route exact path="/fields/detail/:id" component={FieldById} />
-      {isLoading ? (
+      {/* {isLoading ? (
         <Spinner animation="border" variant="light" role="status">
           <span className="visually-hidden">Loading...</span>
         </Spinner>
@@ -77,10 +76,10 @@ function App() {
         <Route exact path="/" component={Home} />
       ) : (
         <Route exact path="/" component={Landing} />
-      )}
+      )} */}
       {/* leo rompiste todo con esta ruta que esta abajito, AREGLALO */}
       <Route exact path="/sport/:sport" component={AllGames} />
-      <Route
+      {/* <Route
         exact
         path="/sport/:sport/gamesIncomplete"
         component={CarouselGamesInc}
@@ -89,7 +88,7 @@ function App() {
         exact
         path="/sport/:sport/gamesIncomplete/:gameid"
         component={DetailGamesInc}
-      />
+      /> */}
       {/* <Route exact path="/fields" component={DetailFields} /> */}
       {/* <Route path="/allGames" component={AllGames} /> */}
       {/* <Route exact path="/allGames/:sport" render={({ match }) => <AllGames deporte={match.params.sport} match={match}/>} /> */}
@@ -97,10 +96,10 @@ function App() {
       <Route exact path="/sport/:sport/players" component={GetPlayers} />
       <Route exact path="/sport/:sport/complex" component={GetComplex} />
       <Route exact path={"/owner/createSupplie"} component={CreateSupplies}/>
-      <Route exact path={"/owner/createSupplie/futbol"} component={SuppliesFutbol}/>
+      {/* <Route exact path={"/owner/createSupplie/futbol"} component={SuppliesFutbol}/>
       <Route exact path={"/owner/createSupplie/tenis"} component={SuppliesTenis}/>
       <Route exact path={"/owner/createSupplie/padel"} component={SuppliesPadel}/>
-      <Route exact path={"/owner/createSupplie/basquet"} component={SuppliesBasquet}/>
+      <Route exact path={"/owner/createSupplie/basquet"} component={SuppliesBasquet}/> */}
       <Route exact path={"/games/detail/:id"} component={GameDetail}/>
 
       <Route exact path={"/owner/createComplex"} component={CreateComplex}/>

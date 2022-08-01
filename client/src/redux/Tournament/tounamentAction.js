@@ -5,7 +5,7 @@ export const GET_SEARCH_TOURNAMENT = "GET_SEARCH_TOURNAMENT";
 
 export function getSearcTournament(sport,input) {
     return dispatch =>{
-      axios.get(`/${sport}/searchTournamet?name=${input}`)
+      axios.get(`https://falta-uno-1.herokuapp.com/${sport}/searchTournamet?name=${input}`)
         .then(res => {
           dispatch({
             type: GET_SEARCH_TOURNAMENT,

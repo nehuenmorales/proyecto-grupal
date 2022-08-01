@@ -17,7 +17,8 @@ export function Teams({ email }) {
 
   const [showModal, setShowModal] = useState(false);
   console.log("soy user teams", userTeams);
-  const modalOpen = () => {
+  const modalOpen = (e) => {
+    e.preventDefault()
     setShowModal(true);
     console.log("entro a modal open");
   };
@@ -32,7 +33,7 @@ export function Teams({ email }) {
           : null}
       </div>
       <div className={s.buttoncontainer}>
-        <button className={s.button} onClick={() => modalOpen()}>
+        <button className={s.button} onClick={(e) => modalOpen(e)}>
           Crea un equipo
         </button>
       </div>

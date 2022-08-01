@@ -41,7 +41,7 @@ export function getAllFields(sport) {
   export function getSearchFields(input, sport) {
   
     return dispatch =>{
-      axios.get(`/fields/${sport}/getSearchField?name=${input}`)
+      axios.get(`https://falta-uno-1.herokuapp.com/fields/${sport}/getSearchField?name=${input}`)
         .then(res => {
           console.log(res.data,'actiooooon')
           dispatch({

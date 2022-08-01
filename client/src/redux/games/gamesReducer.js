@@ -1,4 +1,4 @@
-import{GET_GAME_SPORT,GET_GAMES_BY_ID,UPDATE_GAME} from "./gamesAction"
+import{GET_GAMES_BY_ID,UPDATE_GAME} from "./gamesAction"
 import{GET_GAME_SPORT, GET_SEARCH_GAME_SPORT, GAMES_ORDER} from "./gamesAction"
 
 const initialState = {
