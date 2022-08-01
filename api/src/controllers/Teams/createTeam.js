@@ -4,11 +4,12 @@ const { Op } = require("sequelize");
 async function createTeam(req, res, next) {
   const { name, image, sport, playerEmail, amountPlayers } = req.body;
   try {
-    const newTeam = await Teams.create({
+    const newField = await Teams.create({
       name,
-      image,
       sport,
-      amountPlayers,
+      image,
+      amountPlayers
+      
     });
     // const player = await Player.findOne({
     //   where: {
