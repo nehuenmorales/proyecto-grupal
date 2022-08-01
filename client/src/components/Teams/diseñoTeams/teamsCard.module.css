@@ -71,8 +71,10 @@ h5{
     height: 50px;
     width: 200px;
     border-radius: 10px;
-
-
+    transition: 500ms;
+}
+.button:hover{
+    transform: scale(.95);
 }
 
 .buttoncontainer{

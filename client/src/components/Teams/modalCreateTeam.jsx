@@ -429,11 +429,11 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
             !errors.name &&
             !errors.sport &&
             input.amountPlayers ? (
-              <button  className="btn btn-success"  type="submit" onClick={(e) => handleSubmit(e)}>
+              <button  className="btn btn-success"  style={{color: 'white'}} type="submit" onClick={(e) => handleSubmit(e)}>
                 Crear equipo
               </button>
             ) : (
-              <button className="btn btn-success" type="submit" disabled>
+              <button className="btn btn-success" style={{color: 'white'}} type="submit" disabled>
                 Crear equipo
               </button>
             )}
