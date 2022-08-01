@@ -10,14 +10,14 @@ async function createTeam(req, res, next) {
       sport,
       amountPlayers,
     });
-    const player = await Player.findOne({
-      where: {
-        email: {
-          [Op.eq]: playerEmail,
-        },
-      },
-    });
-    await newTeam.addPlayer(player);
+    // const player = await Player.findOne({
+    //   where: {
+    //     email: {
+    //       [Op.eq]: playerEmail,
+    //     },
+    //   },
+    // });
+    // await newTeam.addPlayer(player);
 
     //FALTA LA RUTA DE CREACION DEL USUARIO/COMPLEJO para linkear a un complejo
 
