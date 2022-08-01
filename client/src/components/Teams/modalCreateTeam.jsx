@@ -137,10 +137,10 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
   const handleSubmit = (e) => {
     
     e.preventDefault();
-    dispatch(createTeam({...input, playersOnTeam: [...integrantes,email]}));//para el futuro 
+    dispatch(createTeam(input));//para el futuro 
     console.log(input);
     setShowModal(false);
-    setInput({
+    setInput({    
       name: "",
       sport: "",
       playerEmail: email,
@@ -235,16 +235,17 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
         show={showModal}
         size="lg"
         aria-labelledby="example-modal-sizes-title-lg"
-        style={{"color":"rgb(20, 22, 74)"}}
+        // style={{"color":"rgb(20, 22, 74)"}}
 
       >
-        <Modal.Header   style={{"backgroundColor":"rgb(190, 190, 190)", "boxShadow": "2px 2px 5px #999"}}>
+        {/* style={{"backgroundColor":"rgb(190, 190, 190)", "boxShadow": "2px 2px 5px #999"}} */}
+        <Modal.Header   >
           <Modal.Title>
-            <h2 style={{"color":"rgb(24, 25, 51)",fontWeight:"bold",fontFamily:" 'Inter', sans-serif"}}>Creá tu Equipo</h2>
-            <p style={{"color":"rgb(24, 25, 51)"}}>Completá los datos</p>
+            <h2 >Creá tu Equipo</h2>
+            <p>Completá los datos</p>
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{"backgroundColor":"rgb(190, 190, 190)"}}>
+        <Modal.Body>
           <div className={s.flex}>
             <div className={s.columnLeft}>
               <div className={s.campo}>
@@ -284,7 +285,7 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
             drop={direction}
             variant="secondary"
             title={`Seleccione un deporte`}
-            style={{marginTop:"10px"}}
+            
           >
             <Dropdown.Item   name="sport" value="futbol" onClick={(e) => {handleInputChange(e,"futbol")}} eventKey="1">Futbol</Dropdown.Item>
             <Dropdown.Item   name="sport" value="basquet" onClick={(e) => {handleInputChange(e,"basquet")}} eventKey="2">Basquet</Dropdown.Item>
@@ -325,10 +326,10 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
                     </button>
                   </div>
                 ) : null}
-                {input.amountPlayers?<h6 style={{color:"rgb(24, 25, 51)",marginTop:"10px"}}>{input.sport.toUpperCase()}</h6>:null}
+                {input.amountPlayers?<h6 >{input.sport.toUpperCase()}</h6>:null}
                 {input.sport === "futbol" ? (
                   !input.amountPlayers ? (
-                    <h6 style={{color:"red"}}>Elija el tipo de juego</h6>
+                    <h6 >Elija el tipo de juego</h6>
                   ) : null
                 ) : null}
                 {errors.sport ? <h6 className={s.error}>{errors.sport}</h6> : null}
@@ -359,7 +360,7 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
                       aria-label="Invita a los jugadores"
                       aria-autocomplete="both"
                       aria-controls="autocomplete-results"
-                      defaultVlue={inputValue}
+                      defaultValue={inputValue}
                       onChange={(ev) => handleChangeInvite(ev)}
                     />
                   </div>
@@ -388,7 +389,7 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
                     </ul>
                     <div>
                       <ul>
-                        {<p style={s.nameIntegrante}>{email}</p>}
+                        {<p className={s.nameIntegrante}>{email}</p>}
                         {integrantes
                           ? integrantes.map((e) => {
                               return (
@@ -419,8 +420,8 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
             </div>
           </div>
         </Modal.Body>
-        <Modal.Footer style={{ backgroundColor: "rgb(133, 133, 133);" }}>
-          <button class="btn btn-primary" onClick={volver} variant="secondary">
+        <Modal.Footer >
+          <button className="btn btn-primary" onClick={volver} variant="secondary">
             Volver
           </button>
           <div>
@@ -428,11 +429,11 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
             !errors.name &&
             !errors.sport &&
             input.amountPlayers ? (
-              <button  class="btn btn-success"  type="submit" onClick={(e) => handleSubmit(e)}>
+              <button  className="btn btn-success"  type="submit" onClick={(e) => handleSubmit(e)}>
                 Crear equipo
               </button>
             ) : (
-              <button class="btn btn-success" type="submit" disabled>
+              <button className="btn btn-success" type="submit" disabled>
                 Crear equipo
               </button>
             )}
