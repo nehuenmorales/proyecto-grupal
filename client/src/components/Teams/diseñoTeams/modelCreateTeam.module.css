@@ -1,0 +1,111 @@
+.columnLeft {
+  display: grid;
+  align-items: center;
+  width: 50%;
+  justify-content: left;
+}
+.column {
+  display: grid;
+  align-items: center;
+  width: 50%;
+  justify-content: left;
+}
+.flex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+  .input{
+    margin-top: 10px;
+    margin-bottom: 7px;
+    width: 250px;
+    border-radius: 0.5em;
+    font-family: 'Inter', sans-serif; 
+    background-color: rgb(24, 25, 51);
+    border:0px;
+    color:white;
+    padding: 5px 10px;
+    
+
+}
+.campo {
+  display: grid;
+  justify-content: left;
+  align-items: center;
+}
+.titulos {
+  margin: 0%;
+}
+
+.inImage{
+  display:grid;
+
+}
+h5{
+  color: #128DFF;
+  margin-left:  0px;
+}
+
+.error{
+  color: red;
+}
+.buttonTypeF{
+  border-radius: 5px;
+  background-color:rgb(24, 25, 51);
+  margin-right:5px;
+  margin-top: 7px;
+  border: none;
+  color:white;
+  padding: 5px 8px;
+  transition: 500ms;
+}
+.buttonTypeF:hover{
+  transform: scale(1.08);
+}
+.buttonTypeF:active{
+  background-color: green;
+}
+
+.integrante{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 300px;
+
+}
+
+.buttonClose{
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  background-color: red;
+  border: none;
+  text-align: center;
+  transition: 500ms;
+  color: white;
+
+}
+.buttonClose:hover{
+  background-color: red;
+  border: 0.5px solid red;
+  color: white;
+  transform: scale(1.04);
+  font-weight: bold;
+  
+}
+
+.nameIntegrante{
+  color: black;
+  font-weight:400;
+
+}
+
+
+
+
+
+
+
+

@@ -7,6 +7,9 @@ const owner = require("./owner.js");
 const games= require("./games.js")
 const complex = require("./complex.js")
 const supplies= require("./supplies.js")
+const tournament = require("./tournament.js")
+const team = require("./team.js")
+
 
 const router = Router();
 
@@ -18,4 +21,6 @@ router.use('/fields',fields);
 router.use('/complex',complex);
 router.use('/supplies',supplies)
 
+router.use("/tournament",tournament)
+router.use("/team",team)
 module.exports = router;

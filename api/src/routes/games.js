@@ -4,6 +4,9 @@ const { getGames, prebooked} = require("../controllers/Games/allGames.js");
 const {updateGame}=require("../controllers/Games/gamesIncomplete.js")
 const {detailGame, pagarProducto}=require("../controllers/Games/gameById.js")
 
+const { getGames, getFields } = require("../controllers/Games/allGames.js");
+const { getSearchGames } = require("../controllers/Games/getSearchGames");
+const { searchGamesIncomplete } = require("../controllers/Games/searchGamesIncomplete");
  
 const router = Router();
 
@@ -14,6 +17,10 @@ router.put("/gamesIncomplete/:id",updateGame)
 router.get("/detail/:id",detailGame);
 router.post("/comprar/:id", pagarProducto)
 router.put("/updateGame",prebooked)
+router.get("/:sport/searchGame",getSearchGames)
+router.get("/:sport/searchGameIncomplete",searchGamesIncomplete)
+
+
 
 
 

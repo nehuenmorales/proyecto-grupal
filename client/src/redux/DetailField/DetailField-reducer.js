@@ -1,13 +1,15 @@
 import { GET_FIELDS,GET_FIELDS_BY_ID } from './DetailField-action';
+import { GET_FIELDS, GET_SEARCH_FIELDS } from './DetailField-action';
 
 
 const initialState = {
     fields: [],
-    detailFields:[]
+    detailFields:[],
+    fieldsSearch:[]
 };
 
 export default function getFieldsR (state = initialState,  action){
-    console.log('entro al reducer',state.fields)
+
     switch (action.type) { 
         case GET_FIELDS:
             return {
@@ -18,8 +20,13 @@ export default function getFieldsR (state = initialState,  action){
             return {
                 ...state,
                 detailFields: action.payload
-            }  
-            default:
-                return state;
+            } 
+        case GET_SEARCH_FIELDS:
+            return {
+                ...state,
+                fieldsSearch: action.payload
+            }      
+        default:
+            return state;
     }
 }

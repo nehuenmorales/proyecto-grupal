@@ -23,6 +23,11 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
+    status:{
+      type: DataTypes.ENUM("PLAYING","FINISHED", "COMPLETE" , "INCOMPLETE" ),
+      defaultValue: "INCOMPLETE",
+      allowNull:false,
+    }
   },
   {
     timestamps: false,

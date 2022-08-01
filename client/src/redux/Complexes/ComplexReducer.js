@@ -1,7 +1,8 @@
-import{GET_COMPLEX} from "./ComplexAction"
+import{GET_COMPLEX, GET_SEARCH_COMPLEX,ORDER_COMPLEX} from "./ComplexAction"
 
 const initialState = {
-    complex: []
+    complex: [],
+    complexSearch:[]
 }
 
 export default function complexReducer (state = initialState, action){
@@ -10,7 +11,72 @@ export default function complexReducer (state = initialState, action){
             return {
                 ...state,
                 complex: action.payload,
+                complexSearch:[]
             }
+        case GET_SEARCH_COMPLEX:
+            console.log("reducer", action.payload)
+            return{
+                ...state,
+                complexSearch: action.payload,
+            }
+        case ORDER_COMPLEX:
+            let ordenado=[]
+            if (state.complexSearch.length) {
+                ordenado=state.complexSearch.slice()
+                if(action.payload==="mayorAmenor"){
+                    ordenado=ordenado.sort(function (a, b) {
+                        if (a.rating < b.rating) {
+                          return 1;
+                        }
+                        if (a.rating > b.rating) {
+                          return  -1;
+                        }
+                
+                        return 0;
+                })}else{
+                    ordenado=ordenado.sort(function (a, b) {
+                        if (a.rating < b.rating) {
+                          return -1;
+                        }
+                        if (a.rating > b.rating) {
+                          return  1;
+                        }
+                
+                        return 0;
+                })}
+                return{
+                    ...state,
+                    complexSearch:ordenado
+                }
+            }else{
+                ordenado=state.complex.slice()
+                if(action.payload==="mayorAmenor"){
+                    ordenado=ordenado.sort(function (a, b) {
+                        if (a.rating < b.rating) {
+                          return 1;
+                        }
+                        if (a.rating > b.rating) {
+                          return  -1;
+                        }
+                
+                        return 0;
+                })}else{
+                    ordenado=ordenado.sort(function (a, b) {
+                        if (a.rating < b.rating) {
+                          return -1;
+                        }
+                        if (a.rating > b.rating) {
+                          return  1;
+                        }
+                
+                        return 0;
+                })}
+                return{
+                    ...state,
+                    complex:ordenado
+                }
+            }
+        
         default:
             return state;
     }

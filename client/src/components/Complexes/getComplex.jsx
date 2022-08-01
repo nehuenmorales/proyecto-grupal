@@ -5,20 +5,29 @@ import CardComplex from './cardComplex';
 import { useEffect } from 'react';
 import VerticalNavbar from '../VerticalNavbar/VerticalNavbar';
 import Tabs from '../Tabs/Tabs';
+import SearchBar from '../SearchBar/SearchBar.jsx'
 
 const GetComplex = ({match}) => {
     const dispatch = useDispatch()
+    const sport = match.params.sport;
     const complex = useSelector(state => state.complexReducer.complex)
+    const searchComplex = useSelector(state => state.complexReducer.complexSearch)
 
     useEffect(() => {
         dispatch(getComplex());
     }, [dispatch]);
-    console.log(complex)
+    console.log(searchComplex)
   return (
     <div>
         <VerticalNavbar/>
+        <SearchBar filtro="complejos" sport={sport} />
+
         <Tabs match={match} />
-                {complex?.map((x) => {
+
+
+                {
+                searchComplex.length?
+                searchComplex.map((x) => {
                     return (
                         <CardComplex
                             key={x.id}
@@ -26,10 +35,24 @@ const GetComplex = ({match}) => {
                             image={x.image}
                             description={x.description}
                             rating={x.rating}
-                            adress={x.adress}
+                            adress={x.city}
                         />
                     );
-                })}
+                })
+                :
+                complex?.map((x) => {
+                    return (
+                        <CardComplex
+                            key={x.id}
+                            name={x.name}
+                            image={x.image}
+                            description={x.description}
+                            rating={x.rating}
+                            adress={x.city}
+                        />
+                    );
+                })
+                }
                 
     </div>
    

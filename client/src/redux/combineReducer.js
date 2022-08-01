@@ -13,6 +13,9 @@ import complexReducerOwner from './OwnerComplex/complexReducer';
 import complexDetailReducer from './OwnerComplex/ComplexDetailOwner/ComplexDetailReducer';
 import modifyComplexReducer from './OwnerComplex/ModifyComplex/modifyComplexReducer'
 import paymentsReducer from './Payments/paymentsReducer';
+import getTournamentReducer from './Tournament/tournamentReducer';
+import teamsReducer from './Teams/teamsReducer'
+
 
 export const reducers = combineReducers({
     modifyComplexReducer: modifyComplexReducer,
@@ -29,6 +32,10 @@ export const reducers = combineReducers({
     complexReducer: complexReducer,
     suppliesReducer:suppliesReducer,
     paymentsReducer: paymentsReducer,
+    getTournamentReducer: getTournamentReducer,
+    teamsReducer:teamsReducer,
+
+    
 })
 
 export default reducers;

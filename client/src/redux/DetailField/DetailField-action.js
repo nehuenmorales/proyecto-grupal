@@ -2,6 +2,8 @@ import axios from "axios";
 
 export const GET_FIELDS = 'GET_FIELDS';
 export const GET_FIELDS_BY_ID = 'GET_FIELDS_BY_ID';
+export const GET_SEARCH_FIELDS = 'GET_SEARCH_FIELDS';
+
 
 export function getFieldById(id) {
   
@@ -24,9 +26,26 @@ export function getAllFields(sport) {
     return dispatch =>{
       axios.get(`https://falta-uno-1.herokuapp.com/fields/${sport}`)
         .then(res => {
-          console.log(res.data,'actiooooon')
           dispatch({
             type: GET_FIELDS,
+            payload: res.data
+          })
+          console.log('entro a la action',res.data)
+        })
+        .catch (e=>
+          console.log(e)
+        ) 
+    }
+  }
+
+  export function getSearchFields(input, sport) {
+  
+    return dispatch =>{
+      axios.get(`/fields/${sport}/getSearchField?name=${input}`)
+        .then(res => {
+          console.log(res.data,'actiooooon')
+          dispatch({
+            type: GET_SEARCH_FIELDS,
             payload: res.data
           })
           console.log('entro a la action',res.data)

@@ -3,7 +3,7 @@ import style from './CardCarousel.module.css';
 import locationIcon from "../../assets/icons/location.svg"
 import { Link } from 'react-router-dom';
 const CardCarousel = ({ item }) => {
-  console.log(item)
+  
 
 
   return (
