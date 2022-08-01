@@ -7,13 +7,13 @@ async function createTeam(req, res, next) {
   const { name, image, sport, playerEmail, amountPlayers } = req.body;
   try {
     const newTeam = await conn.query(
-      `(INSERT INTO teams(:name,  :image, :sport, :"amountPlayers")
-       VALUES ('hola','hola', 'hola', 4);)`,
+      `(INSERT INTO teams(name,  image, sport, "amountPlayers")
+       VALUES (:name,:image, :sport, :amountplayers);)`,
       {
         replacements: { name:name,
          image:image,
         sport:sport,
-      amountPlayers:amountPlayers},
+      amountplayers:amountPlayers},
         type: QueryTypes.SELECT,
       }
     );
