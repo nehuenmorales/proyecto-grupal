@@ -80,7 +80,7 @@ const pagarProducto = async (req, res, next) => {
 
         ],
         back_urls: {
-            "success": 'http://localhost:3000/feedback/${gameId}',
+            "success": 'http://localhost:3000',
             "failure": 'http://localhost:3000/feedback/${}',
             "pending": 'http://localhost:3000/feedback/${}',
         },
