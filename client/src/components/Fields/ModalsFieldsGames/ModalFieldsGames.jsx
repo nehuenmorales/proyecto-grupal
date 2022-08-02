@@ -197,7 +197,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
     
     return (
         <div className={s.contenedor}>
-            <Modal show={showModal} onHide={handleClose} size="lg" aria-labelledby="example-modal-sizes-title-lg">
+            <Modal show={showModal} size="lg" aria-labelledby="example-modal-sizes-title-lg">
                 <Modal.Header className={s.contenedorTitle}>
                     <Modal.Title>
                             <h2 className={s.titulo}>Esquema de turnos</h2>
