@@ -7,7 +7,10 @@ const Success = (props) => {
     
     const dispatch = useDispatch()
     const {user} = useAuth0();
-
+    const valores = window.location.search
+    console.log(valores)
+    const urlParams = new URLSearchParams(valores);
+    
     useEffect(() => {
         // dispatch(putGame(gameid, { email: user.email }));
         // dispatch(updateGame(id, {status:"booked"}))

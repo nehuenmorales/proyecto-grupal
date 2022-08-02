@@ -80,9 +80,9 @@ const pagarProducto = async (req, res, next) => {
 
         ],
         back_urls: {
-            "success": 'http://localhost:3000/success',
-            "failure": 'http://localhost:3000/feedback/${}',
-            "pending": 'http://localhost:3000/feedback/${}',
+            "success": `https://falta-uno.vercel.app/success/${gameId}`,
+            "failure": `https://falta-uno.vercel.app/success/${gameId}`,
+            "pending": `https://falta-uno.vercel.app/success/${gameId}`,
         },
         auto_return: "approved",
     };
