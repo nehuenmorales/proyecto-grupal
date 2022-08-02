@@ -19,11 +19,11 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
     const history = useHistory()
 
     const modificar = async () => {
+        setIndice(0)
         console.log('entro handle close')
         const res = await axios.delete(`https://falta-uno-1.herokuapp.com/owner/deleteField/${field.id}`)
         console.log(res.data)
-         setIndice(0)
-         setShowModal(false)
+
     };
 
     const cancelTurn = (e) => {
