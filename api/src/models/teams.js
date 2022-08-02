@@ -8,12 +8,12 @@ module.exports = (sequelize) => {
   sequelize.define(
     "teams",
     {
-      id:{
-        type:DataTypes.UUID,
-        allowNull: false,
-        defaultValue: UUIDV4,
-        primaryKey: true
-      },
+      // id:{
+      //   type:DataTypes.UUID,
+      //   allowNull: false,
+      //   defaultValue: UUIDV4,
+      //   primaryKey: true
+      // },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
