@@ -5,20 +5,28 @@ async function createComplex(req, res, next) {
     name,
     sports,
     description,
-    adress,
+    address,
     image, // aca configurar magui y lara
     ownerId,
     city,
+    state,
+    lat,
+    lng,
+    country
   } = req.body;
   try {
     const newField = await Complex.create({
       name,
       sports,
       description,
-      adress,
-      image,
+      address,
+      image, // aca configurar magui y lara
       ownerId,
-      city
+      city,
+      state,
+      lat,
+      lng,
+      country
     });
 
     //FALTA LA RUTA DE CREACION DEL USUARIO/COMPLEJO para linkear a un complejo
