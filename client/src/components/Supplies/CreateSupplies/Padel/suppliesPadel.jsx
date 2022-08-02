@@ -38,7 +38,7 @@ export default function SuppliesPadel() {
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
-        axios.get('https://falta-uno-1.herokuapp.com/owner/getNameComplex')
+        axios.get('/owner/getNameComplex')
         .then((res) => {
           console.log(res.data, 'soy res.data')
             setComplexName(res.data)

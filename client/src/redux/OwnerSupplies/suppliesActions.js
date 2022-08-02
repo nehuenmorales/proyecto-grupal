@@ -7,7 +7,7 @@ export const GET_SUPPLIES="GET_SUPPLIES";
 export const createSupplies =(body)=>{
     console.log("llega a las actions",body)
     return async function (dispatch){
-        return axios.post("https://falta-uno-1.herokuapp.com/owner/createSupplies",body)
+        return axios.post("/owner/createSupplies",body)
         .then((res)=> {
             return dispatch({type:CREATE_SUPPLIES,payload:res})})
     }   

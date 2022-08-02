@@ -7,7 +7,7 @@ export const ORDER_COMPLEX = "ORDER_COMPLEX"
  
  export function getComplex() {
     return dispatch =>{
-      axios.get(`https://falta-uno-1.herokuapp.com/complex/all`)
+      axios.get(`/complex/all`)
         .then(res => {
           dispatch({
             type: GET_COMPLEX,
@@ -21,7 +21,7 @@ export const ORDER_COMPLEX = "ORDER_COMPLEX"
   }
   export function getSearchComplex(input,sport) {
     return dispatch =>{
-      axios.get(`https://falta-uno-1.herokuapp.com/complex/${sport}/searchComplex?name=${input}`)
+      axios.get(`/complex/${sport}/searchComplex?name=${input}`)
         .then(res => {
           console.log("hola soy la action", res.data)
           dispatch({

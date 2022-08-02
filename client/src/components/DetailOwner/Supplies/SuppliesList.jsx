@@ -11,7 +11,7 @@ export default function SuppliesList() {
     const [supplies, setSupplies] = useState([])
     let owner = useSelector((state) => state.getOwnerReducer.owner)
     useEffect(() => {
-        axios.get(`https://falta-uno-1.herokuapp.com/owner/getSuppliesByOwner/${owner.id}`)
+        axios.get(`/owner/getSuppliesByOwner/${owner.id}`)
             .then(res => setSupplies(res.data))
     }, [])
     return (

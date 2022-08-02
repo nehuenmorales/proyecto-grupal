@@ -7,7 +7,7 @@ export function createTeam(input) {
   return (dispatch) => {
     console.log("soy body en el action", input);
     axios
-      .post(`https://falta-uno-1.herokuapp.com/team/createTeam`, input)
+      .post(`/team/createTeam`, input)
       .then((res) => {
         dispatch({
           type: CREATE_TEAM,
@@ -23,7 +23,7 @@ export function getTeamsUser(email) {
   console.log("hola entro a la action")
 
   return (dispatch) =>{
-    axios.get(`https://falta-uno-1.herokuapp.com/team/getTeamUser/${email}`)
+    axios.get(`/team/getTeamUser/${email}`)
     .then(res=> {
       
       console.log("hola entro al then")

@@ -11,7 +11,7 @@ export default function ComplexList() {
     let owner = useSelector((state) => state.getOwnerReducer.owner)
 
     useEffect(() => {
-        axios.get(`https://falta-uno-1.herokuapp.com/owner/getComplexByOwner/${owner.id}`)
+        axios.get(`/owner/getComplexByOwner/${owner.id}`)
             .then(res => {
                 setComplex(res.data)})
     }, [])
