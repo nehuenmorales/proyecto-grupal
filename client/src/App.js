@@ -80,7 +80,7 @@ function App() {
       )} */}
       {/* leo rompiste todo con esta ruta que esta abajito, AREGLALO */}
       <Route exact path="/sport/:sport" component={AllGames} />
-      <Route path="/success/:id" component={Success} />
+      <Route exact path="/success/:id" component={Success} />
 
       <Route exact path="/fields/:sport" component={DetailFields} />
       <Route exact path="/sport/:sport/players" component={GetPlayers} />

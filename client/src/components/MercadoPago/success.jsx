@@ -3,19 +3,19 @@ import { useDispatch } from 'react-redux'
 import { useAuth0 } from '@auth0/auth0-react';
 
 
-const Success = (props) => {
+const Success = () => {
     
-    const dispatch = useDispatch()
-    const {user} = useAuth0();
-    const valores = window.location.search
-    console.log(valores)
-    const urlParams = new URLSearchParams(valores);
+    // const dispatch = useDispatch()
+    // // const {user} = useAuth0();
+    // // const valores = window.location.search
+    // // console.log(valores)
+    // // const urlParams = new URLSearchParams(valores);
     
-    useEffect(() => {
-        // dispatch(putGame(gameid, { email: user.email }));
-        // dispatch(updateGame(id, {status:"booked"}))
-        console.log(props,"props")
-    }, [dispatch]);
+    // useEffect(() => {
+    //     // dispatch(putGame(gameid, { email: user.email }));
+    //     // dispatch(updateGame(id, {status:"booked"}))
+    //     console.log("entro")
+    // }, [dispatch]);
 
 
   return (
