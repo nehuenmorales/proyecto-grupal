@@ -127,7 +127,7 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
     return (
 
         <div>
-            <Modal show={showModal} onHide={handleClose} size="lg" aria-labelledby="example-modal-sizes-title-lg">
+            <Modal show={showModal} onHide={handleCloseData} size="lg" aria-labelledby="example-modal-sizes-title-lg">
                 <Modal.Header>
                     <Modal.Title>
                         <h2>Personaliza tu reserva</h2>
