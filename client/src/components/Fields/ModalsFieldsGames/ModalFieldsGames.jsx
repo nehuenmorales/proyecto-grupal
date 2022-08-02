@@ -18,7 +18,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
 
     const history = useHistory()
 
-    const handleClose = async () => {
+    const modificar = async () => {
         console.log('entro handle close')
         const res = await axios.delete(`https://falta-uno-1.herokuapp.com/owner/deleteField/${field.id}`)
         console.log(res.data)
@@ -214,7 +214,10 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
                 </div>
                 </Modal.Body>
                 <Modal.Footer className={s.footer} style={{'backgroundColor':'rgb(133, 133, 133);'}}>
-                    <button onClick={handleClose} className={s.modificar}>
+                    {/* <button onClick={handleClose} className={s.modificar}>
+                        Modificar Cancha
+                    </button> */}
+                    <button onClick={modificar} className={s.modificar}>
                         Modificar Cancha
                     </button>
                     <button variant="primary" onClick={handleCreate} className={s.crear} >
