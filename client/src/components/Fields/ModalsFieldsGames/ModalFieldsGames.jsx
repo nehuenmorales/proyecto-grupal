@@ -18,8 +18,12 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
 
     const history = useHistory()
 
-    const handleClose = () => {
+    const handleClose = (ev) => {
+        ev.preventDefault()
         axios.delete(`https://falta-uno-1.herokuapp.com/owner/deleteField/${field.id}`)
+        .then((res) => {
+            console.log(res.data)
+        })
         setShowModal(false)
         setIndice(0)
     };
@@ -212,7 +216,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
                 </div>
                 </Modal.Body>
                 <Modal.Footer className={s.footer} style={{'backgroundColor':'rgb(133, 133, 133);'}}>
-                    <button variant="secondary" onClick={handleClose} className={s.modificar}>
+                    <button variant="secondary" onClick={ev => handleClose(ev)} className={s.modificar}>
                         Modificar Cancha
                     </button>
                     <button variant="primary" onClick={handleCreate} className={s.crear} >
