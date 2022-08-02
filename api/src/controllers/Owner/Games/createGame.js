@@ -2,12 +2,12 @@ const { Games,Field } = require("../../../db.js");
 
 async function createGame (req, res){
     const {
-        date, sport, type, status, result, link, start, end, fieldId
+        date, sport, type, status, result, link, start, end, fieldId, privacy
       } = req.body;
       console.log(req.body, "body back")
       try {
         const newGame = await Games.create({
-            date, sport, type, status, result, link, start, end, fieldId  
+            date, sport, type, status, result, link, start, end, fieldId, privacy 
         });
         
       //   await newGame.update(
