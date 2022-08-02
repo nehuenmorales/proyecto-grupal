@@ -24,6 +24,8 @@ const {deleteField} = require("../controllers/Owner/Field/deleteField")
 
 const router = Router();
 
+router.delete("/deleteField/:id", deleteField)
+
 router.get("/getOwner/:id", getOwner);
 
 router.get("/getNameComplex", getNameComplex)
@@ -53,8 +55,6 @@ router.post("/createGame", createGame);
 router.put("/modifyGame/:id", modifyGame);
 
 router.delete("/deleteSupplies/:id", deleteSupplies);
-
-router.delete("/deleteFiels/:id", deleteField)
 
 router.get("/getBookedGames", getBookedGames);
 
