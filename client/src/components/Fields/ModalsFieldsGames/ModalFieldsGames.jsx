@@ -6,17 +6,23 @@ import { createGame } from "../../../redux/Games/gamesAction.js";
 import { useHistory } from "react-router-dom";
 import s from './modals.module.css'
 import swal from 'sweetalert';
+import axios from 'axios'
 
 export default function ModalsFieldsGames({ showModal, setShowModal, setNewField, newField, sport, convertirTime }) {
     let dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
     const dispatch = useDispatch();
     const field = useSelector((state) => state.fieldsReducer.field)
-    const handleClose = () => setShowModal(false);
     const [indice, setIndice] = useState(0)
     const [duracion, setDuracion] = useState(0)
     const [totalGame, setTotalGame] = useState([])
 
     const history = useHistory()
+
+    const handleClose = () => {
+        axios.delete(`https://falta-uno-1.herokuapp.com/owner/deleteField/${field.id}`)
+        setShowModal(false)
+        setIndice(0)
+    };
 
     const cancelTurn = (e) => {
         if (totalGame.includes(parseFloat(e.target.value))) {
