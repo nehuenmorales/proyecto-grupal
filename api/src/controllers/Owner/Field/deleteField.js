@@ -4,7 +4,7 @@ async function deleteField (req, res){
     const {id} = req.params;
     console.log(id, "entro a la ruta")
     try {
-        const destroy= await Field.destroy({
+        const destroy = await Field.destroy({
             where: {
                 id: id
             }
