@@ -109,8 +109,6 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
 
     const handleSubmitMP = (e) => {
         e.preventDefault();
-        validateText(userData.nombre)
-        dispatch(postPayments(id, userData));
         setErrorsValue(validateValue(body))
         const error = validateValue(body)
         if (Object.values(error).length === 0) {
@@ -121,6 +119,8 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
             total: leitoTheBest,
             
         })
+        validateText(userData.nombre)
+        dispatch(postPayments(id, userData));
     }
 
     return (
