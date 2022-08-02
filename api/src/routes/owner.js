@@ -18,6 +18,7 @@ const {getSuppliesByOwner} = require("../controllers/Owner/Supplies/getSuppliesB
 const {getFieldByOwner} = require("../controllers/Owner/Field/getFieldByOwner.js");
 const {getComplexDetail} = require("../controllers/Owner/Complex/getComplexDetail");
 const { modifyComplex } = require("../controllers/Owner/Complex/modifyComplex.js");
+const {deleteField} = require("../controllers/Owner/Field/deleteField")
 
 
 
@@ -52,6 +53,8 @@ router.post("/createGame", createGame);
 router.put("/modifyGame/:id", modifyGame);
 
 router.delete("/deleteSupplies/:id", deleteSupplies);
+
+router.delete("/deleteFiels/:id", deleteField)
 
 router.get("/getBookedGames", getBookedGames);
 
