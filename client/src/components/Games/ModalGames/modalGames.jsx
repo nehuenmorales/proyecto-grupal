@@ -65,20 +65,20 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
         return errors;
     }
 
-    const HandleSubmit = (e) => {
-        e.preventDefault()
-        setErrorsValue(validateValue(body))
-        const error = validateValue(body)
-        if (Object.values(error).length === 0) {
-            dispatch(updateGame(id, body))
-        }
-        setUserData({
-            ...userData,
-            total: leitoTheBest,
+    // const HandleSubmit = (e) => {
+    //     e.preventDefault()
+    //     setErrorsValue(validateValue(body))
+    //     const error = validateValue(body)
+    //     if (Object.values(error).length === 0) {
+    //         dispatch(updateGame(id, body))
+    //     }
+    //     setUserData({
+    //         ...userData,
+    //         total: leitoTheBest,
             
-        })
-        setPagar(true)
-    }
+    //     })
+    //     setPagar(true)
+    // }
 
     // Modal para mercado pago
     const [pagar, setPagar] = useState(false);
@@ -110,8 +110,18 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
     const handleSubmitMP = (e) => {
         e.preventDefault();
         validateText(userData.nombre)
-        console.log('estoy enviando... :) ')
         dispatch(postPayments(id, userData));
+        setErrorsValue(validateValue(body))
+        const error = validateValue(body)
+        if (Object.values(error).length === 0) {
+            dispatch(updateGame(id, body))
+        }
+        setUserData({
+            ...userData,
+            total: leitoTheBest,
+            
+        })
+        setPagar(true)
     }
 
     return (
