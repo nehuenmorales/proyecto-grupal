@@ -121,7 +121,6 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
             total: leitoTheBest,
             
         })
-        setPagar(true)
     }
 
     return (
@@ -207,7 +206,7 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
                     <button className="btn btn-secundary" onClick={handleClose}>
                         Volver
                     </button>
-                    <button onClick={(e) => HandleSubmit(e)} className="btn btn-primary">
+                    <button onClick={() => setPagar(true)} className="btn btn-primary">
                         Siguiente
                     </button>
                 </Modal.Footer>
