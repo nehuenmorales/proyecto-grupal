@@ -12,7 +12,8 @@ async function createComplex(req, res, next) {
     state,
     lat,
     lng,
-    country
+    country,
+    id
   } = req.body;
   try {
     const newField = await Complex.create({
@@ -26,7 +27,8 @@ async function createComplex(req, res, next) {
       state,
       lat,
       lng,
-      country
+      country,
+      id
     });
 
     //FALTA LA RUTA DE CREACION DEL USUARIO/COMPLEJO para linkear a un complejo
