@@ -23,6 +23,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
         console.log('entro handle close')
         const res = await axios.delete(`https://falta-uno-1.herokuapp.com/owner/deleteField/${field.id}`)
         console.log(res.data)
+        setShowModal(true)
 
     };
 
@@ -200,7 +201,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
             <Modal show={showModal} size="lg" aria-labelledby="example-modal-sizes-title-lg">
                 <Modal.Header className={s.contenedorTitle}>
                     <Modal.Title>
-                            <h2 className={s.titulo}>Esquema de turnos</h2>
+                            <h2 className={s.titulo}>Esquema de turnos holisss</h2>
                             <p className={s.subTitulo}>Selecciona en rojo los turnos que NO se deben crear</p>
                     </Modal.Title>
                 </Modal.Header>
