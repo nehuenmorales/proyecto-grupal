@@ -11,7 +11,7 @@ async function createField(req, res, next) {
     capacity,
     start,
     end,
-    image, // aca configurar magui y lara
+    image, 
     complexId,
   } = req.body;
   try {
