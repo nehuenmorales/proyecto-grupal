@@ -214,7 +214,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
                 </div>
                 </Modal.Body>
                 <Modal.Footer className={s.footer} style={{'backgroundColor':'rgb(133, 133, 133);'}}>
-                    <button variant="secondary" onClick={handleClose} className={s.modificar}>
+                    <button onClick={handleClose} className={s.modificar}>
                         Modificar Cancha
                     </button>
                     <button variant="primary" onClick={handleCreate} className={s.crear} >
