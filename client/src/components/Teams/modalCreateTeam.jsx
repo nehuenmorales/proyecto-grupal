@@ -92,8 +92,9 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
         return;
       } else {
         
-        setInput({ ...input,sport:"futbol" });
+        setInput({ ...input,sport:"futbol",amountPlayers:"" });
         setErrors({ ...errors, [name]: "" });
+       
 
         setFlagSport(true);
         return;
@@ -168,7 +169,7 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
   //---------------------- INVITACIONES A PLAYERS -------------------------
   const [players, setPlayers] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:3001/player/getPlayers").then((resp) => {
+    axios.get("https://falta-uno-1.herokuapp.com/player/getPlayers").then((resp) => {
       setPlayers(resp.data);
       console.log("respuesta de axios", resp.data);
     });
