@@ -217,9 +217,9 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
                     {/* <button onClick={handleClose} className={s.modificar}>
                         Modificar Cancha
                     </button> */}
-                    <button onClick={modificar} className={s.modificar}>
+                    {/* <button onClick={modificar} className={s.modificar}>
                         Modificar Cancha
-                    </button>
+                    </button> */}
                     <button variant="primary" onClick={handleCreate} className={s.crear} >
                         {indice < 6 ? 'Aceptar' : 'Finalizar'}
                     </button>
