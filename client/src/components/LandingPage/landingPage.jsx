@@ -68,6 +68,7 @@ const LandingPage = () => {
             src={imageLanding}
             alt="Jugadores de diferentes deportes."
           />
+          <h1>hola!!!</h1>
         </div>
       </div>
 
