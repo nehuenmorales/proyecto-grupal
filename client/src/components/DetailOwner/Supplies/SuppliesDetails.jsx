@@ -16,12 +16,12 @@ export default function SupplieDetail({ id }) {
     return (
         <div>
             <div>
-                <Link to='/' style={{ 'padding': '10px', 'width': '25%', 'margin': '20px 10px 10px 10px' }}>
+                <Link to='/suppliesOwner' style={{ 'padding': '10px', 'width': '25%', 'margin': '20px 10px 10px 10px' }}>
                     <Button style={{ 'marginTop': '15px' }}>Volver</Button>
                 </Link>
             </div>
             <div>
-                <h1>Detail field</h1>
+                <h1>Detail supplie</h1>
             </div>
         </div>
     )
