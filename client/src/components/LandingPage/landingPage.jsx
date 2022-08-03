@@ -60,6 +60,7 @@ const LandingPage = () => {
       </nav>
       <div className="container">
         <div className="row mt-3">
+          <h1>Hola Mundo!</h1>
           <img
             className="img-fluid"
             style={{
