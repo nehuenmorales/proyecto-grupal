@@ -24,7 +24,7 @@ export default function DetailFields({match}) {
     return (
         <div>
         <VerticalNavbar/>
-        <SearchBar sport={sport} filtro="canchas" />
+        <SearchBar state={searchField} sport={sport} filtro="canchas" />
         <Tabs match={match}/>
             {
                 searchField.length?

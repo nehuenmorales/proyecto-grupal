@@ -20,7 +20,7 @@ const GetComplex = ({match}) => {
   return (
     <div>
         <VerticalNavbar/>
-        <SearchBar filtro="complejos" sport={sport} />
+        <SearchBar state={searchComplex} filtro="complejos" sport={sport} />
 
         <Tabs match={match} />
 

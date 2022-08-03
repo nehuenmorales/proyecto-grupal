@@ -5,7 +5,6 @@ export const GET_TEAM_USER = "GET_TEAM_USER"
 
 export function createTeam(input) {
   return (dispatch) => {
-    console.log("soy body en el action", input);
     axios
       .post(`/team/createTeam`, input)
       .then((res) => {

@@ -21,7 +21,7 @@ const GetPlayers = ({match}) => {
   return (
     <div>
         <VerticalNavbar/>
-        <SearchBar filtro="jugadores" sport={sport} />
+        <SearchBar state={playerSearch} filtro="jugadores" sport={sport} />
         <Tabs match={match}/>
                 {
                 playerSearch.length?

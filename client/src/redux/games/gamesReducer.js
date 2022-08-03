@@ -27,7 +27,7 @@ export default function games(state = initialState, action){
         case GET_SEARCH_GAME_SPORT:
             return{
                 ...state,
-                gamesSport:action.payload,
+                gamesSportSearch:action.payload,
             }
         case GAMES_ORDER:
             let ordenado=[]

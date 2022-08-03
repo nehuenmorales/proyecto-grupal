@@ -1,4 +1,4 @@
-const { Player } = require("../../db.js");
+const { Player,Teams } = require("../../db.js");
 const { QueryTypes } = require("sequelize");
 const { conn } = require("../../db");
 const { Op } = require("sequelize");
@@ -15,6 +15,8 @@ async function getTeamsUser(req, res, next) {
       },
     });
 
+    console.log("soy el player en el contrller",player.id)
+
     const allTeams = await conn.query(
       `(SELECT t.*
         FROM teams t
@@ -26,6 +28,8 @@ async function getTeamsUser(req, res, next) {
         type: QueryTypes.SELECT,
       }
     );
+   
+    
 
     res.send(allTeams);
   } catch (err) {

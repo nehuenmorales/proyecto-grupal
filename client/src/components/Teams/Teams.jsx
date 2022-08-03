@@ -24,6 +24,11 @@ export function Teams({ email }) {
   };
   return (
     <>
+      <div className={s.buttoncontainer}>
+        <button style={{color: 'white', border: 'none'}} className={s.button} onClick={(e) => modalOpen(e)}>
+          Crea un equipo
+        </button>
+      </div>
       <div>
         <h2 className={s.titleTeams} >Mis equipos</h2>
       </div>
@@ -31,11 +36,6 @@ export function Teams({ email }) {
         {userTeams.length
           ? userTeams.map((e) => <TeamsCard props={e} />)
           : null}
-      </div>
-      <div className={s.buttoncontainer}>
-        <button style={{color: 'white', border: 'none'}} className={s.button} onClick={(e) => modalOpen(e)}>
-          Crea un equipo
-        </button>
       </div>
       <ModalCreateTeam
         email={email}
