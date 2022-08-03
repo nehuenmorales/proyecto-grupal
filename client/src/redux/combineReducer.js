@@ -14,8 +14,11 @@ import paymentsReducer from './Payments/paymentsReducer';
 import getTournamentReducer from './Tournament/tournamentReducer';
 import teamsReducer from './Teams/teamsReducer'
 import fieldDetailReducer from "./OwnerFields/FieldDetailOwner/FieldDetailReducer"
+import supplieDetailReducer from './OwnerSupplies/SuppliesDetailOwner/SuppliesDetailReducer'
+
 
 export const reducers = combineReducers({
+    supplieDetailReducer: supplieDetailReducer,
     modifyComplexReducer: modifyComplexReducer,
     complexDetailReducer: complexDetailReducer,
     fieldDetailReducer: fieldDetailReducer,
