@@ -8,6 +8,7 @@ const VerticalNavbar = () => {
   const { user, isLoading, logout} = useAuth0();
 
   const history = useHistory();
+  console.log(user)
 
   return (
 
