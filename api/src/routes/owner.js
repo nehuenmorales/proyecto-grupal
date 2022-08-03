@@ -10,7 +10,6 @@ const { deleteSupplies } = require("../controllers/Owner/Supplies/deleteSupplies
 const { getBookedGames } = require("../controllers/Owner/Games/getBookedGames");
 const { createOwner } = require("../controllers/Owner/owner/createOwner");
 const { getOwner } = require("../controllers/Owner/owner/getOwner.js");
-const { createComplex } = require('../controllers/Owner/Complex/createComplex');
 const { getCities } = require("../controllers/apiCities/getCities.js");
 const { getNameComplex} = require("../controllers/Complex/getNameComplex.js");
 const {getComplexByOwner} = require("../controllers/Owner/Complex/getComplexByOwner.js")
@@ -18,10 +17,13 @@ const {getSuppliesByOwner} = require("../controllers/Owner/Supplies/getSuppliesB
 const {getFieldByOwner} = require("../controllers/Owner/Field/getFieldByOwner.js");
 const {getComplexDetail} = require("../controllers/Owner/Complex/getComplexDetail");
 const { modifyComplex } = require("../controllers/Owner/Complex/modifyComplex.js");
-
+const {deleteField} = require("../controllers/Owner/Field/deleteField")
+const { createComplex } = require('../controllers/Owner/Complex/createComplex.js');
 
 
 const router = Router();
+
+router.delete("/deleteField/:id", deleteField)
 
 router.get("/getOwner/:id", getOwner);
 

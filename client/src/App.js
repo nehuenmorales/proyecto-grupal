@@ -1,6 +1,5 @@
 import "./scss/custom.css";
 import React from "react";
-import Landing from "./components/LandingPage/landingPage";
 import { useAuth0} from "@auth0/auth0-react";
 import Home from "./pages/Home/Home";
 import { Spinner } from "react-bootstrap";
@@ -31,6 +30,8 @@ import GameDetail from "./components/Games/GameDetail/gameDetail.jsx"
 import ViewFields from "./components/Fields/DetailFields/DetailFields";
 import GetPlayers from "./components/Players/getPlayers";
 import PlayerProfile from "./components/Profile/Profile";
+import LandingPage from "./components/LandingPage/landingPage.jsx"
+import Success from "./components/MercadoPago/success.jsx"
 
 import { TeamsContainer } from "./components/Teams/TeamContainer";
 
@@ -62,7 +63,7 @@ function App() {
       :
       <Route exact path="/" component={Home} />
       : 
-      <Route exact path="/" component={Landing} />}
+      <Route exact path="/" component={LandingPage} />}
        {/* leo rompiste todo con esta ruta que esta abajito, AREGLALO */}
       {/* <Route exact path="/sport/:sport" component={AllGames} />  */}
       <Route exact path="/sport/:sport/gamesIncomplete" component={CarouselGamesInc} />
@@ -79,27 +80,13 @@ function App() {
       )} */}
       {/* leo rompiste todo con esta ruta que esta abajito, AREGLALO */}
       <Route exact path="/sport/:sport" component={AllGames} />
-      {/* <Route
-        exact
-        path="/sport/:sport/gamesIncomplete"
-        component={CarouselGamesInc}
-      />
-      <Route
-        exact
-        path="/sport/:sport/gamesIncomplete/:gameid"
-        component={DetailGamesInc}
-      /> */}
-      {/* <Route exact path="/fields" component={DetailFields} /> */}
-      {/* <Route path="/allGames" component={AllGames} /> */}
-      {/* <Route exact path="/allGames/:sport" render={({ match }) => <AllGames deporte={match.params.sport} match={match}/>} /> */}
+      <Route exact path="/success/:id" component={Success} />
+
       <Route exact path="/fields/:sport" component={DetailFields} />
       <Route exact path="/sport/:sport/players" component={GetPlayers} />
       <Route exact path="/sport/:sport/complex" component={GetComplex} />
       <Route exact path={"/owner/createSupplie"} component={CreateSupplies}/>
-      {/* <Route exact path={"/owner/createSupplie/futbol"} component={SuppliesFutbol}/>
-      <Route exact path={"/owner/createSupplie/tenis"} component={SuppliesTenis}/>
-      <Route exact path={"/owner/createSupplie/padel"} component={SuppliesPadel}/>
-      <Route exact path={"/owner/createSupplie/basquet"} component={SuppliesBasquet}/> */}
+ 
       <Route exact path={"/games/detail/:id"} component={GameDetail}/>
 
       <Route exact path={"/owner/createComplex"} component={CreateComplex}/>

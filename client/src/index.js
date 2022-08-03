@@ -17,8 +17,8 @@ root.render(
     <Provider store={store}>
       <BrowserRouter>
         <Auth0Provider
-          domain="leogonzalez.us.auth0.com"
-          clientId="X7uVDaWOv99Br5K2eNE05D3MlRNYioWR"
+           domain="leogonzalez.us.auth0.com"
+           clientId="X7uVDaWOv99Br5K2eNE05D3MlRNYioWR"
           redirectUri={window.location.origin}
           advancedOptions={{
             defaultScope: 'openid profile email'

@@ -65,20 +65,20 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
         return errors;
     }
 
-    const HandleSubmit = (e) => {
-        e.preventDefault()
-        setErrorsValue(validateValue(body))
-        const error = validateValue(body)
-        if (Object.values(error).length === 0) {
-            dispatch(updateGame(id, body))
-        }
-        setUserData({
-            ...userData,
-            total: leitoTheBest,
+    // const HandleSubmit = (e) => {
+    //     e.preventDefault()
+    //     setErrorsValue(validateValue(body))
+    //     const error = validateValue(body)
+    //     if (Object.values(error).length === 0) {
+    //         dispatch(updateGame(id, body))
+    //     }
+    //     setUserData({
+    //         ...userData,
+    //         total: leitoTheBest,
             
-        })
-        setPagar(true)
-    }
+    //     })
+    //     setPagar(true)
+    // }
 
     // Modal para mercado pago
     const [pagar, setPagar] = useState(false);
@@ -109,14 +109,24 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
 
     const handleSubmitMP = (e) => {
         e.preventDefault();
-        console.log('estoy enviando... :) ')
+        setErrorsValue(validateValue(body))
+        const error = validateValue(body)
+        if (Object.values(error).length === 0) {
+            dispatch(updateGame(id, body))
+        }
+        setUserData({
+            ...userData,
+            total: leitoTheBest,
+            
+        })
+        validateText(userData.nombre)
         dispatch(postPayments(id, userData));
     }
 
     return (
 
         <div>
-            <Modal show={showModal} onHide={handleClose} size="lg" aria-labelledby="example-modal-sizes-title-lg">
+            <Modal show={showModal} onHide={handleCloseData} size="lg" aria-labelledby="example-modal-sizes-title-lg">
                 <Modal.Header>
                     <Modal.Title>
                         <h2>Personaliza tu reserva</h2>
@@ -196,7 +206,7 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
                     <button className="btn btn-secundary" onClick={handleClose}>
                         Volver
                     </button>
-                    <button onClick={(e) => HandleSubmit(e)} className="btn btn-primary">
+                    <button onClick={() => setPagar(true)} className="btn btn-primary">
                         Siguiente
                     </button>
                 </Modal.Footer>

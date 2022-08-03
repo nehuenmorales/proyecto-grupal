@@ -2,21 +2,30 @@ import React, { useEffect, useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch, useSelector } from "react-redux";
-import { createGame } from "../../../redux/Games/gameActions";
+import { createGame } from "../../../redux/Games/gamesAction.js";
 import { useHistory } from "react-router-dom";
 import s from './modals.module.css'
 import swal from 'sweetalert';
+import axios from 'axios'
 
 export default function ModalsFieldsGames({ showModal, setShowModal, setNewField, newField, sport, convertirTime }) {
     let dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
     const dispatch = useDispatch();
     const field = useSelector((state) => state.fieldsReducer.field)
-    const handleClose = () => setShowModal(false);
     const [indice, setIndice] = useState(0)
     const [duracion, setDuracion] = useState(0)
     const [totalGame, setTotalGame] = useState([])
 
     const history = useHistory()
+
+    const modificar = async () => {
+        setIndice(0)
+        console.log('entro handle close')
+        const res = await axios.delete(`https://falta-uno-1.herokuapp.com/owner/deleteField/${field.id}`)
+        console.log(res.data)
+        setShowModal(false)
+
+    };
 
     const cancelTurn = (e) => {
         if (totalGame.includes(parseFloat(e.target.value))) {
@@ -126,37 +135,41 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
 
                     }
                     for (let i = 0; i < array.length; i++) {
-                        switch (array[i]) {
-                            case 24:
-                                array[i] = 0
-                                break;
-                            case 24.5:
-                                array[i] = 0.5
-                                break;
-                            case 25:
-                                array[i] = 1
-                                break;
-                            case 25.5:
-                                array[i] = 1.5
-                                break;
-                            case 26:
-                                array[i] = 2
-                                break;
-                            case 26.5:
-                                array[i] = 2.5
-                                break;
-                            case 27:
-                                array[i] = 3
-                                break;
-                            case 27.5:
-                                array[i] = 3.5
-                                break;
-                            case 28:
-                                array[i] = 4
-                                break;
-                            default:
-                                break;
+                        if(array[i] >= 24){
+                            array[i] = array[i] - 24
+                            console.log(array, 'array en el for')
                         }
+                        // switch (array[i]) {
+                        //     case 24:
+                        //         array[i] = 0
+                        //         break;
+                        //     case 24.5:
+                        //         array[i] = 0.5
+                        //         break;
+                        //     case 25:
+                        //         array[i] = 1
+                        //         break;
+                        //     case 25.5:
+                        //         array[i] = 1.5
+                            //     break;
+                            // case 26:
+                            //     array[i] = 2
+                            //     break;
+                            // case 26.5:
+                            //     array[i] = 2.5
+                            //     break;
+                            // case 27:
+                            //     array[i] = 3
+                            //     break;
+                            // case 27.5:
+                            //     array[i] = 3.5
+                            //     break;
+                            // case 28:
+                            //     array[i] = 4
+                            //     break;
+                            // default:
+                            //     break;
+                        // }
                     }
 
                     return array;
@@ -168,6 +181,16 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
     }
 
     const cambioHora = (num) => {
+        if(num >= 24){
+            num = num - 24
+            let numero = num.toString()
+            if(!numero.includes('.')){
+              return numero + ':00'
+            } else {
+              let resultado = numero.replace('.5', ':30')
+              return resultado
+            }
+        }
         let numero = num.toString()
         if(!numero.includes('.')){
             return numero + ':00'
@@ -189,7 +212,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
     
     return (
         <div className={s.contenedor}>
-            <Modal show={showModal} onHide={handleClose} size="lg" aria-labelledby="example-modal-sizes-title-lg">
+            <Modal show={showModal} size="lg" aria-labelledby="example-modal-sizes-title-lg">
                 <Modal.Header className={s.contenedorTitle}>
                     <Modal.Title>
                             <h2 className={s.titulo}>Esquema de turnos</h2>
@@ -206,7 +229,10 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
                 </div>
                 </Modal.Body>
                 <Modal.Footer className={s.footer} style={{'backgroundColor':'rgb(133, 133, 133);'}}>
-                    <button variant="secondary" onClick={handleClose} className={s.modificar}>
+                    {/* <button onClick={handleClose} className={s.modificar}>
+                        Modificar Cancha
+                    </button> */}
+                    <button onClick={modificar} className={s.modificar}>
                         Modificar Cancha
                     </button>
                     <button variant="primary" onClick={handleCreate} className={s.crear} >
