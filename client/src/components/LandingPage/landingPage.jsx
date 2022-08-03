@@ -59,8 +59,6 @@ const LandingPage = () => {
         </div>
       </nav>
       <div className="container">
-          <h1>hola!!!</h1>
-          <h2>Ahora si????</h2>
         <div className="row mt-3">
           <img
             className="img-fluid"
