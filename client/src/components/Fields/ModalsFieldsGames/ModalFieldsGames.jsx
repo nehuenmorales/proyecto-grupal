@@ -132,37 +132,41 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
 
                     }
                     for (let i = 0; i < array.length; i++) {
-                        switch (array[i]) {
-                            case 24:
-                                array[i] = 0
-                                break;
-                            case 24.5:
-                                array[i] = 0.5
-                                break;
-                            case 25:
-                                array[i] = 1
-                                break;
-                            case 25.5:
-                                array[i] = 1.5
-                                break;
-                            case 26:
-                                array[i] = 2
-                                break;
-                            case 26.5:
-                                array[i] = 2.5
-                                break;
-                            case 27:
-                                array[i] = 3
-                                break;
-                            case 27.5:
-                                array[i] = 3.5
-                                break;
-                            case 28:
-                                array[i] = 4
-                                break;
-                            default:
-                                break;
+                        if(array[i] >= 24){
+                            let result = array[i] - 24
+                            array.push(result)
                         }
+                        // switch (array[i]) {
+                        //     case 24:
+                        //         array[i] = 0
+                        //         break;
+                        //     case 24.5:
+                        //         array[i] = 0.5
+                        //         break;
+                        //     case 25:
+                        //         array[i] = 1
+                        //         break;
+                        //     case 25.5:
+                        //         array[i] = 1.5
+                        //         break;
+                        //     case 26:
+                        //         array[i] = 2
+                        //         break;
+                        //     case 26.5:
+                        //         array[i] = 2.5
+                        //         break;
+                        //     case 27:
+                        //         array[i] = 3
+                        //         break;
+                        //     case 27.5:
+                        //         array[i] = 3.5
+                        //         break;
+                        //     case 28:
+                        //         array[i] = 4
+                        //         break;
+                        //     default:
+                        //         break;
+                        // }
                     }
 
                     return array;
