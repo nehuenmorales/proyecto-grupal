@@ -7,7 +7,7 @@ import { getSupplieDetail } from "../../../redux/OwnerSupplies/SuppliesDetailOwn
 
 export default function SupplieDetail({ id }) {
     const dispatch = useDispatch();
-    let supplie = useSelector((state) => state.supplieDetailReducer.complexDetail)
+    let supplie = useSelector((state) => state.supplieDetailReducer.supplieDetail)
     console.log(supplie, 'soy supplie')
     useEffect(() => {
         dispatch(getSupplieDetail(id));

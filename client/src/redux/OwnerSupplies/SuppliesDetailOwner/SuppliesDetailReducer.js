@@ -1,4 +1,4 @@
-import {GET_SUPPLIE_DETAIL} from "./SupplieDetailAction"
+import {GET_SUPPLIE_DETAIL} from "./SuppliesDetailAction"
 
 const initialState = {
     supplieDetail: {}
