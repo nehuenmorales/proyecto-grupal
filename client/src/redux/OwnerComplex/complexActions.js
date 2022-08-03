@@ -3,7 +3,7 @@ import axios from "axios";
 export const CREATE_COMPLEX = "CREATE_COMPLEX";
 
 export const createComplex =(body)=>{
-    console.log("llega a las actions create complex, soy id", body)
+    console.log("llega a las actions create complex!!!!!!", body)
     return async function (dispatch){
         return axios.post("https://falta-uno-1.herokuapp.com/owner/createComplex",body)
         .then((res)=> {

@@ -185,7 +185,7 @@ export default function CreateComplex() {
         setInput(ev.target.value)
         setCityInput([])
         setClick(true)
-        setNewComplex({...newComplex, city: (ev.target.value).toLowerCase()})
+        setNewComplex({...newComplex, city: (ev.target.value)})
         let errors = validator({ ...newComplex, city: ev.target.value });
         setErrors(errors);
     }
