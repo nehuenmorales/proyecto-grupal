@@ -12,7 +12,7 @@ async function gamesIncomplete(req,res,next){
                 GROUP BY g.id
             ) count_player_by_game
             JOIN fields f ON count_player_by_game."fieldId" = f.id
-            WHERE enrolled_amount < f.capacity AND privacy='public')`)
+            WHERE enrolled_amount < f.capacity')`)
 
         res.status(200).send(player[0])
     }catch(e){
