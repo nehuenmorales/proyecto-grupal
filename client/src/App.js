@@ -36,6 +36,7 @@ import Success from "./components/MercadoPago/success.jsx"
  
 
 import { TeamsContainer } from "./components/Teams/TeamContainer";
+import SupplieDetail from "./components/DetailOwner/Supplies/SuppliesDetails";
 
 function App() {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -97,6 +98,7 @@ function App() {
       <Route exact path={"/suppliesOwner"} component={SuppliesList}/>
       <Route exact path="/owner/complexDetail/:id" render={({ match }) => {return <ComplexDetail id={match.params.id} />;}}/>
       <Route exact path="/fieldOwner/fieldDetail/:id" render={({ match }) => {return <FieldDetail id={match.params.id} />;}}/>
+      <Route exact path="/supplieOwner/supplieDetail/:id" render={({ match }) => {return <SupplieDetail id={match.params.id} />;}}/>
 
 
       <Route exact path="/profile" component={PlayerProfile} />
