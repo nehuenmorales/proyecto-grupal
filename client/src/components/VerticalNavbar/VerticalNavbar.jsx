@@ -8,10 +8,13 @@ const VerticalNavbar = () => {
   const { user, isLoading, logout} = useAuth0();
 
   const history = useHistory();
+  console.log(user)
 
   return (
 
-    isLoading ? null :
+    isLoading ? null
+    :
+    user ? 
       <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="#home">FaltaUno!</Navbar.Brand>
@@ -64,6 +67,7 @@ const VerticalNavbar = () => {
           </Button>
         </Container>
       </Navbar>
+    : null
   )
 }
 
