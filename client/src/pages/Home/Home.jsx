@@ -29,7 +29,7 @@ const Home = () => {
             <VerticalNavbar/>
             <Container className='d-flex justify-content-center aling-items-center mt-3'>
               <Row>
-                <p className="fw-normal text-white fst-italic m-2">¡¡¡Elegí un deporte, vas a poder ver a los mejores de tu zona, desafiarlos y alquilar canchas!!!!!</p>
+                <p className="fw-normal text-white fst-italic m-2">¡¡¡¡¡¡Elegí un deporte, vas a poder ver a los mejores de tu zona, desafiarlos y alquilar canchas!!!!!</p>
                 <Col>
                   <Link to="/sport/futbol" className='sport-container'>                   
                     <span className='sport-span' >Futbol</span>
