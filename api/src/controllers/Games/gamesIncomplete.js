@@ -29,7 +29,7 @@ async function detailGameIncomplete(req, res){
             JOIN games g ON pg."gameId" = g.id
             JOIN fields f ON g."fieldId" = f.id
             
-            WHERE p."id" = :id)`,
+            WHERE g."id" = :id)`,
             {
                 replacements: { id: id},
                 type: QueryTypes.SELECT
