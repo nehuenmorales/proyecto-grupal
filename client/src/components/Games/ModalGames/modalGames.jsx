@@ -119,7 +119,7 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
             total: leitoTheBest,
             
         })
-        validateText(userData.nombre)
+        // validateText(userData.nombre)
         dispatch(postPayments(id, userData));
     }
 
