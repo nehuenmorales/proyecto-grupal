@@ -28,7 +28,7 @@ export default function SuppliesList() {
                 return (
                 el.supplies?.map((e) => {
                     return (
-                        <Link to={`/supplieOwner/supplieDetail/${el.id}`} style={{textDecoration: "none"}}>
+                        <Link to={`/supplieOwner/supplieDetail/${e.id}`} style={{textDecoration: "none"}}>
                         <div key={e.id} style={{ backgroundImage: `url(${e.image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', maxHeight: '300px', width: '270px' }} className="complexcard">
 
                         <div className="content-card">
