@@ -6,57 +6,64 @@ import { useEffect } from 'react';
 import VerticalNavbar from '../VerticalNavbar/VerticalNavbar';
 import Tabs from '../Tabs/Tabs';
 import SearchBar from '../SearchBar/SearchBar.jsx'
+import { Container, Row } from 'react-bootstrap';
 
-const GetComplex = ({match}) => {
-    const dispatch = useDispatch()
-    const sport = match.params.sport;
-    const complex = useSelector(state => state.complexReducer.complex)
-    const searchComplex = useSelector(state => state.complexReducer.complexSearch)
+const GetComplex = ({ match }) => {
+	const dispatch = useDispatch()
+	const sport = match.params.sport;
+	const complex = useSelector(state => state.complexReducer.complex)
+	const searchComplex = useSelector(state => state.complexReducer.complexSearch)
 
-    useEffect(() => {
-        dispatch(getComplex());
-    }, [dispatch]);
-    console.log(searchComplex)
-  return (
-    <div>
-        <VerticalNavbar/>
-        <SearchBar filtro="complejos" sport={sport} />
+	useEffect(() => {
+		dispatch(getComplex());
+	}, [dispatch]);
 
-        <Tabs match={match} />
+	return (
+		<div>
+			<VerticalNavbar />
+			<SearchBar filtro="complejos" sport={sport} />
+			<Tabs match={match} />
+			<Container>
+				<Row
+					style={{
+						'display': 'flex',
+						'alignItems': 'flex-start',
+						'justifyContent': 'space-around'
+					}}>
+					{
+						searchComplex.length ?
+							searchComplex.map((x) => {
+								return (
+									<CardComplex
+										key={x.id}
+										name={x.name}
+										image={x.image}
+										description={x.description}
+										rating={x.rating}
+										adress={x.city}
+									/>
+								);
+							})
+							:
+							complex?.map((x) => {
+								return (
+									<CardComplex
+										key={x.id}
+										name={x.name}
+										image={x.image}
+										description={x.description}
+										rating={x.rating}
+										adress={x.city}
+									/>
+								);
+							})
+					}
+				</Row>
+			</Container>
 
+		</div>
 
-                {
-                searchComplex.length?
-                searchComplex.map((x) => {
-                    return (
-                        <CardComplex
-                            key={x.id}
-                            name={x.name}
-                            image={x.image}
-                            description={x.description}
-                            rating={x.rating}
-                            adress={x.city}
-                        />
-                    );
-                })
-                :
-                complex?.map((x) => {
-                    return (
-                        <CardComplex
-                            key={x.id}
-                            name={x.name}
-                            image={x.image}
-                            description={x.description}
-                            rating={x.rating}
-                            adress={x.city}
-                        />
-                    );
-                })
-                }
-                
-    </div>
-   
-  )
+	)
 }
 
 export default GetComplex

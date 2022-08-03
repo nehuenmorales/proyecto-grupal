@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { updateGame } from "../../../redux/Games/gamesAction";
 import { postPayments, resetUrlPayment } from "../../../redux/Payments/paymentsAction";
-import { validateText } from "../../../hooks/useValidateFormUser"
+
 export default function ModalGames({ showModal, setShowModal, sport, id, price, supplies }) {
 
     const dispatch = useDispatch();
@@ -109,7 +109,6 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
 
     const handleSubmitMP = (e) => {
         e.preventDefault();
-        validateText(userData.nombre)
         console.log('estoy enviando... :) ')
         dispatch(postPayments(id, userData));
     }

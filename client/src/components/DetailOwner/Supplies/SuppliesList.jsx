@@ -39,7 +39,7 @@ export default function SuppliesList() {
                         </div>
                         <div className="etiqueta">
                             <div className="div-rating">
-                                <img src="https://cdn-icons.flaticon.com/png/512/1549/premium/1549753.png?token=exp=1659277713~hmac=3dd27828904577e2595df81a1d185beb" alt="" className="rating-img" style={{height: "15px", marginTop: "3px"}}/>
+                            <img src="https://cdn-icons.flaticon.com/png/512/1549/premium/1549753.png?token=exp=1659277713~hmac=3dd27828904577e2595df81a1d185beb" alt="" className="rating-img" style={{height: "15px", marginTop: "3px"}}/>
                                 <p className="complex-rating"> {e.price}</p>
                             </div>
                             <div>
