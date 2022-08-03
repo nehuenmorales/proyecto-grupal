@@ -1,6 +1,6 @@
 import "./scss/custom.css";
 import React from "react";
-import Landing from "./components/Landing/Landing";
+import Landing from "./components/LandingPage/landingPage";
 import { useAuth0} from "@auth0/auth0-react";
 import Home from "./pages/Home/Home";
 import { Spinner } from "react-bootstrap";
