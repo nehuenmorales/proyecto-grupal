@@ -18,14 +18,13 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
 
     const history = useHistory()
 
-    const handleClose = (ev) => {
-        ev.preventDefault()
-        axios.delete(`https://falta-uno-1.herokuapp.com/owner/deleteField/${field.id}`)
-        .then((res) => {
-            console.log(res.data)
-        })
-        setShowModal(false)
+    const modificar = async () => {
         setIndice(0)
+        console.log('entro handle close')
+        const res = await axios.delete(`https://falta-uno-1.herokuapp.com/owner/deleteField/${field.id}`)
+        console.log(res.data)
+        setShowModal(false)
+
     };
 
     const cancelTurn = (e) => {
@@ -199,7 +198,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
     
     return (
         <div className={s.contenedor}>
-            <Modal show={showModal} onHide={handleClose} size="lg" aria-labelledby="example-modal-sizes-title-lg">
+            <Modal show={showModal} size="lg" aria-labelledby="example-modal-sizes-title-lg">
                 <Modal.Header className={s.contenedorTitle}>
                     <Modal.Title>
                             <h2 className={s.titulo}>Esquema de turnos</h2>
@@ -216,7 +215,10 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
                 </div>
                 </Modal.Body>
                 <Modal.Footer className={s.footer} style={{'backgroundColor':'rgb(133, 133, 133);'}}>
-                    <button variant="secondary" onClick={ev => handleClose(ev)} className={s.modificar}>
+                    {/* <button onClick={handleClose} className={s.modificar}>
+                        Modificar Cancha
+                    </button> */}
+                    <button onClick={modificar} className={s.modificar}>
                         Modificar Cancha
                     </button>
                     <button variant="primary" onClick={handleCreate} className={s.crear} >
