@@ -7,8 +7,8 @@ import { getFieldDetail } from "../../../redux/OwnerFields/FieldDetailOwner/Fiel
 
 export default function FieldDetail({ id }) {
     const dispatch = useDispatch();
-    // let field = useSelector((state) => state.fieldDetailReducer.fieldDetail)
-    // console.log(field, 'soy yoooo')
+    let field = useSelector((state) => state.fieldDetailReducer.fieldDetail)
+    console.log(field, 'soy yoooo')
     useEffect(() => {
         dispatch(getFieldDetail(id));
     })
