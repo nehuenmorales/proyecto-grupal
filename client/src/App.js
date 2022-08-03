@@ -25,6 +25,7 @@ import ComplexList from "./components/DetailOwner/Complexes/ComplexList";
 import FieldList from "./components/DetailOwner/Fields/FieldList";
 import SuppliesList from "./components/DetailOwner/Supplies/SuppliesList";
 import ComplexDetail from "./components/DetailOwner/Complexes/complexDetail";
+import FieldDetail from "./components/DetailOwner/Fields/FieldDetail";
 import FieldById from "./components/Fields/DetailFields/FieldById.jsx"
 import GameDetail from "./components/Games/GameDetail/gameDetail.jsx"
 import ViewFields from "./components/Fields/DetailFields/DetailFields";
@@ -32,6 +33,7 @@ import GetPlayers from "./components/Players/getPlayers";
 import PlayerProfile from "./components/Profile/Profile";
 import LandingPage from "./components/LandingPage/landingPage.jsx"
 import Success from "./components/MercadoPago/success.jsx"
+ 
 
 import { TeamsContainer } from "./components/Teams/TeamContainer";
 
@@ -94,6 +96,7 @@ function App() {
       <Route exact path={"/fieldOwner"} component={FieldList}/>
       <Route exact path={"/suppliesOwner"} component={SuppliesList}/>
       <Route exact path="/owner/complexDetail/:id" render={({ match }) => {return <ComplexDetail id={match.params.id} />;}}/>
+      <Route exact path="/fieldOwner/fieldDetail/:id" render={({ match }) => {return <FieldDetail id={match.params.id} />;}}/>
 
 
       <Route exact path="/profile" component={PlayerProfile} />
