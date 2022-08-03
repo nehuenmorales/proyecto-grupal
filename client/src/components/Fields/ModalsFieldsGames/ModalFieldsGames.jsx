@@ -135,37 +135,41 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
 
                     }
                     for (let i = 0; i < array.length; i++) {
-                        switch (array[i]) {
-                            case 24:
-                                array[i] = 0
-                                break;
-                            case 24.5:
-                                array[i] = 0.5
-                                break;
-                            case 25:
-                                array[i] = 1
-                                break;
-                            case 25.5:
-                                array[i] = 1.5
-                                break;
-                            case 26:
-                                array[i] = 2
-                                break;
-                            case 26.5:
-                                array[i] = 2.5
-                                break;
-                            case 27:
-                                array[i] = 3
-                                break;
-                            case 27.5:
-                                array[i] = 3.5
-                                break;
-                            case 28:
-                                array[i] = 4
-                                break;
-                            default:
-                                break;
+                        if(array[i] >= 24){
+                            array[i] = array[i] - 24
+                            console.log(array, 'array en el for')
                         }
+                        // switch (array[i]) {
+                        //     case 24:
+                        //         array[i] = 0
+                        //         break;
+                        //     case 24.5:
+                        //         array[i] = 0.5
+                        //         break;
+                        //     case 25:
+                        //         array[i] = 1
+                        //         break;
+                        //     case 25.5:
+                        //         array[i] = 1.5
+                            //     break;
+                            // case 26:
+                            //     array[i] = 2
+                            //     break;
+                            // case 26.5:
+                            //     array[i] = 2.5
+                            //     break;
+                            // case 27:
+                            //     array[i] = 3
+                            //     break;
+                            // case 27.5:
+                            //     array[i] = 3.5
+                            //     break;
+                            // case 28:
+                            //     array[i] = 4
+                            //     break;
+                            // default:
+                            //     break;
+                        // }
                     }
 
                     return array;
@@ -177,6 +181,16 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
     }
 
     const cambioHora = (num) => {
+        if(num >= 24){
+            num = num - 24
+            let numero = num.toString()
+            if(!numero.includes('.')){
+              return numero + ':00'
+            } else {
+              let resultado = numero.replace('.5', ':30')
+              return resultado
+            }
+        }
         let numero = num.toString()
         if(!numero.includes('.')){
             return numero + ':00'
