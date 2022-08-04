@@ -86,10 +86,10 @@ export default function SupplieDetail({ id }) {
                     </div>
                     <input type='text' className="infoForm" name='stock' style={{ fontSize: '22px', paddingTop: '0', marginTop: '0'}} onChange={ev => onClick(ev)} value={change.stock ? parseInt(change.stock) : 0} />
                     {errors.stock ? <div className="errores" style={{ marginLeft: '80px' }}>{errors.stock}</div> : null}
-                    <div className='contenedorBoton'>
+                    <div className='contenedorBoton' style={{marginTop: '50px'}}>
                         {
-                            !errors.price &&
-                                !errors.stock &&
+                             !errors.stock &&
+                             !errors.price &&
                                 change.price !== supplie.price || change.stock !== supplie.stock ?
                                 <button type="submit" className='botonActivo'
                                 >Guardar cambios</button> : <button type="submit" className='btnGris' disabled >Guardar cambios</button>
@@ -100,6 +100,7 @@ export default function SupplieDetail({ id }) {
             </div>
             <div style={{ backgroundImage: `url(${supplie.image})` }} className='derecha'>
                 <div className='div-rating' style={{ backgroundColor: `rgba(17, 24, 37, 1)`, padding: '7px 15px 3px', height: '50px', width: '150px' }}>
+                    <p style={{ color: 'white', fontSize: '23px' }}>{supplie.sport}</p>
                 </div>
             </div>
         </div>
