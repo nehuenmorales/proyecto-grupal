@@ -27,6 +27,14 @@ export default function FieldDetail({ id }) {
                 let resultado = numero.replace('.5', ':30')
                 return resultado
             }
+        } else if (num <= 9){
+            let numero = num.toString()
+            if (!numero.includes('.')) {
+                return '0' + numero + ':00'
+            } else {
+                let resultado = '0' + numero.replace('.5', ':30')
+                return resultado
+            }
         }
         let numero = num.toString()
         if (!numero.includes('.')) {
