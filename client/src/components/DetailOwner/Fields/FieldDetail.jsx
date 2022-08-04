@@ -18,18 +18,18 @@ export default function FieldDetail({ id }) {
     }, [])
 
     const cambioHora = (num) => {
-        if(num >= 24){
+        if (num >= 24) {
             num = num - 24
             let numero = num.toString()
-            if(!numero.includes('.')){
-              return numero + ':00'
+            if (!numero.includes('.')) {
+                return numero + ':00'
             } else {
-              let resultado = numero.replace('.5', ':30')
-              return resultado
+                let resultado = numero.replace('.5', ':30')
+                return resultado
             }
         }
         let numero = num.toString()
-        if(!numero.includes('.')){
+        if (!numero.includes('.')) {
             return numero + ':00'
         } else {
             let resultado = numero.replace('.5', ':30')
@@ -38,13 +38,16 @@ export default function FieldDetail({ id }) {
     }
 
     useEffect(() => {
-        setChange({
-            description: field?.description,
-            pricePerTurn: field?.pricePerTurn,
-            durationPerTurn: cambioHora(field?.durationPerTurn),
-            start: cambioHora(field?.start),
-            end: cambioHora(field?.end),
-        })
+        if (field) {
+            setChange({
+                description: field?.description,
+                pricePerTurn: field?.pricePerTurn,
+                durationPerTurn: cambioHora(field?.durationPerTurn),
+                start: cambioHora(field?.start),
+                end: cambioHora(field?.end),
+            })
+        }
+
     }, [field])
 
 
