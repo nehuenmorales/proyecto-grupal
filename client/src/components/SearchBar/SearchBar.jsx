@@ -230,26 +230,7 @@ export default function SearchBar({ sport, filtro, setFilter , state }) {
         </div>
       ) : null}
     </div>
-     {searchFlag?state.length?null:<div><p className={s.error}>No se encontraron resultados a tu busqueda</p></div>:null}
+     {searchFlag?state?.length ? null : <div><p className={s.error}>No se encontraron resultados a tu busqueda</p></div> : null}
     </>
   );
-}
-{
-  /* <select
-  classN{(e) => {
-              orderScore(e);
-            }}
-            >ame={}
-            onChange=
-            <option selected disabled className={c.option}>
-              By score
-            </option>
-
-            <option value={1} className={c.option}>
-              Best Scores
-            </option>
-            <option value={-1} className={c.option}>
-            Lowest Scores
-            </option>
-          </select> */
 }
