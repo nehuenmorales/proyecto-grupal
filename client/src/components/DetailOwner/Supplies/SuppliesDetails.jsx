@@ -86,7 +86,7 @@ export default function SupplieDetail({ id }) {
                     </div>
                     <input type='text' className="infoForm" name='stock' style={{ fontSize: '22px', paddingTop: '0', marginTop: '0'}} onChange={ev => onClick(ev)} value={change.stock ? parseInt(change.stock) : 0} />
                     {errors.stock ? <div className="errores" style={{ marginLeft: '80px' }}>{errors.stock}</div> : null}
-                    <div className='contenedorBoton'>
+                    <div className='contenedorBoton' style={{marginTop: '50px'}}>
                         {
                             !errors.price &&
                                 !errors.stock &&
@@ -100,6 +100,7 @@ export default function SupplieDetail({ id }) {
             </div>
             <div style={{ backgroundImage: `url(${supplie.image})` }} className='derecha'>
                 <div className='div-rating' style={{ backgroundColor: `rgba(17, 24, 37, 1)`, padding: '7px 15px 3px', height: '50px', width: '150px' }}>
+                    <p style={{ color: 'white' }}>{supplie.sport}</p>
                 </div>
             </div>
         </div>

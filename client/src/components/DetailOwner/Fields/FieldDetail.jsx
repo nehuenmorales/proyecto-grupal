@@ -164,7 +164,7 @@ export default function FieldDetail({ id }) {
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Deporte</p>
                     </div>
-                    <input className="infoForm" name='sport' /*onChange={ev => onClick(ev)} */ value={field.sport.charAt(0).toUpperCase() + field.sport.slice(1)} />
+                    <input className="infoForm" name='sport' /*onChange={ev => onClick(ev)} */ value={field.sport? field.sport.charAt(0).toUpperCase() + field.sport.slice(1) : null} />
 
                     <div className='contenedorBoton'>
                         {
