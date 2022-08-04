@@ -57,6 +57,7 @@ async function updateGame(req,res){
         res.send(update) 
     }catch(e){
         console.log(e)
+        res.send(e)
     }
 }
 
