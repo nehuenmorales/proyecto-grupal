@@ -20,7 +20,7 @@ async function getBookedGamesByOwner (req, res){
         let resultGames = [];
 
         for (let i = 0; i < result.length; i++) {
-          let bookedGames = await Games.findAll({
+          const bookedGames = await Games.findAll({
             where:{fieldId : result[i]}
           });
           resultGames.push(bookedGames)
