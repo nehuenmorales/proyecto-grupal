@@ -4,12 +4,20 @@ async function modifyField(req, res, next) {
   const { id } = req.params;
 
   try {
-    const fieldToModify = await Field.findOne({ where: { id: id } });
-    for (let prop in req.body) {
-      // recorro el body con tal que me modifique las propiedades mandadas por body
-      fieldToModify[prop] = req.body[prop];
-    }
-    res.status(200).send(fieldToModify);
+    const updateField = await Field.update(
+      {
+        description: req.body.description,
+        pricePerTurn: req.body.pricePerTurn,
+        durationPerTurn: req.body.durationPerTurn,
+        start: req.body.start,
+        end: req.body.end
+      },
+      {
+        where: { id: id },
+      }
+    )
+    console.log(updateField, 'soy update ')
+    res.status(200).send(updateField);
   } catch (error) {
     console.log("error en la moficacion del field");
     res.status(400).send({ msg: "Error while modifying the field" });
