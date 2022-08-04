@@ -12,6 +12,6 @@ export default function BookedGames(){
     }, [])
 
     return(
-        <div>BookedGames</div>
+        <h1>BookedGames</h1>
     )
 }

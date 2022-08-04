@@ -34,7 +34,6 @@ import PlayerProfile from "./components/Profile/Profile";
 import LandingPage from "./components/LandingPage/landingPage.jsx"
 import Success from "./components/MercadoPago/success.jsx"
 import BookedGames from "./components/Games/BookedGames/BookedGames";
-
 import { TeamsContainer } from "./components/Teams/TeamContainer";
 import SupplieDetail from "./components/DetailOwner/Supplies/SuppliesDetails";
 
