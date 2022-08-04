@@ -12,7 +12,7 @@ export default function FieldList() {
     console.log(owner, 'ownerrrr')
     useEffect(() => {
         axios.get(`https://falta-uno-1.herokuapp.com/owner/getFieldByOwner/${owner.id}`)
-            .then(res => setField(res.data))
+        .then(res => setField(res.data))
     }, [])
 
     const cambioHora = (num) => {
