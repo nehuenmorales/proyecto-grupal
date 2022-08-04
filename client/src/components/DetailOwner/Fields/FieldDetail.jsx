@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getFieldDetail } from "../../../redux/OwnerFields/FieldDetailOwner/FieldDetailAction"
 import swal from 'sweetalert';
 import { useHistory } from "react-router-dom";
-import { modifyField } from "../../../redux/OwnerComplex/ModifyComplex/modifyComplexAction"
+import { modifyField } from "../../../redux/OwnerFields/ModifyField/modifyFieldAction"
 
 export default function FieldDetail({ id }) {
     const dispatch = useDispatch();
