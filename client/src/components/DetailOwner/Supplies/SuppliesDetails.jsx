@@ -68,23 +68,24 @@ export default function SupplieDetail({ id }) {
                 </Link>
                 <div className="tituloName">
                     <h2 className="fw-normal text-white fst-italic m-9" style={{ fontSize: '3em', marginLeft: '35%' }}>{supplie.name}</h2>
-                    <p className="fw-normal text-white fst-italic m-2" style={{ fontSize: '3em', marginLeft: '35%' }}>{supplie.complexId}</p>
+                    <p className="fw-normal text-white fst-italic m-9" style={{ fontSize: '1.5em', marginLeft: '35%' }}>{supplie.complexId}</p>
                 </div>
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Precio</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
+                    <div style={{ display: 'flex', flexDirection: 'row' }}>
+                    <img src='https://cdn-icons-png.flaticon.com/512/74/74742.png' style={{ invert: '100%', height: '25px' }}></img>
                     <input type='text' className="infoForm" name='price' onChange={ev => onClick(ev)} value={change.price} />
+                    </div>
                     {errors.price ? <div className="errores" style={{ marginLeft: '80px' }}>{errors.price}</div> : null}
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Stock disponible</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <div className='contenedorDeporte'>
                     <input type='text' className="infoForm" name='stock' onChange={ev => onClick(ev)} value={change.stock} />
                     {errors.stock ? <div className="errores" style={{ marginLeft: '80px' }}>{errors.stock}</div> : null}
-                    </div>
                     <div className='contenedorBoton'>
                         {
                             !errors.price &&
