@@ -113,9 +113,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
                             array.push(newResult)
                             i++
                         }
-
                     }
-
                     return array;
                 }
             } else if (start > end) {
@@ -132,7 +130,6 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
                             array.push(newResult)
                             i++
                         }
-
                     }
                     for (let i = 0; i < array.length; i++) {
                         if(array[i] >= 24){
