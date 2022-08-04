@@ -71,7 +71,7 @@ export default function SupplieDetail({ id }) {
                     <p className="fw-normal text-white fst-italic m-9" style={{ fontSize: '1.5em', marginLeft: '35%' }}>{supplie.complexId}</p>
                 </div>
                 <form onSubmit={(e) => handleSubmit(e)}>
-                    <div className='contenedorLapiz' style={{ marginBottom: '10px'}}>
+                    <div className='contenedorLapiz' style={{ marginBottom: '10px', paddingBottom: '0'}}>
                         <p className="subTitulos">Precio</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
@@ -80,7 +80,7 @@ export default function SupplieDetail({ id }) {
                     <input type='text' className="infoForm" style={{ marginLeft: '0', fontSize: '22px', paddingTop: '0', marginTop: '0'}} name='price' onChange={ev => onClick(ev)} value={ change.price ? parseInt(change.price) : 0} />
                     </div>
                     {errors.price ? <div className="errores" style={{ marginLeft: '80px' }}>{errors.price}</div> : null}
-                    <div className='contenedorLapiz' style={{ marginBottom: '10px'}}>
+                    <div className='contenedorLapiz' style={{ marginBottom: '10px', paddingBottom: '0'}}>
                         <p className="subTitulos">Stock disponible</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
