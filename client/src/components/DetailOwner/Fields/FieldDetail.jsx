@@ -134,10 +134,12 @@ export default function FieldDetail({ id }) {
     const history = useHistory()
     const handleSubmit = (ev) => {
         ev.preventDefault()
-        dispatch(modifyField(change, id))
+        dispatch(modifyField(time, id))
         swal('', "Cancha modificada exitosamente!", 'success')
         history.push("/fieldOwner")
     }
+
+    console.log('soy timeee', time)
 
     return (
         <div className="contenedorDetail">
