@@ -22,7 +22,9 @@ async function getBookedGamesByOwner (req, res){
 
         for (let i = 0; i < result.length; i++) {
           bookedGames = await Games.findAll({
-            where:{fieldId : result[i]}
+            where:{
+              fieldId : result[i]
+            }
           });
           resultGames.push(bookedGames)
           console.log('resultGame',resultGames)
@@ -30,7 +32,7 @@ async function getBookedGamesByOwner (req, res){
         }
         
 
-        res.status(200).json(bookedGames);
+        res.status(200).json(resultGames);
       } catch (e) {
         console.log(e);
         res.status(400).json({ msg: "no hay reservas" });
