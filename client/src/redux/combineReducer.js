@@ -15,9 +15,11 @@ import getTournamentReducer from './Tournament/tournamentReducer';
 import teamsReducer from './Teams/teamsReducer'
 import fieldDetailReducer from "./OwnerFields/FieldDetailOwner/FieldDetailReducer"
 import supplieDetailReducer from './OwnerSupplies/SuppliesDetailOwner/SuppliesDetailReducer'
+import modifySupplieReducer from './OwnerSupplies/ModifySupplie/modifySupplieReducer'
 
 
 export const reducers = combineReducers({
+    modifySupplieReducer: modifySupplieReducer,
     supplieDetailReducer: supplieDetailReducer,
     modifyComplexReducer: modifyComplexReducer,
     complexDetailReducer: complexDetailReducer,

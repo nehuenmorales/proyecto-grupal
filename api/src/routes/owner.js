@@ -3,7 +3,7 @@ const { Router } = require("express");
 const { createField } = require("../controllers/Owner/Field/createField.js");
 const { modifyField } = require("../controllers/Owner/Field/modifyField");
 const { createSupplies } = require("../controllers/Owner/Supplies/createSupplies");
-const { modifySupplies } = require("../controllers/Owner/Supplies/modifySupplies");
+const {  modifySupplie } = require("../controllers/Owner/Supplies/modifySupplies");
 const { createGame } = require("../controllers/Owner/Games/createGame.js");
 const { modifyGame } = require("../controllers/Owner/Games/modifyGame.js");
 const { deleteSupplies } = require("../controllers/Owner/Supplies/deleteSupplies");
@@ -49,9 +49,9 @@ router.put("/modifyComplex/:id", modifyComplex)
 
 router.put("/modifyField/:id", modifyField);
 
-router.post("/createSupplies", createSupplies);
+router.put("/modifySupplies/:id", modifySupplie);
 
-router.put("/modifySupplies/:id", modifySupplies);
+router.post("/createSupplies", createSupplies);
 
 router.post("/createOwner", createOwner);
 
