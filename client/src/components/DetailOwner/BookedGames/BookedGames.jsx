@@ -35,9 +35,9 @@ export default function BookedGames() {
                     
                 }
                 console.log('soy respuestaa', res.data)
+                console.log('soy booked game', bookedGames)
             });
     }, [])
-    console.log('soy booked game', bookedGames)
     console.log('booked games owner', owner)
 
     return (
