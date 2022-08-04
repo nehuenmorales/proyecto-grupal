@@ -34,14 +34,14 @@ export default function SupplieDetail({ id }) {
     const validator = (change) => {// funcion que valida que todos los inputs tengan un valor "aceptable"
         let validations = {};
         const beNumber = /(^\d{1,10}$)/;
-        if (!change.stock) {
-            validations.stock = "Ingrese el stock del producto"
-        } else if (!beNumber.test(change.stock)) {
-            validations.stock = "Ingrese solo números"
-        } else if (!change.price) {
+         if (!change.price) {
             validations.price = "Ingrese el precio del producto"
         } else if (!beNumber.test(change.price)) {
             validations.price = "Ingrese solo numeros"
+        } else if (!change.stock) {
+            validations.stock = "Ingrese el stock del producto"
+        } else if (!beNumber.test(change.stock)) {
+            validations.stock = "Ingrese solo números"
         }
         return validations;
     };
