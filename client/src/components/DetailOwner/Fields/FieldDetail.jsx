@@ -133,7 +133,7 @@ export default function FieldDetail({ id }) {
     }
     console.log('soy change', change)
     // const history = useHistory()
-    const handleSubmit = (ev) => {
+    const handleSubmit = async (ev) => {
         ev.preventDefault()
         dispatch(modifyField(time, id))
         
