@@ -90,7 +90,7 @@ export default function SupplieDetail({ id }) {
                         {
                             !errors.price &&
                                 !errors.stock &&
-                                parseInt(change.price) !== supplie.price || parseInt(change.stock) !== supplie.price ?
+                                change.price !== supplie.price || change.stock !== supplie.stock ?
                                 <button type="submit" className='botonActivo'
                                 >Guardar cambios</button> : <button type="submit" className='btnGris' disabled >Guardar cambios</button>
                         }
