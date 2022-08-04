@@ -68,21 +68,21 @@ export default function SupplieDetail({ id }) {
                 </Link>
                 <div className="tituloName">
                     <h2 className="fw-normal text-white fst-italic m-9" style={{ fontSize: '3em', marginLeft: '35%' }}>{supplie.name}</h2>
-                    <h5 className="fw-normal text-white fst-italic m-5" style={{ fontSize: '3em', marginLeft: '35%' }}>{supplie.complexId}</h5>
+                    <p className="fw-normal text-white fst-italic m-2" style={{ fontSize: '3em', marginLeft: '35%' }}>{supplie.complexId}</p>
                 </div>
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Precio</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <input type='text' className="infoForm" name='price' onChange={ev => onClick(ev)} value={change.description} />
+                    <input type='text' className="infoForm" name='price' onChange={ev => onClick(ev)} value={change.price} />
                     {errors.price ? <div className="errores" style={{ marginLeft: '80px' }}>{errors.price}</div> : null}
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Stock disponible</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
                     <div className='contenedorDeporte'>
-                    <input type='text' className="infoForm" name='stock' onChange={ev => onClick(ev)} value={change.description} />
+                    <input type='text' className="infoForm" name='stock' onChange={ev => onClick(ev)} value={change.stock} />
                     {errors.stock ? <div className="errores" style={{ marginLeft: '80px' }}>{errors.stock}</div> : null}
                     </div>
                     <div className='contenedorBoton'>
