@@ -54,6 +54,8 @@ async function updateGame(req,res){
             replacements: { pId:player.id, gId:id},
             type: QueryTypes.SELECT
         })
+        console.log(player, "es elñ jugador")
+        console.log(update, "es elñ update")
         res.send(update) 
     }catch(e){
         console.log(e)
