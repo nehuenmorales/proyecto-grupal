@@ -17,7 +17,7 @@ async function getBookedGamesByOwner (req, res){
             console.log('result', result)
           }
         }
-        let resultGames
+        let resultGames = [];
 
         for (let i = 0; i < result.length; i++) {
           let bookedGames = await Games.findAll({
