@@ -8,7 +8,7 @@ import s from './modals.module.css'
 import swal from 'sweetalert';
 import axios from 'axios'
 
-export default function ModalsFieldsGames({ showModal, setShowModal, setNewField, newField, sport, convertirTime, fieldId }) {
+export default function ModalsFieldsGames({ showModal, setShowModal, setNewField, newField, sport, convertirTime, fieldId, type }) {
     let dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
     const dispatch = useDispatch();
     const field = useSelector((state) => state.fieldsReducer.field)
@@ -68,6 +68,8 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
             setShowModal(false)
         }
 
+        let deporte = sport
+        let tipo= type
 
         // console.log("holaaaaa",currentField)
         totalGame.map((e) => {
@@ -83,8 +85,8 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
             })) :
             dispatch(createGame({
                 date: dias[indice],
-                sport: sport,
-                type: newField.capacity,
+                sport: deporte,
+                type: tipo,
                 status: 'free',
                 start: e,
                 end: e + convertirTime(newField.durationPerTurn),

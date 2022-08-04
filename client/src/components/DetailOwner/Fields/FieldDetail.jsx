@@ -239,7 +239,7 @@ export default function FieldDetail({ id }) {
                     }</div>
                 </div>
             </div>
-      <ModalsFieldsGames showModal={showModal} setShowModal={setShowModal} setNewField={setChange} sport={field.sport} newField={change} convertirTime={convertirTime} fieldId={field.id}/>
+      <ModalsFieldsGames showModal={showModal} setShowModal={setShowModal} setNewField={setChange} sport={field.sport} newField={change} convertirTime={convertirTime} fieldId={field.id} type={field.capacity}/>
         </div>
 
     )
