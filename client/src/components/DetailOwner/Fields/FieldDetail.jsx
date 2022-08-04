@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getFieldDetail } from "../../../redux/OwnerFields/FieldDetailOwner/FieldDetailAction"
 import swal from 'sweetalert';
 import { useHistory } from "react-router-dom";
-
+import { modifyField } from "../../../redux/OwnerFields/ModifyField/modifyFieldAction"
 
 export default function FieldDetail({ id }) {
     const dispatch = useDispatch();
@@ -18,15 +18,26 @@ export default function FieldDetail({ id }) {
 
     const [change, setChange] = useState({
         description: '',
-        sports: []
+        pricePerTurn: '', 
+        durationPerTurn: '', 
+        start: '', 
+        end: ''
     })
+
+    const onClick = (ev) => {
+        ev.preventDefault()
+        setChange({ ...change, [ev.target.name]: ev.target.value })
+        
+        // let errores = validator({ ...change, [ev.target.name]: ev.target.value });
+        // setErrors(errores);
+    }
 
     const history = useHistory()
     const handleSubmit = (ev) => {
         ev.preventDefault()
-        // dispatch(modifyComplex(change, id))
-        swal('', "Complejo modificado exitosamente!", 'success')
-        history.push("/")
+        dispatch(modifyField(change, id))
+        swal('', "Cancha modificada exitosamente!", 'success')
+        history.push("/fieldOwner")
     }
 
     return (
@@ -46,7 +57,7 @@ export default function FieldDetail({ id }) {
                         <p className="subTitulos">Descripción</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <textarea className="infoForm" name='description' /*onChange={ev => onClick(ev)} */ value={field.description} />
+                    <textarea className="infoForm" name='description' onChange={ev => onClick(ev)} value={change.description} />
                     {/* {errors.description ? <div className="errores" style={{ marginLeft: '80px' }}>{errors.description}</div> : null} */}
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Capacidad total de jugadores</p>
@@ -58,25 +69,25 @@ export default function FieldDetail({ id }) {
                         <p className="subTitulos">Precio por turno</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <input className="infoForm" name='description' /*onChange={ev => onClick(ev)} */ value={`$${field.pricePerTurn}`} />
+                    <input className="infoForm" name='pricePerTurn' onChange={ev => onClick(ev)}  value={`$${change.pricePerTurn}`} />
 
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Horario de apertura de la cancha</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <input className="infoForm" name='description' /*onChange={ev => onClick(ev)} */ value={`${field.start}hs`} />
+                    <input className="infoForm" name='start' onChange={ev => onClick(ev)}  value={`${change.start}hs`} />
                     
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Horario de cierre de la cancha</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <input className="infoForm" name='description' /*onChange={ev => onClick(ev)} */ value={`${field.end}hs`} />
+                    <input className="infoForm" name='end' onChange={ev => onClick(ev)}  value={`${change.end}hs`} />
                     
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Duración por turno</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <input className="infoForm" name='description' /*onChange={ev => onClick(ev)} */ value={`${field.durationPerTurn}hs`} />
+                    <input className="infoForm" name='durationPerTurn' onChange={ev => onClick(ev)}  value={`${change.durationPerTurn}hs`} />
 
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Deporte</p>

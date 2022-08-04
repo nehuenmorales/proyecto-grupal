@@ -16,7 +16,7 @@ import teamsReducer from './Teams/teamsReducer'
 import fieldDetailReducer from "./OwnerFields/FieldDetailOwner/FieldDetailReducer"
 import supplieDetailReducer from './OwnerSupplies/SuppliesDetailOwner/SuppliesDetailReducer'
 import modifySupplieReducer from './OwnerSupplies/ModifySupplie/modifySupplieReducer'
-
+import modifyFieldReducer from './OwnerFields/ModifyField/modifyFieldReducer'
 
 export const reducers = combineReducers({
     modifySupplieReducer: modifySupplieReducer,
@@ -24,6 +24,7 @@ export const reducers = combineReducers({
     modifyComplexReducer: modifyComplexReducer,
     complexDetailReducer: complexDetailReducer,
     fieldDetailReducer: fieldDetailReducer,
+    modifyFieldReducer: modifyFieldReducer,
     complexReducerOwner: complexReducerOwner,
     getOwnerReducer: getOwnerReducer,
     fieldsReducer:fieldsReducer,
