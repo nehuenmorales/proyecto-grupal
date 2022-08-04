@@ -9,6 +9,8 @@ import swal from 'sweetalert';
 import { useHistory } from "react-router-dom";
 import { modifyField } from "../../../redux/OwnerFields/ModifyField/modifyFieldAction"
 import axios from "axios";
+import ModalsFieldsGames from "../../Fields/ModalsFieldsGames/ModalFieldsGames";
+
 
 export default function FieldDetail({ id }) {
     const dispatch = useDispatch();
@@ -73,6 +75,7 @@ export default function FieldDetail({ id }) {
         }
     }, [field])
 
+    const [showModal, setShowModal] = useState(false)
 
 
     const [change, setChange] = useState({
@@ -139,6 +142,8 @@ export default function FieldDetail({ id }) {
         
         const res = await axios.delete(`https://falta-uno-1.herokuapp.com/owner/deleteGames/${field.id}`)
         console.log(res.data)
+
+        setShowModal(true)
 
         // swal('', "Cancha modificada exitosamente!", 'success')
         // history.push("/fieldOwner")
@@ -233,6 +238,7 @@ export default function FieldDetail({ id }) {
                     }</div>
                 </div>
             </div>
+      <ModalsFieldsGames showModal={showModal} setShowModal={setShowModal} setNewField={setTime} sport={field.sport} newField={time} convertirTime={convertirTime} />
 
 
         </div>
