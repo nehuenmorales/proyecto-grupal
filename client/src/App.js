@@ -25,7 +25,6 @@ import ComplexList from "./components/DetailOwner/Complexes/ComplexList";
 import FieldList from "./components/DetailOwner/Fields/FieldList";
 import SuppliesList from "./components/DetailOwner/Supplies/SuppliesList";
 import ComplexDetail from "./components/DetailOwner/Complexes/complexDetail";
-import FieldDetail from "./components/DetailOwner/Fields/FieldDetail";
 import FieldById from "./components/Fields/DetailFields/FieldById.jsx"
 import GameDetail from "./components/Games/GameDetail/gameDetail.jsx"
 import ViewFields from "./components/Fields/DetailFields/DetailFields";
@@ -33,9 +32,8 @@ import GetPlayers from "./components/Players/getPlayers";
 import PlayerProfile from "./components/Profile/Profile";
 import LandingPage from "./components/LandingPage/landingPage.jsx"
 import Success from "./components/MercadoPago/success.jsx"
-import BookedGames from "./components/DetailOwner/BookedGames/BookedGames";
+
 import { TeamsContainer } from "./components/Teams/TeamContainer";
-import SupplieDetail from "./components/DetailOwner/Supplies/SuppliesDetails";
 
 function App() {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -73,15 +71,14 @@ function App() {
       <Route exact path="/fields/detail/:id" component={FieldById} />
       {/* {isLoading ? (
         <Spinner animation="border" variant="light" role="status">
-        <span className="visually-hidden">Loading...</span>
+          <span className="visually-hidden">Loading...</span>
         </Spinner>
-        ) : isAuthenticated ? (
-          <Route exact path="/" component={Home} />
-          ) : (
-            <Route exact path="/" component={Landing} />
-          )} */}
+      ) : isAuthenticated ? (
+        <Route exact path="/" component={Home} />
+      ) : (
+        <Route exact path="/" component={Landing} />
+      )} */}
       {/* leo rompiste todo con esta ruta que esta abajito, AREGLALO */}
-          <Route exact path={"/ownerBookedGames"} componente={BookedGames}/>
       <Route exact path="/sport/:sport" component={AllGames} />
       <Route exact path="/success/:id" component={Success} />
 
@@ -97,8 +94,6 @@ function App() {
       <Route exact path={"/fieldOwner"} component={FieldList}/>
       <Route exact path={"/suppliesOwner"} component={SuppliesList}/>
       <Route exact path="/owner/complexDetail/:id" render={({ match }) => {return <ComplexDetail id={match.params.id} />;}}/>
-      <Route exact path="/fieldOwner/fieldDetail/:id" render={({ match }) => {return <FieldDetail id={match.params.id} />;}}/>
-      <Route exact path="/supplieOwner/supplieDetail/:id" render={({ match }) => {return <SupplieDetail id={match.params.id} />;}}/>
 
 
       <Route exact path="/profile" component={PlayerProfile} />
