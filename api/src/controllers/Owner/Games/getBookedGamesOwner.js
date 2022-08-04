@@ -24,7 +24,7 @@ async function getBookedGamesByOwner (req, res){
             where:{fieldId : result[i]}
           });
           resultGames.push(bookedGames)
-          console.log(resultGames)
+          console.log('resultGame',resultGames)
         }
         
 
