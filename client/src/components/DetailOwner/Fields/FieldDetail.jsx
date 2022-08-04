@@ -8,6 +8,7 @@ import { getFieldDetail } from "../../../redux/OwnerFields/FieldDetailOwner/Fiel
 import swal from 'sweetalert';
 import { useHistory } from "react-router-dom";
 import { modifyField } from "../../../redux/OwnerFields/ModifyField/modifyFieldAction"
+import axios from "axios";
 
 export default function FieldDetail({ id }) {
     const dispatch = useDispatch();
@@ -131,15 +132,18 @@ export default function FieldDetail({ id }) {
         setErrors(errores);
     }
     console.log('soy change', change)
-    const history = useHistory()
+    // const history = useHistory()
     const handleSubmit = (ev) => {
         ev.preventDefault()
         dispatch(modifyField(time, id))
-        swal('', "Cancha modificada exitosamente!", 'success')
-        history.push("/fieldOwner")
+        
+        const res = await axios.delete(`https://falta-uno-1.herokuapp.com/owner/deleteGames/${field.id}`)
+        console.log(res.data)
+
+        // swal('', "Cancha modificada exitosamente!", 'success')
+        // history.push("/fieldOwner")
     }
 
-    console.log('soy timeee', time)
 
     return (
         <div className="contenedorDetail">

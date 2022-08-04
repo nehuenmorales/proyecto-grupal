@@ -21,7 +21,7 @@ const { modifyComplex } = require("../controllers/Owner/Complex/modifyComplex.js
 const {deleteField} = require("../controllers/Owner/Field/deleteField")
 const { createComplex } = require('../controllers/Owner/Complex/createComplex.js');
 const { getSupplieDetail } = require("../controllers/Owner/Supplies/getSupplieDetail.js");
-
+const {deleteGames} = require("../controllers/Owner/Games/deleteGames")
 
 const router = Router();
 
@@ -58,6 +58,8 @@ router.post("/createOwner", createOwner);
 router.post("/createGame", createGame);
 
 router.put("/modifyGame/:id", modifyGame);
+
+router.delete("/deleteGames/:id", deleteGames)
 
 router.delete("/deleteSupplies/:id", deleteSupplies);
 
