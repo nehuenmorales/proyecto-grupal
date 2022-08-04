@@ -17,7 +17,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
     const [totalGame, setTotalGame] = useState([])
 
     const history = useHistory()
-    console.log('soy field modal', field)
+    console.log('soy sport modal', sport)
     const modificar = async () => {
         setIndice(0)
         console.log('entro handle close')
