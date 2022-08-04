@@ -11,6 +11,14 @@ import { modifyField } from "../../../redux/OwnerFields/ModifyField/modifyFieldA
 
 export default function FieldDetail({ id }) {
     const dispatch = useDispatch();
+    const [time, setTime] = useState({
+        description: '',
+        pricePerTurn: '',
+        durationPerTurn: '',
+        start: '',
+        end: ''
+    })
+
     let field = useSelector((state) => state.fieldDetailReducer.fieldDetail)
     console.log(field, 'soy yoooo')
     useEffect(() => {
@@ -27,7 +35,7 @@ export default function FieldDetail({ id }) {
                 let resultado = numero.replace('.5', ':30')
                 return resultado
             }
-        } else if (num <= 9){
+        } else if (num <= 9) {
             let numero = num.toString()
             if (!numero.includes('.')) {
                 return '0' + numero + ':00'
@@ -53,6 +61,13 @@ export default function FieldDetail({ id }) {
                 durationPerTurn: cambioHora(parseInt(field?.durationPerTurn)),
                 start: cambioHora(parseInt(field?.start)),
                 end: cambioHora(parseInt(field?.end)),
+            })
+            setTime({
+                description: field?.description,
+                pricePerTurn: field?.pricePerTurn,
+                durationPerTurn: parseInt(field?.durationPerTurn),
+                start: parseInt(field?.start),
+                end: parseInt(field?.end),
             })
         }
     }, [field])
@@ -93,9 +108,24 @@ export default function FieldDetail({ id }) {
         return validations;
     };
 
+
+    const convertirTime = (state) => {
+        console.log(state)
+        var hour = state.slice(0, 2)
+        var minutes = state.slice(3, 6)
+        minutes = minutes / 60
+        let timeNumber = parseInt(hour) + parseFloat(minutes)
+        return timeNumber
+    }
+
     const onClick = (ev) => {
         ev.preventDefault()
         setChange({ ...change, [ev.target.name]: ev.target.value })
+        if(ev.target.name === 'start' || ev.target.name === 'end' || ev.target.name === 'durationPerTurn' ){
+            setTime({ ...change, [ev.target.name]: convertirTime(ev.target.value) })
+        } else {
+            setTime({...change, [ev.target.name]: ev.target.value})
+        }
 
         let errores = validator({ ...change, [ev.target.name]: ev.target.value });
         setErrors(errores);
@@ -164,7 +194,7 @@ export default function FieldDetail({ id }) {
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Deporte</p>
                     </div>
-                    <input className="infoForm" name='sport' /*onChange={ev => onClick(ev)} */ value={field.sport? field.sport.charAt(0).toUpperCase() + field.sport.slice(1) : null} />
+                    <input className="infoForm" name='sport' /*onChange={ev => onClick(ev)} */ value={field.sport ? field.sport.charAt(0).toUpperCase() + field.sport.slice(1) : null} />
 
                     <div className='contenedorBoton'>
                         {
@@ -173,7 +203,7 @@ export default function FieldDetail({ id }) {
                                 !errors.durationPerTurn &&
                                 !errors.start &&
                                 !errors.end &&
-                                change.description !== field.description || change.pricePerTurn !== field.pricePerTurn || change.durationPerTurn !== field.durationPerTurn || change.start !== field.start || change.end !== field.end ?
+                                change.description !== field.description || change.pricePerTurn !== field.pricePerTurn || field.durationPerTurn !== time.durationPerTurn.toString() || field.start !== time.start.toString() || field.end !== time.end.toString() ?
                                 <button type="submit" className='botonActivo'
                                 >Guardar cambios</button> : <button type="submit" className='btnGris' disabled >Guardar cambios</button>
                         }
