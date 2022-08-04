@@ -34,6 +34,7 @@ import LandingPage from "./components/LandingPage/landingPage.jsx"
 import Success from "./components/MercadoPago/success.jsx"
 
 import { TeamsContainer } from "./components/Teams/TeamContainer";
+import DetailComplex from "./pages/DetailComplex/DetailComplex";
 
 function App() {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -85,6 +86,7 @@ function App() {
       <Route exact path="/fields/:sport" component={DetailFields} />
       <Route exact path="/sport/:sport/players" component={GetPlayers} />
       <Route exact path="/sport/:sport/complex" component={GetComplex} />
+      <Route exact path="/sport/:sport/complex/:id" component={DetailComplex} />
       <Route exact path={"/owner/createSupplie"} component={CreateSupplies}/>
  
       <Route exact path={"/games/detail/:id"} component={GameDetail}/>

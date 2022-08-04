@@ -33,6 +33,7 @@ const GetComplex = ({ match }) => {
 					{
 						searchComplex.length ?
 							searchComplex.map((x) => {
+								console.log(x)
 								return (
 									<CardComplex
 										key={x.id}
@@ -46,6 +47,8 @@ const GetComplex = ({ match }) => {
 							})
 							:
 							complex?.map((x) => {
+								console.log(x)
+
 								return (
 									<CardComplex
 										key={x.id}
