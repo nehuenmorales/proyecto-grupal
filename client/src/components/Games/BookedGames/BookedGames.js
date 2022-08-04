@@ -4,14 +4,14 @@ import { useSelector } from 'react-redux';
 
 
 export default function BookedGames(){
-    let owner = useSelector((state) => state.getOwnerReducer.owner)
+    // let owner = useSelector((state) => state.getOwnerReducer.owner)
 
-    useEffect(()=> {
-        const res = axios.get(`https://falta-uno-1.herokuapp.com/owner/getBookedGamesByOwner/${owner.id}`)
-        console.log(res.data);
-    }, [])
+    // useEffect(()=> {
+    //     const res = axios.get(`https://falta-uno-1.herokuapp.com/owner/getBookedGamesByOwner/${owner.id}`)
+    //     console.log(res.data);
+    // }, [])
 
-    console.log('booked games owner', owner)
+    // console.log('booked games owner', owner)
 
     return(
         <h1>BookedGames</h1>
