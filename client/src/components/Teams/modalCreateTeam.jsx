@@ -169,7 +169,7 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
   //---------------------- INVITACIONES A PLAYERS -------------------------
   const [players, setPlayers] = useState([]);
   useEffect(() => {
-    axios.get("/player/getPlayers").then((resp) => {
+    axios.get("https://falta-uno-1.herokuapp.com/player/getPlayers").then((resp) => {
       setPlayers(resp.data);
       console.log("respuesta de axios", resp.data);
     });

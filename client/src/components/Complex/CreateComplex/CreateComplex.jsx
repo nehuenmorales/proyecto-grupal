@@ -73,12 +73,12 @@ export default function CreateComplex() {
     
 
     useEffect(() => {
-        axios.get('/owner/getCities')
+        axios.get('https://falta-uno-1.herokuapp.com/owner/getCities')
         .then((resp) => {
         console.log('cities',resp.data)
         setCities(resp.data)})
 
-        axios.get('/owner/getNameComplex')
+        axios.get('https://falta-uno-1.herokuapp.com/owner/getNameComplex')
         .then((res) => {
             setComplexName(res.data)
         })  

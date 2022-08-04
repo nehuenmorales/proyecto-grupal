@@ -9,7 +9,7 @@ export const GAMES_ORDER = "GAMES_ORDER";
 export function getGameSport(sport) {
   return (dispatch) => {
     axios
-      .get(`/games/${sport}`)
+      .get(`https://falta-uno-1.herokuapp.com/games/${sport}`)
       .then((res) => {
         console.log("entro allgames", res.data);
 
@@ -25,7 +25,7 @@ export function getGameSport(sport) {
 export function getSearchGames(input, sport) {
   return (dispatch) => {
     axios
-      .get(`/games/${sport}/searchGame?name=${input}`)
+      .get(`https://falta-uno-1.herokuapp.com/games/${sport}/searchGame?name=${input}`)
       .then((res) => {
         console.log("entro search", res.data);
         dispatch({
@@ -55,7 +55,7 @@ export function gamesOrderByPrice(order) {
 export function getGamesById(id) {
   return (dispatch) => {
     axios
-      .get(`/games/detail/${id}`)
+      .get(`https://falta-uno-1.herokuapp.com/games/detail/${id}`)
       .then((res) => {
         dispatch({
           type: GET_GAMES_BY_ID,
@@ -72,7 +72,7 @@ export function updateGame(id, body) {
 
   return (dispatch) => {
     axios
-      .put(`/games/updateGame`, body)
+      .put(`https://falta-uno-1.herokuapp.com/games/updateGame`, body)
       .then((res) => {
         dispatch({
           type: UPDATE_GAME,
