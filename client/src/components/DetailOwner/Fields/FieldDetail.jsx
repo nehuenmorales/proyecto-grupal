@@ -130,7 +130,6 @@ export default function FieldDetail({ id }) {
                     {errors.description ? <div className="errores" style={{ marginLeft: '80px' }}>{errors.description}</div> : null}
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Capacidad total de jugadores</p>
-                        <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
                     <input className="infoForm" name='capacity' /*onChange={ev => onClick(ev)} */ value={field.capacity} />
 
@@ -164,9 +163,8 @@ export default function FieldDetail({ id }) {
 
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Deporte</p>
-                        <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <input className="infoForm" name='sport' /*onChange={ev => onClick(ev)} */ value={field.sport} />
+                    <input className="infoForm" name='sport' /*onChange={ev => onClick(ev)} */ value={field.sport.charAt(0).toUpperCase() + field.sport.slice(1)} />
 
                     <div className='contenedorBoton'>
                         {
