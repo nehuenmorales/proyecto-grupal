@@ -48,19 +48,19 @@ export default function FieldDetail({ id }) {
                         <p className="subTitulos">Horario de apertura de la cancha</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <input className="infoForm" name='description' /*onChange={ev => onClick(ev)} */ value={`${field.start} + hs`} />
+                    <input className="infoForm" name='description' /*onChange={ev => onClick(ev)} */ value={`${field.start}hs`} />
                     
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Horario de cierre de la cancha</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <input className="infoForm" name='description' /*onChange={ev => onClick(ev)} */ value={`${field.end} + hs`} />
+                    <input className="infoForm" name='description' /*onChange={ev => onClick(ev)} */ value={`${field.end}hs`} />
                     
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Duración por turno</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <input className="infoForm" name='description' /*onChange={ev => onClick(ev)} */ value={`${field.durationPerTurn} + hs`} />
+                    <input className="infoForm" name='description' /*onChange={ev => onClick(ev)} */ value={`${field.durationPerTurn}hs`} />
 
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Deporte</p>
@@ -77,13 +77,13 @@ export default function FieldDetail({ id }) {
                     <div className="complex-rating" /*style={{ fontSize: `1.3em`, textShadow: '1px 1px 3px black;' }}*/> {
                         field.available === 'true' ? 
                         <div>
-                            <p>Disponible</p>
-                            <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="" />
+                            <p style={{ fontSize: `1.3em`, textShadow: '1px 1px 3px black;' }}>Disponible</p>
+                            <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="" style={{ height: `28px` }} />
                         </div>
                          :
                          <div>
-                            <p>Actualmente no disponible</p>
-                            <img src="https://cdn-icons.flaticon.com/png/512/1008/premium/1008927.png?token=exp=1659572730~hmac=56f58e38a6705cd818eb3ada627fc3df" alt="" />
+                            <p style={{ fontSize: `1.3em`, textShadow: '1px 1px 3px black;' }}>Actualmente no disponible</p>
+                            <img src="https://cdn-icons.flaticon.com/png/512/1008/premium/1008927.png?token=exp=1659572730~hmac=56f58e38a6705cd818eb3ada627fc3df" alt="" style={{ height: `28px` }}/>
                          </div>
                         
                     }</div>
