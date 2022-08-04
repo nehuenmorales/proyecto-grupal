@@ -95,7 +95,7 @@ function App() {
       <Route exact path={"/complexOwner"} component={ComplexList}/>
       <Route exact path={"/fieldOwner"} component={FieldList}/>
       <Route exact path={"/suppliesOwner"} component={SuppliesList}/>
-      <Route exact path={"/bookedGames"} componente={BookedGames}/>
+      <Route exact path={"/ownerBookedGames"} componente={BookedGames}/>
       <Route exact path="/owner/complexDetail/:id" render={({ match }) => {return <ComplexDetail id={match.params.id} />;}}/>
       <Route exact path="/fieldOwner/fieldDetail/:id" render={({ match }) => {return <FieldDetail id={match.params.id} />;}}/>
       <Route exact path="/supplieOwner/supplieDetail/:id" render={({ match }) => {return <SupplieDetail id={match.params.id} />;}}/>
