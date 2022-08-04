@@ -4,9 +4,9 @@ const{Player}=require("../../db.js")
 
 async function gamesIncomplete(req,res,next){
     try{
-        const player= await conn.query(`(SELECT count_player_by_game.*, f.capacity - enrolled_amount AS freePlace, f.*
+        const player= await conn.query(`(SELECT count_player_by_game.*, f.capacity - enrolled_amount AS freePlace, f.*, g.privacy
             FROM (
-                SELECT g.id as gameid, g.privacy, g.start AS startHour,g.end AS endHour,g."fieldId" ,count(*) AS enrolled_amount
+                SELECT g.id as gameid, g.start AS startHour,g.end AS endHour,g."fieldId" ,count(*) AS enrolled_amount
                 FROM games g
                 JOIN player_games pbg ON pbg."gameId" = g.id
                 GROUP BY g.id
