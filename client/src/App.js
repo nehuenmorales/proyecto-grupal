@@ -45,11 +45,7 @@ function App() {
     <>
       <Route exact path={"/owner/select"} component={CreateFields} />
       <Route exact path={"/owner/createField/futbol"} component={fieldFutbol} />
-      <Route
-        exact
-        path={"/owner/createField/basquet"}
-        component={fieldBasquet}
-      />
+      <Route exact path={"/owner/createField/basquet"} component={fieldBasquet}/>
       <Route exact path={"/owner/createField/padel"} component={fieldPadel} />
       <Route exact path={"/owner/createField/tenis"} component={fieldTenis} />
       <Route exact path={"/owner/createField"} component={CreateFields} />

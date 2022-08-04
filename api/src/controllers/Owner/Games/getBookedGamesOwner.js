@@ -7,8 +7,9 @@ async function getBookedGamesByOwner (req, res){
             where:{ownerId:id}, 
             include: [{model:Field}]
         })
+        console.log('soy getcomplex', getComplex)
         const bookedGames = await Games.findAll({
-          where:{fieldId : getComplex.field.id}
+          where:{fieldId : getComplex.Field.id}
         });
         res.status(200).json(bookedGames);
       } catch (e) {
@@ -19,4 +20,4 @@ async function getBookedGamesByOwner (req, res){
 
 module.exports = {
     getBookedGamesByOwner,
-  };
+};
