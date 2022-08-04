@@ -8,7 +8,7 @@ import s from './modals.module.css'
 import swal from 'sweetalert';
 import axios from 'axios'
 
-export default function ModalsFieldsGames({ showModal, setShowModal, setNewField, newField, sport, convertirTime }) {
+export default function ModalsFieldsGames({ showModal, setShowModal, setNewField, newField, sport, convertirTime, fieldId }) {
     let dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
     const dispatch = useDispatch();
     const field = useSelector((state) => state.fieldsReducer.field)
@@ -17,7 +17,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
     const [totalGame, setTotalGame] = useState([])
 
     const history = useHistory()
-
+    console.log('soy field modal', field)
     const modificar = async () => {
         setIndice(0)
         console.log('entro handle close')
@@ -68,7 +68,8 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
 
         // console.log("holaaaaa",currentField)
         totalGame.map((e) => {
-            return dispatch(createGame({
+            !fieldId ? 
+            dispatch(createGame({
                 date: dias[indice],
                 sport: newField.sport,
                 type: newField.capacity,
@@ -76,7 +77,17 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
                 start: e,
                 end: e + convertirTime(newField.durationPerTurn),
                 fieldId: field.id
-            }))
+            })) :
+            dispatch(createGame({
+                date: dias[indice],
+                sport: newField.sport,
+                type: newField.capacity,
+                status: 'free',
+                start: e,
+                end: e + convertirTime(newField.durationPerTurn),
+                fieldId: fieldId
+            })) 
+
         })
         if (indice < 6) {
             if(totalGame.length === 0){
