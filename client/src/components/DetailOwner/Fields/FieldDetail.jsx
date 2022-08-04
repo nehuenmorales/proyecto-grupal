@@ -42,12 +42,11 @@ export default function FieldDetail({ id }) {
             setChange({
                 description: field?.description,
                 pricePerTurn: field?.pricePerTurn,
-                durationPerTurn: cambioHora(field?.durationPerTurn),
-                start: cambioHora(field?.start),
-                end: cambioHora(field?.end),
+                durationPerTurn: cambioHora(parseInt(field?.pricePerTurn)),
+                start: cambioHora(parseInt(field?.start)),
+                end: cambioHora(parseInt(field?.end)),
             })
         }
-
     }, [field])
 
 
