@@ -3,14 +3,15 @@ const { Games, Complex, Field } = require("../../../db.js");
 async function getBookedGamesByOwner (req, res){
     const {id} = req.params;
       try {
-        const getComplex = await Complex.findAll({
+       const getComplex = await Complex.findAll({
           where:{ownerId : id},
           include : [{model:Field}]
         });
-        console.log('soy getcomplex', getComplex)
+        console.log('soy getcomplex.fields', getComplex.fields)
         const bookedGames = await Games.findAll({
-          where:{fieldId : getComplex.Field.id}
+          where:{fieldId : getComplex.fields.id}
         });
+
         res.status(200).json(bookedGames);
       } catch (e) {
         console.log(e);
