@@ -11,7 +11,7 @@ export default function BookedGames(){
     //     console.log(res.data);
     // }, [])
 
-    // console.log('booked games owner', owner)
+     console.log('booked games')
 
     return(
         <div>
