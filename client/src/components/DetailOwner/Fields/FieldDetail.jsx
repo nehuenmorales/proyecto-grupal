@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/esm/Button";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFieldDetail } from "../../../redux/OwnerFields/FieldDetailOwner/FieldDetailAction"
 import swal from 'sweetalert';
@@ -24,7 +24,7 @@ export default function FieldDetail({ id }) {
     const history = useHistory()
     const handleSubmit = (ev) => {
         ev.preventDefault()
-        dispatch(modifyComplex(change, id))
+        // dispatch(modifyComplex(change, id))
         swal('', "Complejo modificado exitosamente!", 'success')
         history.push("/")
     }
