@@ -75,7 +75,7 @@ export default function SupplieDetail({ id }) {
                         <p className="subTitulos">Precio</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <div style={{ display: 'flex', flexDirection: 'row' }}>
+                    <div style={{ display: 'flex', flexDirection: 'row', marginTop: '5px' }}>
                     <img src='https://cdn-icons-png.flaticon.com/512/74/74742.png' style={{ marginLeft: '80px', height: '25px', filter: 'invert(100%)' }}></img>
                     <input type='text' className="infoForm" style={{ marginLeft: '0', fontSize: '22px'}} name='price' onChange={ev => onClick(ev)} value={change.price} />
                     </div>
