@@ -59,6 +59,7 @@ export default function SupplieDetail({ id }) {
         swal('', "Elemento modificado exitosamente!", 'success')
         history.push("/")
     }
+    console.log(errors, 'errors')
 
     return (
             <div className="contenedorDetail">
