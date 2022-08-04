@@ -90,8 +90,8 @@ export default function SupplieDetail({ id }) {
                     <div className='contenedorBoton' style={{marginTop: '50px'}}>
                         {
                              !errors.stock &&
-                             !errors.price ?
-                                //change.price !== supplie.price || parseInt(change.stock) !== parseInt(supplie.stock) ?
+                             !errors.price &&
+                                parseInt(change.price) !== parseInt(supplie.price) || parseInt(change.stock) !== parseInt(supplie.stock) ?
                                 <button type="submit" className='botonActivo'
                                 >Guardar cambios</button> : <button type="submit" className='btnGris' disabled >Guardar cambios</button>
                         }
