@@ -35,7 +35,7 @@ export default function SuppliesBasquet() {
         price: ""
     })
     useEffect(() => {
-        axios.get('https://falta-uno-1.herokuapp.com/owner/getNameComplex')
+        axios.get('/owner/getNameComplex')
         .then((res) => {
           console.log(res.data, 'soy res.data')
             setComplexName(res.data)

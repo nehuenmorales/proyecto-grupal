@@ -19,51 +19,42 @@ const GetPlayers = ({ match }) => {
   }, [dispatch]);
 
   return (
-    <>
-      <VerticalNavbar />
-      <SearchBar filtro="jugadores" sport={sport} />
-      <Tabs match={match} />
-      <Container>
-        <h2 className='text-white'>Jugadores</h2>
-        <Row style={{
-          'display': 'flex',
-          'alignItems': 'center',
-          'justifyContent': 'center'
-        }}>
-
-
-          {
-            playerSearch.length ?
-              playerSearch.map((x) => {
-                return (
-                  <CardPlayers
-                    key={x.id}
-                    name={x.name}
-                    lastName={x.lastName}
-                    username={x.username}
-                    city={x.city}
-                    elo={x.elo}
-                  />
-                );
-              })
-              :
-              players?.map((x) => {
-                return (
-                  <CardPlayers
-                    key={x.id}
-                    name={x.name}
-                    lastName={x.lastName}
-                    username={x.username}
-                    city={x.city}
-                    elo={x.elo}
-                  />
-                );
-              })
-          }
-        </Row>
-      </Container>
-    </>
-
+    <div>
+        <VerticalNavbar/>
+        <SearchBar state={playerSearch} filtro="jugadores" sport={sport} />
+        <Tabs match={match}/>
+                {
+                playerSearch.length?
+                playerSearch.map((x) => {
+                    return (
+                        <CardPlayers
+                            key={x.id}
+                            name={x.name}
+                            lastName={x.lastName}
+                            username={x.username}
+                            city={x.city}
+                            elo={x.elo}
+                        />
+                    );
+                })
+                :
+                
+                players?.map((x) => {
+                    return (
+                        <CardPlayers
+                            key={x.id}
+                            name={x.name}
+                            lastName={x.lastName}
+                            username={x.username}
+                            city={x.city}
+                            elo={x.elo}
+                        />
+                    );
+                })
+                }
+                
+    </div>
+   
   )
 }
 

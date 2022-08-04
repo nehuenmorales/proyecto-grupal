@@ -7,7 +7,7 @@ export const ORDER_COMPLEX = "ORDER_COMPLEX"
  
  export function getComplex() {
     return dispatch =>{
-      axios.get(`https://falta-uno-1.herokuapp.com/complex/all`)
+      axios.get(`/complex/all`)
         .then(res => {
           dispatch({
             type: GET_COMPLEX,
