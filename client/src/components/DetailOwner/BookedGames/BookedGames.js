@@ -15,7 +15,7 @@ export default function BookedGames(){
 
     return(
         <div>
-            <h1>Booked Games</h1>
+            <h1 style={{color: 'white'}}>Booked Games</h1>
         </div>  
     )
 }

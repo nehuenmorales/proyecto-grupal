@@ -73,14 +73,15 @@ function App() {
       <Route exact path="/fields/detail/:id" component={FieldById} />
       {/* {isLoading ? (
         <Spinner animation="border" variant="light" role="status">
-          <span className="visually-hidden">Loading...</span>
+        <span className="visually-hidden">Loading...</span>
         </Spinner>
-      ) : isAuthenticated ? (
-        <Route exact path="/" component={Home} />
-      ) : (
-        <Route exact path="/" component={Landing} />
-      )} */}
+        ) : isAuthenticated ? (
+          <Route exact path="/" component={Home} />
+          ) : (
+            <Route exact path="/" component={Landing} />
+          )} */}
       {/* leo rompiste todo con esta ruta que esta abajito, AREGLALO */}
+          <Route exact path={"/ownerBookedGames"} componente={BookedGames}/>
       <Route exact path="/sport/:sport" component={AllGames} />
       <Route exact path="/success/:id" component={Success} />
 
@@ -95,7 +96,6 @@ function App() {
       <Route exact path={"/complexOwner"} component={ComplexList}/>
       <Route exact path={"/fieldOwner"} component={FieldList}/>
       <Route exact path={"/suppliesOwner"} component={SuppliesList}/>
-      <Route exact path={"/ownerBookedGames"} componente={BookedGames}/>
       <Route exact path="/owner/complexDetail/:id" render={({ match }) => {return <ComplexDetail id={match.params.id} />;}}/>
       <Route exact path="/fieldOwner/fieldDetail/:id" render={({ match }) => {return <FieldDetail id={match.params.id} />;}}/>
       <Route exact path="/supplieOwner/supplieDetail/:id" render={({ match }) => {return <SupplieDetail id={match.params.id} />;}}/>
