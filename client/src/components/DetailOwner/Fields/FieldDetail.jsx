@@ -17,15 +17,37 @@ export default function FieldDetail({ id }) {
         dispatch(getFieldDetail(id));
     }, [])
 
+    const cambioHora = (num) => {
+        if(num >= 24){
+            num = num - 24
+            let numero = num.toString()
+            if(!numero.includes('.')){
+              return numero + ':00'
+            } else {
+              let resultado = numero.replace('.5', ':30')
+              return resultado
+            }
+        }
+        let numero = num.toString()
+        if(!numero.includes('.')){
+            return numero + ':00'
+        } else {
+            let resultado = numero.replace('.5', ':30')
+            return resultado
+        }
+    }
+
     useEffect(() => {
         setChange({
             description: field?.description,
             pricePerTurn: field?.pricePerTurn,
-            durationPerTurn: field?.durationPerTurn,
-            start: field?.start,
-            end: field?.end,
+            durationPerTurn: cambioHora(field?.durationPerTurn),
+            start: cambioHora(field?.start),
+            end: cambioHora(field?.end),
         })
     }, [field])
+
+
 
     const [change, setChange] = useState({
         description: '',
