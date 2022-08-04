@@ -76,8 +76,8 @@ export default function SupplieDetail({ id }) {
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'row' }}>
-                    <img src='https://cdn-icons-png.flaticon.com/512/74/74742.png' style={{ invert: '100%', height: '25px' }}></img>
-                    <input type='text' className="infoForm" name='price' onChange={ev => onClick(ev)} value={change.price} />
+                    <img src='https://cdn-icons-png.flaticon.com/512/74/74742.png' className="infoForm" style={{ color: 'white', height: '25px' }}></img>
+                    <input type='text' className="infoForm" style={{ marginLeft: '5px'}} name='price' onChange={ev => onClick(ev)} value={change.price} />
                     </div>
                     {errors.price ? <div className="errores" style={{ marginLeft: '80px' }}>{errors.price}</div> : null}
                     <div className='contenedorLapiz'>
