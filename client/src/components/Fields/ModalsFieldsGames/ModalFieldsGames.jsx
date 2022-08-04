@@ -49,7 +49,8 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
         if (indice < 6) setIndice(indice + 1)
         if (indice == 6) {
             setIndice(0)
-            setNewField({
+            if(!fieldId){
+                setNewField({
                 name: "",
                 sport: sport,
                 available: "",
@@ -62,6 +63,8 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
                 complexId: ""
               
             })
+            }
+            
             setShowModal(false)
         }
 
@@ -80,7 +83,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
             })) :
             dispatch(createGame({
                 date: dias[indice],
-                sport: newField.sport,
+                sport: sport,
                 type: newField.capacity,
                 status: 'free',
                 start: e,
