@@ -1,4 +1,5 @@
 import React from "react";
+import './FieldDetail.css'
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/esm/Button";
 import { useEffect, useState } from "react";
@@ -15,6 +16,15 @@ export default function FieldDetail({ id }) {
     useEffect(() => {
         dispatch(getFieldDetail(id));
     }, [])
+    useEffect(() => {
+        setChange({ 
+            description: field?.description, 
+            pricePerTurn: field?.pricePerTurn, 
+            durationPerTurn: field?.durationPerTurn,
+            start: field?.start,
+            end: field?.end,
+         })
+    }, [field])
 
     const [change, setChange] = useState({
         description: '',
@@ -75,26 +85,25 @@ export default function FieldDetail({ id }) {
                         <p className="subTitulos">Horario de apertura de la cancha</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <input className="infoForm" name='start' onChange={ev => onClick(ev)}  value={`${change.start}`} />
+                    <input type='time' className="infoForm" name='start' onChange={ev => onClick(ev)}  value={`${change.start}`} />
                     
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Horario de cierre de la cancha</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <input className="infoForm" name='end' onChange={ev => onClick(ev)}  value={`${change.end}`} />
+                    <input type='time' className="infoForm" name='end' onChange={ev => onClick(ev)}  value={`${change.end}`} />
                     
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Duración por turno</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <input className="infoForm" name='durationPerTurn' onChange={ev => onClick(ev)}  value={`${change.durationPerTurn}`} />
+                    <input type='time' className="infoForm" name='durationPerTurn' onChange={ev => onClick(ev)}  value={`${change.durationPerTurn}`} />
 
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Deporte</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
                     <input className="infoForm" name='sport' /*onChange={ev => onClick(ev)} */ value={field.sport} />
-
 
                 </form>
             </div>
