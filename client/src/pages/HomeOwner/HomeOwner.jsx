@@ -56,7 +56,7 @@ const HomeOwner = () => {
                                             <p className='deporte' >ELEMENTOS</p>
                                         </div>
                                     </Link>
-                                    <Link to="/" style={{textDecoration:"none"}}>
+                                    <Link to="/bookedGames" style={{textDecoration:"none"}}>
                                         <div className='cards' id='reservas'>
                                             <p className='deporte' >RESERVAS</p>
                                         </div>
