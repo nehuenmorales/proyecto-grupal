@@ -14,6 +14,8 @@ export default function BookedGames(){
     // console.log('booked games owner', owner)
 
     return(
-        <h1>BookedGames</h1>
+        <div>
+            <h1>Booked Games</h1>
+        </div>  
     )
 }
