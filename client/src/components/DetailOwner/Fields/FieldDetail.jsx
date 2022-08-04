@@ -122,9 +122,9 @@ export default function FieldDetail({ id }) {
         ev.preventDefault()
         setChange({ ...change, [ev.target.name]: ev.target.value })
         if(ev.target.name === 'start' || ev.target.name === 'end' || ev.target.name === 'durationPerTurn' ){
-            setTime({ ...change, [ev.target.name]: convertirTime(ev.target.value) })
+            setTime({ ...time, [ev.target.name]: convertirTime(ev.target.value) })
         } else {
-            setTime({...change, [ev.target.name]: ev.target.value})
+            setTime({...time, [ev.target.name]: ev.target.value})
         }
 
         let errores = validator({ ...change, [ev.target.name]: ev.target.value });
