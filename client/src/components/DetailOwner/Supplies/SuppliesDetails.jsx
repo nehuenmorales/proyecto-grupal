@@ -75,16 +75,16 @@ export default function SupplieDetail({ id }) {
                         <p className="subTitulos">Precio</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <div style={{ display: 'flex', flexDirection: 'row' }}>
+                    <div style={{ display: 'flex', flexDirection: 'row', marginTop: '5px' }}>
                     <img src='https://cdn-icons-png.flaticon.com/512/74/74742.png' style={{ marginLeft: '80px', height: '25px', filter: 'invert(100%)' }}></img>
-                    <input type='text' className="infoForm" style={{ marginLeft: '0'}} name='price' onChange={ev => onClick(ev)} value={change.price} />
+                    <input type='text' className="infoForm" style={{ marginLeft: '0', fontSize: '22px', marginTop: '5px'}} name='price' onChange={ev => onClick(ev)} value={parseInt(change.price)} />
                     </div>
                     {errors.price ? <div className="errores" style={{ marginLeft: '80px' }}>{errors.price}</div> : null}
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Stock disponible</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <input type='text' className="infoForm" name='stock' onChange={ev => onClick(ev)} value={change.stock} />
+                    <input type='text' className="infoForm" name='stock' style={{ fontSize: '22px', marginTop: '5px'}} onChange={ev => onClick(ev)} value={parseInt(change.stock)} />
                     {errors.stock ? <div className="errores" style={{ marginLeft: '80px' }}>{errors.stock}</div> : null}
                     <div className='contenedorBoton'>
                         {
