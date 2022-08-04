@@ -18,13 +18,15 @@ async function getBookedGamesByOwner (req, res){
           }
         }
         let resultGames = [];
+        let bookedGames
 
         for (let i = 0; i < result.length; i++) {
-          const bookedGames = await Games.findAll({
+          bookedGames = await Games.findAll({
             where:{fieldId : result[i]}
           });
           resultGames.push(bookedGames)
           console.log('resultGame',resultGames)
+          console.log('resultGame',resultGames[0])
         }
         
 
