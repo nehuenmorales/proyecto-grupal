@@ -16,7 +16,8 @@ async function gamesIncomplete(req,res,next){
 
         res.status(200).send(player[0])
     }catch(e){
-        res.status(400).json({ msg: "Error" });
+        console.log(e)
+        res.send(e);
     }  
 }
 
