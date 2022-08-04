@@ -86,7 +86,7 @@ export default function FieldDetail({ id }) {
 
                 <div className="tituloName">
                     <h2 className="fw-normal text-white fst-italic m-9" style={{ fontSize: '3em', marginLeft: '35%' }}>{field.name}</h2>
-                    <h5 className="fw-normal text-white fst-italic m-4" style={{ fontSize: '3em', marginLeft: '35%' }}>{field.complexId}</h5>
+                    <h5 className="fw-normal text-white fst-italic m-9" style={{ fontSize: '1.5em', marginLeft: '35%' }}>{field.complexId}</h5>
                 </div>
 
                 <form onSubmit={(e) => handleSubmit(e)} >
