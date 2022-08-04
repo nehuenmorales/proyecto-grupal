@@ -9,7 +9,7 @@ async function getGames(req, res, next) {
         FROM "games" g
         JOIN fields f ON g."fieldId" = f.id
         JOIN complexes x ON x.id= f."complexId"
-        WHERE g.status = 'booked' AND g.sport = :sport)`,
+        WHERE g.status = 'free' AND g.sport = :sport)`,
             {
                 replacements: { sport: sport},
                 type: QueryTypes.SELECT
