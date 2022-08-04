@@ -1,0 +1,107 @@
+.contenedorDetail{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    
+}
+.derecha{
+    height: 700px;
+    width: 650px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+    margin: 40px 20px 0 20px;
+}
+.subTitulos{
+    margin-top: 40px;
+    margin-left: 80px;
+    color: rgba(18, 141, 255, 1);
+    font-size: 1.4em;
+}
+.info{
+    margin-top: 5px;
+    margin-right: 25px;
+    margin-left: 80px;
+    color: rgb(255, 255, 255);
+    font-size: 1.2em;
+    max-width: 500px;
+}
+.tituloName{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.infoForm{
+    background-color: #111825;
+    text-decoration: none !important;
+    /* border: none ; */
+    outline: none !important;
+    border-color: white;
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
+    width: 500px;
+    color: white;
+    font-size: 1.2em;
+    margin-left: 80px;
+}
+.infoForm:focus{
+    background-color: #111825;
+    text-decoration: none !important;
+    /* border: none ; */
+    outline: none !important;
+    border-color: white;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width: 500px;
+    color: white;
+    font-size: 1.2em;
+}
+.infoForm::placeholder{
+    color: white;
+    font-size: 1.2em;
+}
+.lapiz{
+    height: 17px;
+    filter:invert(100%);
+    margin-top: 25px;
+    margin-left: 10px;
+}
+.contenedorLapiz{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.contenedorDeporte{
+    margin-left: 80px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+.mapeoSport{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+.elem{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 90px;
+    height: 40px;
+    margin: 20px 20px 30px 0;
+    background-color: rgba(0, 184, 63, 1);
+    border-radius: 10px;
+    color: rgb(255, 255, 255);
+    border: none !important;
+    transition: 500ms;
+}
+.elem:hover{
+    transform: scale(1.08);
+}
