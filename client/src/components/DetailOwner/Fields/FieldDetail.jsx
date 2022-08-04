@@ -31,7 +31,7 @@ export default function FieldDetail({ id }) {
         // let errores = validator({ ...change, [ev.target.name]: ev.target.value });
         // setErrors(errores);
     }
-
+    console.log('soy change', change)
     const history = useHistory()
     const handleSubmit = (ev) => {
         ev.preventDefault()
@@ -63,37 +63,37 @@ export default function FieldDetail({ id }) {
                         <p className="subTitulos">Capacidad total de jugadores</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <input className="infoForm" name='description' /*onChange={ev => onClick(ev)} */ value={field.capacity} />
+                    <input className="infoForm" name='capacity' /*onChange={ev => onClick(ev)} */ value={field.capacity} />
 
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Precio por turno</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <input className="infoForm" name='pricePerTurn' onChange={ev => onClick(ev)}  value={`$${change.pricePerTurn}`} />
+                    <input className="infoForm" name='pricePerTurn' onChange={ev => onClick(ev)}  value={`${change.pricePerTurn}`} />
 
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Horario de apertura de la cancha</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <input className="infoForm" name='start' onChange={ev => onClick(ev)}  value={`${change.start}hs`} />
+                    <input className="infoForm" name='start' onChange={ev => onClick(ev)}  value={`${change.start}`} />
                     
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Horario de cierre de la cancha</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <input className="infoForm" name='end' onChange={ev => onClick(ev)}  value={`${change.end}hs`} />
+                    <input className="infoForm" name='end' onChange={ev => onClick(ev)}  value={`${change.end}`} />
                     
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Duración por turno</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <input className="infoForm" name='durationPerTurn' onChange={ev => onClick(ev)}  value={`${change.durationPerTurn}hs`} />
+                    <input className="infoForm" name='durationPerTurn' onChange={ev => onClick(ev)}  value={`${change.durationPerTurn}`} />
 
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Deporte</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <input className="infoForm" name='description' /*onChange={ev => onClick(ev)} */ value={field.sport} />
+                    <input className="infoForm" name='sport' /*onChange={ev => onClick(ev)} */ value={field.sport} />
 
 
                 </form>
