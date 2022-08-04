@@ -16,30 +16,57 @@ export default function FieldDetail({ id }) {
     useEffect(() => {
         dispatch(getFieldDetail(id));
     }, [])
+
     useEffect(() => {
-        setChange({ 
-            description: field?.description, 
-            pricePerTurn: field?.pricePerTurn, 
+        setChange({
+            description: field?.description,
+            pricePerTurn: field?.pricePerTurn,
             durationPerTurn: field?.durationPerTurn,
             start: field?.start,
             end: field?.end,
-         })
+        })
     }, [field])
 
     const [change, setChange] = useState({
         description: '',
-        pricePerTurn: '', 
-        durationPerTurn: '', 
-        start: '', 
+        pricePerTurn: '',
+        durationPerTurn: '',
+        start: '',
         end: ''
     })
+
+    const [errors, setErrors] = useState({
+        description: '',
+        pricePerTurn: '',
+        durationPerTurn: '',
+        start: '',
+        end: ''
+    });
+
+    const validator = (change) => {// funcion que valida que todos los inputs tengan un valor "aceptable"
+        let validations = {};
+        if (!change.description) {
+            validations.description = "Ingrese una descripción del complejo"
+        } else if (change.description?.length > 140) {
+            validations.description = "Alcanzó el limite de caracteres"
+        } else if (!change.pricePerTurn) {
+            validations.pricePerTurn = "Ingrese el precio del turno"
+        } else if (!change.durationPerTurn) {
+            validations.durationPerTurn = "Ingrese la duracion del turno"
+        } else if (!change.start) {
+            validations.start = "Ingrese el horario de apertura de la cancha"
+        } else if (!change.end) {
+            validations.end = "Ingrese el horario de cierre de la cancha"
+        }
+        return validations;
+    };
 
     const onClick = (ev) => {
         ev.preventDefault()
         setChange({ ...change, [ev.target.name]: ev.target.value })
-        
-        // let errores = validator({ ...change, [ev.target.name]: ev.target.value });
-        // setErrors(errores);
+
+        let errores = validator({ ...change, [ev.target.name]: ev.target.value });
+        setErrors(errores);
     }
     console.log('soy change', change)
     const history = useHistory()
@@ -56,19 +83,19 @@ export default function FieldDetail({ id }) {
                 <Link to='/fieldOwner' style={{ 'padding': '10px', 'width': '25%', 'margin': '20px 10px 10px 10px' }}>
                     <Button style={{ 'marginTop': '15px' }}>Volver</Button>
                 </Link>
-            
-            <div className="tituloName">
-                <h2 className="fw-normal text-white fst-italic m-9" style={{ fontSize: '3em', marginLeft: '35%' }}>{field.name}</h2>
-                <h5 className="fw-normal text-white fst-italic m-4" style={{ fontSize: '3em', marginLeft: '35%' }}>{field.complexId}</h5>
-            </div>
-            
+
+                <div className="tituloName">
+                    <h2 className="fw-normal text-white fst-italic m-9" style={{ fontSize: '3em', marginLeft: '35%' }}>{field.name}</h2>
+                    <h5 className="fw-normal text-white fst-italic m-4" style={{ fontSize: '3em', marginLeft: '35%' }}>{field.complexId}</h5>
+                </div>
+
                 <form onSubmit={(e) => handleSubmit(e)} >
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Descripción</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
                     <textarea className="infoForm" name='description' onChange={ev => onClick(ev)} value={change.description} />
-                    {/* {errors.description ? <div className="errores" style={{ marginLeft: '80px' }}>{errors.description}</div> : null} */}
+                    {errors.description ? <div className="errores" style={{ marginLeft: '80px' }}>{errors.description}</div> : null}
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Capacidad total de jugadores</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
@@ -79,25 +106,29 @@ export default function FieldDetail({ id }) {
                         <p className="subTitulos">Precio por turno</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <input className="infoForm" name='pricePerTurn' onChange={ev => onClick(ev)}  value={`${change.pricePerTurn}`} />
+                    <input className="infoForm" name='pricePerTurn' onChange={ev => onClick(ev)} value={`${change.pricePerTurn}`} />
+                    {errors.pricePerTurn ? <div className="errores" style={{ marginLeft: '80px' }}>{errors.pricePerTurn}</div> : null}
 
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Horario de apertura de la cancha</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <input type='time' className="infoForm" name='start' onChange={ev => onClick(ev)}  value={`${change.start}`} />
-                    
+                    <input type='time' className="infoForm" name='start' onChange={ev => onClick(ev)} value={`${change.start}`} />
+                    {errors.start ? <div className="errores" style={{ marginLeft: '80px' }}>{errors.start}</div> : null}
+
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Horario de cierre de la cancha</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <input type='time' className="infoForm" name='end' onChange={ev => onClick(ev)}  value={`${change.end}`} />
-                    
+                    <input type='time' className="infoForm" name='end' onChange={ev => onClick(ev)} value={`${change.end}`} />
+                    {errors.end ? <div className="errores" style={{ marginLeft: '80px' }}>{errors.end}</div> : null}
+
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Duración por turno</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <input type='time' className="infoForm" name='durationPerTurn' onChange={ev => onClick(ev)}  value={`${change.durationPerTurn}`} />
+                    <input type='time' className="infoForm" name='durationPerTurn' onChange={ev => onClick(ev)} value={`${change.durationPerTurn}`} />
+                    {errors.durationPerTurn ? <div className="errores" style={{ marginLeft: '80px' }}>{errors.durationPerTurn}</div> : null}
 
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Deporte</p>
@@ -105,25 +136,39 @@ export default function FieldDetail({ id }) {
                     </div>
                     <input className="infoForm" name='sport' /*onChange={ev => onClick(ev)} */ value={field.sport} />
 
+                    <div className='contenedorBoton'>
+                        {
+                            !errors.description &&
+                                !errors.pricePerTurn &&
+                                !errors.durationPerTurn &&
+                                !errors.start &&
+                                !errors.end &&
+                                change.description !== field.description || change.pricePerTurn !== field.pricePerTurn || change.durationPerTurn !== field.durationPerTurn || change.start !== field.start || change.end !== field.end ?
+                                <button type="submit" className='botonActivo'
+                                >Guardar cambios</button> : <button type="submit" className='btnGris' disabled >Guardar cambios</button>
+                        }
+                    </div>
                 </form>
             </div>
             <div style={{ backgroundImage: `url(${field.image})` }} className='derecha'>
                 <div className='div-rating' style={{ backgroundColor: `rgba(17, 24, 37, 1)`, padding: '7px 15px 3px', height: '50px', width: '150px' }}>
                     <div className="complex-rating" /*style={{ fontSize: `1.3em`, textShadow: '1px 1px 3px black;' }}*/> {
-                        field.available === 'true' ? 
-                        <div>
-                            <p style={{ fontSize: `1.3em`, textShadow: '1px 1px 3px black;' }}>Disponible</p>
-                            <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="" style={{ height: `28px` }} />
-                        </div>
-                         :
-                         <div>
-                            <p style={{ fontSize: `1.3em`, textShadow: '1px 1px 3px black;' }}>Actualmente no disponible</p>
-                            <img src="https://cdn-icons.flaticon.com/png/512/1008/premium/1008927.png?token=exp=1659572730~hmac=56f58e38a6705cd818eb3ada627fc3df" alt="" style={{ height: `28px` }}/>
-                         </div>
-                        
+                        field.available === 'true' ?
+                            <div>
+                                <p style={{ fontSize: `1.3em`, textShadow: '1px 1px 3px black;' }}>Disponible</p>
+                                <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="" style={{ height: `28px` }} />
+                            </div>
+                            :
+                            <div>
+                                <p style={{ fontSize: `1.3em`, textShadow: '1px 1px 3px black;' }}>Actualmente no disponible</p>
+                                <img src="https://cdn-icons.flaticon.com/png/512/1008/premium/1008927.png?token=exp=1659572730~hmac=56f58e38a6705cd818eb3ada627fc3df" alt="" style={{ height: `28px` }} />
+                            </div>
+
                     }</div>
                 </div>
             </div>
+
+
         </div>
 
     )

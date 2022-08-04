@@ -71,16 +71,16 @@ export default function SupplieDetail({ id }) {
                     <p className="fw-normal text-white fst-italic m-9" style={{ fontSize: '1.5em', marginLeft: '35%' }}>{supplie.complexId}</p>
                 </div>
                 <form onSubmit={(e) => handleSubmit(e)}>
-                    <div className='contenedorLapiz' style={{ marginBottom: '10px', paddingBottom: '0'}}>
+                    <div className='contenedorLapiz' style={{ marginBottom: '10px', paddingBottom: '0', height: '40px'}}>
                         <p className="subTitulos">Precio</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'row', marginTop: '0', paddingTop: '5px' }}>
-                    <img src='https://cdn-icons-png.flaticon.com/512/74/74742.png' style={{ marginLeft: '80px', height: '20px', filter: 'invert(100%)' }}></img>
+                    <img src='https://cdn-icons-png.flaticon.com/512/74/74742.png' style={{ marginLeft: '80px', height: '25px', filter: 'invert(100%)', marginTop: '10px' }}></img>
                     <input type='text' className="infoForm" style={{ marginLeft: '0', fontSize: '22px', paddingTop: '0', marginTop: '0'}} name='price' onChange={ev => onClick(ev)} value={ change.price ? parseInt(change.price) : 0} />
                     </div>
                     {errors.price ? <div className="errores" style={{ marginLeft: '80px' }}>{errors.price}</div> : null}
-                    <div className='contenedorLapiz' style={{ marginBottom: '10px', paddingBottom: '0'}}>
+                    <div className='contenedorLapiz' style={{ marginBottom: '10px', paddingBottom: '0' , height: '40px'}}>
                         <p className="subTitulos">Stock disponible</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
