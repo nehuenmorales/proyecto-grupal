@@ -4,6 +4,9 @@ import Button from "react-bootstrap/esm/Button";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFieldDetail } from "../../../redux/OwnerFields/FieldDetailOwner/FieldDetailAction"
+import swal from 'sweetalert';
+import { useHistory } from "react-router-dom";
+
 
 export default function FieldDetail({ id }) {
     const dispatch = useDispatch();
@@ -12,6 +15,19 @@ export default function FieldDetail({ id }) {
     useEffect(() => {
         dispatch(getFieldDetail(id));
     }, [])
+
+    const [change, setChange] = useState({
+        description: '',
+        sports: []
+    })
+
+    const history = useHistory()
+    const handleSubmit = (ev) => {
+        ev.preventDefault()
+        dispatch(modifyComplex(change, id))
+        swal('', "Complejo modificado exitosamente!", 'success')
+        history.push("/")
+    }
 
     return (
         <div className="contenedorDetail">
@@ -22,10 +38,10 @@ export default function FieldDetail({ id }) {
             
             <div className="tituloName">
                 <h2 className="fw-normal text-white fst-italic m-9" style={{ fontSize: '3em', marginLeft: '35%' }}>{field.name}</h2>
-                <h5>{field.complexId}</h5>
+                <h5 className="fw-normal text-white fst-italic m-4" style={{ fontSize: '3em', marginLeft: '35%' }}>{field.complexId}</h5>
             </div>
             
-                <form /*onSubmit={(e) => handleSubmit(e)} */>
+                <form onSubmit={(e) => handleSubmit(e)} >
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Descripción</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
@@ -73,7 +89,6 @@ export default function FieldDetail({ id }) {
             </div>
             <div style={{ backgroundImage: `url(${field.image})` }} className='derecha'>
                 <div className='div-rating' style={{ backgroundColor: `rgba(17, 24, 37, 1)`, padding: '7px 15px 3px', height: '50px', width: '150px' }}>
-                    <img src="https://api.iconify.design/material-symbols:star-rounded.svg?color=%23ffee00" alt="" className="rating-img" style={{ height: `28px` }} />
                     <div className="complex-rating" /*style={{ fontSize: `1.3em`, textShadow: '1px 1px 3px black;' }}*/> {
                         field.available === 'true' ? 
                         <div>
