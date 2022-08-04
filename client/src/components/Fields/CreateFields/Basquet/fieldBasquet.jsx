@@ -40,7 +40,7 @@ export default function BasquetFields() {
   });
 
   useEffect(() => {
-    axios.get('https://falta-uno-1.herokuapp.com/owner/getNameComplex')
+    axios.get('/owner/getNameComplex')
     .then((res) => {
         setComplexName(res.data)
     })  

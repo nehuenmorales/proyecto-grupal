@@ -6,7 +6,9 @@ const { createSupplies } = require("../controllers/Owner/Supplies/createSupplies
 const {  modifySupplie } = require("../controllers/Owner/Supplies/modifySupplies");
 const { createGame } = require("../controllers/Owner/Games/createGame.js");
 const { modifyGame } = require("../controllers/Owner/Games/modifyGame.js");
-const { deleteSupplies } = require("../controllers/Owner/Supplies/deleteSupplies");
+const {
+  deleteSupplies,
+} = require("../controllers/Owner/Supplies/deleteSupplies");
 const { getBookedGames } = require("../controllers/Owner/Games/getBookedGames");
 const { createOwner } = require("../controllers/Owner/owner/createOwner");
 const { getOwner } = require("../controllers/Owner/owner/getOwner.js");
@@ -31,15 +33,15 @@ router.delete("/deleteField/:id", deleteField)
 
 router.get("/getOwner/:id", getOwner);
 
-router.get("/getNameComplex", getNameComplex)
+router.get("/getNameComplex", getNameComplex);
 
-router.get("/getComplexByOwner/:id", getComplexByOwner)
+router.get("/getComplexByOwner/:id", getComplexByOwner);
 
-router.get("/getFieldByOwner/:id", getFieldByOwner)
+router.get("/getFieldByOwner/:id", getFieldByOwner);
 
-router.get("/getSuppliesByOwner/:id", getSuppliesByOwner)
+router.get("/getSuppliesByOwner/:id", getSuppliesByOwner);
 
-router.get("/getComplexDetail/:id", getComplexDetail)
+router.get("/getComplexDetail/:id", getComplexDetail);
 
 router.get("/getFieldDetail/:id", getFieldDetail)
 
@@ -47,7 +49,7 @@ router.get("/getSupplieDetail/:id", getSupplieDetail)
 
 router.post("/createField", createField);
 
-router.put("/modifyComplex/:id", modifyComplex)
+router.put("/modifyComplex/:id", modifyComplex);
 
 router.put("/modifyField/:id", modifyField);
 
@@ -69,8 +71,8 @@ router.delete("/deleteSupplies/:id", deleteSupplies);
 
 router.get("/getBookedGames", getBookedGames);
 
-router.post('/createComplex', createComplex)
+router.post("/createComplex", createComplex);
 
-router.get('/getCities', getCities)
+router.get("/getCities", getCities);
 
 module.exports = router;

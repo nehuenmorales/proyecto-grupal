@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import Button from "react-bootstrap/esm/Button";
 import VerticalNavbar from '../../../components/VerticalNavbar/VerticalNavbar';
 import "./FieldList.css"
@@ -24,6 +24,7 @@ export default function FieldList() {
             return resultado
         }
     }
+  
 
     return (
         <div className="fieldlist-container">
@@ -94,3 +95,4 @@ export default function FieldList() {
         </div>
     )
 }
+

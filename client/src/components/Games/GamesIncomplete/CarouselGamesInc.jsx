@@ -23,7 +23,7 @@ export default function CarouselGamesInc({match}) {
     return (
         <div>
         <VerticalNavbar/>
-        <SearchBar filtro="faltauno" sport={sport} />
+        <SearchBar state={searchGames} filtro="faltauno" sport={sport} />
         <Tabs match={match}/>
             <div className={s.carousel}>
                 {searchGames.length?
