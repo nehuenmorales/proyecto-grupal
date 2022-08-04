@@ -21,11 +21,11 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
     const modificar = async () => {
         setIndice(0)
         console.log('entro handle close')
-        if (!fieldId) {
-            const res = await axios.delete(`https://falta-uno-1.herokuapp.com/owner/deleteField/${field.id}`)
-            console.log(res.data)
+        if (fieldId) {
+            const respuesta = await axios.delete(`https://falta-uno-1.herokuapp.com/owner/deleteGames/${fieldId}`)
+            console.log(respuesta.data)
         } else {
-            const res = await axios.delete(`https://falta-uno-1.herokuapp.com/owner/deleteGames/${fieldId}`)
+            const res = await axios.delete(`https://falta-uno-1.herokuapp.com/owner/deleteField/${field.id}`)
             console.log(res.data)
         }
         setShowModal(false)
