@@ -1,10 +1,12 @@
-import React from "react";
+import React  from "react";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/esm/Button";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSupplieDetail } from "../../../redux/OwnerSupplies/SuppliesDetailOwner/SuppliesDetailAction"
 import { modifySupplie } from "../../../redux/OwnerSupplies/ModifySupplie/modifySupplieAction";
+import swal from 'sweetalert';
+import { useHistory } from "react-router-dom";
 
 export default function SupplieDetail({ id }) {
     const dispatch = useDispatch();
@@ -18,6 +20,8 @@ export default function SupplieDetail({ id }) {
         price: "",
         stock: "",
     });
+
+    const history = useHistory()
 
     useEffect(() => {
         dispatch(getSupplieDetail(id));
