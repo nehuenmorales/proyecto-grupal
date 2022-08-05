@@ -34,6 +34,7 @@ export default function BookedGames() {
     useEffect(() => {
         axios.get(`https://falta-uno-1.herokuapp.com/owner/getBookedGamesByOwner/${owner.id}`)
             .then(res => {
+                console.log('res.data', res.data)
                 for (let i = 0; i < res.data.length; i++) {
                     for (let j = 0; j < res.data[i].length; j++) {
                         console.log('soy res i j', res.data[i][j])
@@ -75,7 +76,6 @@ export default function BookedGames() {
                 <VerticalNavbar/>
             </div>
             <select>
-                
                 <option name="all" onChange={(e) => handleClick(e)}>Todos los turnos</option>
                 <option name="free" onChange={(e) => handleClick(e)}>Turnos disponibles</option>
                 <option name="booked" onChange={(e) => handleClick(e)}>Turnos reservados</option>
