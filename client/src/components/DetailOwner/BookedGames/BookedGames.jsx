@@ -69,10 +69,10 @@ export default function BookedGames() {
                 <option name="booked" value='booked'>Turnos reservados</option>
             </select>
             {
-                select === 'free' &&  totalGames.length > 0 ? 
+                select === 'free' ? 
                 <TableGames bookedGames={freeGames} style={{width:'70%'}}/>
                 : 
-                select === 'booked'&& totalGames.length > 0 ?
+                select === 'booked' ?
                 <TableGames bookedGames={bookedGames} style={{width:'70%'}}/>
                 : 
                 totalGames.length > 0 ?
