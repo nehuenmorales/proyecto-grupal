@@ -80,10 +80,10 @@ export default function BookedGames() {
                 </Link>
                 <VerticalNavbar/>
             </div>
-            <select>
-                <option name="all" onChange={(e) => handleClick(e)}>Todos los turnos</option>
-                <option name="free" onChange={(e) => handleClick(e)}>Turnos disponibles</option>
-                <option name="booked" onChange={(e) => handleClick(e)}>Turnos reservados</option>
+            <select onChange={(e) => handleClick(e)}>
+                <option name="all" value='all'>Todos los turnos</option>
+                <option name="free" value='free'>Turnos disponibles</option>
+                <option name="booked" value='booked'>Turnos reservados</option>
             </select>
             {
                 select === 'free' ? 
@@ -91,9 +91,9 @@ export default function BookedGames() {
                 : 
                 select === 'booked' ?
                 <TableGames bookedGames={bookedGames} style={{width:'70%'}}/>
-                : 
+                : totalGames ?
                 <TableGames bookedGames={totalGames} style={{width:'70%'}}/>
-
+                : null
             }
         </div>
     )
