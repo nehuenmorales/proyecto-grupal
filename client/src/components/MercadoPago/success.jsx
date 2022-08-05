@@ -13,7 +13,8 @@ import { Button,
   Input,
   Heading,
   SimpleGrid,
-  Center
+  Center,
+  Flex
    } from '@chakra-ui/react'
 
 const Success = ({ match }) => {
@@ -59,7 +60,7 @@ const Success = ({ match }) => {
 
 
   return (
-    <Stack>
+    <Flex>
       <VerticalNavbar />
       {
         isLoading ?
@@ -92,7 +93,7 @@ const Success = ({ match }) => {
           Volver al Inicio
       </Button>
       </Link>
-    </Stack>
+    </Flex>
   )
 }
 

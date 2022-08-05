@@ -4,7 +4,7 @@ const{Player}=require("../../db.js")
 
 async function gamesIncomplete(req,res,next){
     try{
-        const player= await conn.query(`(SELECT count_player_by_game.*, f.capacity - enrolled_amount AS freePlace, f.*
+        const player= await conn.query(`(SELECT count_player_by_game.*, f.capacity - enrolled_amount AS freePlace, f.*, x.*
             FROM (
                 SELECT g.id as gameid, g.privacy, g.start AS startHour,g.end AS endHour,g."fieldId" ,count(*) AS enrolled_amount
                 FROM games g
@@ -13,6 +13,7 @@ async function gamesIncomplete(req,res,next){
                 GROUP BY g.id
             ) count_player_by_game
             JOIN fields f ON count_player_by_game."fieldId" = f.id
+            JOIN complexes x ON f."complexId" = x.id
             WHERE enrolled_amount < f.capacity)`)
 
         res.status(200).send(player[0])
@@ -25,12 +26,12 @@ async function gamesIncomplete(req,res,next){
 async function detailGameIncomplete(req, res){
     const { id } = req.params;
     try {
-        const detail= await conn.query(`(SELECT p.username, g.*,f.name, f.capacity, f."pricePerTurn"
+        const detail= await conn.query(`(SELECT p.username, g.*,f.name, f.capacity, f."pricePerTurn", x.*
             FROM players p
             JOIN player_games pg ON pg."playerId" = p.id
             JOIN games g ON pg."gameId" = g.id
             JOIN fields f ON g."fieldId" = f.id
-            
+            JOIN complexes x ON f."complexId" = x.id
             WHERE g."id" = :id)`,
             {
                 replacements: { id: id},
@@ -38,7 +39,6 @@ async function detailGameIncomplete(req, res){
             })
         detail.players=detail?.map(g=>g.username).join(",")
         return res.send(detail)
-        
     } catch (error) {
         console.log(e)
       res.send(error)
