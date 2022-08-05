@@ -83,7 +83,8 @@ export default function FieldDetail({ id }) {
         pricePerTurn: '',
         durationPerTurn: '',
         start: '',
-        end: ''
+        end: '', 
+        fieldId: field.id
     })
 
     const [errors, setErrors] = useState({
@@ -238,9 +239,7 @@ export default function FieldDetail({ id }) {
                     }</div>
                 </div>
             </div>
-      <ModalsFieldsGames showModal={showModal} setShowModal={setShowModal} setNewField={setChange} sport={field.sport} newField={change} convertirTime={convertirTime} />
-
-
+      <ModalsFieldsGames showModal={showModal} setShowModal={setShowModal} setNewField={setChange} sport={field.sport} newField={change} convertirTime={convertirTime} fieldId={field.id} type={field.capacity}/>
         </div>
 
     )

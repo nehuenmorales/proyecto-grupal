@@ -34,8 +34,7 @@ import GetPlayers from "./components/Players/getPlayers";
 import PlayerProfile from "./components/Profile/Profile";
 import LandingPage from "./components/LandingPage/landingPage.jsx"
 import Success from "./components/MercadoPago/success.jsx"
- 
-
+import BookedGames from "./components/Games/BookedGames/BookedGames";
 import { TeamsContainer } from "./components/Teams/TeamContainer";
 import SupplieDetail from "./components/DetailOwner/Supplies/SuppliesDetails";
 
@@ -101,6 +100,7 @@ function App() {
       <Route exact path={"/complexOwner"} component={ComplexList}/>
       <Route exact path={"/fieldOwner"} component={FieldList}/>
       <Route exact path={"/suppliesOwner"} component={SuppliesList}/>
+      <Route exact path={"/ownerBookedGames"} componente={BookedGames}/>
       <Route exact path="/owner/complexDetail/:id" render={({ match }) => {return <ComplexDetail id={match.params.id} />;}}/>
       <Route exact path="/fieldOwner/fieldDetail/:id" render={({ match }) => {return <FieldDetail id={match.params.id} />;}}/>
       <Route exact path="/supplieOwner/supplieDetail/:id" render={({ match }) => {return <SupplieDetail id={match.params.id} />;}}/>

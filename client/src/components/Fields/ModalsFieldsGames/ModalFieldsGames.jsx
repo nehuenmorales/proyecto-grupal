@@ -8,7 +8,7 @@ import s from './modals.module.css'
 import swal from 'sweetalert';
 import axios from 'axios'
 
-export default function ModalsFieldsGames({ showModal, setShowModal, setNewField, newField, sport, convertirTime }) {
+export default function ModalsFieldsGames({ showModal, setShowModal, setNewField, newField, sport, convertirTime, fieldId, type }) {
     let dias = ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
     const dispatch = useDispatch();
     const field = useSelector((state) => state.fieldsReducer.field)
@@ -17,12 +17,17 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
     const [totalGame, setTotalGame] = useState([])
 
     const history = useHistory()
-
+    console.log('soy sport modal', sport)
     const modificar = async () => {
         setIndice(0)
         console.log('entro handle close')
-        const res = await axios.delete(`https://falta-uno-1.herokuapp.com/owner/deleteField/${field.id}`)
-        console.log(res.data)
+        if (fieldId) {
+            const respuesta = await axios.delete(`https://falta-uno-1.herokuapp.com/owner/deleteGames/${fieldId}`)
+            console.log(respuesta.data)
+        } else {
+            const res = await axios.delete(`https://falta-uno-1.herokuapp.com/owner/deleteField/${field.id}`)
+            console.log(res.data)
+        }
         setShowModal(false)
 
     };
@@ -30,7 +35,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
     const cancelTurn = (e) => {
         if (totalGame.includes(parseFloat(e.target.value))) {
             setTotalGame(totalGame.filter((value) => value != e.target.value))
-        } else{
+        } else {
             setTotalGame([...totalGame, parseFloat(e.target.value)])
 
         }
@@ -39,7 +44,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
     useEffect(() => {
         let duration = convertirTime(newField.durationPerTurn)
         setDuracion(duration)
-    },[newField.durationPerTurn])
+    }, [newField.durationPerTurn])
 
     const handleCreate = (e) => {
         e.preventDefault();
@@ -49,48 +54,72 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
         if (indice < 6) setIndice(indice + 1)
         if (indice == 6) {
             setIndice(0)
-            setNewField({
-                name: "",
-                sport: sport,
-                available: "",
-                pricePerTurn: "",
-                durationPerTurn: "",
-                description: "",
-                capacity: "",
-                start: "",
-                end: "", 
-                complexId: ""
-              
-            })
+            if (!fieldId) {
+                setNewField({
+                    name: "",
+                    sport: sport,
+                    available: "",
+                    pricePerTurn: "",
+                    durationPerTurn: "",
+                    description: "",
+                    capacity: "",
+                    start: "",
+                    end: "",
+                    complexId: ""
+
+                })
+            }
+
             setShowModal(false)
         }
 
+        let deporte = sport
+        let tipo = type
 
         // console.log("holaaaaa",currentField)
         totalGame.map((e) => {
-            return dispatch(createGame({
-                date: dias[indice],
-                sport: newField.sport,
-                type: newField.capacity,
-                status: 'free',
-                start: e,
-                end: e + convertirTime(newField.durationPerTurn),
-                fieldId: field.id
-            }))
+            !fieldId ?
+                dispatch(createGame({
+                    date: dias[indice],
+                    sport: newField.sport,
+                    type: newField.capacity,
+                    status: 'free',
+                    start: e,
+                    end: e + convertirTime(newField.durationPerTurn),
+                    fieldId: field.id
+                })) :
+                dispatch(createGame({
+                    date: dias[indice],
+                    sport: deporte,
+                    type: tipo,
+                    status: 'free',
+                    start: e,
+                    end: e + convertirTime(newField.durationPerTurn),
+                    fieldId: fieldId
+                }))
+
         })
         if (indice < 6) {
-            if(totalGame.length === 0){
-                swal('', `No se crearon turnos para el día ${dias[indice]}`, 'warning' )
+            if (totalGame.length === 0) {
+                swal('', `No se crearon turnos para el día ${dias[indice]}`, 'warning')
             }
             else swal('', `Los turnos del dia ${dias[indice]} fueron creados exitosamente`, 'success')
         }
         if (indice == 6) {
+            if(fieldId){
+                swal('', "Cancha y turnos modificados exitosamente!", 'success')
+                history.push("/fieldOwner")
 
-            swal('', "Cancha y turnos creados exitosamente!", 'success')
-            history.push("/owner/select")
+            } else{
+                swal('', "Cancha y turnos creados exitosamente!", 'success')
+                history.push("/complexOwner")
+            }
+
+            
+            
         }
 
-        
+
     };
 
     const appointments = (newField) => {
@@ -132,7 +161,7 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
                         }
                     }
                     for (let i = 0; i < array.length; i++) {
-                        if(array[i] >= 24){
+                        if (array[i] >= 24) {
                             array[i] = array[i] - 24
                             console.log(array, 'array en el for')
                         }
@@ -148,24 +177,24 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
                         //         break;
                         //     case 25.5:
                         //         array[i] = 1.5
-                            //     break;
-                            // case 26:
-                            //     array[i] = 2
-                            //     break;
-                            // case 26.5:
-                            //     array[i] = 2.5
-                            //     break;
-                            // case 27:
-                            //     array[i] = 3
-                            //     break;
-                            // case 27.5:
-                            //     array[i] = 3.5
-                            //     break;
-                            // case 28:
-                            //     array[i] = 4
-                            //     break;
-                            // default:
-                            //     break;
+                        //     break;
+                        // case 26:
+                        //     array[i] = 2
+                        //     break;
+                        // case 26.5:
+                        //     array[i] = 2.5
+                        //     break;
+                        // case 27:
+                        //     array[i] = 3
+                        //     break;
+                        // case 27.5:
+                        //     array[i] = 3.5
+                        //     break;
+                        // case 28:
+                        //     array[i] = 4
+                        //     break;
+                        // default:
+                        //     break;
                         // }
                     }
 
@@ -178,18 +207,18 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
     }
 
     const cambioHora = (num) => {
-        if(num >= 24){
+        if (num >= 24) {
             num = num - 24
             let numero = num.toString()
-            if(!numero.includes('.')){
-              return numero + ':00'
+            if (!numero.includes('.')) {
+                return numero + ':00'
             } else {
-              let resultado = numero.replace('.5', ':30')
-              return resultado
+                let resultado = numero.replace('.5', ':30')
+                return resultado
             }
         }
         let numero = num.toString()
-        if(!numero.includes('.')){
+        if (!numero.includes('.')) {
             return numero + ':00'
         } else {
             let resultado = numero.replace('.5', ':30')
@@ -198,34 +227,34 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
     }
 
     var turn = appointments(newField)
-    
-    useEffect(() => {
-        setTotalGame(appointments(newField))
-    },[newField])
 
     useEffect(() => {
         setTotalGame(appointments(newField))
-    },[indice])
-    
+    }, [newField])
+
+    useEffect(() => {
+        setTotalGame(appointments(newField))
+    }, [indice])
+
     return (
         <div className={s.contenedor}>
             <Modal show={showModal} size="lg" aria-labelledby="example-modal-sizes-title-lg">
                 <Modal.Header className={s.contenedorTitle}>
                     <Modal.Title>
-                            <h2 className={s.titulo}>Esquema de turnos</h2>
-                            <p className={s.subTitulo}>Selecciona en rojo los turnos que NO se deben crear</p>
+                        <h2 className={s.titulo}>Esquema de turnos</h2>
+                        <p className={s.subTitulo}>Selecciona en rojo los turnos que NO se deben crear</p>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body className={s.contenedorBody}>
                     <div >
-                <div className={s.dia}>{dias[indice]}</div>
-                <div className={s.turnos}>
-                    {/* <button>holamami</button> */console.log('turnnn', turn)}
-                    {turn?.map((e) => totalGame?.includes(e) ? <button onClick={cancelTurn} className={s.botonVerde} key={e} value={e}>{cambioHora(e) + 'hs'}-{cambioHora(e + duracion) + 'hs'}</button> : <button onClick={cancelTurn} className={s.botonRojo} key={e} value={e}>{cambioHora(e) + 'hs'}-{cambioHora(e + duracion) + 'hs'}</button>)}
-                </div>
-                </div>
+                        <div className={s.dia}>{dias[indice]}</div>
+                        <div className={s.turnos}>
+                            {/* <button>holamami</button> */console.log('turnnn', turn)}
+                            {turn?.map((e) => totalGame?.includes(e) ? <button onClick={cancelTurn} className={s.botonVerde} key={e} value={e}>{cambioHora(e) + 'hs'}-{cambioHora(e + duracion) + 'hs'}</button> : <button onClick={cancelTurn} className={s.botonRojo} key={e} value={e}>{cambioHora(e) + 'hs'}-{cambioHora(e + duracion) + 'hs'}</button>)}
+                        </div>
+                    </div>
                 </Modal.Body>
-                <Modal.Footer className={s.footer} style={{'backgroundColor':'rgb(133, 133, 133);'}}>
+                <Modal.Footer className={s.footer} style={{ 'backgroundColor': 'rgb(133, 133, 133);' }}>
                     {/* <button onClick={handleClose} className={s.modificar}>
                         Modificar Cancha
                     </button> */}
