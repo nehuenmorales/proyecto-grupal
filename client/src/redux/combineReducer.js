@@ -3,7 +3,7 @@ import fieldsReducer from "./OwnerFields/fieldsReducer";
 import suppliesReducer from "./OwnerSupplies/suppliesReducer"
 import GamesIncompleteReducer from "./GamesIncomplete/gamesIncompleteReducer"
 import getFieldsR from './DetailField/DetailField-reducer';
-import games from './Games/gamesReducer'
+import games from './NuevoGames/gamesReducer'
 import getPlayersReducer from './Players/GetPlayersReducer'
 import complexReducer from './Complexes/ComplexReducer';
 import getOwnerReducer from './GetOwner/getOwnerReducer';

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Modal, Button, Card, Container, Form } from 'react-bootstrap';
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { updateGame } from "../../../redux/Games/gamesAction";
+import { updateGame } from "../../../redux/NuevoGames/gamesAction";
 import { postPayments, resetUrlPayment } from "../../../redux/Payments/paymentsAction";
 
 export default function ModalGames({ showModal, setShowModal, sport, id, price, supplies }) {

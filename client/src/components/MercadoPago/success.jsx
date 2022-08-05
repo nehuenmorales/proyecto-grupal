@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux'
 import { useAuth0 } from '@auth0/auth0-react';
-import { updateGame, sendInvitation } from '../../redux/Games/gamesAction';
+import { updateGame, sendInvitation } from '../../redux/NuevoGames/gamesAction';
 import { putGame } from '../../redux/GamesIncomplete/gamesIncompleteActions';
 import { Link } from 'react-router-dom';
 import VerticalNavbar from '../VerticalNavbar/VerticalNavbar'

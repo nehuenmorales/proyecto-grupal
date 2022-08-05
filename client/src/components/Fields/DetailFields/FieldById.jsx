@@ -70,7 +70,7 @@ const FieldById = ({ match }) => {
         e.preventDefault(e)
         history.push(`/games/detail/${e.target.value}`)
     }
-    console.log(detail)
+    console.log("detail",detail)
   return (
     <Flex>
       <VerticalNavbar />
