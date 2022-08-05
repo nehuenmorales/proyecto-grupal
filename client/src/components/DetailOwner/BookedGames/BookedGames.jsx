@@ -8,6 +8,8 @@ export default function BookedGames() {
     let owner = useSelector((state) => state.getOwnerReducer.owner)
     const [bookedGames, setBookedGames] = useState([])
     const [totalGames, setTotalGames] = useState([])
+    const [freeGames, setFreeGames] = useState([])
+    const [select, setSelect] = useState('')
     // const [bookedGame, setBookedGame] = useState({
     //     date: "",
     //     end: "",
@@ -27,25 +29,63 @@ export default function BookedGames() {
     useEffect(() => {
         axios.get(`https://falta-uno-1.herokuapp.com/owner/getBookedGamesByOwner/${owner.id}`)
             .then(res => {
-                setTotalGames(res.data)
                 for (let i = 0; i < res.data.length; i++) {
                     for (let j = 0; j < res.data[i].length; j++) {
                         console.log('soy res i j', res.data[i][j])
-                        if (res.data[i][j].status == 'booked') {
-                            console.log('entree', res.data[i][j])
-                            setBookedGames([...bookedGames, res.data[i][j]])
-                        }
+                            setTotalGames([...totalGames, res.data[i][j]])
                     }
                 }
-                console.log('soy respuestaa', res.data)
-                console.log('soy booked game', bookedGames)
             });
     }, [])
     console.log('booked games owner', owner)
 
+    const handleClick = (e) => {
+        e.preventDefault()
+        let filtrados
+        if(e.target.name === 'free'){
+            filtrados = totalGames.filter(el => {
+                return el.status == 'free'
+            })
+            setSelect('free')
+            setFreeGames(filtrados)
+            console.log('filtradoss', filtrados)
+        } else if(e.target.name === 'booked'){
+            filtrados = totalGames.filter(el => {
+                return el.status == 'booked'
+            })
+            setSelect('booked')
+            setBookedGames(filtrados)
+            console.log('filtradoss booked', filtrados)
+        } else {
+            setSelect('all')
+        }
+    }
+
+
     return (
         <div>
-                <TableGames bookedGames={bookedGames} totalGames={totalGames}/>
+             <div style={{ 'padding': '10px' , 'display': 'flex','flexDirection':'row', 'justifyContent': 'space-around', 'alignItems':'center' }}>
+                <Link to='/' style={{ 'padding': '10px' , 'width': '25%'}}>
+                    <Button>Volver</Button>
+                </Link>
+                <VerticalNavbar/>
+            </div>
+            <select>
+                
+                <option name="all" onClick={(e) => handleClick(e)}>Todos los turnos</option>
+                <option name="free" onClick={(e) => handleClick(e)}>Turnos disponibles</option>
+                <option name="booked" onClick={(e) => handleClick(e)}>Turnos reservados</option>
+            </select>
+            {
+                select === 'free' ? 
+                <TableGames bookedGames={freeGames} style={{width:'70%'}}/>
+                : 
+                select === 'booked' ?
+                <TableGames bookedGames={bookedGames} style={{width:'70%'}}/>
+                : 
+                <TableGames bookedGames={totalGames} style={{width:'70%'}}/>
+                
+            }
         </div>
     )
 }
