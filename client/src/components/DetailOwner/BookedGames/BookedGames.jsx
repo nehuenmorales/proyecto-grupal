@@ -67,7 +67,7 @@ export default function BookedGames() {
                 <VerticalNavbar/>
             </div>
             <div style={{width: '100%',  display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            <select onChange={(e) => handleClick(e)} style={{padding: '10px 25px', borderRadius: '10px', border: 'white', backgroundColor: '#111825',
+            <select onChange={(e) => handleClick(e)} style={{padding: '10px 25px', borderRadius: '10px', borderColor: 'white', backgroundColor: '#111825',
              color: 'white',  display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '15px'}}>
                 <option name="all" value='all'>Todos los turnos</option>
                 <option name="free" value='free'>Turnos disponibles</option>
