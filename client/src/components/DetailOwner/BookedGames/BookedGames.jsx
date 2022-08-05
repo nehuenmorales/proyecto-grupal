@@ -66,7 +66,6 @@ export default function BookedGames() {
                                     </div>
                                     : null
                             }
-
                         </div>
                     )
                 })

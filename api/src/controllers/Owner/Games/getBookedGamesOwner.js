@@ -24,7 +24,8 @@ async function getBookedGamesByOwner (req, res){
           bookedGames = await Games.findAll({
             where:{
               fieldId : result[i]
-            }
+            }, 
+            include : [{model:Field}]
           });
           resultGames.push(bookedGames)
           console.log('resultGame',resultGames)
