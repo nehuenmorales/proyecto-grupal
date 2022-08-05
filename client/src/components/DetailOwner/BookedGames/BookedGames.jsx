@@ -52,9 +52,10 @@ export default function BookedGames() {
         <div>
             <h1 style={{ color: 'white' }}>{bookedGames?.length > 0 ? 
             bookedGames.map((elem) => {
+                const res = field(elem);
                 return(
                  <div> 
-                     <h2>Reserva en cancha: {field(elem)}</h2>
+                     <h2>Reserva en cancha: {res}</h2>
                     <h4>Fecha: {elem.date}</h4>  
                     <p>Horario de inicio: {elem.start}hs</p> 
                     <p>Horario de finalización: {elem.end}hs</p> 
