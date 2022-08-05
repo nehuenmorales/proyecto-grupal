@@ -43,7 +43,7 @@ export default function BookedGames() {
 
     return (
         <div>
-            <h1 style={{ color: 'white' }}>{bookedGame.length > 0 ? bookedGame : hola}</h1>
+            <h1 style={{ color: 'white' }}>{bookedGame?.length > 0 ? bookedGame :  'Aun no tienes reservas'}</h1>
         </div>
     )
 }
