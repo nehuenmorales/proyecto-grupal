@@ -44,7 +44,7 @@ export default function BookedGames() {
     return (
         <div>
             <h1 style={{ color: 'white' }}>{bookedGames?.length > 0 ? 
-            <div>
+            <div> {console.log(bookedGames, 'soyBookedGames')}
             <h2>{bookedGames.date}</h2> 
             <h2>{bookedGames.sport}</h2> 
             <h2>{bookedGames.start}hs</h2> 
