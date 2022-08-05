@@ -68,8 +68,7 @@ export default function BookedGames() {
             </div>
             <div style={{width: '100%',  display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             <select onChange={(e) => handleClick(e)} 
-            // style={{padding: '10px 25px', borderRadius: '10px', borderColor: 'white', backgroundColor: '#111825',
-            //  color: 'white',  display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '15px'}}
+            style={{alignItems: 'center', textAlign: 'center', marginBottom: '15px'}}
             className='selectSports'
              >
                 <option name="all" value='all'>Todos los turnos</option>
