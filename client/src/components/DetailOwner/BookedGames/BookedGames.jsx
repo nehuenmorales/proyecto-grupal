@@ -31,7 +31,7 @@ export default function BookedGames() {
                         console.log('soy res i j',res.data[i][j])
                         if(res.data[i][j].status == 'booked'){
                             console.log('entree', res.data[i][j])
-                            setBookedGames([ ...bookedGames, res.data[i][j] ])
+                            setBookedGames([ ...bookedGames, {...res.data[i][j], field : field(res.data[i][j].fieldId)} ])
                         }
                     }
                     
@@ -52,11 +52,11 @@ export default function BookedGames() {
         <div>
             <h1 style={{ color: 'white' }}>{bookedGames?.length > 0 ? 
             bookedGames.map((elem) => {
-                 const res = field(elem);
-                 console.log(res, 'soy res')
+                //  const res = field(elem);
+                //  console.log(res, 'soy res')
                 return(
                  <div> 
-                     <h2>{ res ? `Reserva en cancha: ${res}`: null}</h2>
+                     <h2>{`Reserva en cancha: ${elem.field}`}</h2>
                     <h4>Fecha: {elem.date}</h4>  
                     <p>Horario de inicio: {elem.start}hs</p> 
                     <p>Horario de finalización: {elem.end}hs</p> 
