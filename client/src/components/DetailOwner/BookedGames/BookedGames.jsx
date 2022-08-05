@@ -28,7 +28,8 @@ export default function BookedGames() {
                 for (let i = 0; i < res.data.length; i++) {
                     for (let j = 0; j < res.data[i].length; j++) {
                         console.log('soy res i j',res.data[i][j])
-                        if(res.data[i][j].status === 'booked'){
+                        if(res.data[i][j].status == 'booked'){
+                            console.log('soy res i j',res.data[i][j].status)
                             setBookedGames([...bookedGames, res.data[i][j]])
                         }
                     }
