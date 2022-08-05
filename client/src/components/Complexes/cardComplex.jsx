@@ -10,6 +10,8 @@ import locationIcon from "../../assets/icons/location.svg"
 export default function CardComplex(props) {
 	return (
 		<Card className={s.separar}>
+			<Link to={`/sport/futbol/complex/${props.name}`}>
+
 			<Card.Img className={s.NewImage} variant="top" src={props.image} />
 			<Card.Body className={s.bodyCard}>
 				<Card.Title className={s.title}>{props.name}</Card.Title>
@@ -17,11 +19,11 @@ export default function CardComplex(props) {
           		{Array(5)
             .fill('')
             .map((_, i) => (
-              <StarIcon
+				<StarIcon
                 key={i}
                 color={i < props.rating ? 'gold' : 'gray.300'}
-              />
-            ))}
+				/>
+				))}
           <Box as='span' ml='2' color='gray.600' fontSize='sm'>
             0 reviews
           </Box>
@@ -30,6 +32,7 @@ export default function CardComplex(props) {
 				<img src={locationIcon}/>  {props.city}
 				</Card.Text>
 			</Card.Body>
+			</Link>
 		</Card>
 	)
 }

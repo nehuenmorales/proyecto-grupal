@@ -6,6 +6,7 @@ import { getSearchComplex } from '../../redux/Complexes/ComplexAction'
 import VerticalNavbar from '../../components/VerticalNavbar/VerticalNavbar';
 import Map from '../../components/Map/Map';
 import { BiMapPin } from 'react-icons/bi';
+import {Flex} from "@chakra-ui/react"
 
 
 const DetailComplex = ({ match }) => {
@@ -19,8 +20,9 @@ const DetailComplex = ({ match }) => {
   }, [dispatch])
 
   return (
-    <Container style={{ color: 'white' }}>
+    <Flex>
       <VerticalNavbar />
+    <Container style={{ color: 'white' }}>
       <Carousel className='imageContainer'>
         <Carousel.Item className='imageItemContainer'>
           <img
@@ -50,7 +52,7 @@ const DetailComplex = ({ match }) => {
             className="d-block w-100"
             src="https://donpotrero.com/img/posts/2/medidas_lg.jpg"
             alt="Third slide"
-          />
+            />
           <Carousel.Caption>
             <h3>Third slide label</h3>
             <p>
@@ -76,6 +78,7 @@ const DetailComplex = ({ match }) => {
         </Col>
       </Row>
     </Container>
+  </Flex>
   )
 }
 
