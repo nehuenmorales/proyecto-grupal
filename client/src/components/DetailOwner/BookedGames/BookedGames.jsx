@@ -55,7 +55,8 @@ export default function BookedGames() {
         }
         console.log('selecttttt', select)
     }
-
+    const eliminarTurno = (ev) => {
+    }
 
     return (
         <div>
@@ -65,11 +66,14 @@ export default function BookedGames() {
                 </Link>
                 <VerticalNavbar/>
             </div>
-            <select onChange={(e) => handleClick(e)}>
+            <div style={{width: '100%',  display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <select onChange={(e) => handleClick(e)} style={{padding: '10px 25px', borderRadius: '10px', border: 'none', backgroundColor: '#111825',
+             color: 'white',  display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                 <option name="all" value='all'>Todos los turnos</option>
                 <option name="free" value='free'>Turnos disponibles</option>
                 <option name="booked" value='booked'>Turnos reservados</option>
             </select>
+            </div>
             <div style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             <div style={{width: '60%'}}>
             {allGames?.length > 0 && select == 'all' ?
@@ -93,7 +97,10 @@ export default function BookedGames() {
                                     <td style={{color:'white'}}>{elem.start}hs</td>
                                     <td style={{color:'white'}}>{elem.end}hs</td>
                                     <td style={{color:'white'}}>{elem.status == 'free' ? 'Libre' : 'Reservada'}</td>
-
+                                    {elem.status == 'free' ?
+                                    <button value={elem.id} onClick={ev => eliminarTurno(ev)}>Eliminar</button>
+                                    :null
+                                    }
                                 </tr>
                             )
                         })}
