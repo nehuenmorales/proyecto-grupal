@@ -30,7 +30,7 @@ export default function BookedGames() {
                         console.log('soy res i j',res.data[i][j])
                         if(res.data[i][j].status == 'booked'){
                             console.log('soy res STATUS',res.data[i][j].status)
-                            setBookedGames([...bookedGames, res.data[i][j]])
+                            setBookedGames([ ...bookedGames, res.data[i][j] ])
                         }
                     }
                     
@@ -43,7 +43,7 @@ export default function BookedGames() {
 
     return (
         <div>
-            <h1 style={{ color: 'white' }}>Booked Games</h1>
+            <h1 style={{ color: 'white' }}>{bookedGame.length > 0 ? bookedGame : hola}</h1>
         </div>
     )
 }
