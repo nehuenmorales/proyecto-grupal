@@ -13,6 +13,8 @@ export default function BookedGames() {
     const [totalGames, setTotalGames] = useState([])
     const [freeGames, setFreeGames] = useState([])
     const [select, setSelect] = useState('')
+
+    console.log('soy total games: ', totalGames)
     // const [bookedGame, setBookedGame] = useState({
     //     date: "",
     //     end: "",
@@ -40,7 +42,6 @@ export default function BookedGames() {
                 }
             });
     }, [])
-    console.log('booked games owner', owner)
 
     const handleClick = (e) => {
         e.preventDefault()
@@ -75,9 +76,9 @@ export default function BookedGames() {
             </div>
             <select>
                 
-                <option name="all" onClick={(e) => handleClick(e)}>Todos los turnos</option>
-                <option name="free" onClick={(e) => handleClick(e)}>Turnos disponibles</option>
-                <option name="booked" onClick={(e) => handleClick(e)}>Turnos reservados</option>
+                <option name="all" onChange={(e) => handleClick(e)}>Todos los turnos</option>
+                <option name="free" onChange={(e) => handleClick(e)}>Turnos disponibles</option>
+                <option name="booked" onChange={(e) => handleClick(e)}>Turnos reservados</option>
             </select>
             {
                 select === 'free' ? 
