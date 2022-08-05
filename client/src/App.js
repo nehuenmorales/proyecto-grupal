@@ -36,6 +36,7 @@ import BookedGames from "./components/DetailOwner/BookedGames/BookedGames.jsx";
 import { TeamsContainer } from "./components/Teams/TeamContainer";
 import FieldDetail from "./components/DetailOwner/Fields/FieldDetail"
 import SupplieDetail from "./components/DetailOwner/Supplies/SuppliesDetails" 
+import ContainerChat from "./components/PrivateChat/containerChat";
 
 
 function App() {
@@ -87,6 +88,7 @@ function App() {
       <Route exact path={"/owner/createSupplie"} component={CreateSupplies}/>
  
       <Route exact path={"/games/detail/:id"} component={GameDetail}/>
+      <Route exact path={"/privateChat"} component={ContainerChat}/>
 
       <Route exact path={"/owner/createComplex"} component={CreateComplex}/>
       <Route exact path={"/complexOwner"} component={ComplexList}/>

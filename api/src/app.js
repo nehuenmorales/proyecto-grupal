@@ -3,12 +3,27 @@ const cookieParser = require("cookie-parser");
 // const bodyParser = require('body-parser');
 const morgan = require("morgan");
 const routes = require("./routes/index.js");
+const { Server }  = require("socket.io")
+const http = require("http");
+const socketManager = require("./socketManager")
 
 require("./db.js");
 
-const server = express();
-const cors=require("cors")
+const SocketServer = Server;
 
+const server = express();
+const cors=require("cors");
+//const { CLIENT_RENEG_LIMIT } = require("tls");
+
+const app = http.createServer(server);
+
+const io = new SocketServer(app, {
+  cors: {
+    origin: "*",
+  },
+});
+
+io.on("connection",socketManager);
 server.name = "API";
 
 server.use(cors())
@@ -38,4 +53,4 @@ server.use((err, req, res, next) => {
   res.status(status).send(message);
 });
 
-module.exports = server;
+module.exports = app;
