@@ -10,29 +10,29 @@ import Table from 'react-bootstrap/Table';
 
 export default function BookedGames() {
     let allGames = useSelector((state) => state.gamesOwnerReducer.allGames)
-    console.log(allGames)
+    console.log(allGames, 'all games')
     const [bookedGames, setBookedGames] = useState([])
     const [totalGames, setTotalGames] = useState([])
     const [freeGames, setFreeGames] = useState([])
     const [select, setSelect] = useState('all')
 
-    useEffect(() => {
-        axios.get(`https://falta-uno-1.herokuapp.com/owner/getBookedGamesByOwner/${owner.id}`)
-            .then(res => {
-                console.log('res.data', res.data)
-                for (let i = 0; i < res.data.length; i++) {
-                    for (let j = 0; j < res.data[i].length; j++) {
-                        console.log('soy res i j', res.data[i][j])
-                         let copia = totalGames
-                         copia.push(res.data[i][j])
-                        console.log('copia', copia)
-                            setTotalGames(copia)
-                    }
-                }
-                console.log('soy total games: ', totalGames)
-            }
-            );
-    }, [])
+    // useEffect(() => {
+    //     axios.get(`https://falta-uno-1.herokuapp.com/owner/getBookedGamesByOwner/${owner.id}`)
+    //         .then(res => {
+    //             console.log('res.data', res.data)
+    //             for (let i = 0; i < res.data.length; i++) {
+    //                 for (let j = 0; j < res.data[i].length; j++) {
+    //                     console.log('soy res i j', res.data[i][j])
+    //                      let copia = totalGames
+    //                      copia.push(res.data[i][j])
+    //                     console.log('copia', copia)
+    //                         setTotalGames(copia)
+    //                 }
+    //             }
+    //             console.log('soy total games: ', totalGames)
+    //         }
+    //         );
+    // }, [])
 
     const handleClick = (e) => {
         e.preventDefault()
