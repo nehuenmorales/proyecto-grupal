@@ -21,13 +21,18 @@ export default function TeamsCard({props}) {
         <Card className={s.separar}>
             <Card.Img variant="top" className={s.NewImage} src={props.image?props.image:DefaultImage} />
             <Card.Body className={s.bodyCard}>
-                <Card.Title>{props.name}</Card.Title>
-                <Card.Text>{props.rating===5?<h5><i class="fa-solid fa-star" style={{color:"gold"}}  ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i></h5>
+                <Card.Title className={s.title}>{props.name}</Card.Title>
+                <div className={s.contenedorDeTodo}>
+                   <Card.Text className={s.stars}>
+                {props.rating===5?<h5><i class="fa-solid fa-star" style={{"color":"gold"}}  ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i></h5>
                 :props.rating===4?<h5><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i></h5>
                 :props.rating===3?<h5><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i></h5>
                 :props.rating===2?<h5><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i></h5>
                 :props.rating===1?<i class="fa-solid fa-star" style={{"color":"gold"}} ></i>:<h5><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i></h5>}
-                <h5>{props.elo} puntos</h5></Card.Text>
+                </Card.Text>
+                <h5 className={s.puntos}>{props.elo} puntos</h5>  
+                </div>
+               
             </Card.Body>
         </Card>
         

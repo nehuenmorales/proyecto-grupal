@@ -63,8 +63,19 @@ h5{
 .buttonTypeF:hover{
   transform: scale(1.08);
 }
-.buttonTypeF:active{
-  background-color: green;
+.buttonTypeFVerde{
+  border-radius: 5px;
+  background-color:#00B83F;
+  margin-right:5px;
+  margin-top: 7px;
+  border: none;
+  color:white;
+  padding: 5px 8px;
+  transition: 500ms;
+}
+
+.buttonTypeFVerde:hover{
+  transform: scale(1.08);
 }
 
 .integrante{

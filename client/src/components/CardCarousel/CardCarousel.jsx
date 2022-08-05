@@ -18,7 +18,7 @@ const CardCarousel = ({ item }) => {
       </div>
       <div className={style.location}>
         <img src={locationIcon}/>
-        <p>{item.adress},{item.city}</p>
+        <p>{item.city}</p>
         
       </div>
       </Link>

@@ -92,14 +92,11 @@ function App() {
       {/* leo rompiste todo con esta ruta que esta abajito, AREGLALO */}
       <Route exact path="/sport/:sport" component={AllGames} />
       <Route exact path="/success/:id" component={Success} />
-
       <Route exact path="/fields/:sport" component={DetailFields} />
       <Route exact path="/sport/:sport/players" component={GetPlayers} />
       <Route exact path="/sport/:sport/complex" component={GetComplex} />
       <Route exact path={"/owner/createSupplie"} component={CreateSupplies}/>
- 
       <Route exact path={"/games/detail/:id"} component={GameDetail}/>
-
       <Route exact path={"/owner/createComplex"} component={CreateComplex}/>
       <Route exact path={"/complexOwner"} component={ComplexList}/>
       <Route exact path={"/fieldOwner"} component={FieldList}/>

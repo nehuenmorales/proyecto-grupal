@@ -7,6 +7,7 @@ import VerticalNavbar from '../VerticalNavbar/VerticalNavbar';
 import Tabs from '../Tabs/Tabs';
 import SearchBar from '../SearchBar/SearchBar.jsx'
 import { Container, Row } from 'react-bootstrap';
+import {Flex,SimpleGrid,Box} from "@chakra-ui/react"
 
 const GetComplex = ({ match }) => {
 	const dispatch = useDispatch()
@@ -19,49 +20,49 @@ const GetComplex = ({ match }) => {
 	}, [dispatch]);
 
 	return (
-		<div>
+		<Flex>
 			<VerticalNavbar />
+			<Flex flexDir="column" mt="40px">
+
 			<SearchBar filtro="complejos" sport={sport} />
 			<Tabs match={match} />
 			<Container>
-				<Row
-					style={{
-						'display': 'flex',
-						'alignItems': 'flex-start',
-						'justifyContent': 'space-around'
-					}}>
+			<SimpleGrid columns={3} spacing={12} ml="100px">
 					{
 						searchComplex.length ?
 							searchComplex.map((x) => {
 								return (
+									<Box>
 									<CardComplex
 										key={x.id}
 										name={x.name}
 										image={x.image}
-										description={x.description}
 										rating={x.rating}
-										adress={x.city}
-									/>
-								);
-							})
-							:
-							complex?.map((x) => {
-								return (
-									<CardComplex
+										city={x.city}
+										/>
+									</Box>
+									);
+								})
+								:
+								complex?.map((x) => {
+									return (
+									<Box>
+										<CardComplex
 										key={x.id}
 										name={x.name}
 										image={x.image}
-										description={x.description}
 										rating={x.rating}
-										adress={x.city}
-									/>
-								);
-							})
-					}
-				</Row>
+										city={x.city}
+										/>
+									</Box>
+										);
+									})
+								}
+				</SimpleGrid>
 			</Container>
+		</Flex>
 
-		</div>
+		</Flex>
 
 	)
 }

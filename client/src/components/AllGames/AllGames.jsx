@@ -2,10 +2,17 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { getGameSport } from "../../redux/Games/gamesAction";
-import Carousel from "../Carousel/Carousel.jsx";
+import CardCarousel from "../CardCarousel/CardCarousel.jsx"
 import VerticalNavbar from "../VerticalNavbar/VerticalNavbar.jsx";
+import { Link } from "react-router-dom";
 import Tabs from "../Tabs/Tabs.jsx";
 import SearchBar from "../SearchBar/SearchBar.jsx"
+import {
+    Center,
+    Flex,
+    SimpleGrid,
+    Box
+  }from "@chakra-ui/react"
 
 export default function AllGames({ match }) {
 
@@ -23,14 +30,14 @@ export default function AllGames({ match }) {
    
 
     return (
-        <>
+        <Flex>
+            <VerticalNavbar />
+            <Flex flexDir="column" mt="40px">
             {
-                    <>
+                <>
 
-                        <VerticalNavbar />
 
                         <SearchBar filtro="turnos" setFilter={setPage} sport={sport} />
-
 
                         <Tabs match={match} />
                         <p style={{
@@ -40,17 +47,27 @@ export default function AllGames({ match }) {
                             "marginBottom": "0",
                             "fontStyle": "italic"
                         }}>Turnos disponibles</p>
-                        {
                             
-                         gamesSearch.length?
-                         <Carousel array={gamesSearch} />
-                         : <Carousel array={games} />
-
+                        <SimpleGrid columns={3} spacing={12} ml="100px">
+                        {
+                            gamesSearch.length?gamesSearch.map( e =>
+                                <Box>
+                                <CardCarousel key={e.id} item={e} />
+                                </Box> 
+                            
+                            ):games.map(f=>
+                                <Box>
+                                <CardCarousel key={f.id} item={f} />
+                                </Box>
+                            )
                         }
+                        </SimpleGrid>
+
                     </>
             }
+            </Flex>
 
-        </>
+        </Flex>
     );
 
 };

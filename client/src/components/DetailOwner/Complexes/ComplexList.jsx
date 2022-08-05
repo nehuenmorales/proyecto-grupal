@@ -4,11 +4,14 @@ import axios from "axios";
 import { Link } from 'react-router-dom'
 import Button from "react-bootstrap/esm/Button";
 import "./ComplexList.css"
-import VerticalNavbar from "../../VerticalNavbar/VerticalNavbar";
+import VerticalNavBarCan from "../../VerticalNavbar/VerticalNavBarCan";
+import {Flex} from "@chakra-ui/react"
 
 export default function ComplexList() {
     const [complex, setComplex] = useState([])
     let owner = useSelector((state) => state.getOwnerReducer.owner)
+
+    console.log(complex)
 
     useEffect(() => {
         axios.get(`https://falta-uno-1.herokuapp.com/owner/getComplexByOwner/${owner.id}`)
@@ -17,15 +20,16 @@ export default function ComplexList() {
     }, [])
 
     return (
-        <div className="fieldlist-container">
+        <Flex>
+            <VerticalNavBarCan/>
+            <div className="fieldlist-container">
             <div style={{ 'padding': '10px' , 'display': 'flex','flexDirection':'row', 'justifyContent': 'space-around', 'alignItems':'center' }}>
                 <Link to='/' style={{ 'padding': '10px' , 'width': '25%'}}>
                     <Button>Volver</Button>
                 </Link>
-                <VerticalNavbar/>
             </div>
             <div className="titulo-complejos">
-                <h5>Tus complejos</h5>
+                <h5 className="text">Mis complejos</h5>
             </div>
 
             <div className="container-complexcard">
@@ -75,5 +79,6 @@ export default function ComplexList() {
                 })}
             </div>
         </div>
+    </Flex>
     )
 }

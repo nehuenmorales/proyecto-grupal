@@ -298,7 +298,18 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
       </div>
                 {flagSport ? (
                   <div>
-                    <h5>Tipo de juego</h5>
+                    <h5>Tipo de juego</h5>               
+                    {
+                      input.amountPlayers == 11 ? 
+                    <button
+                    className={s.buttonTypeFVerde}
+                      name="amountPlayers"
+                      value={11}
+                      onClick={(e) => handleInputChange(e)}
+                    >
+                      Futbol 11
+                    </button>
+                    :
                     <button
                     className={s.buttonTypeF}
                       name="amountPlayers"
@@ -307,6 +318,19 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
                     >
                       Futbol 11
                     </button>
+                    }
+                    {
+                      input.amountPlayers == 7 ?
+                    <button
+                      className={s.buttonTypeFVerde}
+
+                      name="amountPlayers"
+                      value={7}
+                      onClick={(e) => handleInputChange(e)}
+                    >
+                      Futbol 7
+                    </button>
+                    :
                     <button
                       className={s.buttonTypeF}
 
@@ -316,6 +340,18 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
                     >
                       Futbol 7
                     </button>
+                    }
+                    {
+                      input.amountPlayers == 5 ?
+                    <button
+                    className={s.buttonTypeFVerde}
+                      name="amountPlayers"
+                      value={5}
+                      onClick={(e) => handleInputChange(e)}
+                    >
+                      Futbol 5
+                    </button>
+                    :
                     <button
                     className={s.buttonTypeF}
                       name="amountPlayers"
@@ -324,12 +360,13 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
                     >
                       Futbol 5
                     </button>
+                    }
                   </div>
                 ) : null}
                 {input.amountPlayers?<h6 >{input.sport.toUpperCase()}</h6>:null}
                 {input.sport === "futbol" ? (
                   !input.amountPlayers ? (
-                    <h6 >Elija el tipo de juego</h6>
+                    <h6 className={s.error} >Elija el tipo de juego</h6>
                   ) : null
                 ) : null}
                 {errors.sport ? <h6 className={s.error}>{errors.sport}</h6> : null}

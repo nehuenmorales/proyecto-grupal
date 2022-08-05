@@ -1,17 +1,4 @@
-.defaultImage{
-    background-image:url("../../../../utils/TeamsFutbolbasic.jpg");
-    background-size: cover;
-    background-repeat: none;
-    background-position: center;
-    height: 12.5em;
-    width: 100%;
-    min-height: 12.5em;
-    max-height: 12.5em;
-    border-top-left-radius: 3em;
-    border-top-right-radius: 3em;
 
-
-}
 
 .container{
     height: 20em;
@@ -104,7 +91,7 @@ h5{
 }
 
 .separar{
-    margin:10px 40px 10px 10px;
+    margin:10px 30px 10px 10px;
     border: none;
     border-radius: 10px;
     transition: all 500ms;
@@ -123,6 +110,39 @@ h5{
     box-shadow: 2px 2px 5px #0C131F;
     border-radius: 0px 0px 5px 8px;
     border: none;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px;
 }
 
 
+.title{
+    color: white;
+    font-size: 25px;
+    font-style: italic;
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    align-items: center;
+    text-align: center;
+    
+}
+
+.stars{
+    display: flex;
+    margin-right: 25px;
+}
+
+.puntos{
+    display: flex;
+    font-size: 15px;
+    margin-left: 25px;
+}
+
+.contenedorDeTodo{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 30px;
+}

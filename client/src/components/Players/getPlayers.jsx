@@ -7,6 +7,8 @@ import VerticalNavbar from '../VerticalNavbar/VerticalNavbar';
 import Tabs from '../Tabs/Tabs';
 import SearchBar from "../SearchBar/SearchBar.jsx"
 import { Container, Row } from 'react-bootstrap';
+import {Flex} from "@chakra-ui/react"
+import s from "./cardPlayers.module.css"
 
 const GetPlayers = ({ match }) => {
   const dispatch = useDispatch()
@@ -19,22 +21,24 @@ const GetPlayers = ({ match }) => {
   }, [dispatch]);
 
   return (
-    <>
+    <Flex>
       <VerticalNavbar />
+      
+      <Flex flexDir="column" mt="40px">
+
       <SearchBar filtro="jugadores" sport={sport} />
       <Tabs match={match} />
       <Container>
-        <h2 className='text-white'>Jugadores</h2>
+        <h2 className={s.text}>Jugadores</h2>
         <Row style={{
           'display': 'flex',
           'alignItems': 'center',
           'justifyContent': 'center'
         }}>
 
-
           {
             playerSearch.length ?
-              playerSearch.map((x) => {
+            playerSearch.map((x) => {
                 return (
                   <CardPlayers
                     key={x.id}
@@ -62,7 +66,8 @@ const GetPlayers = ({ match }) => {
           }
         </Row>
       </Container>
-    </>
+                    </Flex>
+    </Flex>
 
   )
 }

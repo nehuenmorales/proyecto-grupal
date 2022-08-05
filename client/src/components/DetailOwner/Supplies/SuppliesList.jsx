@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { Link } from 'react-router-dom'
 import Button from "react-bootstrap/esm/Button";
-import VerticalNavbar from '../../../components/VerticalNavbar/VerticalNavbar';
-
+import {Flex} from "@chakra-ui/react"
+import VerticalNavBarCan from "../../VerticalNavbar/VerticalNavBarCan";
 //import "./FieldList.css"
 
 export default function SuppliesList() {
@@ -15,14 +15,15 @@ export default function SuppliesList() {
             .then(res => setSupplies(res.data))
     }, [])
     return (
+        <Flex>
+            <VerticalNavBarCan/>
         <div className="fieldlist-container">
             <div style={{ 'padding': '10px' , 'display': 'flex','flexDirection':'row', 'justifyContent': 'space-around', 'alignItems':'center' }}>
                 <Link to='/' style={{ 'padding': '10px' , 'width': '25%'}}>
                     <Button>Volver</Button>
                 </Link>
-                <VerticalNavbar/>
             </div>
-            <p className="fw-normal text-white fst-italic m-2" style={{padding: '0 0 0px 30px', fontSize: '1.2em'}}>Tus elementos en alquiler</p>
+            <h5 className="fw-normal text-white fst-italic m-2" style={{padding: '30px 0 0px 40px'}}>Mis elementos en alquiler</h5>
             <div className='contenedor-cards'>
             {supplies?.map((el) => {
                 return (
@@ -46,7 +47,7 @@ export default function SuppliesList() {
                             <div>
                                 { e.sport === 'futbol' ?
                                         <img src="https://cdn-icons.flaticon.com/png/512/4892/premium/4892438.png?token=exp=1659223244~hmac=6844f5a1ed7c449c8687e491ea380565" alt="" style={{ height: '25px' }} className="sport-icon" />
-                                : e.sport === 'tenis' ?
+                                        : e.sport === 'tenis' ?
                                         <img src="https://api.iconify.design/twemoji:tennis.svg?color=%23000000" alt="" style={{ height: '25px' }} className="sport-icon" />
                                 : e.sport === 'padel'?
                                         <img src="https://cdn-icons-png.flaticon.com/512/6769/6769795.png" alt="" style={{ height: '30px' }} className="sport-icon" />
@@ -62,5 +63,6 @@ export default function SuppliesList() {
             })}
             </div>
         </div>
+    </Flex>
     )
 }
