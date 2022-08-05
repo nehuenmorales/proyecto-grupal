@@ -45,9 +45,9 @@ export default function BookedGames() {
         <div>
             <h1 style={{ color: 'white' }}>{bookedGames?.length > 0 ? 
             <div> {console.log(bookedGames, 'soyBookedGames')}
-            <h2>{bookedGames.date}</h2> 
-            <h2>{bookedGames.sport}</h2> 
-            <h2>{bookedGames.start}hs</h2> 
+            <h2>{bookedGames[0].date}</h2> 
+            <h2>{bookedGames[0].sport}</h2> 
+            <h2>{bookedGames[0].start}hs</h2> 
             </div>
             :  'Aun no tienes reservas'}</h1>
         </div>
