@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
-
+import TableGames from './TableGames';
 
 
 export default function BookedGames() {
@@ -43,7 +43,7 @@ export default function BookedGames() {
 
     return (
         <div>
-            <h1 style={{ color: 'white' }}>{bookedGames?.length > 0 ?
+            {/* <h1 style={{ color: 'white' }}>{bookedGames?.length > 0 ?
                 bookedGames.map((elem) => {
                     //  const res = field(elem);
                     //  console.log(res, 'soy res')
@@ -56,7 +56,8 @@ export default function BookedGames() {
                         </div>
                     )
                 })
-                : 'Aun no tienes reservas'}</h1>
+                : 'Aun no tienes reservas'}</h1> */}
+                <TableGames bookedGames={bookedGames}/>
         </div>
     )
 }
