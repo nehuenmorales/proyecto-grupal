@@ -8,9 +8,21 @@ import { BrowserRouter } from "react-router-dom";
 import store from "./redux/store";
 import { Auth0Provider } from "@auth0/auth0-react";
 import axios from "axios"
+import { ChakraProvider,extendTheme } from '@chakra-ui/react'
 
 axios.defaults.baseURL = process.env.REACT_APP_API || "http://localhost:3001";
 
+const theme=extendTheme({
+  styles:{
+    global:{
+      body:{
+        backgroundColor:"#0C131F",
+        overflow:"hidden",
+        position:"relative",
+      }
+    }
+  }
+})
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -19,13 +31,15 @@ root.render(
         <Auth0Provider
            domain="leogonzalez.us.auth0.com"
            clientId="X7uVDaWOv99Br5K2eNE05D3MlRNYioWR"
-          redirectUri={window.location.origin}
-          advancedOptions={{
-            defaultScope: 'openid profile email'
+           redirectUri={window.location.origin}
+           advancedOptions={{
+             defaultScope: 'openid profile email'
           }}
           scope='user_metadata app_metadata slack_id'
-        > 
+          > 
+        <ChakraProvider theme={theme}>
           <App />
+        </ChakraProvider>
         </Auth0Provider>
       </BrowserRouter>
     </Provider>

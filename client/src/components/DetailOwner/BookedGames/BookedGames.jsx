@@ -34,19 +34,12 @@ export default function BookedGames() {
                             setBookedGames([...bookedGames, res.data[i][j]])
                         }
                     }
-
                 }
                 console.log('soy respuestaa', res.data)
                 console.log('soy booked game', bookedGames)
             });
     }, [])
     console.log('booked games owner', owner)
-
-    // const field = async (id) => {
-    //     const res = await axios.get(`https://falta-uno-1.herokuapp.com/owner/getFieldDetail/${id}`)
-    //     console.log(res.data.name)
-    //     return res.data.name
-    // }
 
     return (
         <div>
@@ -56,16 +49,13 @@ export default function BookedGames() {
                     //  console.log(res, 'soy res')
                     return (
                         <div>
-                            
-                                        <h2>{`Reserva en cancha: ${elem.field.name}`}</h2>
-                                        <h4>Fecha: {elem.date}</h4>
-                                        <p>Horario de inicio: {elem.start}hs</p>
-                                        <p>Horario de finalización: {elem.end}hs</p>
-                                    
+                            <h2>{`Reserva en cancha: ${elem.field.name}`}</h2>
+                            <h4>Fecha: {elem.date}</h4>
+                            <p>Horario de inicio: {elem.start}hs</p>
+                            <p>Horario de finalización: {elem.end}hs</p>
                         </div>
                     )
                 })
-
                 : 'Aun no tienes reservas'}</h1>
         </div>
     )
