@@ -12,7 +12,6 @@ export default function BookedGames() {
     let allGames = useSelector((state) => state.gamesOwnerReducer.allGames)
     console.log(allGames, 'all games')
     const [bookedGames, setBookedGames] = useState([])
-    const [totalGames, setTotalGames] = useState([])
     const [freeGames, setFreeGames] = useState([])
     const [select, setSelect] = useState('all')
 
@@ -38,14 +37,14 @@ export default function BookedGames() {
         e.preventDefault()
         let filtrados
         if(e.target.value === 'free'){
-            filtrados = totalGames.filter(el => {
+            filtrados = allGames.filter(el => {
                 return el.status == 'free'
             })
             setSelect('free')
             setFreeGames(filtrados)
             console.log('filtradoss', filtrados)
         } else if(e.target.value === 'booked'){
-            filtrados = totalGames.filter(el => {
+            filtrados = allGames.filter(el => {
                 return el.status == 'booked'
             })
             setSelect('booked')
@@ -72,7 +71,7 @@ export default function BookedGames() {
                 <option name="booked" value='booked'>Turnos reservados</option>
             </select>
             <div style={{width: '70%'}}>
-            {totalGames?.length > 0 && select == 'all' ?
+            {allGames?.length > 0 && select == 'all' ?
                 <Table striped>
                     <thead>
                         <tr>
@@ -83,7 +82,7 @@ export default function BookedGames() {
                         </tr>
                     </thead>
                     <tbody>
-                        {totalGames?.map((elem) => {
+                        {allGames?.map((elem) => {
                             return (
                                 <tr>
                                     <td style={{color:'white'}}>{elem.field.name}</td>
