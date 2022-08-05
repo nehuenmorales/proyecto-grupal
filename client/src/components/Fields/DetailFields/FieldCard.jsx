@@ -6,7 +6,7 @@ import s from "./FieldCard.module.css"
 
 
 function FieldCard(props) {
-    console.log(props)
+    console.log(props,"props")
     return (
         <Link to={`/fields/detail/${props.id}`}>
             <Card className={s.separar}style={{ width: '18rem' }}>
