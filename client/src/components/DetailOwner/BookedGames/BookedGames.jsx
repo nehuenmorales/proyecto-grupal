@@ -38,7 +38,7 @@ export default function BookedGames() {
                 for (let i = 0; i < res.data.length; i++) {
                     for (let j = 0; j < res.data[i].length; j++) {
                         console.log('soy res i j', res.data[i][j])
-                            setTotalGames([...totalGames, res.data[i][j]])
+                            setTotalGames([totalGames].concat(res.data[i][j]) )
                     }
                 }
             });
