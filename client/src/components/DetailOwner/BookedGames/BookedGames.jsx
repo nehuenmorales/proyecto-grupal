@@ -92,7 +92,7 @@ export default function BookedGames() {
                 // select === 'booked' ?
                 // <TableGames bookedGames={bookedGames} style={{width:'70%'}}/>
                 // : 
-                totalGames ?
+                totalGames.length > 0 ?
                 <TableGames bookedGames={totalGames} style={{width:'70%'}}/>
                 : null
             }
