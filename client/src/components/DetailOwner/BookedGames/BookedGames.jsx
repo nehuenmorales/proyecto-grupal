@@ -28,13 +28,13 @@ export default function BookedGames() {
             .then(res => {
                 for (let i = 0; i < res.data.length; i++) {
                     for (let j = 0; j < res.data[i].length; j++) {
-                        console.log('soy res i j',res.data[i][j])
-                        if(res.data[i][j].status == 'booked'){
+                        console.log('soy res i j', res.data[i][j])
+                        if (res.data[i][j].status == 'booked') {
                             console.log('entree', res.data[i][j])
-                            setBookedGames([ ...bookedGames, {...res.data[i][j], field : field(res.data[i][j].fieldId)} ])
+                            setBookedGames([...bookedGames, { ...res.data[i][j], field: field(res.data[i][j].fieldId) }])
                         }
                     }
-                    
+
                 }
                 console.log('soy respuestaa', res.data)
                 console.log('soy booked game', bookedGames)
@@ -45,26 +45,33 @@ export default function BookedGames() {
     const field = async (id) => {
         const res = await axios.get(`https://falta-uno-1.herokuapp.com/owner/getFieldDetail/${id}`)
         console.log(res.data.name)
-         return res.data.name
+        return res.data.name
     }
 
     return (
         <div>
-            <h1 style={{ color: 'white' }}>{bookedGames?.length > 0 ? 
-            bookedGames.map((elem) => {
-                //  const res = field(elem);
-                //  console.log(res, 'soy res')
-                return(
-                 <div> 
-                     <h2>{`Reserva en cancha: ${elem.field}`}</h2>
-                    <h4>Fecha: {elem.date}</h4>  
-                    <p>Horario de inicio: {elem.start}hs</p> 
-                    <p>Horario de finalización: {elem.end}hs</p> 
-                 </div>
-                )
-            })
-            
-            :  'Aun no tienes reservas'}</h1>
+            <h1 style={{ color: 'white' }}>{bookedGames?.length > 0 ?
+                bookedGames.map((elem) => {
+                    //  const res = field(elem);
+                    //  console.log(res, 'soy res')
+                    return (
+                        <div>
+                            {
+                                elem.field ?
+                                    <div>
+                                        <h2>{`Reserva en cancha: ${elem.field}`}</h2>
+                                        <h4>Fecha: {elem.date}</h4>
+                                        <p>Horario de inicio: {elem.start}hs</p>
+                                        <p>Horario de finalización: {elem.end}hs</p>
+                                    </div>
+                                    : null
+                            }
+
+                        </div>
+                    )
+                })
+
+                : 'Aun no tienes reservas'}</h1>
         </div>
     )
 }
