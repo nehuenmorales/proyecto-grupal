@@ -14,7 +14,6 @@ export default function BookedGames() {
     const [freeGames, setFreeGames] = useState([])
     const [select, setSelect] = useState('')
 
-    console.log('soy total games: ', totalGames)
     // const [bookedGame, setBookedGame] = useState({
     //     date: "",
     //     end: "",
@@ -40,11 +39,14 @@ export default function BookedGames() {
                         console.log('soy res i j', res.data[i][j])
                          let copia = totalGames
                          copia.push(res.data[i][j])
-                        // console.log('copia', copia)
+                        console.log('copia', copia)
                             setTotalGames(copia)
                     }
                 }
-            });
+                console.log('soy total games: ', totalGames)
+            }
+            );
+
     }, [])
 
     const handleClick = (e) => {
