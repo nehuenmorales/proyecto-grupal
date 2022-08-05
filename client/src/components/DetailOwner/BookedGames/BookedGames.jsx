@@ -70,7 +70,8 @@ export default function BookedGames() {
                 <option name="free" value='free'>Turnos disponibles</option>
                 <option name="booked" value='booked'>Turnos reservados</option>
             </select>
-            <div style={{width: '70%'}}>
+            <div style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <div style={{width: '60%'}}>
             {allGames?.length > 0 && select == 'all' ?
                 <Table striped>
                     <thead>
@@ -145,6 +146,7 @@ export default function BookedGames() {
                 </Table>
                 :
                 'Aun no tienes reservas'}
+        </div>
         </div>
             {/* {
                  ? 
