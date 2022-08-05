@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
 import TableGames from './TableGames';
+import { Link } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
+import VerticalNavbar from '../../VerticalNavbar/VerticalNavbar';
 
 
 export default function BookedGames() {
@@ -84,7 +87,7 @@ export default function BookedGames() {
                 <TableGames bookedGames={bookedGames} style={{width:'70%'}}/>
                 : 
                 <TableGames bookedGames={totalGames} style={{width:'70%'}}/>
-                
+
             }
         </div>
     )
