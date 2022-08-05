@@ -56,7 +56,7 @@ export default function BookedGames() {
                  console.log(res, 'soy res')
                 return(
                  <div> 
-                     {/* <h2>Reserva en cancha: {res}</h2> */}
+                     <h2>Reserva en cancha: {res ? res : null}</h2>
                     <h4>Fecha: {elem.date}</h4>  
                     <p>Horario de inicio: {elem.start}hs</p> 
                     <p>Horario de finalización: {elem.end}hs</p> 
