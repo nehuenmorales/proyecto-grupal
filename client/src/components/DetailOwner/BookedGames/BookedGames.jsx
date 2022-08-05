@@ -44,7 +44,7 @@ export default function BookedGames() {
 
     const field = async (elem) => {
         const res = axios.get(`https://falta-uno-1.herokuapp.com/owner/getFieldDetail/${elem.fieldId}`)
-         return res.data.name
+         return res.data?.name
     }
 
     return (
