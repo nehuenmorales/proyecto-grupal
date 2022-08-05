@@ -80,6 +80,8 @@ export default function BookedGames() {
                             <th style={{color:'white'}}>Día</th>
                             <th style={{color:'white'}}>Inicio</th>
                             <th style={{color:'white'}}>Final</th>
+                            <th style={{color:'white'}}>Estado</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -90,6 +92,8 @@ export default function BookedGames() {
                                     <td style={{color:'white'}}>{elem.date}</td>
                                     <td style={{color:'white'}}>{elem.start}hs</td>
                                     <td style={{color:'white'}}>{elem.end}hs</td>
+                                    <td style={{color:'white'}}>{elem.status == 'free' ? 'Libre' : 'Reservada'}</td>
+
                                 </tr>
                             )
                         })}
@@ -104,6 +108,7 @@ export default function BookedGames() {
                             <th style={{color:'white'}}>Día</th>
                             <th style={{color:'white'}}>Inicio</th>
                             <th style={{color:'white'}}>Final</th>
+                            <th style={{color:'white'}}>Estado</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -114,6 +119,7 @@ export default function BookedGames() {
                                     <td style={{color:'white'}}>{elem.date}</td>
                                     <td style={{color:'white'}}>{elem.start}hs</td>
                                     <td style={{color:'white'}}>{elem.end}hs</td>
+                                    <td style={{color:'white'}}>{elem.status == 'free' ? 'Libre' : 'Reservada'}</td>
                                 </tr>
                             )
                         })}
@@ -128,6 +134,8 @@ export default function BookedGames() {
                             <th style={{color:'white'}}>Día</th>
                             <th style={{color:'white'}}>Inicio</th>
                             <th style={{color:'white'}}>Final</th>
+                            <th style={{color:'white'}}>Estado</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -138,6 +146,8 @@ export default function BookedGames() {
                                     <td style={{color:'white'}}>{elem.date}</td>
                                     <td style={{color:'white'}}>{elem.start}hs</td>
                                     <td style={{color:'white'}}>{elem.end}hs</td>
+                                    <td style={{color:'white'}}>{elem.status == 'free' ? 'Libre' : 'Reservada'}</td>
+
                                 </tr>
                             )
                         })}
