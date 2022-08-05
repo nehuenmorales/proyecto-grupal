@@ -2,6 +2,7 @@ import React from 'react';
 import Table from 'react-bootstrap/Table';
 
 export default function TableGames({ bookedGames}) {
+    console.log('booked games', bookedGames)
     return (
         <div>
             {bookedGames?.length > 0 ?
