@@ -1,74 +1,110 @@
-import React from 'react';
-import { Navbar, Container, Nav, OverlayTrigger, Tooltip, Image, Button } from 'react-bootstrap';
-import { useAuth0 } from '@auth0/auth0-react';
-import { useHistory } from 'react-router-dom';
+import React,{useState} from 'react';
+import {
+  Flex,
+  Text,
+  IconButton,
+  Divider,
+  Avatar,
+  Heading,
+}from "@chakra-ui/react"
 
-const VerticalNavbar = () => {
+import{
+  FiMenu,
+  FiHome,
+  FiUsers,
+  FiUser,
+  FiCalendar,
+  FiLogOut,
+}from "react-icons/fi"
+
+import { Link } from 'react-router-dom';
+import NavItem from './NavItem';
+import { useAuth0 } from '@auth0/auth0-react';
+import { useRouteMatch } from 'react-router-dom';
+
+export default function VerticalNavBar(){
 
   const { user, isLoading, logout} = useAuth0();
+  const [size,setSize]=useState("small")
+  console.log(useRouteMatch)
+  const match = useRouteMatch()
 
-  const history = useHistory();
-  console.log(user)
-
-  return (
-
-    isLoading ? null
-    :
-    user ? 
-      <Navbar bg="dark" variant="dark">
-        <Container>
-          <Navbar.Brand href="#home">FaltaUno!</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="/">Inicio</Nav.Link>
-            {
-              user['https://example.com/rol'] === 'owner'
-                ?
-                <>
-                  <Nav.Link href="/panel">Mis Canchas</Nav.Link>
-                  <Nav.Link href="/eventos">Mis Eventos</Nav.Link>
-                  <Nav.Link href="/perfil">Mi perfil</Nav.Link>
-                </>
-                :
-                <>
-                  <Nav.Link href="/equipos">Mis Equipos</Nav.Link>
-                  <Nav.Link href="/eventos">Mis Eventos</Nav.Link>
-                  <Nav.Link href="/profile">Mi perfil</Nav.Link>
-                </>
-            }
-
-          </Nav>
-          {
-            user['https://example.com/rol'] === 'owner' ?
-            <>
-              <Button onClick={() => history.push("/owner/select")} variant="success" className='m-2 text-white'>Crear cancha</Button>
-              <Button onClick={() => history.push("/owner/createComplex")} variant="success" className='m-2 text-white'>Crear complejo</Button>
-              <Button onClick={() => history.push("/owner/createSupplie")} variant="success" className='m-2 text-white'>Crear elemento</Button>
-              </>: null
+  return(
+    <Flex
+    backgroundColor="#111825"
+    pos="sticky"
+    left="0"
+    h="100vh"
+    top="0"
+    boxShadow="0 4px 12px 0 rgba(0,0,0,0.05)"
+    borderRadius={size=="small"? "0 5px 5px 0":"0 10px 10px 0"}
+    w={size=="small"?"75px":"210px"}
+    transition="all 0.3s ease"
+    flexDir="column"
+    justifyContent="space-between"
+    >
+      <Flex
+      p="5%"
+      flexDir="column"
+      alignItems={size=="small"?"center":"flex-start"}
+      as="nav"
+      >
+        <IconButton
+        background="none"
+        mt={5}
+        color="white"
+        _hover={{background:"none"}}
+        icon={<FiMenu/>}
+        onClick={()=>{
+          if (size=="small"){
+            setSize("large")
+          }else{
+            setSize("small")
           }
-          <OverlayTrigger
-            key={"bottom"}
-            placement={"bottom"}
-            overlay={
-              <Tooltip id={`tooltip-${"bottom"}`}>
-                {`${user.given_name} \n ${user.email}`}
-              </Tooltip>
-            }
-          >
+        }}
+        />
+        
+  
+        {match.path==="/"?<NavItem size={size} icon={FiHome} title="Inicio" link="/" active/>:<NavItem size={size} icon={FiHome} link="/" title="Inicio"/>}
+        {match.path==="/equipos"?<NavItem size={size} icon={FiUsers} title="Mis Equipos" link="/equipos" active/>:<NavItem size={size} icon={FiUsers} title="Mis Equipos" link="/equipos"/>}
+        {match.path==="/eventos"?<NavItem size={size} icon={FiCalendar} title="Mis Eventos" link="/eventos" active/>:<NavItem size={size} icon={FiCalendar} title="Mis Eventos" link="/eventos"/>}
+        {match.path==="/profile"?<NavItem size={size} icon={FiUser} title="Mi Perfil" link="/profile" active/>:<NavItem size={size} icon={FiUser} title="Mi Perfil" link="/profile"/>}
 
-            <Image width="42" style={
-              {
-                "marginRight": "10px",
-                "border": "2px solid white"
-              }
-            } src={user.picture} roundedCircle />
-          </OverlayTrigger>
-          <Button className='d-flex justify-content-between align-items-center' variant="danger" style={{ "color": "white" }} onClick={() => logout({ returnTo: window.location.origin })}>
-            <img width="20" className='m-1' src="https://img.icons8.com/ios-glyphs/30/FFFFFF/exit.png" alt='foto' />
-          </Button>
-        </Container>
-      </Navbar>
-    : null
+
+      </Flex>
+
+      <Flex
+      p="5%"
+      flexDir="column"
+      w="100%"
+      alignItems={size=="small"?"center":"flex-start"}
+      mb={4}
+      >
+        <Divider display={size=="small"?"none":"flex"}/>
+        <Flex mt={4} align="center">
+          <Avatar size="sm" src={user?.picture}/>
+          <Flex
+          flexDir="column"
+          ml={4}
+          display={size=="small"?"none":"flex"}
+          >
+            <Heading as="h3" color="white" size="sm">{user?.given_name} {user?.family_name}</Heading>
+            <Text color="gray">{user?.['https://example.com/rol']}</Text>
+          </Flex>
+          <IconButton
+            background="none"
+            _hover={{background:"#00B83F"}}
+            display={size=="small"?"none":"flex"}
+            icon={<FiLogOut/>}
+            color="white"
+            onClick={()=>{
+              logout({ returnTo: window.location.origin })
+            }}
+          />
+        </Flex>
+
+      </Flex>
+
+    </Flex>
   )
 }
-
-export default VerticalNavbar

@@ -64,6 +64,8 @@ h5{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content:space-evenly;
+    margin:50px 50px 10px 50px;
 }
 
 .button{
@@ -75,17 +77,52 @@ h5{
 }
 .button:hover{
     transform: scale(.95);
+
 }
 
 .buttoncontainer{
-    width: 100%;
+    width: 130px;
+    position: absolute;
+    right:30px;
+    
     display: flex;
-    justify-content: center;
+    margin-top: -15px;
+    justify-content: flex-end;
 }
 .titleTeams{
     margin-left: 3em;
+    margin-top: 50px;
+    width: 100%;
+    font-style: italic;
     color: white;
     font-family: 'Inter', sans-serif;
+}
+
+
+.NewImage{
+    height: 150px;
+}
+
+.separar{
+    margin:10px 40px 10px 10px;
+    border: none;
+    border-radius: 10px;
+    transition: all 500ms;
+    height:300px;
+    width: 250px;
+}
+
+.separar:hover{
+    transform: scale(1.05);
+    border:none !important;
+    box-shadow: 0;
+}
+
+.bodyCard{
+    background-color: #111825;
+    box-shadow: 2px 2px 5px #0C131F;
+    border-radius: 0px 0px 5px 8px;
+    border: none;
 }
 
 

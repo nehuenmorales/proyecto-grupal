@@ -2,7 +2,8 @@ import "./scss/custom.css";
 import React from "react";
 import { useAuth0} from "@auth0/auth0-react";
 import Home from "./pages/Home/Home";
-import { Spinner } from "react-bootstrap";
+// import { Spinner } from "react-bootstrap";
+import { Spinner,Center } from '@chakra-ui/react'
 import { Route } from "react-router-dom";
 import CreateFields from "./components/Fields/CreateFields/CreateFields";
 import fieldFutbol from "./components/Fields/CreateFields/Futbol/fieldFutbol.jsx";
@@ -56,9 +57,16 @@ function App() {
       
       {  isLoading
           ?
-          <Spinner animation="border" variant="light" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
+          <Center h="600px">
+            <Spinner
+            thickness='4px'
+            speed='0.65s'
+            emptyColor='gray.200'
+            color="#00B83F"
+            size='xl'
+          />
+          </Center>
+          
       : isAuthenticated
       ? user['https://example.com/rol'] === 'owner' 
       ?

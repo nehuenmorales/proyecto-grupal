@@ -11,6 +11,7 @@ import FieldCard from "./FieldCard";
 export default function DetailFields({match}) {
     const dispatch = useDispatch();
     const field = useSelector ((state) => state.getFieldsR.fields)
+    
 
     const searchField = useSelector ((state) => state.getFieldsR.fieldsSearch)
 
