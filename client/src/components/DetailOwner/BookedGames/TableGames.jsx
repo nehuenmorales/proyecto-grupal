@@ -18,7 +18,7 @@ export default function TableGames({ bookedGames, totalGames }) {
                         {totalGames?.map((elem) => {
                             return (
                                 <tr>
-                                    <td style={{color:'white'}}>{elem.field.name}</td>
+                                    <td style={{color:'white'}}>{elem.field?.name}</td>
                                     <td style={{color:'white'}}>{elem.date}</td>
                                     <td style={{color:'white'}}>{elem.start}hs</td>
                                     <td style={{color:'white'}}>{elem.end}hs</td>
