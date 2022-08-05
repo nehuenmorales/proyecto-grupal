@@ -12,24 +12,7 @@ export default function BookedGames() {
     const [bookedGames, setBookedGames] = useState([])
     const [totalGames, setTotalGames] = useState([])
     const [freeGames, setFreeGames] = useState([])
-    const [select, setSelect] = useState('')
-
-    // const [bookedGame, setBookedGame] = useState({
-    //     date: "",
-    //     end: "",
-    //     fieldId: '',
-    //     id: '',
-    //     link: '',
-    //     privacy: "",
-    //     requirements: '',
-    //     result: '',
-    //     sport: "",
-    //     start: "",
-    //     status: "",
-    //     tournamentId: '',
-    //     type: ""
-    // })
-
+    const [select, setSelect] = useState('all')
     useEffect(() => {
         axios.get(`https://falta-uno-1.herokuapp.com/owner/getBookedGamesByOwner/${owner.id}`)
             .then(res => {
@@ -80,11 +63,11 @@ export default function BookedGames() {
                 </Link>
                 <VerticalNavbar/>
             </div>
-            {/* <select onChange={(e) => handleClick(e)}>
+            <select onChange={(e) => handleClick(e)}>
                 <option name="all" value='all'>Todos los turnos</option>
                 <option name="free" value='free'>Turnos disponibles</option>
                 <option name="booked" value='booked'>Turnos reservados</option>
-            </select> */}
+            </select>
             {
                 // select === 'free' ? 
                 // <TableGames bookedGames={freeGames} style={{width:'70%'}}/>
@@ -92,7 +75,7 @@ export default function BookedGames() {
                 // select === 'booked' ?
                 // <TableGames bookedGames={bookedGames} style={{width:'70%'}}/>
                 // : 
-                totalGames.length > 0 ?
+                totalGames.length > 0 &&  select == 'all' ?
                 <TableGames bookedGames={totalGames} style={{width:'70%'}}/>
                 : null
             }
