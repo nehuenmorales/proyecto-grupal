@@ -12,6 +12,7 @@ import paddleImage from '../../assets/images/paddleImage.png';
 import { useDispatch } from 'react-redux';
 import {getOwner} from '../../redux/GetOwner/getOwnerAction';
 import axios from 'axios';
+import { getGamesOwner } from '../../redux/OwnerGames/ownerGamesAction';
 
 const HomeOwner = () => {
     const { user, isAuthenticated, isLoading } = useAuth0();
@@ -21,7 +22,7 @@ const HomeOwner = () => {
         console.log(user.email, 'user.email')
         dispatch(getOwner(user.sub))
         console.log('user.sub', user.sub)
-        
+        dispatch(getGamesOwner(user.sub))
     },[user.email])
     
     

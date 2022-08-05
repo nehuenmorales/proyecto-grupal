@@ -17,8 +17,10 @@ import fieldDetailReducer from "./OwnerFields/FieldDetailOwner/FieldDetailReduce
 import supplieDetailReducer from './OwnerSupplies/SuppliesDetailOwner/SuppliesDetailReducer'
 import modifySupplieReducer from './OwnerSupplies/ModifySupplie/modifySupplieReducer'
 import modifyFieldReducer from './OwnerFields/ModifyField/modifyFieldReducer'
+import gamesOwnerReducer from './OwnerGames/ownerGamesReducer'
 
 export const reducers = combineReducers({
+    gamesOwnerReducer: gamesOwnerReducer,
     modifySupplieReducer: modifySupplieReducer,
     supplieDetailReducer: supplieDetailReducer,
     modifyComplexReducer: modifyComplexReducer,

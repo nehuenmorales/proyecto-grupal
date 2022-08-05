@@ -9,7 +9,8 @@ import Table from 'react-bootstrap/Table';
 
 
 export default function BookedGames() {
-    let owner = useSelector((state) => state.getOwnerReducer.owner)
+    let allGames = useSelector((state) => state.gamesOwnerReducer.allGames)
+    console.log(allGames)
     const [bookedGames, setBookedGames] = useState([])
     const [totalGames, setTotalGames] = useState([])
     const [freeGames, setFreeGames] = useState([])
