@@ -4,7 +4,7 @@ import Table from 'react-bootstrap/Table';
 export default function TableGames({ bookedGames}) {
     console.log('booked gamesss', bookedGames)
     return (
-        <div>
+        <div style={{width: '70%'}}>
             {bookedGames?.length > 0 ?
                 <Table striped>
                     <thead>
