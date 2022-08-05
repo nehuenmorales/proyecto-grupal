@@ -22,20 +22,20 @@ export default function TableGames({ bookedGames }) {
                 <Table striped>
                     <thead>
                         <tr>
-                            <th>Cancha</th>
-                            <th>Día</th>
-                            <th>Inicio</th>
-                            <th>Final</th>
+                            <th style={{color:'white'}}>Cancha</th>
+                            <th style={{color:'white'}}>Día</th>
+                            <th style={{color:'white'}}>Inicio</th>
+                            <th style={{color:'white'}}>Final</th>
                         </tr>
                     </thead>
                     <tbody>
                         {bookedGames?.map((elem) => {
                             return (
                                 <tr>
-                                    <td>{elem.field.name}</td>
-                                    <td>{elem.date}</td>
-                                    <td>{elem.start}hs</td>
-                                    <td>{elem.end}hs</td>
+                                    <td style={{color:'white'}}>{elem.field.name}</td>
+                                    <td style={{color:'white'}}>{elem.date}</td>
+                                    <td style={{color:'white'}}>{elem.start}hs</td>
+                                    <td style={{color:'white'}}>{elem.end}hs</td>
                                 </tr>
                             )
                         })}
