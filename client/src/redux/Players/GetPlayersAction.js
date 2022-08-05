@@ -16,7 +16,7 @@ export const ORDER_BY_ELO = "ORDER_BY_ELO"
             payload: res.data
           })
         })
-        .catch (e=>
+        .catch (e =>
           console.log(e)
         ) 
     }

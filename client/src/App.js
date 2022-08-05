@@ -36,6 +36,7 @@ import BookedGames from "./components/DetailOwner/BookedGames/BookedGames.jsx";
 import { TeamsContainer } from "./components/Teams/TeamContainer";
 import FieldDetail from "./components/DetailOwner/Fields/FieldDetail"
 import SupplieDetail from "./components/DetailOwner/Supplies/SuppliesDetails" 
+import HomeAdmin from "./pages/HomeAdmin/HomeAdmin";
 
 
 function App() {
@@ -122,6 +123,7 @@ function App() {
         path={"/owner/createSupplie/basquet"}
         component={SuppliesBasquet}
       />
+      <Route exact path={'/admin/home'} component={HomeAdmin} />
     </>
   );
 }
