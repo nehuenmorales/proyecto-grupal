@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 
 export default function BookedGames() {
@@ -44,11 +45,17 @@ export default function BookedGames() {
     return (
         <div>
             <h1 style={{ color: 'white' }}>{bookedGames?.length > 0 ? 
-            <div> {console.log(bookedGames, 'soyBookedGames')}
-            <h2>{bookedGames[0].date}</h2> 
-            <h2>{bookedGames[0].sport}</h2> 
-            <h2>{bookedGames[0].start}hs</h2> 
-            </div>
+            bookedGames.map((elem) => {
+                return(
+                 <div> 
+                     <h2>Reserva en cancha: {axios.get(`https://falta-uno-1.herokuapp.com/owner/getFieldDetail/${elem.fieldId}`).then(res => res.data.name)}</h2>
+                    <h4>Fecha: {elem.date}</h4>  
+                    <p>Horario de inicio: {elem.start}hs</p> 
+                    <p>Horario de finalización: {elem.end}hs</p> 
+                 </div>
+                )
+            })
+            
             :  'Aun no tienes reservas'}</h1>
         </div>
     )
