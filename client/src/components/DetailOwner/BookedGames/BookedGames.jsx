@@ -42,8 +42,8 @@ export default function BookedGames() {
     }, [])
     console.log('booked games owner', owner)
 
-    const field = async (elem) => {
-        const res = await axios.get(`https://falta-uno-1.herokuapp.com/owner/getFieldDetail/${elem.fieldId}`)
+    const field = async (id) => {
+        const res = await axios.get(`https://falta-uno-1.herokuapp.com/owner/getFieldDetail/${id}`)
         console.log(res.data.name)
          return res.data.name
     }
