@@ -5,6 +5,7 @@ import TableGames from './TableGames';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import VerticalNavbar from '../../VerticalNavbar/VerticalNavbar';
+import Table from 'react-bootstrap/Table';
 
 
 export default function BookedGames() {
@@ -35,14 +36,14 @@ export default function BookedGames() {
     const handleClick = (e) => {
         e.preventDefault()
         let filtrados
-        if(e.target.name === 'free'){
+        if(e.target.value === 'free'){
             filtrados = totalGames.filter(el => {
                 return el.status == 'free'
             })
             setSelect('free')
             setFreeGames(filtrados)
             console.log('filtradoss', filtrados)
-        } else if(e.target.name === 'booked'){
+        } else if(e.target.value === 'booked'){
             filtrados = totalGames.filter(el => {
                 return el.status == 'booked'
             })
@@ -52,6 +53,7 @@ export default function BookedGames() {
         } else {
             setSelect('all')
         }
+        console.log('selecttttt', select)
     }
 
 
@@ -68,8 +70,84 @@ export default function BookedGames() {
                 <option name="free" value='free'>Turnos disponibles</option>
                 <option name="booked" value='booked'>Turnos reservados</option>
             </select>
-            {
-                select === 'free' ? 
+            <div style={{width: '70%'}}>
+            {totalGames?.length > 0 && select == 'all' ?
+                <Table striped>
+                    <thead>
+                        <tr>
+                            <th style={{color:'white'}}>Cancha</th>
+                            <th style={{color:'white'}}>Día</th>
+                            <th style={{color:'white'}}>Inicio</th>
+                            <th style={{color:'white'}}>Final</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {totalGames?.map((elem) => {
+                            return (
+                                <tr>
+                                    <td style={{color:'white'}}>{elem.field.name}</td>
+                                    <td style={{color:'white'}}>{elem.date}</td>
+                                    <td style={{color:'white'}}>{elem.start}hs</td>
+                                    <td style={{color:'white'}}>{elem.end}hs</td>
+                                </tr>
+                            )
+                        })}
+
+                    </tbody>
+                </Table>
+                : select === 'free' && freeGames?.length > 0 ? 
+                <Table striped>
+                    <thead>
+                        <tr>
+                            <th style={{color:'white'}}>Cancha</th>
+                            <th style={{color:'white'}}>Día</th>
+                            <th style={{color:'white'}}>Inicio</th>
+                            <th style={{color:'white'}}>Final</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {freeGames?.map((elem) => {
+                            return (
+                                <tr>
+                                    <td style={{color:'white'}}>{elem.field.name}</td>
+                                    <td style={{color:'white'}}>{elem.date}</td>
+                                    <td style={{color:'white'}}>{elem.start}hs</td>
+                                    <td style={{color:'white'}}>{elem.end}hs</td>
+                                </tr>
+                            )
+                        })}
+
+                    </tbody>
+                </Table>
+                : select === 'booked' && bookedGames.length > 0 ?
+                <Table striped>
+                    <thead>
+                        <tr>
+                            <th style={{color:'white'}}>Cancha</th>
+                            <th style={{color:'white'}}>Día</th>
+                            <th style={{color:'white'}}>Inicio</th>
+                            <th style={{color:'white'}}>Final</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {bookedGames?.map((elem) => {
+                            return (
+                                <tr>
+                                    <td style={{color:'white'}}>{elem.field.name}</td>
+                                    <td style={{color:'white'}}>{elem.date}</td>
+                                    <td style={{color:'white'}}>{elem.start}hs</td>
+                                    <td style={{color:'white'}}>{elem.end}hs</td>
+                                </tr>
+                            )
+                        })}
+
+                    </tbody>
+                </Table>
+                :
+                'Aun no tienes reservas'}
+        </div>
+            {/* {
+                 ? 
                 <TableGames bookedGames={freeGames} style={{width:'70%'}}/>
                 : 
                 select === 'booked' ?
@@ -78,7 +156,7 @@ export default function BookedGames() {
                 totalGames.length > 0 ?
                 <TableGames bookedGames={totalGames} style={{width:'70%'}}/>
                 : null
-            }
+            } */}
         </div>
     )
 }
