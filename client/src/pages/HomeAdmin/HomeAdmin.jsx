@@ -23,11 +23,13 @@ const HomeAdmin = () => {
 
     const onClick = async (ev) => {
         await axios.put(`https://falta-uno-1.herokuapp.com/player/modifyStatus/${ev.target.value}`, { status: 'banned' })
-        setCambio(ev.target.value)
+        //setCambio(ev.target.value)
+        window.location.reload(true)
     }
     const onClickDesbloquear = async (ev) => {
         await axios.put(`https://falta-uno-1.herokuapp.com/player/modifyStatus/${ev.target.value}`, { status: 'allowed' })
-        setCambio(ev.target.value)
+        //setCambio(ev.target.value)
+        window.location.reload(true)
     }
 
     
