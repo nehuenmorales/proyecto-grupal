@@ -9,16 +9,23 @@ import Tooltip from 'react-bootstrap/Tooltip';
 
 const HomeAdmin = () => {
     const [players, setPlayers] = useState()
+    const [cambio, setCambio] = useState()
     useEffect(() => {
         axios.get(`https://falta-uno-1.herokuapp.com/player/getPlayers`)
             .then(res => setPlayers(res.data))
     }, [])
-    console.log(players)
+    useEffect(() => {
+        axios.get(`https://falta-uno-1.herokuapp.com/player/getPlayers`)
+            .then(res => setPlayers(res.data))
+    }, [cambio])
+
     const onClick = (ev) => {
         axios.put(`https://falta-uno-1.herokuapp.com/player/modifyStatus/${ev.target.value}`, { status: 'banned' })
+        setCambio('cambio')
     }
     const onClickDesbloquear = (ev) => {
         axios.put(`https://falta-uno-1.herokuapp.com/player/modifyStatus/${ev.target.value}`, { status: 'allowed' })
+        setCambio('cambio')
     }
 
     
