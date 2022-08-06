@@ -1,0 +1,29 @@
+
+
+.letras{
+    text-decoration: none;
+    color:white;
+    font-weight: 400;
+    font-style: italic;
+    margin-top: 5px;
+}
+.letrasVerdes{
+    text-decoration: none;
+    color:#00B83F;
+    font-weight: 400;
+    font-style: italic;
+    margin-top: 5px;
+}
+
+.letrasVerdes:hover{
+    color:white
+}
+
+.letras:hover{
+    color:#00B83F;
+}
+
+.contenedor{
+    background-color: #111825 ;
+    width: 810px;
+}

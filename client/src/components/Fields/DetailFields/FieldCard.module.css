@@ -1,0 +1,51 @@
+.separar{
+    margin:10px 30px 10px 10px;
+    border: none;
+    border-radius: 10px;
+    transition: all 500ms;
+    height:300px;
+    width: 250px;
+}
+
+.separar:hover{
+    transform: scale(1.05);
+    border:none !important;
+    box-shadow: 0;
+}
+
+.bodyCard{
+    background-color: #111825;
+    box-shadow: 2px 2px 5px #0C131F;
+    border-radius: 0px 0px 5px 8px;
+    border: none;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    padding: 15px;
+}
+
+.NewImage{
+    height: 150px;
+}
+
+.title{
+    color: white;
+    font-size: 25px;
+    font-style: italic;
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    align-items: center;
+    text-align: center;
+    
+}
+
+.text{
+    color:white;
+}
+
+.contenedorDeTodo{
+    padding-top: 30px;
+    flex-wrap: wrap;
+}

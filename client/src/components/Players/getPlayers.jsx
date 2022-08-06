@@ -7,6 +7,8 @@ import VerticalNavbar from '../VerticalNavbar/VerticalNavbar';
 import Tabs from '../Tabs/Tabs';
 import SearchBar from "../SearchBar/SearchBar.jsx"
 import { Container, Row } from 'react-bootstrap';
+import {Flex} from "@chakra-ui/react"
+import s from "./cardPlayers.module.css"
 
 const GetPlayers = ({ match }) => {
   const dispatch = useDispatch()
@@ -19,42 +21,54 @@ const GetPlayers = ({ match }) => {
   }, [dispatch]);
 
   return (
-    <div>
-        <VerticalNavbar/>
-        <SearchBar state={playerSearch} filtro="jugadores" sport={sport} />
-        <Tabs match={match}/>
-                {
-                playerSearch.length?
-                playerSearch.map((x) => {
-                    return (
-                        <CardPlayers
-                            key={x.id}
-                            name={x.name}
-                            lastName={x.lastName}
-                            username={x.username}
-                            city={x.city}
-                            elo={x.elo}
-                        />
-                    );
-                })
-                :
-                
-                players?.map((x) => {
-                    return (
-                        <CardPlayers
-                            key={x.id}
-                            name={x.name}
-                            lastName={x.lastName}
-                            username={x.username}
-                            city={x.city}
-                            elo={x.elo}
-                        />
-                    );
-                })
-                }
-                
-    </div>
-   
+    <Flex>
+      <VerticalNavbar />
+      
+      <Flex flexDir="column" mt="40px">
+
+      <SearchBar filtro="jugadores" sport={sport} />
+      <Tabs match={match} />
+      <Container>
+        <h2 className={s.text}>Jugadores</h2>
+        <Row style={{
+          'display': 'flex',
+          'alignItems': 'center',
+          'justifyContent': 'center'
+        }}>
+
+          {
+            playerSearch.length ?
+            playerSearch.map((x) => {
+                return (
+                  <CardPlayers
+                    key={x.id}
+                    name={x.name}
+                    lastName={x.lastName}
+                    username={x.username}
+                    city={x.city}
+                    elo={x.elo}
+                  />
+                );
+              })
+              :
+              players?.map((x) => {
+                return (
+                  <CardPlayers
+                    key={x.id}
+                    name={x.name}
+                    lastName={x.lastName}
+                    username={x.username}
+                    city={x.city}
+                    elo={x.elo}
+                  />
+                );
+              })
+          }
+        </Row>
+      </Container>
+                    </Flex>
+    </Flex>
+
   )
 }
 

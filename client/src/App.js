@@ -2,7 +2,8 @@ import "./scss/custom.css";
 import React from "react";
 import { useAuth0} from "@auth0/auth0-react";
 import Home from "./pages/Home/Home";
-import { Spinner } from "react-bootstrap";
+// import { Spinner } from "react-bootstrap";
+import { Spinner,Center } from '@chakra-ui/react'
 import { Route } from "react-router-dom";
 import CreateFields from "./components/Fields/CreateFields/CreateFields";
 import fieldFutbol from "./components/Fields/CreateFields/Futbol/fieldFutbol.jsx";
@@ -38,6 +39,7 @@ import FieldDetail from "./components/DetailOwner/Fields/FieldDetail"
 import SupplieDetail from "./components/DetailOwner/Supplies/SuppliesDetails" 
 import HomeAdmin from "./pages/HomeAdmin/HomeAdmin";
 
+import DetailComplex from "./pages/DetailComplex/DetailComplex";
 
 function App() {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -53,9 +55,16 @@ function App() {
       
       {  isLoading
           ?
-          <Spinner animation="border" variant="light" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
+          <Center h="600px">
+            <Spinner
+            thickness='4px'
+            speed='0.65s'
+            emptyColor='gray.200'
+            color="#00B83F"
+            size='xl'
+          />
+          </Center>
+          
       : isAuthenticated
       ? user.email == 'maguiherediavaiarini@gmail.com' ?   
       <Route exact path={'/'} component={HomeAdmin} /> 
@@ -83,14 +92,12 @@ function App() {
       {/* leo rompiste todo con esta ruta que esta abajito, AREGLALO */}
       <Route exact path="/sport/:sport" component={AllGames} />
       <Route exact path="/success/:id" component={Success} />
-
       <Route exact path="/fields/:sport" component={DetailFields} />
       <Route exact path="/sport/:sport/players" component={GetPlayers} />
       <Route exact path="/sport/:sport/complex" component={GetComplex} />
+      <Route exact path="/sport/:sport/complex/:id" component={DetailComplex} />
       <Route exact path={"/owner/createSupplie"} component={CreateSupplies}/>
- 
       <Route exact path={"/games/detail/:id"} component={GameDetail}/>
-
       <Route exact path={"/owner/createComplex"} component={CreateComplex}/>
       <Route exact path={"/complexOwner"} component={ComplexList}/>
       <Route exact path={"/fieldOwner"} component={FieldList}/>

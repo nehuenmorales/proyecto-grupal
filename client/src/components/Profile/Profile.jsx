@@ -4,11 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useAuth0 } from "@auth0/auth0-react";
 import { getPlayersProfile } from '../../redux/Players/GetPlayersAction';
 import ProfileData from './profilePage';
-
-
-
-
-
+import {Flex} from "@chakra-ui/react"
 
 export default function PlayerProfile() {
     const { user, isAuthenticated, isLoading } = useAuth0();
@@ -17,11 +13,11 @@ export default function PlayerProfile() {
     
         return (
          isLoading ? null :
-        <div >
+        <Flex>
             <VerticalNavbar/>
             <ProfileData email={user.email} user={user}/>
             
-        </div>
+        </Flex>
         )   
     
 }

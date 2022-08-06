@@ -48,3 +48,10 @@
 .information p span:last-child{
   color: #128DFF;
 }
+
+.text{
+  color:white;
+  font-style: italic;
+  margin-left: 30px;
+  margin-bottom: 20px;
+}

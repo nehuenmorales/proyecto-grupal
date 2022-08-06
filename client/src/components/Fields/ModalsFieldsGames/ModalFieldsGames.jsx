@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useDispatch, useSelector } from "react-redux";
-import { createGame } from "../../../redux/Games/gamesAction.js";
+import { createGame } from "../../../redux/NuevoGames/gamesAction.js";
 import { useHistory } from "react-router-dom";
 import s from './modals.module.css'
 import swal from 'sweetalert';

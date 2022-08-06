@@ -16,13 +16,19 @@ import{
   FiCalendar,
   FiLogOut,
 }from "react-icons/fi"
+import{
+    TbSoccerField
+}from "react-icons/tb"
+import{
+    HiOutlineOfficeBuilding
+}from "react-icons/hi"
 
-import { Link } from 'react-router-dom';
+
 import NavItem from './NavItem';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useRouteMatch } from 'react-router-dom';
 
-export default function VerticalNavBar(){
+export default function VerticalNavBarCan(){
 
   const { user, isLoading, logout} = useAuth0();
   const [size,setSize]=useState("small")
@@ -66,8 +72,9 @@ export default function VerticalNavBar(){
         
   
         {match.path==="/"?<NavItem size={size} icon={FiHome} title="Inicio" link="/" active/>:<NavItem size={size} icon={FiHome} link="/" title="Inicio"/>}
-        {match.path==="/equipos"?<NavItem size={size} icon={FiUsers} title="Mis Equipos" link="/equipos" active/>:<NavItem size={size} icon={FiUsers} title="Mis Equipos" link="/equipos"/>}
-        {match.path==="/eventos"?<NavItem size={size} icon={FiCalendar} title="Mis Eventos" link="/eventos" active/>:<NavItem size={size} icon={FiCalendar} title="Mis Eventos" link="/eventos"/>}
+        {match.path==="/fieldOwner"?<NavItem size={size} icon={TbSoccerField} title="Mis Canchas" link="/fieldOwner" active/>:<NavItem size={size} icon={TbSoccerField} title="Mis Equipos" link="/fieldOwner"/>}
+        {match.path==="/complexOwner"?<NavItem size={size} icon={HiOutlineOfficeBuilding} title="Mis Complejos" link="/complexOwner" active/>:<NavItem size={size} icon={HiOutlineOfficeBuilding} title="Mis Complejos" link="/complexOwner"/>}
+        {match.path==="/eventos"?<NavItem size={size} icon={FiCalendar} title="Mis Reservas" link="/eventos" active/>:<NavItem size={size} icon={FiCalendar} title="Mis Reservas" link="/eventos"/>}
         {match.path==="/profile"?<NavItem size={size} icon={FiUser} title="Mi Perfil" link="/profile" active/>:<NavItem size={size} icon={FiUser} title="Mi Perfil" link="/profile"/>}
 
 

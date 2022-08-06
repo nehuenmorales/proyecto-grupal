@@ -8,6 +8,11 @@
     margin: 0;
 }
 
+.botoncito{
+    background-color: "#00B83F";
+    color: "#00B83F";
+}
+
 .futbol{
     display: flex;
     flex-direction: column !important;

@@ -31,11 +31,11 @@ export default function ProfileData({ email, user }) {
 
   const player = useSelector((state) => state.getPlayersReducer.playerProfile);
   const [profile, setChangesToProfile] = useState({
-    name: player.name,
-    lastName: player.lastName,
-    telephone: player.telephone,
-    username: player.username,
-    city: player.city,
+    name: player?.name,
+    lastName: player?.lastName,
+    telephone: player?.telephone,
+    username: player?.username,
+    city: player?.city,
   });
 
   const [errors, setErrors] = useState({
