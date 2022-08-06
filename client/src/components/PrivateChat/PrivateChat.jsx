@@ -32,14 +32,23 @@ import { useAuth0} from "@auth0/auth0-react";
 const socket = io("http://localhost:3001");
 
 
-export default function PrivateChat({user}) {
+export default function PrivateChat({user,isAuthenticated,isLoading}) {
 
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
   const [usersConnected, setUsersConnected] = useState([]);
 
-  console.log("estoy logueado", user)
+  // !usersConnected.includes(user.email) ? socket.emit("userConnected",user.email) : null
+  function userConnect(){
+    if(!usersConnected.includes(user.email)){
+      return socket.emit("userConnected",user.email)
+    }
+  }
 
+
+  useEffect(()=>{
+    userConnect()
+  })
 
   // const user  = useSelector(state=> state.getPlayersReducer.playerProfile)
   const conectionUser=(arrayConected)=>{
@@ -59,9 +68,17 @@ export default function PrivateChat({user}) {
     
         // socket.emit("enterPage",user.email)
   
-      
+    
   console.log("conectado")
   socket.on("enterPage",conectionUser)
+  socket.on("userConnected",(AllConnectedUsers)=>{
+    console.log(AllConnectedUsers)
+    setUsersConnected(AllConnectedUsers)
+  })
+ 
+
+
+
 
   const handleSubmit = (event) => {
     console.log("soy email",user)
@@ -75,11 +92,17 @@ export default function PrivateChat({user}) {
     socket.emit("message", newMessage);
     // socket.emit("enterPage", user.email);
 
-
+    
   };
-
+//  usersConnected.map((e)=>{
+//             <h1 style={{"color":"white"}}>{e}</h1>
   return (
     <div className="h-screen bg-zinc-800 text-white flex items-center justify-center">
+       <div>
+          {usersConnected.length? usersConnected.map((e)=>
+            <p style={{"color":"white"}}>{e}</p>
+          ):<h1>QUE</h1>}
+        </div> 
       <form onSubmit={handleSubmit} className="bg-zinc-900 p-10">
         <h1 className="text-2xl font-bold my-2">Chat React</h1>
         <input

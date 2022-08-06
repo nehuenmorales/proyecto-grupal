@@ -9,6 +9,6 @@ export default function ContainerChat(){
     return (
         isLoading? null
         :
-        <PrivateChat user={user} />
+        <PrivateChat user={user} isAuthenticated={isAuthenticated} isLoading={isLoading} />
     )
 }

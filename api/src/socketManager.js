@@ -7,7 +7,21 @@ const io = require('./app.js').io
 
 // const { createUser, createMessage, createChat } = require('../Factories')
 
-let connectedUsers = {}
+/*
+
+me logueo ====> emit de mi logueo
+emit brockast de tu connect ====> muestra tu conect
+me pusheo al array de connect ====> recibo el array de conectados
+
+
+*/
+
+
+
+
+
+
+let connectedUsers = []
 
 // let communityChat = createChat()
 function addUser(userList, user){
@@ -18,7 +32,7 @@ function addUser(userList, user){
 
 module.exports = function(socket){
     console.log("socket-id:", socket.id);
-      socket.on("message", (info) => {
+    socket.on("message", (info) => {
         console.log("soy mensaje y llegue al back", info.body)
         console.log("soy from y llegue al back", info.from)
       socket.broadcast.emit("message", {
@@ -27,11 +41,13 @@ module.exports = function(socket){
     }
     );
   }
-  );
-  socket.on("userConnected",(callback)=>{
-    callback(connectedUsers)
-    io.emit("userConnected")
+);
+  socket.on("userConnected",(email)=>{
+    connectedUsers=[...connectedUsers,email]
+    socket.broadcast.emit("userConnected", connectedUsers)
   })
+
+
 
   // } )
 					
