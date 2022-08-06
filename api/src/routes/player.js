@@ -1,4 +1,5 @@
 const { Router } = require("express");
+const { bannearPlayer } = require("../controllers/players/bannearPleyer");
 
 //traigo los controllers
 const { createPlayer } = require("../controllers/players/createPlayer");
@@ -20,5 +21,7 @@ router.get("/getSearchPlayer", getSearchPlayer);
 router.get("/getPlayerProfile", getPlayerProfile);
 
 router.put("/modifyProfile", modifyProfile)
+
+router.put('/modifyStatus/:id', bannearPlayer)
 
 module.exports = router;

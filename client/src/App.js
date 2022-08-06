@@ -36,6 +36,7 @@ import BookedGames from "./components/DetailOwner/BookedGames/BookedGames.jsx";
 import { TeamsContainer } from "./components/Teams/TeamContainer";
 import FieldDetail from "./components/DetailOwner/Fields/FieldDetail"
 import SupplieDetail from "./components/DetailOwner/Supplies/SuppliesDetails" 
+import HomeAdmin from "./pages/HomeAdmin/HomeAdmin";
 
 
 function App() {
@@ -56,7 +57,9 @@ function App() {
             <span className="visually-hidden">Loading...</span>
           </Spinner>
       : isAuthenticated
-      ? user['https://example.com/rol'] === 'owner' 
+      ? user.email == 'maguiherediavaiarini@gmail.com' ?   
+      <Route exact path={'/'} component={HomeAdmin} /> 
+      : user['https://example.com/rol'] === 'owner' 
       ?
       <Route exact path="/" component={HomeOwner} /> 
       :
