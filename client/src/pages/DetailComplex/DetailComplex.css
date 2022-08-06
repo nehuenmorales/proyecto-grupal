@@ -36,8 +36,31 @@
 
 .locationInformation p{
   margin: 0 10px;
+  width: 380px;
 }
 
 .titleDescription{
   color: #128DFF;
+}
+
+.complexName{
+  font-size: 25px;
+  font-weight:bold;
+  margin-right: 15px;
+}
+
+.fieldName{
+  font-size: 20px;
+  font-weight: lighter;
+  margin: 5px;
+}
+
+.price{
+  font-size: 20px;
+  margin-right: 10px;
+  font-weight: 600;
+}
+
+.buttoncito:hover{
+  background-color: #00B83F;
 }
