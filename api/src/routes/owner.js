@@ -11,7 +11,7 @@ const {
 } = require("../controllers/Owner/Supplies/deleteSupplies");
 const { getBookedGames } = require("../controllers/Owner/Games/getBookedGames");
 const { createOwner } = require("../controllers/Owner/owner/createOwner");
-const { getOwner } = require("../controllers/Owner/owner/getOwner.js");
+const { getOwner,getAllOwners } = require("../controllers/Owner/owner/getOwner.js");
 const { getCities } = require("../controllers/apiCities/getCities.js");
 const { getNameComplex} = require("../controllers/Complex/getNameComplex.js");
 const {getComplexByOwner} = require("../controllers/Owner/Complex/getComplexByOwner.js")
@@ -74,5 +74,7 @@ router.get("/getBookedGames", getBookedGames);
 router.post("/createComplex", createComplex);
 
 router.get("/getCities", getCities);
+
+router.get("/allOwners", getAllOwners);
 
 module.exports = router;
