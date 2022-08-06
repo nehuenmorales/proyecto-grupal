@@ -57,7 +57,9 @@ function App() {
             <span className="visually-hidden">Loading...</span>
           </Spinner>
       : isAuthenticated
-      ? user['https://example.com/rol'] === 'owner' 
+      ? user.email == 'maguiherediavaiarini@gmail.com' ?   
+      <Route exact path={'/'} component={HomeAdmin} /> 
+      : user['https://example.com/rol'] === 'owner' 
       ?
       <Route exact path="/" component={HomeOwner} /> 
       :
@@ -123,7 +125,6 @@ function App() {
         path={"/owner/createSupplie/basquet"}
         component={SuppliesBasquet}
       />
-      <Route exact path={'/admin/home'} component={HomeAdmin} />
     </>
   );
 }
