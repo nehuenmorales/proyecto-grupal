@@ -1,0 +1,76 @@
+.adminContenedor{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.administrar{
+    color: white;
+    font-size: 30px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+.headerAccordion{
+    color: rgb(27, 160, 181);
+}
+.header{
+    background-color: rgb(18, 210, 239) !important;
+    border-radius: 10px;
+}
+.bodyy{
+    background-color: rgb(43, 71, 95);
+    color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.acomodandoCajitas{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+
+}
+.izquierdaCajita{
+    margin-right: 20px;
+}
+.leftCajita{
+    margin-left: 20px;
+}
+.logo{
+    height: 17px;
+    filter:invert(100%);
+    padding-right: 5px;
+}
+.nombre{
+    font-size: 25px;
+}
+.botonBloquear{
+    background-color:rgb(46, 170, 9);
+    color: white;
+    border: none !important;
+    transition: all 500ms;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+.botonBloquear:hover{
+    background-color:rgb(201, 5, 5);
+    color: white;
+    border: none !important;
+    transform: scale(.95);
+}
+.botonDesbloquear{
+    background-color:rgb(201, 5, 5);
+    color: white;
+    border: none !important;
+    transition: all 500ms;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+.botonDesbloquear:hover{
+    background-color:rgb(46, 170, 9);
+    color: white;
+    border: none !important;
+    transform: scale(.95);
+}
