@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import {Button, Dropdown, DropdownButton, Form, FormGroup} from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { getSearchGames } from "../../redux/Games/gamesAction";
+import { getSearchGames } from "../../redux/NuevoGames/gamesAction";
 import { getSearchFields } from "../../redux/DetailField/DetailField-action";
 import { gamesIncompleteOrderByAmount, getSearchGamesIncomplete } from "../../redux/GamesIncomplete/gamesIncompleteActions";
 import { getSearchPlayer, orderByElo, } from "../../redux/Players/GetPlayersAction";
 import { getSearcTournament } from "../../redux/Tournament/tounamentAction";
-import { gamesOrderByPrice } from "../../redux/Games/gamesAction";
+import { gamesOrderByPrice } from "../../redux/NuevoGames/gamesAction";
 import s from "./SearchBar.module.css";
 import { getSearchComplex, orderComplexRating,} from "../../redux/Complexes/ComplexAction";
 
