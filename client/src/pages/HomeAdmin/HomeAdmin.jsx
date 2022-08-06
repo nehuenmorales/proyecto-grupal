@@ -43,7 +43,7 @@ const HomeAdmin = () => {
 
     return (
         <div className='adminContenedor'>
-            <h3 className='administrar'>Administrar Usuarios</h3>
+            <h3 id='administrar' className="fw-normal text-white fst-italic">Administrar jugadores</h3>
             <Accordion defaultActiveKey='0' flush>
             {players?.map((elem, index) => { 
                 return (
