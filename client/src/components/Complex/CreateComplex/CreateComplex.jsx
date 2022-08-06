@@ -27,6 +27,7 @@ function SoloLetras(input) {
 
 export default function CreateComplex() {
     const dispatch = useDispatch()
+    let owner = useSelector((state) => state.getOwnerReducer.owner)
     const [cityInput, setCityInput] = useState([])
     const [click, setClick] = useState(false)
     const [input, setInput] = useState('')
@@ -42,8 +43,6 @@ export default function CreateComplex() {
             address: ''
         }
     )
-    let owner = useSelector((state) => state.getOwnerReducer.owner)
-
     const [newComplex, setNewComplex] = useState({
         name: "",
         image: "",
@@ -65,19 +64,18 @@ export default function CreateComplex() {
         city: "",
         state: "",
     });
-
+    
     const [loading, setLoading] = useState(false)
-
+    
     
     const history = useHistory()
     
 
     useEffect(() => {
+        console.log(owner,"este es el owner")
         axios.get('https://falta-uno-1.herokuapp.com/owner/getCities')
         .then((resp) => {
-        console.log('cities',resp.data)
         setCities(resp.data)})
-
         axios.get('https://falta-uno-1.herokuapp.com/owner/getNameComplex')
         .then((res) => {
             setComplexName(res.data)
