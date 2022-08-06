@@ -52,7 +52,7 @@ const HomeAdmin = () => {
                               <p><img src='https://cdn-icons-png.flaticon.com/512/1244/1244579.png' className='logo'></img>{elem.city}</p>
                               </div>
                               <div className='derechaCajita'>
-                              <p><img src='https://cdn-icons.flaticon.com/png/512/3059/premium/3059446.png' className='logo'></img> {elem.telephone}</p>
+                              <p><img src='https://cdn-icons-png.flaticon.com/512/597/597177.png' className='logo'></img> {elem.telephone}</p>
                               <p>{elem.elo} puntos</p>
                               </div>
                               </div>
