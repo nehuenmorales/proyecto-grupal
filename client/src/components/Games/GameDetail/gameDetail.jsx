@@ -5,6 +5,7 @@ import { getGamesById } from '../../../redux/Games/gamesAction';
 import ModalGames from '../ModalGames/modalGames';
 import { getSupplies } from '../../../redux/OwnerSupplies/suppliesActions';
 import { useAuth0 } from '@auth0/auth0-react';
+import './gameDetail.css'
 
 export default function GameDetail({match}) {
   
@@ -31,17 +32,23 @@ console.log(detail)
     return (
     <div>
         <VerticalNavbar/>
-        <p>{detail[0]?.complexname}</p>
-        <p>{detail[0]?.name}</p>
-        <p>{detail[0]?.sport}</p>
-        <img src={detail[0]?.image}></img>
-        <p>{detail[0]?.date}</p>
-        <p>{detail[0]?.start}</p>
-        <p>{detail[0]?.end}</p>
-        <p>{detail[0]?.pricePerTurn}</p>
-        <p>{detail[0]?.adress}</p>
-        <p>{detail[0]?.city}</p>
-        <button onClick={(e)=>{handleModal(e)}}>Reservar</button>
+        <div className='contenedorGameDetail'>
+        <img src={detail[0]?.image} className='img'></img>
+        <div className='contenedorinfoo'>
+        <div className='izquierdaInfo'>
+        <p className="fw-normal text-white fst-italic" style={{fontSize: '40px', paddingBottom: '0px', marginBottom: '0px'}}>{detail[0]?.complexname}</p>
+        <p className='subtituloCancha'>{detail[0]?.name.charAt(0).toUpperCase() + detail[0]?.name.slice(1)}</p>
+        <p className='ciudad'>{detail[0]?.city.charAt(0).toUpperCase() + detail[0]?.city.slice(1)}</p>
+        <p className='address'><img src='https://cdn-icons.flaticon.com/png/512/3421/premium/3421853.png?token=exp=1659796347~hmac=550e7f60c26f491522c51d4d6ce59cbc' className='logo'></img> {detail[0]?.address}</p>
+        </div>
+        <div className='derechaInfo'>
+        <p className='canchaDe'>Cancha de {detail[0]?.sport}</p>
+        <p className='date'>{detail[0]?.date.charAt(0).toUpperCase() + detail[0]?.date.slice(1)}</p>
+        <p className='horario'>de {detail[0]?.start}hs a {detail[0]?.end}hs</p>
+        <p><img src='https://cdn-icons-png.flaticon.com/512/74/74742.png' style={{ height: '22px', filter: 'invert(100%)', }}></img>{detail[0]?.pricePerTurn}</p>
+        <button onClick={(e)=>{handleModal(e)}} className='botonReservar'>Reservar!</button>
+        </div>
+        </div>
         <ModalGames
         showModal={showModal}
         setShowModal={setShowModal}
@@ -50,6 +57,7 @@ console.log(detail)
         price={detail[0]?.pricePerTurn}
         supplies={supplies}
         />
+        </div>
     </div>)
 }
 

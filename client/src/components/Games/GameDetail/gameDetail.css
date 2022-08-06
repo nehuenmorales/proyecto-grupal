@@ -1,0 +1,70 @@
+.contenedorGameDetail{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+}
+.contenedorinfoo{
+    display: flex;
+    width: 70%;
+    justify-content: space-around;
+    flex-direction: row;
+}
+.izquierdaInfo{
+    color: rgb(255, 255, 255);
+    font-size: 27px;
+    padding-top: 20px;
+}
+.derechaInfo{
+    color: rgb(255, 255, 255);
+    font-size: 27px;
+    padding-top: 20px;
+}
+.subtituloCancha{
+    font-size: 30px;
+    padding-top: 0cm;
+    margin-top: 0;
+}
+.address{
+    font-size: 17px;
+    width: 80%;
+}
+.canchaDe{
+    margin: 10px 0;
+    padding: 10px 0;
+    font-size: 30px;
+}
+.ciudad{
+    margin-top: 15px;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    font-size: 22px;
+}
+.date{
+    margin-bottom: 0;
+    padding-bottom: 0;
+    font-size: 30px;
+}
+.horario{
+    margin-top: 0;
+    padding-top: 0;
+    font-size: 22px;
+    margin-bottom: 30px;
+}
+.botonReservar{
+    margin-top: 30px;
+    padding: 5px 90px;
+    border: none !important;
+    border-radius: 10px;
+    background-color: rgba(0, 184, 63, 1);
+    color: white;
+    transition: all 500ms;
+}
+.botonReservar:hover{
+    transform: scale(.95);
+}
+.img{
+    max-height: 200px;
+    
+}
