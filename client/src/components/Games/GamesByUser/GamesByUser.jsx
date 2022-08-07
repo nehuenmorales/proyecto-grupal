@@ -12,14 +12,14 @@ export default function GamesByUser(){
     let allGames = useSelector((state) => state.games.gamesUser)
     const dispatch = useDispatch()
     const { user } = useAuth0();
-    const email = user.email
-    console.log(user, "es el usuario")
-    console.log(email, "el el mail")
+    // const email = user.email
+    // console.log(user, "es el usuario")
+    // console.log(email, "el el mail")
+    console.log(user?.email)
 
-    // useEffect(() => {
-    //     dispatch(gamesByUser(email))
-    //     console.log(email)
-    // })
+    useEffect(() => {
+        dispatch(gamesByUser(user?.email))
+    },[dispatch, user?.email])
 
     return (
         <Flex>
