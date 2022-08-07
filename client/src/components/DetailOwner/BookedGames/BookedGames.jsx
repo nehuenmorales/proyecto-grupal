@@ -7,7 +7,6 @@ import { Button } from 'react-bootstrap';
 import VerticalNavbarCan from '../../VerticalNavbar/VerticalNavBarCan';
 import Table from 'react-bootstrap/Table';
 import { Flex } from "@chakra-ui/react";
-import { Button, Col, Container, Image, Row, Spinner } from 'react-bootstrap';
 
 
 export default function BookedGames() {
