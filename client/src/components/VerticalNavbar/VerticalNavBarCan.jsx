@@ -45,7 +45,7 @@ const dispatch = useDispatch()
     dispatch(getOwner(user.sub))
     console.log('user.sub', user.sub)
     dispatch(getGamesOwner(user.sub))
-  }, [user.email])
+  }, [])
 
   return(
     <Flex
