@@ -63,13 +63,13 @@ export default function BookedGames() {
         <Flex>
             <VerticalNavbarCan />
             {/* <Row> */}
-            <div style={{ width: '100%', 'display': 'flex', flexDirection: 'column', justifyContent: 'center'}}>
+            <div style={{ width: '100%', 'display': 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start' }}>
              <div style={{ width: '100%', padding: '10px' , 'display': 'flex','flexDirection':'row', 'justifyContent': 'flex-start', 'alignItems': 'flex-start'}}>
                 <Link to='/' style={{ 'padding': '10px' , 'width': '25%'}}>
                     <Button>Volver</Button>
                 </Link>
             </div>
-            <div style={{width: '100%',  display: 'flex', justifyContent: 'center'}}>
+            <div style={{width: '100%',  display: 'flex', justifyContent: 'center', alignItems: 'flex-start'}}>
             <select onChange={(e) => handleClick(e)} 
             style={{alignItems: 'center', textAlign: 'center', marginBottom: '25px'}}
             className='selectSports'
@@ -80,8 +80,8 @@ export default function BookedGames() {
             </select>
             </div>
             <div>
-            <div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
-            <div style={{width: '60%'}}>
+            <div style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'flex-start'}}>
+            
             {allGames?.length > 0 && select == 'all' ?
                 <Table striped>
                     <thead>
@@ -166,7 +166,7 @@ export default function BookedGames() {
                 :
                 <div style={{width: '100%', color: 'white', display:'flex', justifyContent: 'center'}}><p style={{ color: 'white'}}>Aun no tienes reservas</p></div>
                 }
-        </div>
+        
         </div>
         </div>
             {/* {
