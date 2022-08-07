@@ -5,7 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import {
   Flex,
   Center
-}from "@chakra-ui/react"
+} from "@chakra-ui/react"
 
 export function TeamsContainer() {
   const { user, isLoading } = useAuth0();
