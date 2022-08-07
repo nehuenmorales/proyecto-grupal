@@ -63,8 +63,8 @@ export default function BookedGames() {
         <Flex>
             <VerticalNavbarCan />
             {/* <Row> */}
-            <div style={{ 'display': 'flex', flexDirection: 'column', justifyContent: 'center', alignItems:'center' }}>
-             <div style={{ 'padding': '10px' , 'display': 'flex','flexDirection':'row', 'justifyContent': 'space-around', 'alignItems':'center' }}>
+            <div style={{ width: '100%', 'display': 'flex', flexDirection: 'column', justifyContent: 'center', alignItems:'center' }}>
+             <div style={{ 'padding': '10px' , 'display': 'flex','flexDirection':'row', 'justifyContent': 'flex-start', 'alignItems': 'flex-start'}}>
                 <Link to='/' style={{ 'padding': '10px' , 'width': '25%'}}>
                     <Button>Volver</Button>
                 </Link>
