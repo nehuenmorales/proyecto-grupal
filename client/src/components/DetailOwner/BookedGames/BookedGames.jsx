@@ -69,7 +69,7 @@ export default function BookedGames() {
                     <Button>Volver</Button>
                 </Link>
             </div>
-            <div style={{width: '100%',  display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <div style={{width: '100%',  display: 'flex', justifyContent: 'center'}}>
             <select onChange={(e) => handleClick(e)} 
             style={{alignItems: 'center', textAlign: 'center', marginBottom: '25px'}}
             className='selectSports'
@@ -164,7 +164,8 @@ export default function BookedGames() {
                     </tbody>
                 </Table>
                 :
-                'Aun no tienes reservas'}
+                <div style={{width: '100%', color: 'white', display:'flex', justifyContent: 'center'}}><p style={{ color: 'white'}}>Aun no tienes reservas</p></div>
+                }
         </div>
         </div>
         </div>
