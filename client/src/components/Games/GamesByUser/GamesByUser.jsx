@@ -27,11 +27,11 @@ export default function GamesByUser(){
         <Table striped bordered hover variant="dark">
         <thead>
             <tr>
-                <th style={{color:'white'}}>Cancha</th>
                 <th style={{color:'white'}}>Día</th>
                 <th style={{color:'white'}}>Inicio</th>
                 <th style={{color:'white'}}>Final</th>
-                <th style={{color:'white'}}>Estado</th>
+                <th style={{color:'white'}}>Privacidad</th>
+                <th style={{color:'white'}}>Resultado</th>
             </tr>
         </thead>
         <tbody>
@@ -43,7 +43,7 @@ export default function GamesByUser(){
                     <td style={{color:'white'}}>{elem.start}hs</td>
                     <td style={{color:'white'}}>{elem.end}hs</td>
                     <td style={{color:'white'}}>{elem.privacy}</td>
-                    <td style={{color:'white'}}>{elem.result}</td>
+                    <td style={{color:'white'}}>{elem.result === "null" ? "Sin Resultado" : elem.result}</td>
                 </tr>
             )
         })}
