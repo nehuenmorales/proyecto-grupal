@@ -28,13 +28,24 @@ import { MdSportsTennis } from "react-icons/md";
 import NavItem from './NavItem';
 import { useAuth0 } from '@auth0/auth0-react';
 import { useRouteMatch } from 'react-router-dom';
+import { useEffect } from 'react';
+import { getGamesOwner } from '../../redux/OwnerGames/ownerGamesAction';
+import { getOwner } from '../../redux/GetOwner/getOwnerAction';
+import { useDispatch } from 'react-redux';
 
 export default function VerticalNavBarCan(){
-
+const dispatch = useDispatch()
   const { user, isLoading, logout} = useAuth0();
   const [size,setSize]=useState("small")
   console.log(useRouteMatch)
   const match = useRouteMatch()
+
+  useEffect(() => {
+    console.log(user.email, 'user.email')
+    dispatch(getOwner(user.sub))
+    console.log('user.sub', user.sub)
+    dispatch(getGamesOwner(user.sub))
+  }, [user.email])
 
   return(
     <Flex
