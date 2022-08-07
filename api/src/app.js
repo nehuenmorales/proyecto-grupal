@@ -42,12 +42,16 @@ const users = [];
       console.log(users)
     }
 
-    socket.emit("users", users);
+    socket.emit("users", users)
     // We also notify the existing users
-    socket.broadcast.emit("user connected", {
-      userID: socket.id,
-      username: socket.username,
-    });
+    
+
+      socket.broadcast.emit("user connected", {
+        userID: socket.id,
+        username: socket.username,
+      });
+
+    
   
   
     socket.on("private message", ({ content, to }) => {

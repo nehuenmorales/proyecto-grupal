@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import io from "socket.io-client";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -16,47 +16,15 @@ export default function PrivateChat({user,isAuthenticated,isLoading}) {
 
   const [usersConnected, setUsersConnected] = useState([]);
   const [selectedUser, setSelectedUser] = useState("");
-
+  let containerUsersConn;
 
 
   socket.onAny((event, ...args) => {
     console.log(event, args);
   });
 
-  function userConnect(username){
-    console.log("entro")
-    socket.auth = { username };
-  socket.connect();
-  socket.emit("userConnected",user.email)
-
-  }
-
-
-
-  useEffect(()=>{
-    userConnect(user.email)
-    
-
-
-
-    socket.on('connection', ()=>{
-           console.log("Connected");
-        })
   
-  
-    
-   
-  socket.on("user connected", (user) => {
-    user.connected = true;
-    user.messages = [];
-    user.hasNewMessages = false;
-    
-    setUsersConnected([...usersConnected,user]);
-  });
-    
-  
-  
-  socket.on("users", (users) => {
+  const handleUsers=(users)=>{
     console.log("entro a users")
     users.forEach((user) => {
       user.self = user.userID === socket.id;
@@ -71,37 +39,93 @@ export default function PrivateChat({user,isAuthenticated,isLoading}) {
       if (a.username < b.username) return -1;
       return a.username > b.username ? 1 : 0;
     })
-    console.log("soy users1",usersOrder)
-    setUsersConnected([...usersOrder])
-  });
+    containerUsersConn=usersOrder
+    setUsersConnected(usersOrder)
+    
+  }
   
-  socket.on("private message", ({ content, from }) => {
-    for (let i = 0; i < usersConnected.length; i++) {
-      const user = usersConnected[i];
+  const handlePrivateChat=(chat)=>{
+    let content=chat.content
+    let from=chat.from
+    
+    console.log("new message antes de entrar",content)
+    
+    for (let i = 0; i < containerUsersConn.length; i++) {
+      const user = containerUsersConn[i];
+      
       if (user.userID === from) {
         console.log("new message",content)
+        
         user.messages.push({
           content,
           fromSelf: false,
         });
+        
+        
+        setUsersConnected(containerUsersConn)
         if (user !== selectedUser) {
           user.hasNewMessages = true;
         }else{
-          setSelectedUser({...selectedUser})
+          setSelectedUser(user)
         }
-        break;
       }
+      console.log("new user",containerUsersConn)
     }
-  });
+  }
+  
+  const handleUserConnected=(user)=>{
+    user.connected = true;
+    user.messages = [];
+    user.hasNewMessages = false;
+    containerUsersConn=[...containerUsersConn,user]
+    setUsersConnected([...containerUsersConn]);
+  }
+  
+  function userConnect(username){
+    console.log("entro")
+    socket.auth = { username };
+    socket.connect();
+    socket.emit('user connected')
+    socket.emit('users')
+    
 
-  return () => {
-    socket.off('connection');
-    // socket.off('users');
-    // socket.off('private message');
+  }
+  useEffect(()=>{
+    userConnect(user.email)
+    
 
-  };
+
   },[])
- 
+  
+  useEffect(()=>{
+    
+    
+    socket.on('connection', ()=>{
+            console.log("Connected");
+        })
+        
+       socket.on("user connected", handleUserConnected);
+         
+       
+       
+       socket.on("users", handleUsers);
+      
+      
+        
+        
+        socket.on("private message",handlePrivateChat);
+        
+        return () => {
+          socket.off('connection');
+          socket.off('user connected');
+          socket.off('users');
+          socket.off('private message');
+          
+        };
+        
+        
+      },[])
+      
 
 
   

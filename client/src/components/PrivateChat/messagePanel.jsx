@@ -52,7 +52,8 @@ export default function MessagePanel({  selectedUser,socket,setSelectedUser}){
                   name="message"
                   type="text"
                   placeholder="Write your message..."
-                  onChange={(e) => setContent(e.target.value)}
+                  onChange={(e) => {e.preventDefault();
+                    return setContent(e.target.value)}}
                   autoFocus
                 />
                 <button type="submit" >Enviar</button>
