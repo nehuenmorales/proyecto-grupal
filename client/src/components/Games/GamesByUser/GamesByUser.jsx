@@ -12,7 +12,7 @@ export default function GamesByUser(){
     let allGames = useSelector((state) => state.games.gamesUser)
     const dispatch = useDispatch()
     const { user } = useAuth0();
-    const id = 4
+    const id = user.id
 
     useEffect(() => {
         dispatch(gamesByUser(id))
