@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import TableGames from './TableGames';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import VerticalNavbarCan from '../../components/VerticalNavbar/VerticalNavBarCan';
+import VerticalNavbarCan from '../../VerticalNavbar/VerticalNavBarCan';
 import Table from 'react-bootstrap/Table';
 import { Flex } from "@chakra-ui/react"
 
