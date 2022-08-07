@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import TableGames from './TableGames';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import VerticalNavbar from '../../VerticalNavbar/VerticalNavbar';
+import VerticalNavbarCan from '../../components/VerticalNavbar/VerticalNavBarCan';
 import Table from 'react-bootstrap/Table';
 import { Flex } from "@chakra-ui/react"
 
@@ -61,6 +61,8 @@ export default function BookedGames() {
 
     return (
         <Flex>
+            <VerticalNavbarCan />
+            
              <div style={{ 'padding': '10px' , 'display': 'flex','flexDirection':'row', 'justifyContent': 'space-around', 'alignItems':'center' }}>
                 <Link to='/' style={{ 'padding': '10px' , 'width': '25%'}}>
                     <Button>Volver</Button>
