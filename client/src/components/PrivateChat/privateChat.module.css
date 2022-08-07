@@ -6,11 +6,10 @@
 .inputchat{
   display: flex;
   flex-direction: row;
-    position: fixed;
+  position: fixed;
   bottom: 0;
   right: 0;
   width: 75%;
-  
 }
 .colum{
     height: 100vh;
@@ -20,5 +19,48 @@
     
 }
 .comlumR{
-  width: 25%
+  width: 25%;
+}
+
+.recievedMessage{
+  display:flex;
+  align-self: flex-start;
+  margin-left:2px;
+  padding:5px 20px;
+  max-width: 250px;
+  flex-wrap: wrap;
+  background-color:rgba(0, 0, 0, 0.331);
+  color:white;
+  border:0.5px solid rgba(0, 0, 0, 0.331);
+  border-radius:20px;
+  text-align: left;
+  margin-top: 5px;
+}
+
+
+.ownMessage{
+  display: flex;
+  align-self: flex-end;
+  background-color: rgb(5, 39, 9);
+  margin-right:2px;
+  padding:5px 20px;
+  color: white;
+  border:0.5px solid rgb(5, 39, 9);
+  border-radius:20px;
+  text-align: right;
+  justify-content: flex-end;
+  max-width: 250px;
+  flex-wrap: wrap;
+   margin-top: 5px;
+}
+
+.derecha{
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+.izquierda{
+  display: flex;
+   width: 100%;
+  justify-content: flex-start;
 }

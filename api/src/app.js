@@ -26,7 +26,12 @@ const io = new SocketServer(app, {
 io.use((socket, next) => {
   console.log("se conecta")
   const username = socket.handshake.auth.username;
+  const name = socket.handshake.auth.name
+  const image = socket.handshake.auth.image
+  console.log("nombre", name)
   socket.username = username;
+  socket.name = name;
+  socket.image = image,
   next();
 });
 
@@ -38,6 +43,8 @@ const users = [];
       users.push({
         userID: id,
         username: socket.username,
+        name: socket.name,
+        image: socket.image
       });
       console.log(users)
     }
@@ -49,6 +56,8 @@ const users = [];
       socket.broadcast.emit("user connected", {
         userID: socket.id,
         username: socket.username,
+        name: socket.name,
+        image: socket.image,
       });
 
     

@@ -3,15 +3,20 @@ import io from "socket.io-client";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useAuth0} from "@auth0/auth0-react";
+import { useAuth0 } from "@auth0/auth0-react";
 import MessagePanel from "./messagePanel"
 import s from "./privateChat.module.css"
+import SearchUser from "./searchBar";
 
-const socket = io("http://localhost:3001",{ autoConnect: false });
+import { Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import styles from "./cardUser.module.css";
+
+const socket = io("http://localhost:3001", { autoConnect: false });
 
 
 
-export default function PrivateChat({user,isAuthenticated,isLoading}) {
+export default function PrivateChat({ user, isAuthenticated, isLoading }) {
 
 
   const [usersConnected, setUsersConnected] = useState([]);
@@ -19,12 +24,15 @@ export default function PrivateChat({user,isAuthenticated,isLoading}) {
   let containerUsersConn;
 
 
+  console.log("users conected", usersConnected)
+
+
   socket.onAny((event, ...args) => {
     console.log(event, args);
   });
 
-  
-  const handleUsers=(users)=>{
+
+  const handleUsers = (users) => {
     console.log("entro a users")
     users.forEach((user) => {
       user.self = user.userID === socket.id;
@@ -39,143 +47,179 @@ export default function PrivateChat({user,isAuthenticated,isLoading}) {
       if (a.username < b.username) return -1;
       return a.username > b.username ? 1 : 0;
     })
-    containerUsersConn=usersOrder
+    containerUsersConn = usersOrder
     setUsersConnected(usersOrder)
-    
+
   }
-  
-  const handlePrivateChat=(chat)=>{
-    let content=chat.content
-    let from=chat.from
-    
-    
+
+  const handlePrivateChat = (chat) => {
+    let content = chat.content
+    let from = chat.from
+
+
     for (let i = 0; i < containerUsersConn.length; i++) {
       const user = containerUsersConn[i];
-      
+
       if (user.userID === from) {
-        console.log("new message",content)
-        
+        console.log("new message", content)
+
         user.messages.push({
           content,
           fromSelf: false,
         });
-        
-        
+
+
         setUsersConnected([...containerUsersConn])
         if (user !== selectedUser) {
           user.hasNewMessages = true;
-        }else{
-          setSelectedUser({...user})
+        } else {
+          setSelectedUser({ ...user })
         }
       }
-    
+
     }
   }
-  
-  const handleUserConnected=(user)=>{
+
+  const handleUserConnected = (user) => {
     user.connected = true;
     user.messages = [];
     user.hasNewMessages = false;
-    containerUsersConn=[...containerUsersConn,user]
+    containerUsersConn = [...containerUsersConn, user]
     setUsersConnected([...containerUsersConn]);
   }
-  
-  function userConnect(username){
-    console.log("entro")
-    socket.auth = { username };
+
+  function userConnect(username) {
+    console.log("user.name", user.name)
+    const name = user.name
+    socket.auth = { username: username, name: name, image: user.picture };
     socket.connect();
     socket.emit('user connected')
     socket.emit('users')
-    
+
 
   }
 
 
-  const handleDisconect = (user)=>{
+  const handleDisconect = (user) => {
     console.log("soy containerUsersConn", containerUsersConn)
-    containerUsersConn=containerUsersConn.filter((e)=> user !== e.username)
-    console.log("soy el filtrado",containerUsersConn)
+    containerUsersConn = containerUsersConn.filter((e) => user !== e.username)
+    console.log("soy el filtrado", containerUsersConn)
     setUsersConnected([...containerUsersConn])
-    if(selectedUser.username=== user){// no funciona despues ver que onda
-      selectedUser.username="desconectado"
-      setSelectedUser({...selectedUser})
+    if (selectedUser.username === user) {// no funciona despues ver que onda
+      selectedUser.username = "desconectado"
+      setSelectedUser({ ...selectedUser })
     }
   }
 
 
 
 
-  useEffect(()=>{
+  useEffect(() => {
     userConnect(user.email)
-  },[])
-  
-  useEffect(()=>{
-    
-    
-    socket.on('connection', ()=>{
-            console.log("Connected");
-        })
-        
-       socket.on("user connected", handleUserConnected);
-         
-       
-       
-       socket.on("users", handleUsers);
-      
-      
-        socket.on('user disconnected', handleDisconect)
-        
-        socket.on("private message",handlePrivateChat);
-        
-        return () => {
-        
-          socket.off('connection');
-          socket.off('user connected');
-          socket.off('users');
-          socket.off('private message');
-          socket.off('user disconnected')
-        };
-        
-        
-      },[])
-      
+  }, [])
+
+  useEffect(() => {
 
 
-  
-  
-  
- 
-  
-  
+    socket.on('connection', () => {
+      console.log("Connected");
+    })
+
+    socket.on("user connected", handleUserConnected);
 
 
-const selectOnClick = (e) =>{
-  e.preventDefault();
-  let clickedUser=e.target.value
-  for (let i = 0; i < usersConnected.length; i++) {
-    let userSearch= usersConnected[i].username
-    if(clickedUser===userSearch){
-      clickedUser=usersConnected[i]
-      break
+
+    socket.on("users", handleUsers);
+
+
+    socket.on('user disconnected', handleDisconect)
+
+    socket.on("private message", handlePrivateChat);
+
+    return () => {
+
+      socket.off('connection');
+      socket.off('user connected');
+      socket.off('users');
+      socket.off('private message');
+      socket.off('user disconnected')
+    };
+
+
+  }, [])
+
+
+
+
+
+
+
+
+
+
+
+  const selectOnClick = (e) => {
+    e.preventDefault();
+    let clickedUser = e.target.value
+    for (let i = 0; i < usersConnected.length; i++) {
+      let userSearch = usersConnected[i].username
+      if (clickedUser === userSearch) {
+        clickedUser = usersConnected[i]
+        break
+      }
     }
+    console.log(clickedUser)
+    setSelectedUser(clickedUser)
+    console.log("soy el valor en el onClick", e.target.value)
+
   }
-  console.log(clickedUser)
-  setSelectedUser( clickedUser)
-  
-}
-
-  
 
 
-  
+
+  const [flag, setFlag] = useState(false)
+  const [userSearch, setUserSeach] = useState([])
+
   return (
     <div className={s.containerAllChat}>
-       <div className={s.colum}>
-          {usersConnected.length? usersConnected.map((user)=>
-            <button  style={{"color":"black"}} value={user.username} onClick={(e)=>selectOnClick(e)}>{user.username}</button>
-          ):<h3>No hay usuarios conectados</h3>}
-        </div> 
-        {selectedUser?<MessagePanel selectedUser={selectedUser} socket={socket} setSelectedUser={setSelectedUser} />:null}
-    </div>
+      <div className={s.colum}>
+        <div> <SearchUser usersConnected={usersConnected} setUserSeach={setUserSeach} /> </div>
+
+        {userSearch.length ? userSearch.map((user) => {
+          return <div><Card className={styles.cardContainer}>
+            <div className={styles.avatarContainer}>
+              <img className={styles.avatar} src={user.image} />
+            </div>
+            <div className={styles.information}>
+              <p>
+                <span>{user.name}</span>
+              </p>
+            </div>
+            <button value={user.username} onClick={(e) => selectOnClick(e)}>chatear</button>
+          </Card></div>
+        })
+          : usersConnected.length ? usersConnected.map((user) => {
+            return <div><Card className={styles.cardContainer}>
+              <div className={styles.avatarContainer}>
+                <img className={styles.avatar} src={user.image} />
+              </div>
+              <div className={styles.information}>
+                <p>
+                  <span>{user.name}</span>
+                </p>
+              </div>
+              <button value={user.username} onClick={(e) => selectOnClick(e)}>chatear</button>
+            </Card></div>
+          })
+            : null
+        }
+
+
+
+
+      </div>
+
+      {selectedUser ? <MessagePanel selectedUser={selectedUser} socket={socket} setSelectedUser={setSelectedUser} /> : null}
+
+    </div >
   );
 }
