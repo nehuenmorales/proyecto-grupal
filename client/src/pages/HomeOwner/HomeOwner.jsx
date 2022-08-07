@@ -10,10 +10,13 @@ import { useDispatch } from 'react-redux';
 import { getOwner } from '../../redux/GetOwner/getOwnerAction';
 import { Flex } from "@chakra-ui/react"
 import { getGamesOwner } from '../../redux/OwnerGames/ownerGamesAction';
+import { useHistory } from 'react-router-dom';
 
 const HomeOwner = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const dispatch = useDispatch()
+
+  const history = useHistory()
 
   useEffect(() => {
     console.log(user.email, 'user.email')
