@@ -42,11 +42,11 @@ const dispatch = useDispatch()
 
   useEffect(() => {
     
-    dispatch(getOwner(user.sub))
-    console.log('user.sub', user.sub)
-    dispatch(getGamesOwner(user.sub))
+    dispatch(getOwner(user?.sub))
+    console.log('user.sub', user?.sub)
+    dispatch(getGamesOwner(user?.sub))
     console.log('userrr', user)
-  }, [])
+  }, [user?.email])
 
   return(
     <Flex
