@@ -1,4 +1,4 @@
-const io = require('./app.js').io
+const io = require('./app.js')
 
 
 // const { VERIFY_USER, USER_CONNECTED, USER_DISCONNECTED, 
@@ -21,31 +21,38 @@ me pusheo al array de connect ====> recibo el array de conectados
 
 
 
-let connectedUsers = []
+
 
 // let communityChat = createChat()
-function addUser(userList, user){
-	let newList = Object.assign({}, userList)
-	newList[user.name] = user
-	return newList
-}
+// function addUser(userList, user){
+// 	let newList = Object.assign({}, userList)
+// 	newList[user.name] = user
+// 	return newList
+// }
 
-module.exports = function(socket){
-    console.log("socket-id:", socket.id);
-    socket.on("message", (info) => {
-        console.log("soy mensaje y llegue al back", info.body)
-        console.log("soy from y llegue al back", info.from)
-      socket.broadcast.emit("message", {
-      body:info.body,
-      from:info.from ,
-    }
-    );
-  }
-);
-  socket.on("userConnected",(email)=>{
-    connectedUsers=[...connectedUsers,email]
-    socket.broadcast.emit("userConnected", connectedUsers)
-  })
+// module.exports = function(socket){
+  
+//     const users = [];
+//     for (let [id, socket] of io.of("/").sockets) {
+//       users.push({
+//         userID: id,
+//         username: socket.username,
+//       });
+//     }
+//     socket.emit("users", users);
+//     // ...
+  
+//     socket.on("message", (info) => {
+//         console.log("soy mensaje y llegue al back", info.body)
+//         console.log("soy from y llegue al back", info.from)
+//       socket.broadcast.emit("message", {
+//       body:info.body,
+//       from:info.from ,
+//     }
+//     );
+//   }
+// );
+ 
 
 
 
@@ -121,4 +128,4 @@ module.exports = function(socket){
 // 			socket.emit(PRIVATE_MESSAGE, newChat)
 // 		}
 // 	})
-}
+// }

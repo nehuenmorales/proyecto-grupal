@@ -1,0 +1,24 @@
+.containerAllChat{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.inputchat{
+  display: flex;
+  flex-direction: row;
+    position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 75%;
+  
+}
+.colum{
+    height: 100vh;
+    width: 25%;
+    border-right: 5px solid;
+    background-color: rgb(0, 0, 0);
+    
+}
+.comlumR{
+  width: 25%
+}

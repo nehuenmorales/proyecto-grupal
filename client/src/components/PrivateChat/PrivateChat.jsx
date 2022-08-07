@@ -4,130 +4,141 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useAuth0} from "@auth0/auth0-react";
+import MessagePanel from "./messagePanel"
+import s from "./privateChat.module.css"
 
+const socket = io("http://localhost:3001",{ autoConnect: false });
 
-
-
-
-
-// export default function PrivateChat(){
-//     reuseEffect{
-
-//     }
-
-//     const connectToChat=()=>{
-//         const socket = io("http://localhost:3001");
-//         socket.on('connect', ()=>{
-// 			console.log("Connected");
-// 		})
-//     }turn (
-//       <div>
-        
-//       </div>
-  
-  
-//     );
-//   }
-
-const socket = io("http://localhost:3001");
 
 
 export default function PrivateChat({user,isAuthenticated,isLoading}) {
 
-  const [messages, setMessages] = useState([]);
-  const [message, setMessage] = useState("");
-  const [usersConnected, setUsersConnected] = useState([]);
 
-  // !usersConnected.includes(user.email) ? socket.emit("userConnected",user.email) : null
-  function userConnect(){
-    if(!usersConnected.includes(user.email)){
-      return socket.emit("userConnected",user.email)
-    }
+  const [usersConnected, setUsersConnected] = useState([]);
+  const [selectedUser, setSelectedUser] = useState("");
+
+
+
+  socket.onAny((event, ...args) => {
+    console.log(event, args);
+  });
+
+  function userConnect(username){
+    console.log("entro")
+    socket.auth = { username };
+  socket.connect();
+  socket.emit("userConnected",user.email)
+
   }
+
 
 
   useEffect(()=>{
-    userConnect()
-  })
-
-  // const user  = useSelector(state=> state.getPlayersReducer.playerProfile)
-  const conectionUser=(arrayConected)=>{
-    setUsersConnected(Array)
-  }
-  
-    const receiveMessage = (message) => {
-      setMessages([message, ...messages]);
-    };
+    userConnect(user.email)
     
+
+
+
     socket.on('connection', ()=>{
            console.log("Connected");
         })
-
-    socket.on("message", receiveMessage);
-
-    
-        // socket.emit("enterPage",user.email)
+  
   
     
-  console.log("conectado")
-  socket.on("enterPage",conectionUser)
-  socket.on("userConnected",(AllConnectedUsers)=>{
-    console.log(AllConnectedUsers)
-    setUsersConnected(AllConnectedUsers)
-  })
+   
+  socket.on("user connected", (user) => {
+    user.connected = true;
+    user.messages = [];
+    user.hasNewMessages = false;
+    
+    setUsersConnected([...usersConnected,user]);
+  });
+    
+  
+  
+  socket.on("users", (users) => {
+    console.log("entro a users")
+    users.forEach((user) => {
+      user.self = user.userID === socket.id;
+      user.connected = true;
+      user.messages = [];
+      user.hasNewMessages = false;
+    });
+    // put the current user first, and then sort by username
+    let usersOrder = users.sort((a, b) => {
+      if (a.self) return -1;
+      if (b.self) return 1;
+      if (a.username < b.username) return -1;
+      return a.username > b.username ? 1 : 0;
+    })
+    console.log("soy users1",usersOrder)
+    setUsersConnected([...usersOrder])
+  });
+  
+  socket.on("private message", ({ content, from }) => {
+    for (let i = 0; i < usersConnected.length; i++) {
+      const user = usersConnected[i];
+      if (user.userID === from) {
+        console.log("new message",content)
+        user.messages.push({
+          content,
+          fromSelf: false,
+        });
+        if (user !== selectedUser) {
+          user.hasNewMessages = true;
+        }else{
+          setSelectedUser({...selectedUser})
+        }
+        break;
+      }
+    }
+  });
+
+  return () => {
+    socket.off('connection');
+    // socket.off('users');
+    // socket.off('private message');
+
+  };
+  },[])
  
 
 
+  
+  
+  
+ 
+  
+  
 
 
-  const handleSubmit = (event) => {
-    console.log("soy email",user)
-    event.preventDefault();
-    const newMessage = {
-      body: message,
-      from: user.email, 
-    };
-    setMessages([newMessage, ...messages]);
-    setMessage("");
-    socket.emit("message", newMessage);
-    // socket.emit("enterPage", user.email);
+const selectOnClick = (e) =>{
+  e.preventDefault();
+  let clickedUser=e.target.value
+  for (let i = 0; i < usersConnected.length; i++) {
+    let userSearch= usersConnected[i].username
+    if(clickedUser===userSearch){
+      clickedUser=usersConnected[i]
+      break
+    }
+  }
+  console.log(clickedUser)
+  setSelectedUser( clickedUser)
+  
+}
 
-    
-  };
-//  usersConnected.map((e)=>{
-//             <h1 style={{"color":"white"}}>{e}</h1>
+  
+
+
+  
   return (
-    <div className="h-screen bg-zinc-800 text-white flex items-center justify-center">
-       <div>
-          {usersConnected.length? usersConnected.map((e)=>
-            <p style={{"color":"white"}}>{e}</p>
-          ):<h1>QUE</h1>}
+    <div className={s.containerAllChat}>
+       <div className={s.colum}>
+          {usersConnected.length? usersConnected.map((user)=>
+            <button  style={{"color":"black"}} value={user.username} onClick={(e)=>selectOnClick(e)}>{user.username}</button>
+          ):<h3>No hay usuarios conectados</h3>}
         </div> 
-      <form onSubmit={handleSubmit} className="bg-zinc-900 p-10">
-        <h1 className="text-2xl font-bold my-2">Chat React</h1>
-        <input
-          name="message"
-          type="text"
-          placeholder="Write your message..."
-          onChange={(e) => setMessage(e.target.value)}
-          className="border-2 border-zinc-500 p-2 w-full text-black"
-          value={message}
-          autoFocus
-        />
-
-        <ul className="h-80 overflow-y-auto">
-          {messages.map((message, index) => (
-            <li
-              key={index}
-              className={`my-2 p-2 table text-sm rounded-md ${
-                message.from === "Me" ? "bg-sky-700 ml-auto" : "bg-black"
-              }`}
-            >
-              <b>{message.from}</b>:{message.body}
-            </li>
-          ))}
-        </ul>
-      </form>
+        {selectedUser?<MessagePanel selectedUser={selectedUser} socket={socket} setSelectedUser={setSelectedUser} />:null}
     </div>
   );
 }

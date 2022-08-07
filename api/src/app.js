@@ -23,7 +23,152 @@ const io = new SocketServer(app, {
   },
 });
 
-io.on("connection",socketManager);
+io.use((socket, next) => {
+  console.log("se conecta")
+  const username = socket.handshake.auth.username;
+  socket.username = username;
+  next();
+});
+
+// ************** ESTO ES LA PARTE DEL CHAT PRIVADO ***************
+io.on("connection",(socket)=>{
+
+const users = [];
+    for (let [id, socket] of io.of("/").sockets) {
+      users.push({
+        userID: id,
+        username: socket.username,
+      });
+      console.log(users)
+    }
+
+    socket.emit("users", users);
+    // We also notify the existing users
+    socket.broadcast.emit("user connected", {
+      userID: socket.id,
+      username: socket.username,
+    });
+  
+  
+    socket.on("private message", ({ content, to }) => {
+      console.log("mensaje", content, socket.id)
+      console.log("soy to", to)
+      socket.to(to).emit("private message", {
+        content,
+        from: socket.id,
+      });
+    })
+  });
+ 
+
+
+
+  // } )
+					
+// 	// console.log('\x1bc'); //clears console
+// 	console.log("Socket Id:" + socket.id);
+
+// 	let sendMessageToChatFromUser;
+
+// 	let sendTypingFromUser;
+
+// 	//Verify Username
+// 	socket.on(VERIFY_USER, (nickname, callback)=>{
+// 		if(isUser(connectedUsers, nickname)){
+// 			callback({ isUser:true, user:null })
+// 		}else{
+// 			callback({ isUser:false, user:createUser({name:nickname, socketId:socket.id})})
+// 		}
+// 	})
+
+// 	//User Connects with username
+// 	socket.on(USER_CONNECTED, (user)=>{
+// 		user.socketId = socket.id
+// 		connectedUsers = addUser(connectedUsers, user)
+// 		socket.user = user
+
+// 		sendMessageToChatFromUser = sendMessageToChat(user.name)
+// 		sendTypingFromUser = sendTypingToChat(user.name)
+
+// 		io.emit(USER_CONNECTED, connectedUsers)
+// 		console.log(connectedUsers);
+
+// 	})
+	
+// 	//User disconnects
+// 	socket.on('disconnect', ()=>{
+// 		if("user" in socket){
+// 			connectedUsers = removeUser(connectedUsers, socket.user.name)
+
+// 			io.emit(USER_DISCONNECTED, connectedUsers)
+// 			console.log("Disconnect", connectedUsers);
+// 		}
+// 	})
+
+
+// 	//User logsout
+// 	socket.on(LOGOUT, ()=>{
+// 		connectedUsers = removeUser(connectedUsers, socket.user.name)
+// 		io.emit(USER_DISCONNECTED, connectedUsers)
+// 		console.log("Disconnect", connectedUsers);
+
+// 	})
+
+// 	//Get Community Chat
+// 	socket.on(COMMUNITY_CHAT, (callback)=>{
+// 		callback(communityChat)
+// 	})
+
+// 	socket.on(MESSAGE_SENT, ({chatId, message})=>{
+// 		sendMessageToChatFromUser(chatId, message)
+// 	})
+
+// 	socket.on(TYPING, ({chatId, isTyping})=>{
+// 		sendTypingFromUser(chatId, isTyping)
+// 	})
+
+// 	socket.on(PRIVATE_MESSAGE, ({reciever, sender})=>{
+// 		if(reciever in connectedUsers){
+// 			const newChat = createChat({ name:`${reciever}&${sender}`, users:[reciever, sender] })
+// 			const recieverSocket = connectedUsers[reciever].socketId
+// 			socket.to(recieverSocket).emit(PRIVATE_MESSAGE, newChat)
+// 			socket.emit(PRIVATE_MESSAGE, newChat)
+// 		}
+// 	})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 server.name = "API";
 
 server.use(cors())
@@ -54,3 +199,4 @@ server.use((err, req, res, next) => {
 });
 
 module.exports = app;
+
