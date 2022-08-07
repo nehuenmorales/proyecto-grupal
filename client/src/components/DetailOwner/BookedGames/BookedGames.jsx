@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import VerticalNavbarCan from '../../VerticalNavbar/VerticalNavBarCan';
 import Table from 'react-bootstrap/Table';
-import { Flex } from "@chakra-ui/react"
+import { Flex } from "@chakra-ui/react";
+import { Button, Col, Container, Image, Row, Spinner } from 'react-bootstrap';
 
 
 export default function BookedGames() {
@@ -62,7 +63,8 @@ export default function BookedGames() {
     return (
         <Flex>
             <VerticalNavbarCan />
-            
+            {/* <Row> */}
+            <div style={{ 'display': 'flex', flexDirection: 'row', justifyContent: 'center', alignItems:'center' }}>
              <div style={{ 'padding': '10px' , 'display': 'flex','flexDirection':'row', 'justifyContent': 'space-around', 'alignItems':'center' }}>
                 <Link to='/' style={{ 'padding': '10px' , 'width': '25%'}}>
                     <Button>Volver</Button>
@@ -176,6 +178,8 @@ export default function BookedGames() {
                 <TableGames bookedGames={totalGames} style={{width:'70%'}}/>
                 : null
             } */}
+            {/* </Row> */}
+            </div>
         </Flex>
     )
 }
