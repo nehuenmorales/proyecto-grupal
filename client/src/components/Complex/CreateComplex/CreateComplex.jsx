@@ -75,7 +75,9 @@ export default function CreateComplex() {
         console.log(owner,"este es el owner")
         axios.get('https://falta-uno-1.herokuapp.com/owner/getCities')
         .then((resp) => {
+        console.log('cities',resp.data)
         setCities(resp.data)})
+
         axios.get('https://falta-uno-1.herokuapp.com/owner/getNameComplex')
         .then((res) => {
             setComplexName(res.data)
@@ -104,7 +106,7 @@ export default function CreateComplex() {
             validations.name = "Superó el máximo de caracteres"
         } else if (!complex.description) {
             validations.description = "Ingrese una descripción del complejo"
-        } else if (complex.description?.length > 140) {
+        } else if (complex.description?.length > 1400) {
             validations.description = "Alcanzó el limite de caracteres"
         }  else if (complex.sports?.length == 0) {
             validations.sports = "Ingrese un deporte"
