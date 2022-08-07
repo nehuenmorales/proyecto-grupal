@@ -11,6 +11,7 @@ import { Button } from 'react-bootstrap'
 const HomeAdmin = () => {
     const [players, setPlayers] = useState()
     const [cambio, setCambio] = useState()
+    const { user, isLoading, logout} = useAuth0();
 
     useEffect(() => {
         axios.get(`https://falta-uno-1.herokuapp.com/player/getPlayers`)
