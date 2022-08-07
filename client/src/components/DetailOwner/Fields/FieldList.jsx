@@ -31,12 +31,13 @@ export default function FieldList() {
         <Flex>
             <VerticalNavBarCan />
         <div className="fieldlist-container">
-            <div style={{ 'padding': '10px', 'display': 'flex', 'flexDirection': 'row', 'justifyContent': 'space-around', 'alignItems': 'center' }}>
-                <Link to='/' style={{ 'padding': '10px', 'width': '25%' }}>
+            <div style={{  marginLeft:'20px','padding': '10px', 'display': 'flex', 'flexDirection': 'row', 'justifyContent': 'flex-start', 'alignItems': 'center' }}>
+                <Link to='/' style={{'padding': '10px', 'width': '25%' }}>
                     <Button>Volver</Button>
                 </Link>
             </div>
-            <h5 className="fw-normal text-white fst-italic m-2" style={{ padding: '30px 0 0px 40px' }}>Mis canchas</h5>
+            <h5 className="fw-normal text-white fst-italic m-2" style={{padding: '30px 0 0px 40px'}}>Mis elementos en alquiler</h5>
+
             <div className='contenedor-cards'>
                 {field?.map((e) => {
                     return (

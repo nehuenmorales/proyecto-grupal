@@ -23,14 +23,15 @@ export default function ComplexList() {
         <Flex>
             <VerticalNavBarCan/>
             <div className="fieldlist-container">
-            <div style={{ 'padding': '10px' , 'display': 'flex','flexDirection':'row', 'justifyContent': 'space-around', 'alignItems':'center' }}>
-                <Link to='/' style={{ 'padding': '10px' , 'width': '25%'}}>
+            <div style={{  marginLeft:'20px','padding': '10px', 'display': 'flex', 'flexDirection': 'row', 'justifyContent': 'flex-start', 'alignItems': 'center' }}>
+                <Link to='/' style={{'padding': '10px', 'width': '25%' }}>
                     <Button>Volver</Button>
                 </Link>
             </div>
-            <div className="titulo-complejos">
-                <h5 className="text">Mis complejos</h5>
-            </div>
+        
+            <h5 className="fw-normal text-white fst-italic m-2" style={{padding: '30px 0 0px 40px'}}>Mis elementos en alquiler</h5>
+                
+            
 
             <div className="container-complexcard">
                 {complex?.map((e) => {

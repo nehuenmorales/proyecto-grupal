@@ -1,5 +1,10 @@
 /* style={{ width: '100%', 'display': 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start' }} */
 
 .container{
-    background-color: aqua;
+    /* background-color: aqua; */
+    width: 100%;
+}
+
+.table{
+    margin-left: 180px;
 }

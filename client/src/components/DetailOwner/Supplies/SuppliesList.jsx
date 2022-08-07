@@ -18,8 +18,8 @@ export default function SuppliesList() {
         <Flex>
             <VerticalNavBarCan/>
         <div className="fieldlist-container">
-            <div style={{ 'padding': '10px' , 'display': 'flex','flexDirection':'row', 'justifyContent': 'space-around', 'alignItems':'center' }}>
-                <Link to='/' style={{ 'padding': '10px' , 'width': '25%'}}>
+        <div style={{  marginLeft:'20px','padding': '10px', 'display': 'flex', 'flexDirection': 'row', 'justifyContent': 'flex-start', 'alignItems': 'center' }}>
+                <Link to='/' style={{'padding': '10px', 'width': '25%' }}>
                     <Button>Volver</Button>
                 </Link>
             </div>

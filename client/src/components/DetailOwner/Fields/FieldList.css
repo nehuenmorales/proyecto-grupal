@@ -5,7 +5,8 @@
     justify-content: space-around;
     text-align: center;
     flex-wrap: wrap;
-    margin: 0;
+    margin-left: 80px;
+    margin-right: 80px;
 }
 
 .botoncito{

@@ -75,7 +75,7 @@ export default function VerticalNavBarCan(){
         {match.path==="/"?<NavItem size={size} icon={FiHome} title="Inicio" link="/" active/>:<NavItem size={size} icon={FiHome} link="/" title="Inicio"/>}
         {match.path==="/fieldOwner"?<NavItem size={size} icon={TbSoccerField} title="Mis Canchas" link="/fieldOwner" active/>:<NavItem size={size} icon={TbSoccerField} title="Mis Equipos" link="/fieldOwner"/>}
         {match.path==="/complexOwner"?<NavItem size={size} icon={HiOutlineOfficeBuilding} title="Mis Complejos" link="/complexOwner" active/>:<NavItem size={size} icon={HiOutlineOfficeBuilding} title="Mis Complejos" link="/complexOwner"/>}
-        {match.path==="/ownerBookedGames"?<NavItem size={size} icon={FiCalendar} title="Mis Reservas" link="/ownerBookedGames" active/>:<NavItem size={size} icon={FiCalendar} title="Mis Reservas" link="/ownerBookedGames"/>}
+        {match.path==="/ownerBookedGames"?<NavItem size={size} icon={FiCalendar} title="Mis Turnos" link="/ownerBookedGames" active/>:<NavItem size={size} icon={FiCalendar} title="Mis Turnos" link="/ownerBookedGames"/>}
         {match.path==="/suppliesOwner"?<NavItem size={size} icon={MdSportsTennis} title="Mis Elementos" link="/suppliesOwner" active/>:<NavItem size={size} icon={MdSportsTennis} title="Mis Elementos" link="/suppliesOwner"/>}
         {match.path==="/profile"?<NavItem size={size} icon={FiUser} title="Mi Perfil" link="/profile" active/>:<NavItem size={size} icon={FiUser} title="Mi Perfil" link="/profile"/>}
 

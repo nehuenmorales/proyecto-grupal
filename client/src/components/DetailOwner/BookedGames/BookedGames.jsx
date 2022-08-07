@@ -7,7 +7,7 @@ import { Button } from 'react-bootstrap';
 import VerticalNavbarCan from '../../VerticalNavbar/VerticalNavBarCan';
 import Table from 'react-bootstrap/Table';
 import { Flex } from "@chakra-ui/react";
-import s from'./BookerGames.module.css'
+import s from './BookerGames.module.css'
 
 
 export default function BookedGames() {
@@ -38,14 +38,14 @@ export default function BookedGames() {
     const handleClick = (e) => {
         e.preventDefault()
         let filtrados
-        if(e.target.value === 'free'){
+        if (e.target.value === 'free') {
             filtrados = allGames.filter(el => {
                 return el.status == 'free'
             })
             setSelect('free')
             setFreeGames(filtrados)
             console.log('filtradoss', filtrados)
-        } else if(e.target.value === 'booked'){
+        } else if (e.target.value === 'booked') {
             filtrados = allGames.filter(el => {
                 return el.status == 'booked'
             })
@@ -65,112 +65,114 @@ export default function BookedGames() {
             <VerticalNavbarCan />
             {/* <Row> */}
             <div className={s.container}>
-             <div style={{ width: '100%', padding: '10px' , 'display': 'flex','flexDirection':'row', 'justifyContent': 'flex-start', 'alignItems': 'flex-start'}}>
-                <Link to='/' style={{ 'padding': '10px' , 'width': '25%'}}>
-                    <Button>Volver</Button>
-                </Link>
-            </div>
-            <div style={{width: '100%',  display: 'flex', justifyContent: 'center', alignItems: 'flex-start'}}>
-            <select onChange={(e) => handleClick(e)} 
-            style={{alignItems: 'center', textAlign: 'center', marginBottom: '25px'}}
-            className='selectSports'
-             >
-                <option name="all" value='all'>Todos los turnos</option>
-                <option name="free" value='free'>Turnos disponibles</option>
-                <option name="booked" value='booked'>Turnos reservados</option>
-            </select>
-            </div>
-            <div>
-            <div style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'flex-start'}}>
-            
-            {allGames?.length > 0 && select == 'all' ?
-                <Table striped>
-                    <thead>
-                        <tr>
-                            <th style={{color:'white'}}>Cancha</th>
-                            <th style={{color:'white'}}>Día</th>
-                            <th style={{color:'white'}}>Inicio</th>
-                            <th style={{color:'white'}}>Final</th>
-                            <th style={{color:'white'}}>Estado</th>
+                <div style={{ marginLeft: '20px', 'padding': '10px', 'display': 'flex', 'flexDirection': 'row', 'justifyContent': 'flex-start', 'alignItems': 'center' }}>
+                    <Link to='/' style={{ 'padding': '10px', 'width': '25%' }}>
+                        <Button>Volver</Button>
+                    </Link>
+                </div>
+                <h5 className="fw-normal text-white fst-italic m-2" style={{ padding: '30px 0 0px 40px' }}>Mis Turnos</h5>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {allGames?.map((elem) => {
-                            return (
+                <div style={{ width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }}>
+                    <select onChange={(e) => handleClick(e)}
+                        style={{ alignItems: 'center', textAlign: 'center', marginBottom: '25px' }}
+                        className='selectSports'
+                    >
+                        <option name="all" value='all'>Todos los turnos</option>
+                        <option name="free" value='free'>Turnos disponibles</option>
+                        <option name="booked" value='booked'>Turnos reservados</option>
+                    </select>
+                </div>
+
+                <div style={{ width: '75%', display: 'flex', justifyContent: 'center', alignItems: 'flex-start' }} className={s.table}>
+
+                    {allGames?.length > 0 && select == 'all' ?
+                        <Table striped>
+                            <thead>
                                 <tr>
-                                    <td style={{color:'white'}}>{elem.field.name}</td>
-                                    <td style={{color:'white'}}>{elem.date}</td>
-                                    <td style={{color:'white'}}>{elem.start}hs</td>
-                                    <td style={{color:'white'}}>{elem.end}hs</td>
-                                    <td style={{color:'white'}}>{elem.status == 'free' ? 'Libre' : 'Reservada'}</td>
-                                </tr>
-                            )
-                        })}
-
-                    </tbody>
-                </Table>
-                : select === 'free' && freeGames?.length > 0 ? 
-                <Table striped>
-                    <thead>
-                        <tr>
-                            <th style={{color:'white'}}>Cancha</th>
-                            <th style={{color:'white'}}>Día</th>
-                            <th style={{color:'white'}}>Inicio</th>
-                            <th style={{color:'white'}}>Final</th>
-                            <th style={{color:'white'}}>Estado</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {freeGames?.map((elem) => {
-                            return (
-                                <tr>
-                                    <td style={{color:'white'}}>{elem.field.name}</td>
-                                    <td style={{color:'white'}}>{elem.date}</td>
-                                    <td style={{color:'white'}}>{elem.start}hs</td>
-                                    <td style={{color:'white'}}>{elem.end}hs</td>
-                                    <td style={{color:'white'}}>{elem.status == 'free' ? 'Libre' : 'Reservada'}</td>
-                                </tr>
-                            )
-                        })}
-
-                    </tbody>
-                </Table>
-                : select === 'booked' && bookedGames.length > 0 ?
-                <Table striped>
-                    <thead>
-                        <tr>
-                            <th style={{color:'white'}}>Cancha</th>
-                            <th style={{color:'white'}}>Día</th>
-                            <th style={{color:'white'}}>Inicio</th>
-                            <th style={{color:'white'}}>Final</th>
-                            <th style={{color:'white'}}>Estado</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {bookedGames?.map((elem) => {
-                            return (
-                                <tr>
-                                    <td style={{color:'white'}}>{elem.field.name}</td>
-                                    <td style={{color:'white'}}>{elem.date}</td>
-                                    <td style={{color:'white'}}>{elem.start}hs</td>
-                                    <td style={{color:'white'}}>{elem.end}hs</td>
-                                    <td style={{color:'white'}}>{elem.status == 'free' ? 'Libre' : 'Reservada'}</td>
+                                    <th style={{ color: 'white' }}>Cancha</th>
+                                    <th style={{ color: 'white' }}>Día</th>
+                                    <th style={{ color: 'white' }}>Inicio</th>
+                                    <th style={{ color: 'white' }}>Final</th>
+                                    <th style={{ color: 'white' }}>Estado</th>
 
                                 </tr>
-                            )
-                        })}
+                            </thead>
+                            <tbody>
+                                {allGames?.map((elem) => {
+                                    return (
+                                        <tr>
+                                            <td style={{ color: 'white' }}>{elem.field.name}</td>
+                                            <td style={{ color: 'white' }}>{elem.date}</td>
+                                            <td style={{ color: 'white' }}>{elem.start}hs</td>
+                                            <td style={{ color: 'white' }}>{elem.end}hs</td>
+                                            <td style={{ color: 'white' }}>{elem.status == 'free' ? 'Libre' : 'Reservada'}</td>
+                                        </tr>
+                                    )
+                                })}
 
-                    </tbody>
-                </Table>
-                :
-                <div style={{width: '100%', color: 'white', display:'flex', justifyContent: 'center'}}><p style={{ color: 'white'}}>Aun no tienes reservas</p></div>
-                }
-        
-        </div>
-        </div>
-            {/* {
+                            </tbody>
+                        </Table>
+                        : select === 'free' && freeGames?.length > 0 ?
+                            <Table striped>
+                                <thead>
+                                    <tr>
+                                        <th style={{ color: 'white' }}>Cancha</th>
+                                        <th style={{ color: 'white' }}>Día</th>
+                                        <th style={{ color: 'white' }}>Inicio</th>
+                                        <th style={{ color: 'white' }}>Final</th>
+                                        <th style={{ color: 'white' }}>Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {freeGames?.map((elem) => {
+                                        return (
+                                            <tr>
+                                                <td style={{ color: 'white' }}>{elem.field.name}</td>
+                                                <td style={{ color: 'white' }}>{elem.date}</td>
+                                                <td style={{ color: 'white' }}>{elem.start}hs</td>
+                                                <td style={{ color: 'white' }}>{elem.end}hs</td>
+                                                <td style={{ color: 'white' }}>{elem.status == 'free' ? 'Libre' : 'Reservada'}</td>
+                                            </tr>
+                                        )
+                                    })}
+
+                                </tbody>
+                            </Table>
+                            : select === 'booked' && bookedGames.length > 0 ?
+                                <Table striped>
+                                    <thead>
+                                        <tr>
+                                            <th style={{ color: 'white' }}>Cancha</th>
+                                            <th style={{ color: 'white' }}>Día</th>
+                                            <th style={{ color: 'white' }}>Inicio</th>
+                                            <th style={{ color: 'white' }}>Final</th>
+                                            <th style={{ color: 'white' }}>Estado</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {bookedGames?.map((elem) => {
+                                            return (
+                                                <tr>
+                                                    <td style={{ color: 'white' }}>{elem.field.name}</td>
+                                                    <td style={{ color: 'white' }}>{elem.date}</td>
+                                                    <td style={{ color: 'white' }}>{elem.start}hs</td>
+                                                    <td style={{ color: 'white' }}>{elem.end}hs</td>
+                                                    <td style={{ color: 'white' }}>{elem.status == 'free' ? 'Libre' : 'Reservada'}</td>
+
+                                                </tr>
+                                            )
+                                        })}
+
+                                    </tbody>
+                                </Table>
+                                :
+                                <div style={{ width: '100%', color: 'white', display: 'flex', justifyContent: 'center' }}><p style={{ color: 'white' }}>Aún no tienes reservas.</p></div>
+                    }
+
+                </div>
+
+                {/* {
                  ? 
                 <TableGames bookedGames={freeGames} style={{width:'70%'}}/>
                 : 
@@ -181,7 +183,7 @@ export default function BookedGames() {
                 <TableGames bookedGames={totalGames} style={{width:'70%'}}/>
                 : null
             } */}
-            {/* </Row> */}
+                {/* </Row> */}
             </div>
         </Flex>
     )
