@@ -62,7 +62,15 @@ const users = [];
         from: socket.id,
       });
     })
+
+    socket.on('disconnect', ()=>{
+      console.log("entro a disconect",socket.username)
+      socket.broadcast.emit('user disconnected', socket.username)
+    })
+
   });
+
+  // io.on("disconnect",)
  
 
 

@@ -89,11 +89,24 @@ export default function PrivateChat({user,isAuthenticated,isLoading}) {
     
 
   }
+
+
+  const handleDisconect = (user)=>{
+    console.log("soy containerUsersConn", containerUsersConn)
+    containerUsersConn=containerUsersConn.filter((e)=> user !== e.username)
+    console.log("soy el filtrado",containerUsersConn)
+    setUsersConnected([...containerUsersConn])
+    if(selectedUser.username=== user){// no funciona despues ver que onda
+      selectedUser.username="desconectado"
+      setSelectedUser({...selectedUser})
+    }
+  }
+
+
+
+
   useEffect(()=>{
     userConnect(user.email)
-    
-
-
   },[])
   
   useEffect(()=>{
@@ -110,15 +123,17 @@ export default function PrivateChat({user,isAuthenticated,isLoading}) {
        socket.on("users", handleUsers);
       
       
-        
+        socket.on('user disconnected', handleDisconect)
         
         socket.on("private message",handlePrivateChat);
         
         return () => {
+        
           socket.off('connection');
           socket.off('user connected');
           socket.off('users');
           socket.off('private message');
+          socket.off('user disconnected')
         };
         
         
