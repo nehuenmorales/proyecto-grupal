@@ -1,8 +1,8 @@
 const { Games, Player } = require ("../../db.js")   
 
 async function gamesByUser(req, res, next) {
-    const { email } = req.body
-    console.log(req.body, "es el body") 
+    const { email } = req.params
+    console.log(req.params, "es el body") 
     try {
         const gamesUser = await Player.findOne({
             where: {

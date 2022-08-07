@@ -112,7 +112,7 @@ export const sendInvitation =(data)=>{
 export const gamesByUser =(email)=>{
   console.log("llega el id",email)
   return async function (dispatch){
-      return axios.get("https://falta-uno-1.herokuapp.com/games/misEventos/all", email)
+      return axios.get(`https://falta-uno-1.herokuapp.com/games/misEventos/all/${email}`)
       .then((res)=> {
           console.log("llega al reducer la invitacion",res)
           return dispatch({type:GAMES_USER ,payload:res})})

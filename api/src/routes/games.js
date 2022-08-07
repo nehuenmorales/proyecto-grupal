@@ -19,7 +19,7 @@ router.post("/comprar/:id", pagarProducto)
 router.put("/updateGame",prebooked)
 router.get("/:sport/searchGame",getSearchGames)
 router.get("/:sport/searchGameIncomplete",searchGamesIncomplete)
-router.get("/misEventos/all", gamesByUser)
+router.get("/misEventos/all/:email", gamesByUser)
 
 
 
