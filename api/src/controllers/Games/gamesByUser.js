@@ -11,6 +11,7 @@ async function gamesByUser(req, res, next) {
         })
         res.send(gamesUser)
     }catch(e){
+        res.send(e)
         console.log(e)
     }
 }
