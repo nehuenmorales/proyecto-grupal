@@ -63,7 +63,7 @@ export default function BookedGames() {
         <Flex>
             <VerticalNavbarCan />
             {/* <Row> */}
-            <div style={{ 'display': 'flex', flexDirection: 'row', justifyContent: 'center', alignItems:'center' }}>
+            <div style={{ 'display': 'flex', flexDirection: 'column', justifyContent: 'center', alignItems:'center' }}>
              <div style={{ 'padding': '10px' , 'display': 'flex','flexDirection':'row', 'justifyContent': 'space-around', 'alignItems':'center' }}>
                 <Link to='/' style={{ 'padding': '10px' , 'width': '25%'}}>
                     <Button>Volver</Button>
@@ -79,6 +79,7 @@ export default function BookedGames() {
                 <option name="booked" value='booked'>Turnos reservados</option>
             </select>
             </div>
+            <div>
             <div style={{width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             <div style={{width: '60%'}}>
             {allGames?.length > 0 && select == 'all' ?
@@ -164,6 +165,7 @@ export default function BookedGames() {
                 </Table>
                 :
                 'Aun no tienes reservas'}
+        </div>
         </div>
         </div>
             {/* {
