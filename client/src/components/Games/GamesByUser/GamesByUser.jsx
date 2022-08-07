@@ -16,7 +16,8 @@ export default function GamesByUser(){
     // console.log(user, "es el usuario")
     // console.log(email, "el el mail")
     console.log(user?.email)
-
+    console.log(allGames, "estos son sus games")
+ 
     useEffect(() => {
         dispatch(gamesByUser(user?.email))
     },[dispatch, user?.email])
