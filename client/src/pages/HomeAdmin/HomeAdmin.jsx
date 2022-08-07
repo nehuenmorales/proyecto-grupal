@@ -5,6 +5,7 @@ import './HomeAdmin.css'
 import { Accordion } from 'react-bootstrap'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Tooltip from 'react-bootstrap/Tooltip';
+import { Button } from 'react-bootstrap'
 
 
 const HomeAdmin = () => {
@@ -36,6 +37,9 @@ const HomeAdmin = () => {
 
     return (
         <div className='adminContenedor'>
+            <Button className='d-flex justify-content-between align-items-center' variant="danger" style={{ "color": "white" }} onClick={() => logout({ returnTo: window.location.origin })}>
+            <img width="20" className='m-1' src="https://img.icons8.com/ios-glyphs/30/FFFFFF/exit.png" alt='foto' />
+          </Button>
             <h3 id='administrar' className="fw-normal text-white fst-italic">Administrar jugadores</h3>
             <Accordion defaultActiveKey='0' flush>
             {players?.map((elem, index) => { 
