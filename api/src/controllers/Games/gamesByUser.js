@@ -1,11 +1,11 @@
 const { Games, Player } = require ("../../db.js")   
 
 async function gamesByUser(req, res, next) {
-    const { id } = req.params
+    const { email } = req.body
     try {
         const gamesUser = await Player.findOne({
             where: {
-                id: id
+                email: email
             },
             include: [{model: Games}]
         })
