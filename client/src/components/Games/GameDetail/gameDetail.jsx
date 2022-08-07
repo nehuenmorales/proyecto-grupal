@@ -5,6 +5,7 @@ import { getGamesById } from '../../../redux/NuevoGames/gamesAction';
 import ModalGames from '../ModalGames/modalGames';
 import { getSupplies } from '../../../redux/OwnerSupplies/suppliesActions';
 import { useAuth0 } from '@auth0/auth0-react';
+import { Flex } from '@chakra-ui/react';
 
 export default function GameDetail({match}) {
   
@@ -29,7 +30,7 @@ console.log(detail)
       }
 
     return (
-    <div>
+    <Flex>
         <VerticalNavbar/>
         <p>{detail[0]?.complexname}</p>
         <p>{detail[0]?.name}</p>
@@ -50,6 +51,6 @@ console.log(detail)
         price={detail[0]?.pricePerTurn}
         supplies={supplies}
         />
-    </div>)
+    </Flex>)
 }
 
