@@ -12,8 +12,9 @@ export default function GamesByUser(){
     let allGames = useSelector((state) => state.games.gamesUser)
     const dispatch = useDispatch()
     const { user } = useAuth0();
-    // const email = user.email
+    const email = user.email
     console.log(user, "es el usuario")
+    console.log(email, "el el mail")
 
     // useEffect(() => {
     //     dispatch(gamesByUser(email))
@@ -34,7 +35,7 @@ export default function GamesByUser(){
             </tr>
         </thead>
         <tbody>
-        {allGames?.map((elem) => {
+        {allGames.games?.map((elem) => {
             return (
                 <tr>
                     <td style={{color:'white'}}>{elem.field.name}</td>
