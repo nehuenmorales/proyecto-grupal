@@ -33,11 +33,13 @@ const HomeOwner = () => {
       <>
         <Container className='d-flex justify-content-center aling-items-center mt-3'>
           <Row>
-            <p className="text">Administrá tus publicaciones</p>
-            <div>
-              <Button onClick={() => history.push("/owner/createComplex")} variant="success" className='m-2 text-white'>Crear complejo</Button>
-              <Button onClick={() => history.push("/owner/select")} variant="success" className='m-2 text-white'>Crear cancha</Button>
-              <Button onClick={() => history.push("/owner/createSupplie")} variant="success" className='m-2 text-white'>Crear elemento</Button>
+            <div style={{display:'flex', justifyContent:'space-between', flexDirection:'row'}}>
+              <p className="text">Administrá tus publicaciones</p>
+              <div >
+                <Button onClick={() => history.push("/owner/createComplex")} variant="success" className='m-2 text-white'>Crear complejo</Button>
+                <Button onClick={() => history.push("/owner/select")} variant="success" className='m-2 text-white'>Crear cancha</Button>
+                <Button onClick={() => history.push("/owner/createSupplie")} variant="success" className='m-2 text-white'>Crear elemento</Button>
+              </div>
             </div>
             <Col md={3} xs={12} sm={6} lg={3}>
               <Link to="/complexOwner" className='sport-container'>
