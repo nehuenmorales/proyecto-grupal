@@ -38,11 +38,12 @@ export default function GamesByUser(){
         {allGames.games?.map((elem) => {
             return (
                 <tr>
-                    <td style={{color:'white'}}>{elem.field.name}</td>
+                    {/* <td style={{color:'white'}}>{elem.field.name}</td> */}
                     <td style={{color:'white'}}>{elem.date}</td>
                     <td style={{color:'white'}}>{elem.start}hs</td>
                     <td style={{color:'white'}}>{elem.end}hs</td>
                     <td style={{color:'white'}}>{elem.privacy}</td>
+                    <td style={{color:'white'}}>{elem.result}</td>
                 </tr>
             )
         })}
