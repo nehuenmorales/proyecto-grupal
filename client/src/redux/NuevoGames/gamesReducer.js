@@ -1,4 +1,4 @@
-import{GET_GAME_SPORT, GET_SEARCH_GAME_SPORT, GAMES_ORDER, CREATE_GAME,GET_GAMES_BY_ID,UPDATE_GAME, SEND_INVITATION} from "./gamesAction.js"
+import{GET_GAME_SPORT, GET_SEARCH_GAME_SPORT, GAMES_ORDER, CREATE_GAME,GET_GAMES_BY_ID,UPDATE_GAME, SEND_INVITATION, GAMES_USER} from "./gamesAction.js"
 
 const initialState = {
     gamesSport:[],
@@ -6,6 +6,7 @@ const initialState = {
     gamesSportSearch:[],
     allGames:[],
     ownerGames:[],
+    gamesUser:[]
 }
 
 export default function games(state = initialState, action){
@@ -96,6 +97,11 @@ export default function games(state = initialState, action){
             case SEND_INVITATION:
                 return{
                     ...state
+                }
+            case GAMES_USER:
+                return {
+                    ...state,
+                    gamesUser: action.payload,
                 }
         default:
             return state;

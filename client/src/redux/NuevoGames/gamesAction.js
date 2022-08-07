@@ -7,6 +7,7 @@ export const UPDATE_GAME="UPDATE_GAME"
  export const GAMES_ORDER = "GAMES_ORDER"
  export const CREATE_GAME = "CREATE_GAME";
 export const SEND_INVITATION = "SEND_INVITATION"
+export const GAMES_USER = "GAMES_USER"
  
 export function getGameSport(sport) {
   return (dispatch) => {
@@ -106,5 +107,14 @@ export const sendInvitation =(data)=>{
       .then((res)=> {
           console.log("llega al reducer la invitacion",res)
           return dispatch({type:SEND_INVITATION,payload:res})})
+  }   
+}
+export const gamesByUser =(id)=>{
+  console.log("llega el id",id)
+  return async function (dispatch){
+      return axios.get(`https://falta-uno-1.herokuapp.com/games/eventos/${id}`)
+      .then((res)=> {
+          console.log("llega al reducer la invitacion",res)
+          return dispatch({type:GAMES_USER ,payload:res})})
   }   
 }

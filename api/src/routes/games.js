@@ -6,6 +6,7 @@ const {detailGame, pagarProducto}=require("../controllers/Games/gameById.js")
 
 const { getSearchGames } = require("../controllers/Games/getSearchGames");
 const { searchGamesIncomplete } = require("../controllers/Games/searchGamesIncomplete");
+const { gamesByUser } = require("../controllers/Games/gamesByUser");
  
 const router = Router();
 
@@ -18,6 +19,7 @@ router.post("/comprar/:id", pagarProducto)
 router.put("/updateGame",prebooked)
 router.get("/:sport/searchGame",getSearchGames)
 router.get("/:sport/searchGameIncomplete",searchGamesIncomplete)
+router.get("/eventos/:id", gamesByUser)
 
 
 
