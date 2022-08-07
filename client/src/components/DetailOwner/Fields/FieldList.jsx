@@ -3,8 +3,9 @@ import { useSelector } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/esm/Button";
-import VerticalNavbar from '../../../components/VerticalNavbar/VerticalNavbar';
 import "./FieldList.css"
+import {Flex} from "@chakra-ui/react"
+import VerticalNavBarCan from "../../VerticalNavbar/VerticalNavBarCan";
 
 export default function FieldList() {
     const [field, setField] = useState([])
@@ -27,14 +28,15 @@ export default function FieldList() {
   
 
     return (
+        <Flex>
+            <VerticalNavBarCan />
         <div className="fieldlist-container">
             <div style={{ 'padding': '10px', 'display': 'flex', 'flexDirection': 'row', 'justifyContent': 'space-around', 'alignItems': 'center' }}>
                 <Link to='/' style={{ 'padding': '10px', 'width': '25%' }}>
                     <Button>Volver</Button>
                 </Link>
-                <VerticalNavbar />
             </div>
-            <p className="fw-normal text-white fst-italic m-2" style={{ padding: '0 0 0px 30px', fontSize: '1.2em' }}>Tus canchas</p>
+            <h5 className="fw-normal text-white fst-italic m-2" style={{ padding: '30px 0 0px 40px' }}>Mis canchas</h5>
             <div className='contenedor-cards'>
                 {field?.map((e) => {
                     return (
@@ -88,11 +90,12 @@ export default function FieldList() {
                                     </div>
                                 </Link>
 
-                            )
-                        }))
-                })}
+)
+}))
+})}
             </div>
         </div>
+</Flex>
     )
 }
 

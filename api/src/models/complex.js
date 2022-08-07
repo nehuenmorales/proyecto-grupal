@@ -62,6 +62,11 @@ module.exports = (sequelize) => {
     lng: {
       type: DataTypes.FLOAT,
       allowNull: false,
+    },
+    reviews:{
+      type:DataTypes.INTEGER,
+      allowNull:true,
+      defaultValue:0
     }
   },
   {

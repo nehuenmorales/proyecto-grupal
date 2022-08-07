@@ -7,6 +7,10 @@ import TeamsCard from "./TeamsCard";
 import Modal from "react-bootstrap/Modal";
 import { ModalCreateTeam } from "./modalCreateTeam";
 import s from "./diseñoTeams/teamsCard.module.css";
+import {
+  Center,
+  Flex
+}from "@chakra-ui/react"
 
 export function Teams({ email }) {
   const userTeams = useSelector((state) => state.teamsReducer.userTeams);
@@ -23,11 +27,11 @@ export function Teams({ email }) {
     console.log("entro a modal open");
   };
   return (
-    <>
+    <div>
       <div className={s.buttoncontainer}>
-        <button style={{color: 'white', border: 'none'}} className={s.button} onClick={(e) => modalOpen(e)}>
-          Crea un equipo
-        </button>
+          <button style={{color: 'white', border: 'none'}} className={s.button} onClick={(e) => modalOpen(e)}>
+            Crea un equipo
+          </button>
       </div>
       <div>
         <h2 className={s.titleTeams} >Mis equipos</h2>
@@ -42,6 +46,6 @@ export function Teams({ email }) {
         showModal={showModal}
         setShowModal={setShowModal}
       />
-    </>
+    </div>
   );
 }

@@ -7,6 +7,7 @@ import s from "./CarouselGamesInc.css"
 import VerticalNavbar from "../../VerticalNavbar/VerticalNavbar";
 import Tabs from "../../Tabs/Tabs";
 import SearchBar from "../../SearchBar/SearchBar";
+import {Flex,SimpleGrid,Box} from "@chakra-ui/react"
 
 export default function CarouselGamesInc({match}) {
     const dispatch = useDispatch();
@@ -21,14 +22,18 @@ export default function CarouselGamesInc({match}) {
 
     console.log(games)
     return (
-        <div>
+        <Flex>
         <VerticalNavbar/>
-        <SearchBar state={searchGames} filtro="faltauno" sport={sport} />
+        <Flex flexDir="column" mt="40px">
+        <SearchBar filtro="faltauno" sport={sport} />
         <Tabs match={match}/>
-            <div className={s.carousel}>
+        {console.log(games)}
+        <SimpleGrid columns={3} spacing={12} ml="100px">
                 {searchGames.length?
                 searchGames.map((x) => {
                     return (
+                        <Box>
+
                         <CardGamesInc
                             key={x.gameid}
                             name={x.name}
@@ -37,12 +42,16 @@ export default function CarouselGamesInc({match}) {
                             start={x.starthour}
                             end={x.endhour}
                             gameid={x.gameid}
-                        />
+                            city={x.city}
+                            />
+                        </Box>
                     );
                 })
                 :
                 games.map((x) => {
                     return (
+                        <Box>
+
                         <CardGamesInc
                             key={x.gameid}
                             name={x.name}
@@ -51,12 +60,15 @@ export default function CarouselGamesInc({match}) {
                             start={x.starthour}
                             end={x.endhour}
                             gameid={x.gameid}
-                        />
-                    );
-                })}
+                            city={x.city}
+                            />
+                        </Box>
+                            );
+                        })}
                 
-            </div>
-        </div>   
+            </SimpleGrid>
+            </Flex>
+        </Flex>   
     );
 
 };

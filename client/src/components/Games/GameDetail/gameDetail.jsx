@@ -1,7 +1,7 @@
 import React, { useEffect ,useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import VerticalNavbar from '../../VerticalNavbar/VerticalNavbar';
-import { getGamesById } from '../../../redux/Games/gamesAction';
+import { getGamesById } from '../../../redux/NuevoGames/gamesAction';
 import ModalGames from '../ModalGames/modalGames';
 import { getSupplies } from '../../../redux/OwnerSupplies/suppliesActions';
 import { useAuth0 } from '@auth0/auth0-react';

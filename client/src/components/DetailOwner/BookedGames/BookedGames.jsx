@@ -4,8 +4,9 @@ import { useSelector } from 'react-redux';
 import TableGames from './TableGames';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
-import VerticalNavbar from '../../VerticalNavbar/VerticalNavbar';
+import VerticalNavbarCan from '../../components/VerticalNavbar/VerticalNavBarCan';
 import Table from 'react-bootstrap/Table';
+import { Flex } from "@chakra-ui/react"
 
 
 export default function BookedGames() {
@@ -59,12 +60,13 @@ export default function BookedGames() {
     }
 
     return (
-        <div>
+        <Flex>
+            <VerticalNavbarCan />
+            
              <div style={{ 'padding': '10px' , 'display': 'flex','flexDirection':'row', 'justifyContent': 'space-around', 'alignItems':'center' }}>
                 <Link to='/' style={{ 'padding': '10px' , 'width': '25%'}}>
                     <Button>Volver</Button>
                 </Link>
-                <VerticalNavbar/>
             </div>
             <div style={{width: '100%',  display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
             <select onChange={(e) => handleClick(e)} 
@@ -174,6 +176,6 @@ export default function BookedGames() {
                 <TableGames bookedGames={totalGames} style={{width:'70%'}}/>
                 : null
             } */}
-        </div>
+        </Flex>
     )
 }

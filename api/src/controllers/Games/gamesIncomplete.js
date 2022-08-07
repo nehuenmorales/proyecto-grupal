@@ -39,7 +39,6 @@ async function detailGameIncomplete(req, res){
             })
         detail.players=detail?.map(g=>g.username).join(",")
         return res.send(detail)
-        
     } catch (error) {
         console.log(e)
       res.send(error)
