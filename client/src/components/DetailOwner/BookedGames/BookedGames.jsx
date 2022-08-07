@@ -7,6 +7,7 @@ import { Button } from 'react-bootstrap';
 import VerticalNavbarCan from '../../VerticalNavbar/VerticalNavBarCan';
 import Table from 'react-bootstrap/Table';
 import { Flex } from "@chakra-ui/react";
+import s from'./BookerGames.module.css'
 
 
 export default function BookedGames() {
@@ -63,7 +64,7 @@ export default function BookedGames() {
         <Flex>
             <VerticalNavbarCan />
             {/* <Row> */}
-            <div style={{ width: '100%', 'display': 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start' }}>
+            <div className={s.container}>
              <div style={{ width: '100%', padding: '10px' , 'display': 'flex','flexDirection':'row', 'justifyContent': 'flex-start', 'alignItems': 'flex-start'}}>
                 <Link to='/' style={{ 'padding': '10px' , 'width': '25%'}}>
                     <Button>Volver</Button>
