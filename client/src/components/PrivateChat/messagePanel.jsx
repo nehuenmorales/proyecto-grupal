@@ -16,7 +16,7 @@ export default function MessagePanel({  selectedUser,socket,setSelectedUser}){
   useEffect(()=>{
     console.log("entro a ")
     setMessages(selectedUser.messages)
-  },[selectedUser.messages])
+  },[selectedUser.messages.length])
   
   const handleSubmit=(e)=>{
     e.preventDefault()
@@ -32,6 +32,8 @@ export default function MessagePanel({  selectedUser,socket,setSelectedUser}){
     });
 
     setSelectedUser({...selectedUser})
+
+    setContent("")
   
 }
     return(
@@ -51,6 +53,7 @@ export default function MessagePanel({  selectedUser,socket,setSelectedUser}){
                 <input
                   name="message"
                   type="text"
+                  value={content}
                   placeholder="Write your message..."
                   onChange={(e) => {e.preventDefault();
                     return setContent(e.target.value)}}

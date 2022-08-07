@@ -48,7 +48,6 @@ export default function PrivateChat({user,isAuthenticated,isLoading}) {
     let content=chat.content
     let from=chat.from
     
-    console.log("new message antes de entrar",content)
     
     for (let i = 0; i < containerUsersConn.length; i++) {
       const user = containerUsersConn[i];
@@ -62,14 +61,14 @@ export default function PrivateChat({user,isAuthenticated,isLoading}) {
         });
         
         
-        setUsersConnected(containerUsersConn)
+        setUsersConnected([...containerUsersConn])
         if (user !== selectedUser) {
           user.hasNewMessages = true;
         }else{
-          setSelectedUser(user)
+          setSelectedUser({...user})
         }
       }
-      console.log("new user",containerUsersConn)
+    
     }
   }
   
@@ -120,7 +119,6 @@ export default function PrivateChat({user,isAuthenticated,isLoading}) {
           socket.off('user connected');
           socket.off('users');
           socket.off('private message');
-          
         };
         
         
