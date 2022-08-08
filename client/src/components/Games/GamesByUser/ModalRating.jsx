@@ -14,7 +14,7 @@ export default function ModalRating({ showModal, setShowModal, complex }) {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body >
-                    <StarRating complex={complex}/>
+                    <StarRating complex={complex} onClick={setShowModal(false)}/>
                 </Modal.Body>
                 
             </Modal>
