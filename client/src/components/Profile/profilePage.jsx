@@ -21,6 +21,7 @@ import {
   Text
 } from '@chakra-ui/react'
 import { useAuth0 } from '@auth0/auth0-react';
+import { useToast } from '@chakra-ui/react'
 
 
 export default function ProfileData({ email, user }) {
@@ -29,6 +30,7 @@ export default function ProfileData({ email, user }) {
 
   const { isOpen, onOpen, onClose } = useDisclosure()
   const { logout } = useAuth0();
+  const toast = useToast()
 
   useEffect(() => {
     dispatch(getPlayersProfile(mail));
@@ -158,6 +160,12 @@ export default function ProfileData({ email, user }) {
     const del = await axios.post(`https://falta-uno-1.herokuapp.com/player/delete/${player?.id}`)
     console.log(del)
     if(del) logout({ returnTo: window.location.origin })
+    toast({
+      title: 'Tu cuenta ha sido eliminada',
+      status: 'error',
+      duration: 9000,
+      isClosable: true,
+    })
   }
 
 
