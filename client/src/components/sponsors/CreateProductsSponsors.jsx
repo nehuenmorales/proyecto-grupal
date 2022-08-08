@@ -137,7 +137,7 @@ const handleInputSport = (e) => {
   return (
     <div className={s.container}>
       <div className={s.header}>
-        <Link to="/owner/select">
+        <Link to="/">
           <Button className={s.volverbtn}>Volver</Button>
         </Link>
         <div className={s.titleheader}>
