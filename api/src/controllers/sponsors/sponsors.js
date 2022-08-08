@@ -3,7 +3,7 @@ const { Sponsors,Products} = require("../../db");
 
 async function getAllSponsors(req, res, next) {
   try {
-    const sponsors = await Sponsors.getAll()
+    const sponsors = await Sponsors.findAll()
     res.status(200).json(sponsors);
   } catch (e) {
     console.log(e)
