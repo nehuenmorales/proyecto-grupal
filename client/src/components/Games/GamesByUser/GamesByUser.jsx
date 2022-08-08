@@ -9,7 +9,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 
 export default function GamesByUser(){
-    let allGames = useSelector((state) => state.games.gamesUser)
+    let allGames = useSelector(state => state.games.gamesUser)
     const dispatch = useDispatch()
     const { user } = useAuth0();
     // const email = user.email
@@ -36,7 +36,7 @@ export default function GamesByUser(){
             </tr>
         </thead>
         <tbody>
-        {allGames.data.games?.map((elem) => {
+        {allGames?.data?.games?.map((elem) => {
             return (
                 <tr>
                     {/* <td style={{color:'white'}}>{elem.field.name}</td> */}
