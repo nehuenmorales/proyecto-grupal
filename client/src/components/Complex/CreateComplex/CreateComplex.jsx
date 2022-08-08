@@ -10,6 +10,8 @@ import { createComplex } from "../../../redux/OwnerComplex/complexActions";
 import { Autocomplete } from "@react-google-maps/api";
 import { useHistory } from "react-router-dom";
 import swal from 'sweetalert';
+import { useAuth0 } from '@auth0/auth0-react';
+
 
 function SoloLetras(input) {
 
@@ -26,6 +28,9 @@ function SoloLetras(input) {
 }
 
 export default function CreateComplex() {
+  const { user, isAuthenticated, isLoading } = useAuth0();
+    
+ 
     const dispatch = useDispatch()
     let owner = useSelector((state) => state.getOwnerReducer.owner)
     const [cityInput, setCityInput] = useState([])
@@ -204,7 +209,7 @@ export default function CreateComplex() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(createComplex({ ...newComplex, id: newComplex.name, ownerId: owner.id}));
+        dispatch(createComplex({ ...newComplex, id: newComplex.name, ownerId: user.sub}));
         setNewComplex({
             name: "",
             image: "",
