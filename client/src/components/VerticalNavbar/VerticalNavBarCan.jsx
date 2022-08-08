@@ -31,28 +31,18 @@ import { useRouteMatch } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getGamesOwner } from '../../redux/OwnerGames/ownerGamesAction';
 import { getOwner } from '../../redux/GetOwner/getOwnerAction';
-import { useDispatch } from 'react-redux';
+import {useSelector } from 'react-redux';
 
 export default function VerticalNavBarCan(){
-const dispatch = useDispatch()
-const [createComplex, setCreateComplex] = useState(false)
   const { user, isLoading, logout} = useAuth0();
   const [size,setSize]=useState("small")
-  console.log(useRouteMatch)
+  
   const match = useRouteMatch()
+  let owner = useSelector((state) => state.getOwnerReducer.owner)
+  console.log('soy owner :) ', owner)
 
-  const onClick = (e) => {
-    e.preventDefault()
-    setCreateComplex(true)
-  }
 
-  useEffect(() => {
-    
-    dispatch(getOwner(user?.sub))
-    console.log('user.sub', user?.sub)
-    dispatch(getGamesOwner(user?.sub))
-    console.log('userrr', user)
-  }, [createComplex])
+
 
   return(
     <Flex
@@ -91,7 +81,7 @@ const [createComplex, setCreateComplex] = useState(false)
         
   
         {match.path==="/"?<NavItem size={size} icon={FiHome} title="Inicio" link="/" active/>:<NavItem size={size} icon={FiHome} link="/" title="Inicio"/>}
-        {match.path==="/fieldOwner"?<NavItem size={size} icon={HiOutlineOfficeBuilding} title="Crear Complejo" link="/owner/createComplex" active onClick={e => onClick(e)}/>:<NavItem size={size} icon={HiOutlineOfficeBuilding} title="Crear Complejo" link="/owner/createComplex" active onClick={e => onClick(e)}/>}
+        {match.path==="/fieldOwner"?<NavItem size={size} icon={HiOutlineOfficeBuilding} title="Crear Complejo" link="/owner/createComplex" active />:<NavItem size={size} icon={HiOutlineOfficeBuilding} title="Crear Complejo" link="/owner/createComplex" active />}
         {match.path==="/complexOwner"?<NavItem size={size} icon={TbSoccerField} title="Crear Canchas" link="/owner/select" active/>:<NavItem size={size} icon={TbSoccerField} title="Crear Canchas" link="/owner/select"/>}
         {match.path==="/suppliesOwner"?<NavItem size={size} icon={MdSportsTennis} title="Crear Elemento" link="/owner/createSupplie" active/>:<NavItem size={size} icon={MdSportsTennis} title="Crear Elemento" link="/owner/createSupplie"/>}
         {match.path==="/ownerBookedGames"?<NavItem size={size} icon={FiCalendar} title="Mis Turnos" link="/ownerBookedGames" active/>:<NavItem size={size} icon={FiCalendar} title="Mis Turnos" link="/ownerBookedGames"/>}
