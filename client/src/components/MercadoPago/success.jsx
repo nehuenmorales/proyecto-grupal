@@ -53,7 +53,7 @@ const Success = ({ match }) => {
       [e.target.name]: e.target.value,
       subject: `${user.email}te a invitado su partido`,
       text: "Falta Uno App",
-      html: `<strong>Hola, puedes unirte al partido siguiendo este link https://falta-uno-henry.vercel.app/games/gamesIncomplete${id}</strong>`
+      html: `<strong>Hola, puedes unirte al partido siguiendo este link https://falta-uno-henry.vercel.app/games/gamesIncomplete/${id}</strong>`
     })
     dispatch(sendInvitation(data))
   }
