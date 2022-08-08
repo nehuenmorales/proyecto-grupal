@@ -11,7 +11,7 @@ async function createOwner(req, res, next) {
       telephone: telephone,
       username: username,
     });
-
+    console.log('playerrr',player)
     return res.json(player).status(200);
   } catch (err) {
     console.log("el error en el controllerrrrr", err);
