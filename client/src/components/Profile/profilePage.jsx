@@ -7,10 +7,25 @@ import {
 import s from "./profilePage.module.css";
 import axios from "axios";
 // import { Autocomplete } from "@react-google-maps/api";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Button,
+  useDisclosure,
+  Text
+} from '@chakra-ui/react'
+
 
 export default function ProfileData({ email, user }) {
   const mail = email;
   const dispatch = useDispatch();
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
 
   useEffect(() => {
     dispatch(getPlayersProfile(mail));
@@ -410,6 +425,31 @@ export default function ProfileData({ email, user }) {
                 </div>
               ) : null}
               {/* // aca voy a romper todo */}
+              <Button onClick={onOpen}>Open Modal</Button>
+
+              <Modal isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
+                <ModalContent>
+                  <ModalHeader>Modal Title</ModalHeader>
+                  <ModalCloseButton />
+                  <ModalBody>
+                    <Text noOfLines={[1, 2, 3]}>
+                      "The quick brown fox jumps over the lazy dog" is an English-language pangram—a
+                      sentence that contains all of the letters of the English alphabet. Owing to
+                      its existence, Chakra was created.
+                    </Text>
+                  </ModalBody>
+
+                  <ModalFooter>
+                    <Button colorScheme='blue' mr={3} onClick={onClose}>
+                      Close
+                    </Button>
+                    <Button variant='ghost'>Secondary Action</Button>
+                  </ModalFooter>
+                </ModalContent>
+              </Modal>
+              {/* aca les rompi todo */}
+
             </div>
           </div>
         </div>
