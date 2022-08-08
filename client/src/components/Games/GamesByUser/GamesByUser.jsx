@@ -44,7 +44,7 @@ export default function GamesByUser(){
                     <td style={{color:'white'}}>{elem.start}hs</td>
                     <td style={{color:'white'}}>{elem.end}hs</td>
                     <td style={{color:'white'}}>{elem.privacy}</td>
-                    <td style={{color:'white'}}>{elem.result === "null" ? "Sin Resultado" : elem.result}</td>
+                    <td style={{color:'white'}}>{elem.result === null ? "Sin Resultado" : elem.result}</td>
                 </tr>
             )
         })}
