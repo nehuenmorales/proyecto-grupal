@@ -6,7 +6,8 @@ async function getAllSponsors(req, res, next) {
     const sponsors = await Sponsors.getAll()
     res.status(200).json(sponsors);
   } catch (e) {
-    res.status(400).json({ msg: "Fallo la obtencion de los sponsors" });
+    console.log(e)
+    res.status(400).json({ msg: "Fallo la obtencion de los sponsors" ,e});
   }
 }
 
@@ -54,6 +55,7 @@ async function createProduct(req, res, next) {
     console.log('creado correctamente')
     res.status(200).json(newProduct);
   } catch (e) {
+    console.log(e)
     res.status(400).json({ msg: "fallo la creacion del producto", e });
   }
 }
