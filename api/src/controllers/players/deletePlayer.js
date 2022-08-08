@@ -10,7 +10,7 @@ async function deletePlayer (req, res, next) {
             }
         });
 
-        return res.json({succes: `Player deleted successfully`}).status(200);
+       res.status(200).send(delId);
     }
     catch(err){
         next(err);
