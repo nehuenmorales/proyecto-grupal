@@ -26,7 +26,7 @@ export default function TenisFields() {
   });
 
   useEffect(() => {
-    axios.get("/owner/getNameComplex").then((res) => {
+    axios.get("https://falta-uno-1.herokuapp.com/owner/getNameComplex").then((res) => {
       setComplexName(res.data);
     });
   }, []);
@@ -177,6 +177,23 @@ export default function TenisFields() {
       image: respuesta.data.data.url,
     });
     setLoading(false);
+  };
+
+  const upload = async (file) => {
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", 'sdujndiw');
+    const response = await fetch(`https://api.cloudinary.com/v1_1/dttguisff/upload`, 
+        { method: "POST", body: data })
+    const data1 = await response.json()
+    console.log('respuestaa', data1) // reemplazar con un mensaje de éxito o la acción deseada
+    setNewField({
+        ...newField,
+        image: data1.url,
+    });
+    setLoading(false)
+    let errors = validator({ ...newField, image: file });
+    setErrors(errors);
   };
 
   const handleModal = (e) => {
@@ -365,13 +382,7 @@ export default function TenisFields() {
               </div>
               <div>
                 <h5 className={s.titles}>Imagen de la cancha</h5>
-                <input
-                  type="file"
-                  name="image"
-                  className={s.fileselect}
-                  onChange={uploadImage}
-                  accept="image/*"
-                />
+                <input type="file" className="inputImage" onChange={(e) => upload(e.target.files[0])}></input>
                 {loading ? <span class={s.loader}></span> : null}
               </div>
             </div>
