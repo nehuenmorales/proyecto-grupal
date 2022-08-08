@@ -18,6 +18,7 @@ export default function CreateProduct() {
       dispatch(getAllSponsors())
     }, []);
 
+
   const [newProduct, setNewProduct] = useState({
     name: "",
     link: "",
@@ -27,16 +28,17 @@ export default function CreateProduct() {
     sponsorId: "",
 });
 
-
-  const [errors, setErrors] = useState({
+console.log(newProduct)
+const [errors, setErrors] = useState({
     sponsorId: "Seleccione el nombre del sponsor",
     name: "",
     link: "",
     image: "",
     description: "",
     sport: "",
-  });
+});
 
+console.log(errors)
   const [loading, setLoading] = useState(false);
 
   const validator = (product) => {
@@ -87,6 +89,8 @@ export default function CreateProduct() {
       image: respuesta.data.data.url,
     });
     setLoading(false);
+    let errors = validator({ ...newProduct, image: e.target.value });
+        setErrors(errors);
   };
 
   const handleInputChange = (e) => {
@@ -96,14 +100,15 @@ export default function CreateProduct() {
     });
     let errores = validator({ ...newProduct, [e.target.name]: e.target.value });
     setErrors(errores);
-}
-
-const handleInputSport = (e) => {
-    setNewProduct({ ...newProduct, sports: e.target.value})
-    let errors = validator({ ...newProduct, sports:e.target.value});
-    setErrors(errors);
 
 }
+
+// const handleInputSport = (e) => {
+//     setNewProduct({ ...newProduct, sport: e.target.value})
+//     let errors = validator({ ...newProduct, sport:e.target.value});
+//     setErrors(errors);
+
+// }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -152,7 +157,7 @@ const handleInputSport = (e) => {
             <div className="col-md-6 col-sm-12 px-5">
               <div className={s.input}>
                 <h5 className={s.titles}>Nombre del sponsor</h5>
-                <Select onChange={(e)=>handleInputChange(e)}>
+                <Select placeholder="Sponsor" name="sponsorId" onChange={(e)=>handleInputChange(e)}>
                     {
                         sponsors?.map(elem=>
                             <option name="sport" value={elem.id}>{elem.name}</option>
@@ -175,7 +180,34 @@ const handleInputSport = (e) => {
                   <div className={s.error}>{errors.name}</div>
                 ) : null}
               </div>
+              <div className={s.input}>
+                <h5 className={s.titles}>Link del producto</h5>
+                <input
+                  type="text"
+                  className={s.inputfield}
+                  name="link"
+                  onChange={(e) => handleInputChange(e)}
+                />
+                {errors.link ? (
+                  <div className={s.error}>{errors.link}</div>
+                ) : null}
+              </div>
               <div>
+          {/*DEPORTES */}
+            <div className='divInputsSport'>
+                <h5>Deporte del producto</h5>
+                    <div className="deportesElegidos">
+                        <div>
+                            <Select placeholder="Deporte" name="sport" onChange={(e) => handleInputChange(e)} className='selectSports'>
+                                <option name='futbol' value='futbol'>Futbol</option>
+                                <option name='tenis' value='tenis'>Tenis</option>
+                                <option name='padel' value='padel'>Padel</option>
+                                <option name='basquet' value='basquet'>Basquet</option>
+                            </Select>
+                        </div>
+                    </div>
+                    {errors.sport ? <div className="errores">{errors.sport}</div> : null}
+            </div>
                 <h5 className={s.titles}>Descripcion del producto</h5>
                 <input
                   className={s.inputfield}
@@ -201,21 +233,6 @@ const handleInputSport = (e) => {
               </div>
             </div>
           </div>
-          {/*DEPORTES */}
-            <div className='divInputsSport'>
-                <h5>Deporte del producto</h5>
-                    <div className="deportesElegidos">
-                        <div>
-                            <select onChange={(e) => handleInputSport(e)} className='selectSports'>
-                                <option name='futbol' value='futbol'>Futbol</option>
-                                <option name='tenis' value='tenis'>Tenis</option>
-                                <option name='padel' value='padel'>Padel</option>
-                                <option name='basquet' value='basquet'>Basquet</option>
-                            </select>
-                        </div>
-                    </div>
-                    {errors.sport ? <div className="errores">{errors.sport}</div> : null}
-            </div>
           {/* BOTON SUBMIT */}
           <div className={s.boton}>
             {!loading &&
