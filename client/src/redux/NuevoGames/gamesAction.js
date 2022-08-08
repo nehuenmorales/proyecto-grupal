@@ -100,10 +100,10 @@ export const createGame =(body)=>{
     }   
 }
 
-export const sendInvitation =(data)=>{
-  console.log("llega la invitacion",data)
+export const sendInvitation =(body)=>{
+  console.log("llega la invitacion",body)
   return async function (dispatch){
-      return axios.post("https://falta-uno-1.herokuapp.com/sendGrid/invitation",data)
+      return axios.post("https://falta-uno-1.herokuapp.com/sendGrid/invitation",body)
       .then((res)=> {
           console.log("llega al reducer la invitacion",res)
           return dispatch({type:SEND_INVITATION,payload:res})})
