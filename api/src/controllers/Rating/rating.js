@@ -11,6 +11,9 @@ async function RatingReviews(req, res, next) {
             rating:(rat+rating)/rev,
             reviews:rev
          })
+        console.log(complex)
+        console.log(complex.rating)
+        console.log(complex.reviews)
         res.send(complex)
     }catch(e) {
         console.log(e)
