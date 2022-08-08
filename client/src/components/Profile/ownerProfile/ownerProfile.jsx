@@ -80,7 +80,7 @@ export default function OwnerProfile() {
 
     const onClick = (e) => {
         e.preventDefault()
-        axios.put(`https://falta-uno-1.herokuapp.com/owner/modifyOwner/${owner.id}`)
+        axios.put(`https://falta-uno-1.herokuapp.com/owner/modifyOwner/${owner.id}`, input)
         swal('', "Perfil modificado exitosamente!", 'success')
         history.push("/")
 

@@ -2,15 +2,18 @@ import React, {useState} from "react";
 import {FaStar} from "react-icons/fa"
 import "./starRating.css"
 import {ratingComplex} from "../../redux/Complexes/ComplexAction"
+import { useHistory } from "react-router-dom";
 
 export default function StarRating({complex}){
     
     const[rating,setRating]=useState(null)
     const[hover,setHover]=useState(null)
+    const history=useHistory()
 
     const Submit=(e)=>{
         setRating(e.target.value)
         ratingComplex(complex,rating)
+        history.push("/eventos")
     }
     
     return(
