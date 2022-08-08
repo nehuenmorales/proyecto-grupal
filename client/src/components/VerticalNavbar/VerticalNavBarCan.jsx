@@ -82,7 +82,7 @@ export default function VerticalNavBarCan(){
         
   
         {match.path==="/"?<NavItem size={size} icon={FiHome} title="Inicio" link="/" active/>:<NavItem size={size} icon={FiHome} link="/" title="Inicio"/>}
-        {match.path==="/fieldOwner"? <Link to="/owner/createComplex"> <button size={size} icon={HiOutlineOfficeBuilding} title="Crear Complejo"  active /></Link>: <Link to="/owner/createComplex"> <button size={size} icon={HiOutlineOfficeBuilding} title="Crear Complejo"  active /></Link>}
+        {match.path==="/fieldOwner"? <Link to="/owner/createComplex"> <button active>Crear Complejo</button> </Link>: <Link to="/owner/createComplex"> <button></button></Link>}
         {match.path==="/complexOwner"?<button size={size} icon={TbSoccerField} title="Crear Canchas" link="/owner/select" active/>:<button size={size} icon={TbSoccerField} title="Crear Canchas" link="/owner/select"/>}
         {match.path==="/suppliesOwner"?<NavItem size={size} icon={MdSportsTennis} title="Crear Elemento" link="/owner/createSupplie" active/>:<NavItem size={size} icon={MdSportsTennis} title="Crear Elemento" link="/owner/createSupplie"/>}
         {match.path==="/ownerBookedGames"?<NavItem size={size} icon={FiCalendar} title="Mis Turnos" link="/ownerBookedGames" active/>:<NavItem size={size} icon={FiCalendar} title="Mis Turnos" link="/ownerBookedGames"/>}
