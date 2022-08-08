@@ -25,9 +25,11 @@ const { createComplex } = require('../controllers/Owner/Complex/createComplex.js
 const { getSupplieDetail } = require("../controllers/Owner/Supplies/getSupplieDetail.js");
 const {deleteGames} = require("../controllers/Owner/Games/deleteGames")
 const {getBookedGamesByOwner} = require("../controllers/Owner/Games/getBookedGamesOwner")
-
+const {modifyOwner} = require("../controllers/Owner/owner/modifyOwner.js")
 
 const router = Router();
+
+router.put("/modifyOwner/:id", modifyOwner)
 
 router.delete("/deleteField/:id", deleteField)
 
