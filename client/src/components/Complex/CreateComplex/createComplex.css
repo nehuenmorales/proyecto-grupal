@@ -46,10 +46,12 @@
 }
 .contenedorDerecha{
     margin: 20px 30px;
+    display: flex;
+    flex-direction: column;
 }
 
 .inpuName{
-    background-color: #111825;
+    background-color: rgba(12, 19, 31, 1);
     text-decoration: none !important;
     /* border: none ; */
     outline: none !important;
@@ -62,7 +64,7 @@
     font-size: 1.1em;
 }
 .inputName:focus{
-    background-color: #111825;
+    background-color: rgba(12, 19, 31, 1);
     text-decoration: none !important;
     /* border: none ; */
     outline: none !important;
@@ -139,6 +141,7 @@
         height: 40px;
         color: #111825;
         padding: 0px 10px;
+       
  }
  .divInputsImage{
      height: 90px;
@@ -154,24 +157,24 @@
     margin: 100px 0 0 0,;
     height: 150px;
 	width: 290px;
-	border: 1px solid #111825;;
-	background: #111825;;
+	border: 1px solid rgba(12, 19, 31, 1);
+	background: rgba(12, 19, 31, 1);
 	overflow-y: scroll;
     
 }
 .scroll{
     height: auto;
-    background-color: #111825;
+    background-color: rgba(12, 19, 31, 1);
 }
 .opcionesCity{
     padding:2px;
-	background: #111825;
+	background: rgba(12, 19, 31, 1);
 }
 .botonCity{
     background-color: white;
     border-radius: 10px;
     padding: 3px 7px;
-    color: #111825;
+    color: rgba(12, 19, 31, 1);
     border: none;
 }
 .contenedorScroll::-webkit-scrollbar {
@@ -179,7 +182,7 @@
   }
   
   .contenedorScroll::-webkit-scrollbar-track {
-    background: #111825;        
+    background: rgba(12, 19, 31, 1);      
   }
   
   .contenedorScroll::-webkit-scrollbar-thumb {
@@ -192,8 +195,8 @@
     border: none;
     border-radius: 10px;
     padding: 5px;
-    padding-left: 45px;
-    padding-right: 45px;
+    padding-left: 60px;
+    padding-right: 60px;
     box-shadow: 1px 1px 2px rgb(131, 131, 131);
     color: white;
     font-family: 'Inter', sans-serif; 
@@ -204,15 +207,17 @@
     border: none;
     border-radius: 10px;
     padding: 5px;
-    padding-left: 45px;
-    padding-right: 45px;
+    padding-left: 60px;
+    padding-right: 60px;
     box-shadow: 1px 1px 2px rgb(131, 131, 131);
     color: white;
     font-family: 'Inter', sans-serif; 
     transition: .5s;
+
 }
 .contenedorBoton{
     display: flex;
     justify-content: center;
-    margin: 2em;
+    margin: 0.5em;
+    
 }

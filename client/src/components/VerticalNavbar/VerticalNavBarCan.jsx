@@ -31,22 +31,19 @@ import { useRouteMatch } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getGamesOwner } from '../../redux/OwnerGames/ownerGamesAction';
 import { getOwner } from '../../redux/GetOwner/getOwnerAction';
-import { useDispatch } from 'react-redux';
+import {useSelector } from 'react-redux';
+import { Link } from 'react-router-dom'
 
 export default function VerticalNavBarCan(){
-const dispatch = useDispatch()
   const { user, isLoading, logout} = useAuth0();
   const [size,setSize]=useState("small")
-  console.log(useRouteMatch)
+  
   const match = useRouteMatch()
+  let owner = useSelector((state) => state.getOwnerReducer.owner)
+  console.log('soy owner :) ', owner)
 
-  useEffect(() => {
-    
-    dispatch(getOwner(user?.sub))
-    console.log('user.sub', user?.sub)
-    dispatch(getGamesOwner(user?.sub))
-    console.log('userrr', user)
-  }, [user?.email])
+
+
 
   return(
     <Flex
@@ -85,10 +82,10 @@ const dispatch = useDispatch()
         
   
         {match.path==="/"?<NavItem size={size} icon={FiHome} title="Inicio" link="/" active/>:<NavItem size={size} icon={FiHome} link="/" title="Inicio"/>}
-        {match.path==="/fieldOwner"?<NavItem size={size} icon={TbSoccerField} title="Mis Canchas" link="/fieldOwner" active/>:<NavItem size={size} icon={TbSoccerField} title="Mis Equipos" link="/fieldOwner"/>}
-        {match.path==="/complexOwner"?<NavItem size={size} icon={HiOutlineOfficeBuilding} title="Mis Complejos" link="/complexOwner" active/>:<NavItem size={size} icon={HiOutlineOfficeBuilding} title="Mis Complejos" link="/complexOwner"/>}
+        {match.path==="/fieldOwner"? <NavItem><Link to="/owner/createComplex"> <button active>Crear Complejo</button> </Link></NavItem> : <NavItem> <Link to="/owner/createComplex"> <button>Sin icono</button></Link></NavItem>}
+        {match.path==="/complexOwner"?<button size={size} icon={TbSoccerField} title="Crear Canchas" link="/owner/select" active/>:<button size={size} icon={TbSoccerField} title="Crear Canchas" link="/owner/select"/>}
+        {match.path==="/suppliesOwner"?<NavItem size={size} icon={MdSportsTennis} title="Crear Elemento" link="/owner/createSupplie" active/>:<NavItem size={size} icon={MdSportsTennis} title="Crear Elemento" link="/owner/createSupplie"/>}
         {match.path==="/ownerBookedGames"?<NavItem size={size} icon={FiCalendar} title="Mis Turnos" link="/ownerBookedGames" active/>:<NavItem size={size} icon={FiCalendar} title="Mis Turnos" link="/ownerBookedGames"/>}
-        {match.path==="/suppliesOwner"?<NavItem size={size} icon={MdSportsTennis} title="Mis Elementos" link="/suppliesOwner" active/>:<NavItem size={size} icon={MdSportsTennis} title="Mis Elementos" link="/suppliesOwner"/>}
         {match.path==="/profile"?<NavItem size={size} icon={FiUser} title="Mi Perfil" link="/profile" active/>:<NavItem size={size} icon={FiUser} title="Mi Perfil" link="/profile"/>}
 
 

@@ -51,8 +51,8 @@ export default function FieldList() {
                                                 <div className="name"><p>{el.name}</p></div>
                                                 <div className="deporteCard">
                                                     <p>Apertura:</p>
-                                                    <p> {cambioHora(el.start)}hs</p>
-                                                    <p>-Cierre:</p>
+                                                    <p> {cambioHora(el.start)} </p>
+                                                    <p>hs - Cierre:</p>
                                                     <p> {cambioHora(el.end)}hs</p>
                                                 </div>
                                             </div>
