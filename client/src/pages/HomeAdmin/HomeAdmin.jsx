@@ -1,96 +1,57 @@
-
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import './HomeAdmin.css'
-import { Accordion } from 'react-bootstrap'
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Tooltip from 'react-bootstrap/Tooltip';
-import { Button } from 'react-bootstrap'
+import "../Home/Home.css";
 import { useAuth0 } from '@auth0/auth0-react';
+import React from 'react';
+import { Link } from 'react-router-dom'
+import {Col, Container, Image, Row, Spinner } from 'react-bootstrap';
+import futbolImage from '../../assets/images/futbolImage.png';
+import basquetImage from '../../assets/images/basquetImage.png';
+import tenisImage from '../../assets/images/tenisImage.png';
+import paddleImage from '../../assets/images/paddleImage.png';
+import VerticalNavBarAdmin from "../../components/VerticalNavbar/VerticalNavBarAdmin";
+import {
+  Flex,
+  Center
+}from "@chakra-ui/react"
+
+
 
 
 const HomeAdmin = () => {
-    const [players, setPlayers] = useState()
-    const [cambio, setCambio] = useState()
-    const { user, isLoading, logout} = useAuth0();
-
-    useEffect(() => {
-        axios.get(`https://falta-uno-1.herokuapp.com/player/getPlayers`)
-            .then(res => setPlayers(res.data))
-    }, [])
-
-    useEffect(() => {
-        axios.get(`https://falta-uno-1.herokuapp.com/player/getPlayers`)
-            .then(res => setPlayers(res.data))
-    }, [cambio])
-
-    const onClick = async (ev) => {
-        await axios.put(`https://falta-uno-1.herokuapp.com/player/modifyStatus/${ev.target.value}`, { status: 'banned' })
-        //setCambio(ev.target.value)
-        window.location.reload(true)
-    }
-    const onClickDesbloquear = async (ev) => {
-        await axios.put(`https://falta-uno-1.herokuapp.com/player/modifyStatus/${ev.target.value}`, { status: 'allowed' })
-        //setCambio(ev.target.value)
-        window.location.reload(true)
-    }
-
     
-
     return (
-        <div className='adminContenedor'>
-            <Button className='d-flex justify-content-between align-items-center' variant="danger" style={{ "color": "white" }} onClick={() => logout({ returnTo: window.location.origin })}>
-            <img width="20" className='m-1' src="https://img.icons8.com/ios-glyphs/30/FFFFFF/exit.png" alt='foto' />
-          </Button>
-            <h3 id='administrar' className="fw-normal text-white fst-italic">Administrar jugadores</h3>
-            <Accordion defaultActiveKey='0' flush>
-            {players?.map((elem, index) => { 
-                return (
-                      <Accordion.Item className='header' eventKey={index} key={index}>
-                          <Accordion.Header className='header' style={{}}>
-                              <h5 className='headerAccordion'>{elem.username}</h5>
-                          </Accordion.Header>
-                          <Accordion.Body className='bodyy'>
-                              <p className='nombre'>{elem.name.charAt(0).toUpperCase() + elem.name.slice(1)} {elem.lastName.charAt(0).toUpperCase() + elem.lastName.slice(1)}</p>
-                              <div className='acomodandoCajitas'>
-                              <div className='izquierdaCajita'>
-                              <p><img src='https://cdn-icons-png.flaticon.com/512/2258/2258570.png' className='logo'></img>{elem.email}</p>
-                              <p><img src='https://cdn-icons-png.flaticon.com/512/1244/1244579.png' className='logo'></img>{elem.city}</p>
-                              </div>
-                              <div className='derechaCajita'>
-                              <p><img src='https://cdn-icons-png.flaticon.com/512/597/597177.png' className='logo'></img> {elem.telephone}</p>
-                              <p>{elem.elo} puntos</p>
-                              </div>
-                              </div>
-                              <div>
-                              {elem.status == 'allowed' ?
-                                    <OverlayTrigger
-                                        key={"bottom"}
-                                        placement={'bottom'}
-                                        overlay={
-                                        <Tooltip id={`tooltip-${"bottom"}`}>
-                                            Bloquear a {elem.name.charAt(0).toUpperCase() + elem.name.slice(1)}
-                                        </Tooltip>}>
-                                        <button
-                                            value={elem.id}
-                                            onClick={ev => onClick(ev)} className='botonBloquear'>
-                                            Bloquear usuario</button>
-                                    </OverlayTrigger>
-                                    : <OverlayTrigger
-                                        key={"bottom"}
-                                        placement={'bottom'}
-                                        overlay={
-                                            <Tooltip id={`tooltip-${"bottom"}`}>
-                                                Desbloquear a {elem.name.charAt(0).toUpperCase() + elem.name.slice(1)}
-                                            </Tooltip>}><button value={elem.id} onClick={ev => onClickDesbloquear(ev)} className='botonDesbloquear'>Desbloquear usuario</button></OverlayTrigger>
-                                            }
-                              </div>
-                          </Accordion.Body>
-                      </Accordion.Item>
-                )
-            })}
-             </Accordion> 
-       </div>    
+        <Flex>
+            <VerticalNavBarAdmin />
+            <>
+            <Container className='d-flex justify-content-center aling-items-center mt-3'>
+
+              <Row>
+              <Center>
+                <Flex justifyContent="space-around">
+                <Col md={3} xs={12} sm={6} lg={3} >
+                  <Link to="/admin/players" className='sport-container'>                   
+                    <span className='sport-span' >Jugadores</span>
+                    <Image rounded src="https://images.pexels.com/photos/1198172/pexels-photo-1198172.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" />
+                  </Link>
+                </Col>
+                <Col md={3} xs={12} sm={6} lg={3} >
+                  <Link to="/admin/sponsors" className='sport-container'>
+                    <span className='sport-span'>Sponsors</span>
+                    <Image rounded src="https://img.freepik.com/foto-gratis/hombre-negocios-dandose-mano-cliente_1098-3378.jpg?w=360&t=st=1659920430~exp=1659921030~hmac=3f52ded9cf72d4ee1b810f9670aa3d061c8396f59f84e147fd4a66a20b4aa1a4https://img.freepik.com/foto-gratis/primer-plano-ejecutivo-sujetando-boligrafo_1098-3657.jpg?w=360&t=st=1659920512~exp=1659921112~hmac=413eac3802cc4e8a5d8ae724ff67118860291b5cf9667cf89ddb2f4f58e70cbd"/>
+                  </Link>
+                </Col>
+                <Col md={3} xs={12} sm={6} lg={3} >
+                  <Link to="/admin/productos" className='sport-container'>
+                    <span className='sport-span'>Productos</span>
+                    <Image rounded src="https://images.unsplash.com/photo-1556906781-9a412961c28c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80" />
+                  </Link>
+                </Col>
+                </Flex>
+              </Center>
+              </Row>
+            </Container>
+
+          </>  
+    </Flex>
         
     )
 }
