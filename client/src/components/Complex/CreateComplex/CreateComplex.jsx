@@ -137,35 +137,11 @@ export default function CreateComplex() {
         setErrors(errores);
     }
 
-    // const uploadImage = async (e) => {
-    //     const form = new FormData();
-    //     form.append("image", e.target.files[0]);
-    //     console.log(e.target.files);
-    //     const settings = {
-    //         "method": "POST",
-    //         "timeout": 0,
-    //         "processData": false,
-    //         "mimeType": "multipart/form-data",
-    //         "contentType": false,
-    //         "data": form
-    //     };
-    //     setLoading(true)
-
-    //     const respuesta = await axios("https://api.imgbb.com/1/upload?expiration=600&key=12d5944c0badc6235fe12ec6550754c8", settings)
-
-    //     setNewComplex({
-    //         ...newComplex,
-    //         image: respuesta.data.data.url,
-    //     });
-    //     setLoading(false)
-    //     let errors = validator({ ...newComplex, image: e.target.value });
-    //     setErrors(errors);
-    // };
-
     const upload = async (file) => {
         const data = new FormData();
         data.append("file", file);
         data.append("upload_preset", 'sdujndiw');
+        setLoading(true)
         const response = await fetch(`https://api.cloudinary.com/v1_1/dttguisff/upload`, 
             { method: "POST", body: data })
         const data1 = await response.json()
@@ -174,9 +150,9 @@ export default function CreateComplex() {
             ...newComplex,
             image: data1.url,
         });
-        setLoading(false)
         let errors = validator({ ...newComplex, image: file });
         setErrors(errors);
+        setLoading(false)
       };
     
 
@@ -318,7 +294,7 @@ export default function CreateComplex() {
                                 {errors.sports ? <div className="errores">{errors.sports}</div> : null}
                             </div>
                             {/* IMAGEN DE LA CANCHA */}
-                            <div className='divInputsImage'>
+                            <div className='divInputsImage' style={{display: 'flex', flexDirection: 'column'}}>
                                 <h5 style={{marginBottom:'10px',fontSize: '1.2em'}}>Imagen del complejo</h5>
                                 {/* <input
                                     type="file"
@@ -327,7 +303,7 @@ export default function CreateComplex() {
                                     onChange={uploadImage}
                                     accept="image/*" /> */}
                                     <input type="file" className="inputImage" onChange={(e) => upload(e.target.files[0])}></input>
-                                {loading ? <span></span> : null}
+                                {loading ? <span className='loader'  style={{marginTop:'7px'}}></span> : null}
                                 {errors.image ?  <div className="errores">{errors.image}</div> : null}
                             </div>
                             <h5 style={{fontSize: '1.2em', marginBottom:'10px'}}>Ubicación de complejo</h5>

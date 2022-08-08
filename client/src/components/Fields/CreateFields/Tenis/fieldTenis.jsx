@@ -183,6 +183,7 @@ export default function TenisFields() {
     const data = new FormData();
     data.append("file", file);
     data.append("upload_preset", 'sdujndiw');
+    setLoading(true);
     const response = await fetch(`https://api.cloudinary.com/v1_1/dttguisff/upload`, 
         { method: "POST", body: data })
     const data1 = await response.json()
@@ -191,9 +192,9 @@ export default function TenisFields() {
         ...newField,
         image: data1.url,
     });
-    setLoading(false)
     let errors = validator({ ...newField, image: file });
     setErrors(errors);
+    setLoading(false)
   };
 
   const handleModal = (e) => {
