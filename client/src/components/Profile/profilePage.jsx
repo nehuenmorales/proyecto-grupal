@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
   getPlayersProfile,
   putPlayer,
@@ -19,6 +20,7 @@ import {
   useDisclosure,
   Text
 } from '@chakra-ui/react'
+import { useAuth0 } from '@auth0/auth0-react';
 
 
 export default function ProfileData({ email, user }) {
@@ -26,6 +28,7 @@ export default function ProfileData({ email, user }) {
   const dispatch = useDispatch();
 
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { logout } = useAuth0();
 
   useEffect(() => {
     dispatch(getPlayersProfile(mail));
@@ -149,6 +152,15 @@ export default function ProfileData({ email, user }) {
     setCityInput([]);
     setClick(true);
   };
+
+  const handleDelete = async () => {
+    console.log(player?.id)
+    const del = await axios.post(`https://falta-uno-1.herokuapp.com/player/delete/${player?.id}`)
+    console.log(del)
+    del ? logout({ returnTo: window.location.origin }) : null
+  }
+
+
   function autocomplete(ev) {
     const value = ev.target.value;
     const results = cities.filter((city) => {
@@ -425,26 +437,26 @@ export default function ProfileData({ email, user }) {
                 </div>
               ) : null}
               {/* // aca voy a romper todo */}
-              <Button onClick={onOpen}>Open Modal</Button>
+              <Button onClick={onOpen}>Eliminar Cuenta</Button>
 
               <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>
-                  <ModalHeader>Modal Title</ModalHeader>
+                  <ModalHeader>Eliminar mi Usuario</ModalHeader>
                   <ModalCloseButton />
                   <ModalBody>
                     <Text noOfLines={[1, 2, 3]}>
-                      "The quick brown fox jumps over the lazy dog" is an English-language pangram—a
-                      sentence that contains all of the letters of the English alphabet. Owing to
-                      its existence, Chakra was created.
+                      La eliminacion de la cuenta es definitiva,
+                      tu perfil, tus datos y tu historial se eliminaran definitivamente.
+                      ¿Quieres eliminar tu usuario?
                     </Text>
                   </ModalBody>
 
                   <ModalFooter>
                     <Button colorScheme='blue' mr={3} onClick={onClose}>
-                      Close
+                      Volver
                     </Button>
-                    <Button variant='ghost'>Secondary Action</Button>
+                    <Button variant='ghost' onClick={e => handleDelete(e)}>Eliminar Cuenta</Button>
                   </ModalFooter>
                 </ModalContent>
               </Modal>
