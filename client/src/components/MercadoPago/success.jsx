@@ -51,9 +51,9 @@ const Success = ({ match }) => {
     setData({
       ...data,
       [e.target.name]: e.target.value,
-      subject: "te a invitado su partido",
+      subject: `${user.email}te a invitado su partido`,
       text: "Falta Uno App",
-      html: "<strong>Hola, puedes unirte al partido siguiendo este link https://falta-uno-henry.vercel.app/games/gamesIncomplete</strong>"
+      html: `<strong>Hola, puedes unirte al partido siguiendo este link https://falta-uno-henry.vercel.app/games/gamesIncomplete${id}</strong>`
     })
     dispatch(sendInvitation(data))
   }
@@ -79,11 +79,11 @@ const Success = ({ match }) => {
         </Heading>
 
         <FormControl >
-          <FormLabel className='text-white'>Email address</FormLabel>
+          <FormLabel className='text-white'>Email</FormLabel>
             <Input  name= "to"  onChange={e => handleSubmit(e)}/>
-          <FormHelperText>We'll never share your email.</FormHelperText>
+          <FormHelperText>Nunca compartiremos su correo electrónico.</FormHelperText>
           <Button colorScheme='whatsapp' variant='solid' type='submit' onClick={(e)=> handleSubmit(e)}>
-            Send Invitation
+            Enviar Invitacion
           </Button>
         </FormControl>
       </SimpleGrid>
