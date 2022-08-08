@@ -36,7 +36,7 @@ export default function GamesByUser(){
             </tr>
         </thead>
         <tbody>
-        {allGames.games?.map((elem) => {
+        {allGames.data.games?.map((elem) => {
             return (
                 <tr>
                     {/* <td style={{color:'white'}}>{elem.field.name}</td> */}
