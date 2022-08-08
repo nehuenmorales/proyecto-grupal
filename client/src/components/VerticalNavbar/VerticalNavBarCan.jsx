@@ -32,7 +32,6 @@ import { useEffect } from 'react';
 import { getGamesOwner } from '../../redux/OwnerGames/ownerGamesAction';
 import { getOwner } from '../../redux/GetOwner/getOwnerAction';
 import {useSelector } from 'react-redux';
-import { Link } from 'react-router-dom'
 
 export default function VerticalNavBarCan(){
   const { user, isLoading, logout} = useAuth0();
@@ -82,8 +81,8 @@ export default function VerticalNavBarCan(){
         
   
         {match.path==="/"?<NavItem size={size} icon={FiHome} title="Inicio" link="/" active/>:<NavItem size={size} icon={FiHome} link="/" title="Inicio"/>}
-        {match.path==="/fieldOwner"? <NavItem><Link to="/owner/createComplex"> <button active>Crear Complejo</button> </Link></NavItem> : <NavItem> <Link to="/owner/createComplex"> <button>Sin icono</button></Link></NavItem>}
-        {match.path==="/complexOwner"?<button size={size} icon={TbSoccerField} title="Crear Canchas" link="/owner/select" active/>:<button size={size} icon={TbSoccerField} title="Crear Canchas" link="/owner/select"/>}
+        {match.path==="/fieldOwner"?<NavItem size={size} icon={HiOutlineOfficeBuilding} title="Crear Complejo" link="/owner/createComplex" active />:<NavItem size={size} icon={HiOutlineOfficeBuilding} title="Crear Complejo" link="/owner/createComplex"/>}
+        {match.path==="/complexOwner"?<NavItem size={size} icon={TbSoccerField} title="Crear Canchas" link="/owner/select" active/>:<NavItem size={size} icon={TbSoccerField} title="Crear Canchas" link="/owner/select"/>}
         {match.path==="/suppliesOwner"?<NavItem size={size} icon={MdSportsTennis} title="Crear Elemento" link="/owner/createSupplie" active/>:<NavItem size={size} icon={MdSportsTennis} title="Crear Elemento" link="/owner/createSupplie"/>}
         {match.path==="/ownerBookedGames"?<NavItem size={size} icon={FiCalendar} title="Mis Turnos" link="/ownerBookedGames" active/>:<NavItem size={size} icon={FiCalendar} title="Mis Turnos" link="/ownerBookedGames"/>}
         {match.path==="/profile"?<NavItem size={size} icon={FiUser} title="Mi Perfil" link="/profile" active/>:<NavItem size={size} icon={FiUser} title="Mi Perfil" link="/profile"/>}
