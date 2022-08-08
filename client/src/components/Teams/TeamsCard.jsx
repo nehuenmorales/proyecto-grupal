@@ -3,6 +3,7 @@ import s from "./diseñoTeams/teamsCard.module.css"
 import { Link } from "react-router-dom";
 import Card from 'react-bootstrap/Card';
 import DefaultImage from "../../utils/TeamsFutbolbasic.jpg"
+import{StarIcon} from "@chakra-ui/icons"
 
 
 export default function TeamsCard({props}) {
@@ -23,13 +24,14 @@ export default function TeamsCard({props}) {
             <Card.Body className={s.bodyCard}>
                 <Card.Title className={s.title}>{props.name}</Card.Title>
                 <div className={s.contenedorDeTodo}>
-                   <Card.Text className={s.stars}>
-                {props.rating===5?<h5><i class="fa-solid fa-star" style={{"color":"gold"}}  ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i></h5>
-                :props.rating===4?<h5><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i></h5>
-                :props.rating===3?<h5><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i></h5>
-                :props.rating===2?<h5><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i></h5>
-                :props.rating===1?<i class="fa-solid fa-star" style={{"color":"gold"}} ></i>:<h5><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i><i class="fa-solid fa-star" style={{"color":"gold"}} ></i></h5>}
-                </Card.Text>
+                {Array(5)
+                    .fill('')
+                    .map((_, i) => (
+                    <StarIcon
+                    key={i}
+                    color={i < props.rating ? 'gold' : 'gray.300'}
+                    />
+				))}
                 <h5 className={s.puntos}>{props.elo} puntos</h5>  
                 </div>
                

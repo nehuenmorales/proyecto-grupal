@@ -25,7 +25,7 @@ export default function CardComplex(props) {
 				/>
 				))}
           <Box as='span' ml='2' color='gray.600' fontSize='sm'>
-            0 reviews
+            {props.reviews} reviews
           </Box>
 		  </Box>
 				<Card.Text className={s.text}>
