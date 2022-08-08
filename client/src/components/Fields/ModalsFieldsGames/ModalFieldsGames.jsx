@@ -108,11 +108,11 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
         if (indice == 6) {
             if(fieldId){
                 swal('', "Cancha y turnos modificados exitosamente!", 'success')
-                history.push("/fieldOwner")
+                history.push("/owner/select")
 
             } else{
                 swal('', "Cancha y turnos creados exitosamente!", 'success')
-                history.push("/complexOwner")
+                history.push("/owner/select")
             }
 
             

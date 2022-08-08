@@ -7,10 +7,6 @@ import TeamsCard from "./TeamsCard";
 import Modal from "react-bootstrap/Modal";
 import { ModalCreateTeam } from "./modalCreateTeam";
 import s from "./diseñoTeams/teamsCard.module.css";
-import {
-  Center,
-  Flex
-}from "@chakra-ui/react"
 
 export function Teams({ email }) {
   const userTeams = useSelector((state) => state.teamsReducer.userTeams);

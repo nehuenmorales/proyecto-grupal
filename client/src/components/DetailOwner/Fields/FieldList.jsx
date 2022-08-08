@@ -36,7 +36,7 @@ export default function FieldList() {
                     <Button>Volver</Button>
                 </Link>
             </div>
-            <h5 className="fw-normal text-white fst-italic m-2" style={{padding: '30px 0 0px 40px'}}>Mis elementos en alquiler</h5>
+            <h5 className="fw-normal text-white fst-italic m-2" style={{padding: '30px 0 0px 40px'}}>Mis Canchas</h5>
 
             <div className='contenedor-cards'>
                 {field?.map((e) => {

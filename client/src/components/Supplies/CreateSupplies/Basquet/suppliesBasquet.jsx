@@ -35,7 +35,7 @@ export default function SuppliesBasquet() {
         price: ""
     })
     useEffect(() => {
-        axios.get('/owner/getNameComplex')
+        axios.get('https://falta-uno-1.herokuapp.com/owner/getNameComplex')
         .then((res) => {
           console.log(res.data, 'soy res.data')
             setComplexName(res.data)
@@ -104,29 +104,25 @@ export default function SuppliesBasquet() {
         //window.location.href = "/home"; aca nos llevaria al home en caso de que cuando se cree una nueva vaya al home
         //o se quede en la misma pag
     };
+ 
 
-    const uploadImage = async (e) => {
-        const form = new FormData();
-        form.append("image", e.target.files[0]);
-        console.log(e.target.files);
-        const settings = {
-            "method": "POST",
-            "timeout": 0,
-            "processData": false,
-            "mimeType": "multipart/form-data",
-            "contentType": false,
-            "data": form
-        };
-        setLoading(true)
-        const respuesta = await axios("https://api.imgbb.com/1/upload?expiration=600&key=12d5944c0badc6235fe12ec6550754c8", settings)
-
+    const upload = async (file) => {
+        const data = new FormData();
+        data.append("file", file);
+        data.append("upload_preset", 'sdujndiw');
+        setLoading(true);
+        const response = await fetch(`https://api.cloudinary.com/v1_1/dttguisff/upload`, 
+            { method: "POST", body: data })
+        const data1 = await response.json()
+        console.log('respuestaa', data1) // reemplazar con un mensaje de éxito o la acción deseada
         setNewSupplie({
-            ...newSupplie,
-            image: respuesta.data.data.url,
-        });
-        setLoading(false)
-        console.log('soy respuesta img', respuesta);
-    };
+          ...newSupplie,
+          image: data1.url,
+      });
+      let errors = validator({ ...newSupplie, image: file });
+      setErrors(errors);
+      setLoading(false)
+      };
 
     return (
 
@@ -192,12 +188,7 @@ export default function SuppliesBasquet() {
 
                     <div className={s.image}>
                         <h5 className={s.titles}>Foto del elemento</h5>
-                        <input
-                            type="file"
-                            name="image"
-                            className={s.fileselect}
-                            onChange={uploadImage}
-                            accept="image/*" />
+                        <input type="file" className="inputImage" onChange={(e) => upload(e.target.files[0])}></input>
                         {loading ? <span class={s.loader}></span> : null}
                     </div>
                     </div>

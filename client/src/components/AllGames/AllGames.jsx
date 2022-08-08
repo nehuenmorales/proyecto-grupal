@@ -13,6 +13,7 @@ import {
     SimpleGrid,
     Box
   }from "@chakra-ui/react"
+import ProductsCarousel from "../ProductsCarousel/ProductsCarousel";
 
 export default function AllGames({ match }) {
 
@@ -33,6 +34,7 @@ console.log("soy el estado games en allgames", games)
     return (
         <Flex>
             <VerticalNavbar />
+
             <Flex flexDir="column" mt="40px">
             {
                 <>
@@ -41,6 +43,7 @@ console.log("soy el estado games en allgames", games)
                         <SearchBar state={gamesSearch} filtro="turnos" setFilter={setPage} sport={sport} />
 
                         <Tabs match={match} />
+                        <ProductsCarousel/>    
                         <p style={{
                             "color": "white",
                             "padding": "0 5em",
@@ -48,7 +51,6 @@ console.log("soy el estado games en allgames", games)
                             "marginBottom": "0",
                             "fontStyle": "italic"
                         }}>Turnos disponibles</p>
-                            
                         <SimpleGrid columns={3} spacing={12} ml="100px">
                         {
                             gamesSearch.length?gamesSearch.map( e =>
