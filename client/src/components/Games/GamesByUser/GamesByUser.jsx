@@ -18,10 +18,16 @@ export default function GamesByUser(){
     console.log(user?.email)
     console.log(allGames, "estos son sus games")
     const [showModal, setShowModal] = useState(false);
+    const [complex, setComplex] = useState("");
  
     useEffect(() => {
         dispatch(gamesByUser(user?.email))
     },[dispatch, user?.email])
+
+    const Rating=(e)=>{
+        setComplex(e.target.value)
+        setShowModal(true)
+    }
 
     return (
         <Flex>
@@ -29,6 +35,7 @@ export default function GamesByUser(){
         <Table striped bordered hover variant="dark">
         <thead>
             <tr>
+                <th style={{color:'white'}}>Cancha</th>
                 <th style={{color:'white'}}>Día</th>
                 <th style={{color:'white'}}>Inicio</th>
                 <th style={{color:'white'}}>Final</th>
@@ -39,16 +46,18 @@ export default function GamesByUser(){
             </tr>
         </thead>
         <tbody>
-        {allGames?.data?.games?.map((elem) => {
+        {allGames?.data?.map((elem) => {
             return (
                 <tr>
                     {/* <td style={{color:'white'}}>{elem.field.name}</td> */}
+
+                    <td style={{color:'white'}}>{elem.fieldname}</td>
                     <td style={{color:'white'}}>{elem.date}</td>
                     <td style={{color:'white'}}>{elem.start}hs</td>
                     <td style={{color:'white'}}>{elem.end}hs</td>
                     <td style={{color:'white'}}>{elem.privacy}</td>
                     <td style={{color:'white'}}>{elem.result === null ? "Sin Resultado" : elem.result}</td>
-                    <td><Button onClick={setShowModal(true)}>Califica tu experiencia</Button></td>
+                    <td><Button value={elem.complexid} onClick={()=>Rating(e)}>Califica tu experiencia</Button></td>
 
                 </tr>
             )
@@ -58,7 +67,7 @@ export default function GamesByUser(){
             <ModalRating
                 showModal={showModal}
                 setShowModal={setShowModal}
-                complex={complexid}
+                complex={complex}
             />
         </Flex>
     )
