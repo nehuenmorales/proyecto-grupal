@@ -158,14 +158,15 @@ export default function ProfileData({ email, user }) {
   const handleDelete = async () => {
     console.log(player?.id)
     const del = await axios.post(`https://falta-uno-1.herokuapp.com/player/delete/${player?.id}`)
-    console.log(del)
-    if(del) logout({ returnTo: window.location.origin })
+    console.log(del) 
     toast({
       title: 'Tu cuenta ha sido eliminada',
       status: 'error',
       duration: 9000,
       isClosable: true,
     })
+    setTimeout(del, 2000)
+    if(del) logout({ returnTo: window.location.origin })
   }
 
 
