@@ -17,7 +17,7 @@ const theme=extendTheme({
     global:{
       body:{
         backgroundColor:"#0C131F",
-        overflow:"scroll",
+        overflowY:"scroll",
         position:"relative",
       }
     }
