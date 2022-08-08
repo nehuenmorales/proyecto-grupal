@@ -80,7 +80,7 @@ export default function OwnerProfile() {
 
     const onClick = (e) => {
         e.preventDefault()
-        axios.put(`https://falta-uno-1.herokuapp.com/owner/modifyOwner/${owner.id}`)
+        axios.put(`https://falta-uno-1.herokuapp.com/owner/modifyOwner/${owner.id}`, input)
         swal('', "Perfil modificado exitosamente!", 'success')
         history.push("/")
 
@@ -101,35 +101,35 @@ export default function OwnerProfile() {
                     <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz' style={{ marginTop: '40px' }}></img>
                 </div>
                 <input type="text" name='name' value={input?.name} placeholder={input?.name} onChange={(e) => handleInputChange(e)} className='inputowner'/>
-                {errors.name ? (<div style={{color: 'red'}}>{errors.name}</div>) : null}
+                {errors?.name ? (<div style={{color: 'red'}}>{errors.name}</div>) : null}
                 <div className='contenedorLapiz'>
                     <p className="subTitulos" style={{marginLeft: '0px'}}>Apellido</p>
                     <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz' style={{ marginTop: '40px'}}></img>
                 </div>
                 <input type="text" name='lastName' value={input?.lastName} placeholder={input?.lastName} onChange={(e) => handleInputChange(e)} className='inputowner'/>
-                {errors.lastName ? (<div style={{color: 'red'}}>{errors.lastName}</div>) : null}
+                {errors?.lastName ? (<div style={{color: 'red'}}>{errors.lastName}</div>) : null}
                 <div className='contenedorLapiz'>
                     <p className="subTitulos" style={{marginLeft: '0px'}}>Nombre de usuario</p>
                     <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz' style={{ marginTop: '40px' }}></img>
                 </div>
                 <input type="text" name='username' value={input?.username} placeholder={input?.username} onChange={(e) => handleInputChange(e)} className='inputowner'/>
-                {errors.username ? (<div style={{color: 'red'}}>{errors.username}</div>) : null}
+                {errors?.username ? (<div style={{color: 'red'}}>{errors.username}</div>) : null}
                 <div className='contenedorLapiz'>
                     <p className="subTitulos" style={{marginLeft: '0px'}}>Teléfono</p>
                     <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz' style={{ marginTop: '40px' }}></img>
                 </div>
                 <input type="text" name='telephone' value={input?.telephone} placeholder={input?.telephone} onChange={(e) => handleInputChange(e)} className='inputowner' />
-                {errors.telephone ? (<div style={{color: 'red'}}>{errors.telephone}</div>) : null}
+                {errors?.telephone ? (<div style={{color: 'red'}}>{errors.telephone}</div>) : null}
                 
             {
                 !errors.name && 
                 !errors.lastName && 
                 !errors.username && 
                 !errors.telephone && 
-                (input.name !== owner.name ||
-                    input.lastName !== owner.lastName ||
-                    input.username !== owner.username ||
-                    input.telephone !== owner.telephone) ?
+                (input?.name !== owner.name ||
+                    input?.lastName !== owner.lastName ||
+                    input?.username !== owner.username ||
+                    input?.telephone !== owner.telephone) ?
                     <button onClick={(e) => onClick(e)} className='botonActivo-owner'>Guardar Cambios</button> :
                     <button className='btnGris-owner' disabled>Guardar Cambios</button>
             }
