@@ -82,8 +82,8 @@ const {
 // Aca vendrian las relaciones
 // Product.hasMany(Reviews);
 
-Player.belongsToMany(Teams, { through: "player_teams", timestamps: false });
-Teams.belongsToMany(Player, { through: "player_teams", timestamps: false });
+Player.belongsToMany(Teams, { through: "player_teams", timestamps: true });
+Teams.belongsToMany(Player, { through: "player_teams", timestamps: true });
 
 Teams.belongsToMany(Tournament, {
   through: "teams_tournament",
@@ -94,8 +94,8 @@ Tournament.belongsToMany(Teams, {
   timestamps: false,
 });
 
-Player.belongsToMany(Games, { through: "player_games", timestamps: false });
-Games.belongsToMany(Player, { through: "player_games", timestamps: false });
+Player.belongsToMany(Games, { through: "player_games", timestamps: true });
+Games.belongsToMany(Player, { through: "player_games", timestamps: true });
 
 // Teams.belongsTo(Games);
 // Games.hasMany(Teams);
