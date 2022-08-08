@@ -272,7 +272,7 @@ export default function CreateComplex() {
                             {/*DEPORTES */}
                             <div className='divInputsSport'>
                                
-                                <h5 >¿Con canchas de qué deportes cuenta el complejo?</h5>
+                                <h5 style={{fontSize: '1.2em'}}>¿Con canchas de qué deportes cuenta el complejo?</h5>
                                 <div className="deportesElegidos">
                                     <div>
                                 <select onChange={(e) => handleInputSport(e)} className='selectSports'>
@@ -294,7 +294,7 @@ export default function CreateComplex() {
                             </div>
                             {/* IMAGEN DE LA CANCHA */}
                             <div className='divInputsImage'>
-                                <h5>Imagen del complejo</h5>
+                                <h5 style={{marginBottom:'10px',fontSize: '1.2em'}}>Imagen del complejo</h5>
                                 <input
                                     type="file"
                                     name="image"
@@ -304,7 +304,7 @@ export default function CreateComplex() {
                                 {loading ? <span></span> : null}
                                 {errors.image ?  <div className="errores">{errors.image}</div> : null}
                             </div>
-                            <h5 style={{fontSize: '1.5em'}}>Ubicación de complejo</h5>
+                            <h5 style={{fontSize: '1.2em', marginBottom:'10px'}}>Ubicación de complejo</h5>
                                 {/* <h6>Ciudad</h6> */}
                                 <div class="containerDerecha">
                                    
@@ -357,9 +357,7 @@ export default function CreateComplex() {
                             </div>
                             <div className="contenedorDerecha">
                                 <Location  selected={selected} setSelected={setSelected} centerState={centerState} setCenterState={setCenterState} location={location} setLocation={setLocation} />
-                            </div>
-                        </div>
-                    {/* BOTON SUBMIT */}
+                            
                     <div className='contenedorBoton'>
                         {
                             !loading &&
@@ -375,6 +373,11 @@ export default function CreateComplex() {
                         }
 
                     </div>
+                            </div>
+
+
+                        </div>
+                    {/* BOTON SUBMIT */}
             </form>
 
         </div>

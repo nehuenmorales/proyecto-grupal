@@ -101,7 +101,7 @@ export default function SupplieDetail({ id }) {
                 </form>
             </div>
             <div style={{ backgroundImage: `url(${supplie.image})` }} className='derecha'>
-                <div className='div-rating' style={{ backgroundColor: `rgba(17, 24, 37, 1)`, padding: '7px 15px 3px', height: '50px', width: '150px' }}>
+                <div className='div-rating' style={{ backgroundColor: `rgba(12, 19, 31, 1);`, padding: '7px 15px 3px', height: '50px', width: '150px' }}>
                     <p style={{ color: 'white', fontSize: '23px' }}>{supplie.sport}</p>
                 </div>
             </div>
