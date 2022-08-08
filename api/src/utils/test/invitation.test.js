@@ -5,7 +5,7 @@ it('Can send emails with valid inputs', async () => {
     return await request(app)
         .post('/sendGrid/invitation')
         .send({
-            to: 'elilamas097@gmail.com',
+            to: 'nehuenmorales640@gmail.com',
             subject: 'Subject',
             text: 'some random text',
             html: '<strong>Some random html code</strong>'
