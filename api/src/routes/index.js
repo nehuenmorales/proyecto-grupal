@@ -23,7 +23,7 @@ router.use('/fields',fields);
 router.use('/complex',complex);
 router.use('/supplies',supplies)
 router.use('/sendGrid', sendGrid)
-router.use("./sponsor", sponsors)
+router.use("/sponsor", sponsors)
 router.use("/tournament",tournament)
 router.use("/team",team)
 module.exports = router;

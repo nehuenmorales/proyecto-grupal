@@ -3,10 +3,9 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/esm/Button";
 import { Link } from "react-router-dom";
-import s from "../Fields/CreateFields/forms.module.css";
 import { Select } from "@chakra-ui/react";
 import { getAllSponsors,createProduct } from "../../redux/Sponsors/SponsorsActions";
-import "./createProduct.css"
+import s from "./createProduct.module.css"
 import { useToast } from '@chakra-ui/react'
 
 
@@ -226,8 +225,8 @@ const handleInputSport = (e) => {
             !errors.image &&
             !errors.sport &&
             !errors.description ? 
-                <button type="submit" className='botonActivo'
-                >Crear</button> : <button type="submit" className='btnGris' disabled >Crear Producto</button>
+                <button type="submit" className={s.botonActivo}
+                >Crear</button> : <button type="submit" className={s.btnGris} disabled >Crear Producto</button>
             }
           </div>
           
