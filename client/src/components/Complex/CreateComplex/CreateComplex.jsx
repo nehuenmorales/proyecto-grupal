@@ -373,7 +373,7 @@ export default function CreateComplex() {
                                 !errors.state &&
                                 !errors.sports  &&
                                 !errors.image ?
-                                <button type="submit" className='botonActivo'
+                                <button type="submit" className='botonActivo' 
                                 >Crear</button> : <button type="submit" className='btnGris' disabled >Crear</button>
                         }
 

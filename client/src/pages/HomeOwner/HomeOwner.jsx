@@ -12,10 +12,9 @@ import { Flex } from "@chakra-ui/react"
 import { getGamesOwner } from '../../redux/OwnerGames/ownerGamesAction';
 import { useHistory } from 'react-router-dom';
 
-const HomeOwner = () => {
+  const HomeOwner = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const dispatch = useDispatch()
-
   const history = useHistory()
 
   useEffect(() => {
@@ -24,8 +23,6 @@ const HomeOwner = () => {
     console.log('user.sub', user.sub)
     dispatch(getGamesOwner(user.sub))
   }, [user.email])
-
-
 
   return (
     <Flex>
