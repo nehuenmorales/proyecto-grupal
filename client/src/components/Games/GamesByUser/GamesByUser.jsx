@@ -6,6 +6,7 @@ import { gamesByUser } from '../../../redux/NuevoGames/gamesAction';
 import { Button, Flex } from '@chakra-ui/react';
 import Table from 'react-bootstrap/Table';
 import { useAuth0 } from '@auth0/auth0-react';
+import ModalRating from './ModalRating';
 
 
 export default function GamesByUser(){
@@ -57,7 +58,7 @@ export default function GamesByUser(){
                     <td style={{color:'white'}}>{elem.end}hs</td>
                     <td style={{color:'white'}}>{elem.privacy}</td>
                     <td style={{color:'white'}}>{elem.result === null ? "Sin Resultado" : elem.result}</td>
-                    <td><Button value={elem.complexid} onClick={()=>Rating(e)}>Califica tu experiencia</Button></td>
+                    <td><Button value={elem.complexid} onClick={(e)=>Rating(e)}>Califica tu experiencia</Button></td>
 
                 </tr>
             )
