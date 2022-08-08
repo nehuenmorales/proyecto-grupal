@@ -157,7 +157,7 @@ export default function ProfileData({ email, user }) {
     console.log(player?.id)
     const del = await axios.post(`https://falta-uno-1.herokuapp.com/player/delete/${player?.id}`)
     console.log(del)
-    del ? logout({ returnTo: window.location.origin }) : null
+    if(del) logout({ returnTo: window.location.origin })
   }
 
 
