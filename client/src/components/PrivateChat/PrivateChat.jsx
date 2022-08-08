@@ -11,6 +11,8 @@ import SearchUser from "./searchBar";
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styles from "./cardUser.module.css";
+import {GrSend} from "react-icons/gr"
+import paperPlane from "../../assets/icons/paper-plane-solid.svg"
 
 const socket = io("http://localhost:3001", { autoConnect: false });
 
@@ -158,9 +160,9 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
 
 
 
-  const selectOnClick = (e) => {
+  const selectOnClick = (e,user) => {
     e.preventDefault();
-    let clickedUser = e.target.value
+    let clickedUser = user
     for (let i = 0; i < usersConnected.length; i++) {
       let userSearch = usersConnected[i].username
       if (clickedUser === userSearch) {
@@ -194,7 +196,7 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
                 <span>{user.name}</span>
               </p>
             </div>
-            <button value={user.username} onClick={(e) => selectOnClick(e)}>chatear</button>
+            <img src={paperPlane} className={s.paperPlane} value={user.username} onClick={(e) => selectOnClick(e,user.username)} alt="imagen"/>
           </Card></div>
         })
           : usersConnected.length ? usersConnected.map((user) => {
@@ -207,7 +209,9 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
                   <span>{user.name}</span>
                 </p>
               </div>
-              <button value={user.username} onClick={(e) => selectOnClick(e)}>chatear</button>
+
+              <img src={paperPlane} className={s.paperPlane} value={user.username} onClick={(e) => selectOnClick(e,user.username)} alt="imagen"/>
+
             </Card></div>
           })
             : null
@@ -217,9 +221,9 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
 
 
       </div>
-
-      {selectedUser ? <MessagePanel selectedUser={selectedUser} socket={socket} setSelectedUser={setSelectedUser} /> : null}
-
+        
+      {selectedUser ? <MessagePanel selectedUser={selectedUser} socket={socket} setSelectedUser={setSelectedUser} user={user}/> : null}
+      
     </div >
   );
 }

@@ -2,6 +2,7 @@ import React from "react"
 import s from "./privateChat.module.css"
 import { useState } from "react";
 import { useEffect } from "react";
+import { Input } from '@chakra-ui/react'
 
 
 
@@ -39,19 +40,23 @@ export default function MessagePanel({ selectedUser, socket, setSelectedUser }) 
   return (
 
     <div className={s.comlumR}>
-      <h2>{selectedUser.username}</h2>
-
+      <div className={s.userMessaging}>
+      <img src={selectedUser.image} className={s.image}/>
+      <h2 className={s.userTitle}>{selectedUser.name}</h2>
+      <div></div>
+      </div>
       {messages.length ? messages.map((e) => {
         return e.fromSelf ? <div className={s.derecha}><div className={s.ownMessage}>
-          <h6>{e.content}</h6>
-        </div> </div> : <div className={s.izquierda}> <div className={s.recievedMessage}>
+          <h6>{e.content}</h6>      
+        </div>
+        <img src={e.image} /> </div> : <div className={s.izquierda}> <div className={s.recievedMessage}>
           <h6>{e.content}</h6>
         </div>  </div>
       }
       ) : null}
-      <form onSubmit={(e) => handleSubmit(e)} className="bg-zinc-900 p-10">
-
+        
         <div className={s.inputchat}>
+      <form onSubmit={(e) => handleSubmit(e)} className="bg-zinc-900 p-10">
           <input
             name="message"
             type="text"
@@ -61,12 +66,15 @@ export default function MessagePanel({ selectedUser, socket, setSelectedUser }) 
               e.preventDefault();
               return setContent(e.target.value)
             }}
+            className={s.inputTypeChat}
             autoFocus
           />
-          <button type="submit" >Enviar</button>
-        </div>
+          
+          <button type="submit" className={s.button} >Enviar</button>
 
       </form>
+          </div>
+      
     </div>
   )
 }

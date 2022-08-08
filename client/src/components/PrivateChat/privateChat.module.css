@@ -1,25 +1,31 @@
 .containerAllChat{
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  
 }
 .inputchat{
   display: flex;
   flex-direction: row;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  width: 75%;
+  
+  
+  width: 100%;
 }
 .colum{
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
+
     width: 25%;
     border-right: 5px solid;
     background-color: rgb(0, 0, 0);
     
 }
 .comlumR{
-  width: 25%;
+  
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  width: 100%;
+
 }
 
 .recievedMessage{
@@ -35,6 +41,7 @@
   border-radius:20px;
   text-align: left;
   margin-top: 5px;
+  justify-items: center;
 }
 
 
@@ -52,6 +59,8 @@
   max-width: 250px;
   flex-wrap: wrap;
    margin-top: 5px;
+   justify-items: center;
+
 }
 
 .derecha{
@@ -63,4 +72,49 @@
   display: flex;
    width: 100%;
   justify-content: flex-start;
+}
+.image{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  left: 0;
+}
+.userMessaging{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.394);
+  padding: 10px;
+}
+.userTitle{
+  font-family: 'Inter',sans-serif;
+  font-weight: 600;
+  text-transform: capitalize;
+
+}
+.paperPlane{
+  height: 30px;
+  width: 30px;
+margin-right: 10px;
+  cursor: pointer;
+}
+.inputTypeChat{
+  position: fixed;
+  bottom: 0;
+  height: 2.5em;
+  width: 70%;
+}
+.button{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  height: 2.5em;
+  width: 5em;
+  border-radius: 1em;
+  border: none;
+  background-color: green;
+  color: white;
+  
 }
