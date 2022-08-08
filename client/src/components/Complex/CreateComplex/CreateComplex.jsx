@@ -59,6 +59,7 @@ export default function CreateComplex() {
         country: "",
         lat: "",
         lng: "",
+        reviews: 0
     });
     const [errors, setErrors] = useState({
         name: "Debe ingresar un nombre",
@@ -67,7 +68,7 @@ export default function CreateComplex() {
         sports: "",
         address: "",
         city: "",
-        state: "",
+        state: ""
     });
     
     const [loading, setLoading] = useState(false)
@@ -221,6 +222,8 @@ export default function CreateComplex() {
             country: "",
             lat: "",
             lng: "",
+            reviews: 0
+
         })
         setErrors({
         name: "Debe ingresar un nombre",

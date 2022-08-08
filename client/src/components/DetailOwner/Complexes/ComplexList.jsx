@@ -29,9 +29,7 @@ export default function ComplexList() {
                 </Link>
             </div>
         
-            <h5 className="fw-normal text-white fst-italic m-2" style={{padding: '30px 0 0px 40px'}}>Mis elementos en alquiler</h5>
-                
-            
+            <h5 className="fw-normal text-white fst-italic m-2" style={{padding: '30px 0 0px 40px'}}>Mis Complejos</h5>
 
             <div className="container-complexcard">
                 {complex?.map((e) => {
