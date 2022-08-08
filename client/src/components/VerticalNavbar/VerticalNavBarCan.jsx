@@ -85,10 +85,10 @@ const dispatch = useDispatch()
         
   
         {match.path==="/"?<NavItem size={size} icon={FiHome} title="Inicio" link="/" active/>:<NavItem size={size} icon={FiHome} link="/" title="Inicio"/>}
-        {match.path==="/fieldOwner"?<NavItem size={size} icon={TbSoccerField} title="Mis Canchas" link="/fieldOwner" active/>:<NavItem size={size} icon={TbSoccerField} title="Mis Equipos" link="/fieldOwner"/>}
-        {match.path==="/complexOwner"?<NavItem size={size} icon={HiOutlineOfficeBuilding} title="Mis Complejos" link="/complexOwner" active/>:<NavItem size={size} icon={HiOutlineOfficeBuilding} title="Mis Complejos" link="/complexOwner"/>}
+        {match.path==="/fieldOwner"?<NavItem size={size} icon={HiOutlineOfficeBuilding} title="Crear Complejo" link="/owner/createComplex" active/>:<NavItem size={size} icon={HiOutlineOfficeBuilding} title="Crear Complejo" link="/owner/createComplex"/>}
+        {match.path==="/complexOwner"?<NavItem size={size} icon={TbSoccerField} title="Crear Canchas" link="/owner/select" active/>:<NavItem size={size} icon={TbSoccerField} title="Crear Canchas" link="/owner/select"/>}
+        {match.path==="/suppliesOwner"?<NavItem size={size} icon={MdSportsTennis} title="Crear Elemento" link="/owner/createSupplie" active/>:<NavItem size={size} icon={MdSportsTennis} title="Crear Elemento" link="/owner/createSupplie"/>}
         {match.path==="/ownerBookedGames"?<NavItem size={size} icon={FiCalendar} title="Mis Turnos" link="/ownerBookedGames" active/>:<NavItem size={size} icon={FiCalendar} title="Mis Turnos" link="/ownerBookedGames"/>}
-        {match.path==="/suppliesOwner"?<NavItem size={size} icon={MdSportsTennis} title="Mis Elementos" link="/suppliesOwner" active/>:<NavItem size={size} icon={MdSportsTennis} title="Mis Elementos" link="/suppliesOwner"/>}
         {match.path==="/profile"?<NavItem size={size} icon={FiUser} title="Mi Perfil" link="/profile" active/>:<NavItem size={size} icon={FiUser} title="Mi Perfil" link="/profile"/>}
 
 

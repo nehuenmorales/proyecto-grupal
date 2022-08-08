@@ -51,7 +51,7 @@ export default function ComplexList() {
                                     <img src="https://api.iconify.design/material-symbols:star-rounded.svg?color=%23ffee00" alt="" className="rating-img" />
                                     <p className="complex-rating"> {e.rating}</p>
                                 </div>
-                                <div>
+                                <div style={{width: '100%', display: 'flex', flexDirection:'row', justifyContent:'flex-end'}}>
                                     {e.sports.map(sport => {
                                         if (sport === 'futbol') {
                                             return (

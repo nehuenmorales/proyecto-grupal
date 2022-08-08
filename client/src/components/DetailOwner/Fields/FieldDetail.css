@@ -34,7 +34,7 @@
     flex-direction: row;
 }
 .infoForm{
-    background-color: #111825;
+    background-color: rgba(12, 19, 31, 1);
     text-decoration: none !important;
     /* border: none ; */
     outline: none !important;
@@ -49,7 +49,7 @@
     margin-left: 80px;
 }
 .infoForm:focus{
-    background-color: #111825;
+    background-color: rgba(12, 19, 31, 1);
     text-decoration: none !important;
     /* border: none ; */
     outline: none !important;

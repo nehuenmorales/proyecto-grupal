@@ -83,7 +83,7 @@ export default function FieldDetail({ id }) {
         pricePerTurn: '',
         durationPerTurn: '',
         start: '',
-        end: '', 
+        end: '',
         fieldId: field.id
     })
 
@@ -126,10 +126,10 @@ export default function FieldDetail({ id }) {
     const onClick = (ev) => {
         ev.preventDefault()
         setChange({ ...change, [ev.target.name]: ev.target.value })
-        if(ev.target.name === 'start' || ev.target.name === 'end' || ev.target.name === 'durationPerTurn' ){
+        if (ev.target.name === 'start' || ev.target.name === 'end' || ev.target.name === 'durationPerTurn') {
             setTime({ ...time, [ev.target.name]: convertirTime(ev.target.value) })
         } else {
-            setTime({...time, [ev.target.name]: ev.target.value})
+            setTime({ ...time, [ev.target.name]: ev.target.value })
         }
 
         let errores = validator({ ...change, [ev.target.name]: ev.target.value });
@@ -140,7 +140,7 @@ export default function FieldDetail({ id }) {
     const handleSubmit = async (ev) => {
         ev.preventDefault()
         dispatch(modifyField(time, id))
-        
+
         const res = await axios.delete(`https://falta-uno-1.herokuapp.com/owner/deleteGames/${field.id}`)
         console.log(res.data)
 
@@ -179,7 +179,12 @@ export default function FieldDetail({ id }) {
                         <p className="subTitulos">Precio por turno</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
                     </div>
-                    <input className="infoForm" name='pricePerTurn' onChange={ev => onClick(ev)} value={`${change.pricePerTurn}`} />
+                    <div style={{ display: 'flex', flexDirection: 'row' }}>
+
+                        <img src='https://cdn-icons-png.flaticon.com/512/74/74742.png' style={{ marginLeft: '80px', height: '22px', filter: 'invert(100%)', marginTop: '6px' }}></img>
+
+                        <input className="infoForm" name='pricePerTurn' onChange={ev => onClick(ev)} value={`${change.pricePerTurn}`} style={{ marginLeft: '0px' }} />
+                    </div>
                     {errors.pricePerTurn ? <div className="errores" style={{ marginLeft: '80px' }}>{errors.pricePerTurn}</div> : null}
 
                     <div className='contenedorLapiz'>
@@ -208,7 +213,7 @@ export default function FieldDetail({ id }) {
                     </div>
                     <input className="infoForm" name='sport' /*onChange={ev => onClick(ev)} */ value={field.sport ? field.sport.charAt(0).toUpperCase() + field.sport.slice(1) : null} />
 
-                    <div className='contenedorBoton'>
+                    <div className='contenedorBoton' >
                         {
                             !errors.description &&
                                 !errors.pricePerTurn &&
@@ -216,30 +221,30 @@ export default function FieldDetail({ id }) {
                                 !errors.start &&
                                 !errors.end &&
                                 change.description !== field.description || change.pricePerTurn !== field.pricePerTurn || field.durationPerTurn !== time.durationPerTurn.toString() || field.start !== time.start.toString() || field.end !== time.end.toString() ?
-                                <button type="submit" className='botonActivo'
-                                >Guardar cambios</button> : <button type="submit" className='btnGris' disabled >Guardar cambios</button>
+                                <button type="submit" className='botonActivo' style={{ marginTop: '15px', marginBottom: '20px' }}
+                                >Guardar cambios</button> : <button type="submit" className='btnGris' disabled style={{ marginTop: '15px', marginBottom: '20px' }}>Guardar cambios</button>
                         }
                     </div>
                 </form>
             </div>
             <div style={{ backgroundImage: `url(${field.image})` }} className='derecha'>
-                <div className='div-rating' style={{ backgroundColor: `rgba(17, 24, 37, 1)`, padding: '7px 15px 3px', height: '50px', width: '150px' }}>
-                    <div className="complex-rating" /*style={{ fontSize: `1.3em`, textShadow: '1px 1px 3px black;' }}*/> {
+                <div className='div-rating' style={{ backgroundColor: `rgba(17, 24, 37, 1)`, padding: '7px 30px 3px', height: '50px', width: '230px' }}>
+                    <div className="complex-rating"  /*style={{ fontSize: `1.3em`, textShadow: '1px 1px 3px black;' }}*/> {
                         field.available === 'true' ?
-                            <div>
-                                <p style={{ fontSize: `1.3em`, textShadow: '1px 1px 3px black;' }}>Disponible</p>
+                            <div style={{ display: 'flex', flexDirection: 'row' }}>
+                                <p style={{ fontSize: `1.3em`, textShadow: '1px 1px 3px black;', paddingRight: '5px' }}>Disponible</p>
                                 <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="" style={{ height: `28px` }} />
                             </div>
                             :
-                            <div>
-                                <p style={{ fontSize: `1.3em`, textShadow: '1px 1px 3px black;' }}>Actualmente no disponible</p>
+                            <div style={{ display: 'flex', flexDirection: 'row' }}>
+                                <p style={{ fontSize: `1.3em`, textShadow: '1px 1px 3px black;', paddingRight: '5px' }}>No disponible</p>
                                 <img src="https://cdn-icons.flaticon.com/png/512/1008/premium/1008927.png?token=exp=1659572730~hmac=56f58e38a6705cd818eb3ada627fc3df" alt="" style={{ height: `28px` }} />
                             </div>
 
                     }</div>
                 </div>
             </div>
-      <ModalsFieldsGames showModal={showModal} setShowModal={setShowModal} setNewField={setChange} sport={field.sport} newField={change} convertirTime={convertirTime} fieldId={field.id} type={field.capacity}/>
+            <ModalsFieldsGames showModal={showModal} setShowModal={setShowModal} setNewField={setChange} sport={field.sport} newField={change} convertirTime={convertirTime} fieldId={field.id} type={field.capacity} />
         </div>
 
     )
