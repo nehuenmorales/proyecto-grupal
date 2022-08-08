@@ -37,10 +37,13 @@ import BookedGames from "./components/DetailOwner/BookedGames/BookedGames.jsx";
 import { TeamsContainer } from "./components/Teams/TeamContainer";
 import FieldDetail from "./components/DetailOwner/Fields/FieldDetail"
 import SupplieDetail from "./components/DetailOwner/Supplies/SuppliesDetails" 
+import PlayersAdmin from "./pages/HomeAdmin/PlayersAdmin";
 import HomeAdmin from "./pages/HomeAdmin/HomeAdmin";
 import GamesByUser from "./components/Games/GamesByUser/GamesByUser.jsx"
+import CreateSponsors from "./components/sponsors/CreateSponsors";
 
 import DetailComplex from "./pages/DetailComplex/DetailComplex";
+import CreateProduct from "./components/sponsors/CreateProductsSponsors"
 
 function App() {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -92,6 +95,9 @@ function App() {
       )} */}
       {/* leo rompiste todo con esta ruta que esta abajito, AREGLALO */}
       <Route exact path="/sport/:sport" component={AllGames} />
+      <Route exact path="/admin/players" component={PlayersAdmin} />
+      <Route exact path="/admin/sponsors" component={CreateSponsors} />
+      <Route exact path="/admin/productos" component={CreateProduct} />
       <Route exact path="/success/:id" component={Success} />
       <Route exact path="/fields/:sport" component={DetailFields} />
       <Route exact path="/sport/:sport/players" component={GetPlayers} />

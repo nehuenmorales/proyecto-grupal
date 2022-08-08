@@ -9,16 +9,23 @@ module.exports = (sequelize) => {
       name: {
         type: DataTypes.STRING,
         allowNull: false,
-        primaryKey: true,
       },
       link: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      description: {
+      cuit: {
         type: DataTypes.STRING,
         allowNull: true,
       },
+      logo:{
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      address:{
+        type: DataTypes.STRING,
+        allowNull: true,
+      }
     },
     {
       timestamps: false,

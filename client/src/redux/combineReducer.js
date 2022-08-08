@@ -18,6 +18,7 @@ import supplieDetailReducer from './OwnerSupplies/SuppliesDetailOwner/SuppliesDe
 import modifySupplieReducer from './OwnerSupplies/ModifySupplie/modifySupplieReducer'
 import modifyFieldReducer from './OwnerFields/ModifyField/modifyFieldReducer'
 import gamesOwnerReducer from './OwnerGames/ownerGamesReducer'
+import SponsorsReducer from "./Sponsors/SponsorsReducer"
 
 export const reducers = combineReducers({
     gamesOwnerReducer: gamesOwnerReducer,
@@ -39,7 +40,7 @@ export const reducers = combineReducers({
     paymentsReducer: paymentsReducer,
     getTournamentReducer: getTournamentReducer,
     teamsReducer:teamsReducer,
-
+    SponsorsReducer:SponsorsReducer,
     
 })
 

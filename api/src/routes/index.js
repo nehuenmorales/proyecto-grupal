@@ -10,6 +10,7 @@ const supplies= require("./supplies.js")
 const tournament = require("./tournament.js")
 const team = require("./team.js")
 const sendGrid = require("./sendGrid")
+const sponsors = require("./sponsor")
 
 
 const router = Router();
@@ -22,7 +23,7 @@ router.use('/fields',fields);
 router.use('/complex',complex);
 router.use('/supplies',supplies)
 router.use('/sendGrid', sendGrid)
-
+router.use("./sponsor", sponsors)
 router.use("/tournament",tournament)
 router.use("/team",team)
 module.exports = router;
