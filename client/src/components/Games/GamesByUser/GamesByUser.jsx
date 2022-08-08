@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import VerticalNavbar from '../../VerticalNavbar/VerticalNavbar';
 import { gamesByUser } from '../../../redux/NuevoGames/gamesAction';
-import { Flex } from '@chakra-ui/react';
+import { Button, Flex } from '@chakra-ui/react';
 import Table from 'react-bootstrap/Table';
 import { useAuth0 } from '@auth0/auth0-react';
 
@@ -17,6 +17,7 @@ export default function GamesByUser(){
     // console.log(email, "el el mail")
     console.log(user?.email)
     console.log(allGames, "estos son sus games")
+    const [showModal, setShowModal] = useState(false);
  
     useEffect(() => {
         dispatch(gamesByUser(user?.email))
@@ -33,6 +34,8 @@ export default function GamesByUser(){
                 <th style={{color:'white'}}>Final</th>
                 <th style={{color:'white'}}>Privacidad</th>
                 <th style={{color:'white'}}>Resultado</th>
+                <th style={{color:'white'}}></th>
+
             </tr>
         </thead>
         <tbody>
@@ -45,11 +48,18 @@ export default function GamesByUser(){
                     <td style={{color:'white'}}>{elem.end}hs</td>
                     <td style={{color:'white'}}>{elem.privacy}</td>
                     <td style={{color:'white'}}>{elem.result === null ? "Sin Resultado" : elem.result}</td>
+                    <td><Button onClick={setShowModal(true)}>Califica tu experiencia</Button></td>
+
                 </tr>
             )
         })}
         </tbody>
         </Table>
+            <ModalRating
+                showModal={showModal}
+                setShowModal={setShowModal}
+                complex={complexid}
+            />
         </Flex>
     )
 }

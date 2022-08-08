@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
   getPlayersProfile,
   putPlayer,
@@ -7,10 +8,29 @@ import {
 import s from "./profilePage.module.css";
 import axios from "axios";
 // import { Autocomplete } from "@react-google-maps/api";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Button,
+  useDisclosure,
+  Text
+} from '@chakra-ui/react'
+import { useAuth0 } from '@auth0/auth0-react';
+import { useToast } from '@chakra-ui/react'
+
 
 export default function ProfileData({ email, user }) {
   const mail = email;
   const dispatch = useDispatch();
+
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const { logout } = useAuth0();
+  const toast = useToast()
 
   useEffect(() => {
     dispatch(getPlayersProfile(mail));
@@ -134,6 +154,22 @@ export default function ProfileData({ email, user }) {
     setCityInput([]);
     setClick(true);
   };
+
+  const handleDelete = async () => {
+    console.log(player?.id)
+    const del = await axios.post(`https://falta-uno-1.herokuapp.com/player/delete/${player?.id}`)
+    console.log(del) 
+    toast({
+      title: 'Tu cuenta ha sido eliminada',
+      status: 'error',
+      duration: 9000,
+      isClosable: true,
+    })
+    setTimeout(del, 2000)
+    if(del) logout({ returnTo: window.location.origin })
+  }
+
+
   function autocomplete(ev) {
     const value = ev.target.value;
     const results = cities.filter((city) => {
@@ -409,6 +445,32 @@ export default function ProfileData({ email, user }) {
                 </button>
                 </div>
               ) : null}
+              {/* // aca voy a romper todo */}
+              <Button onClick={onOpen}>Eliminar Cuenta</Button>
+
+              <Modal isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
+                <ModalContent>
+                  <ModalHeader>Eliminar mi Usuario</ModalHeader>
+                  <ModalCloseButton />
+                  <ModalBody>
+                    <Text noOfLines={[1, 2, 3]}>
+                      La eliminacion de la cuenta es definitiva,
+                      tu perfil, tus datos y tu historial se eliminaran definitivamente.
+                      ¿Quieres eliminar tu usuario?
+                    </Text>
+                  </ModalBody>
+
+                  <ModalFooter>
+                    <Button colorScheme='blue' mr={3} onClick={onClose}>
+                      Volver
+                    </Button>
+                    <Button variant='ghost' onClick={e => handleDelete(e)}>Eliminar Cuenta</Button>
+                  </ModalFooter>
+                </ModalContent>
+              </Modal>
+              {/* aca les rompi todo */}
+
             </div>
           </div>
         </div>

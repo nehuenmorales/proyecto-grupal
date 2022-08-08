@@ -44,6 +44,7 @@ import CreateSponsors from "./components/sponsors/CreateSponsors";
 
 import DetailComplex from "./pages/DetailComplex/DetailComplex";
 import CreateProduct from "./components/sponsors/CreateProductsSponsors"
+import StarRating from "./components/Rating/starRating";
 
 function App() {
   const { user, isAuthenticated, isLoading } = useAuth0();

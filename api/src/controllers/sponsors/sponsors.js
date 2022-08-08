@@ -10,6 +10,20 @@ async function getAllSponsors(req, res, next) {
     res.status(400).json({ msg: "Fallo la obtencion de los sponsors" ,e});
   }
 }
+async function getAllProducts(req, res, next) {
+  try {
+    const sport=req.params
+    const products = await Products.findAll({
+      where: {
+          sport: sport
+      }
+  })
+    res.status(200).json(products);
+  } catch (e) {
+    console.log(e)
+    res.status(400).json({ msg: "Fallo la obtencion de los productos" ,e});
+  }
+}
 
 async function createSponsor(req, res, next) {
   const {
@@ -68,4 +82,5 @@ module.exports = {
   createSponsor,
   getAllSponsors,
   createProduct,
+  getAllProducts,
 };

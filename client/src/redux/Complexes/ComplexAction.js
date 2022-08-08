@@ -3,6 +3,7 @@ import axios from "axios";
 export const GET_COMPLEX = "GET_COMPLEX"
 export const GET_SEARCH_COMPLEX = "GET_SEARCH_COMPLEX"
 export const ORDER_COMPLEX = "ORDER_COMPLEX"
+export const RATING_COMPLEX = "RATING_COMPLEX"
 
  
  export function getComplex() {
@@ -40,4 +41,13 @@ export const ORDER_COMPLEX = "ORDER_COMPLEX"
      type: ORDER_COMPLEX,
      payload: order
 };
+}
+
+export function ratingComplex(id,rating) {
+  return async function (dispatch) {
+    const {data} = await axios.put(
+      `https://falta-uno-1.herokuapp.com/rating/${id}/${rating}`
+    );
+    dispatch({type: RATING_COMPLEX, payload: data});
+  };
 }
