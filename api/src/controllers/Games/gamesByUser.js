@@ -12,9 +12,9 @@ async function gamesByUser(req, res, next) {
         //     },
         //     include: [{model: Games}]
         // })
-        const gamesUser= await conn.query(`(SELECT p.name, g.*, f.name, x.id
+        const gamesUser= await conn.query(`(SELECT p.name,p.email,p.id,f.id, g.*, f.name, x.id
             FROM "players" p 
-            JOIN player_games pg ON pg."playerId" = p.id
+            JOIN player_games pg ON p.id= pg."playerId"
             JOIN games g ON pg."gameId" = g.id 
             JOIN fields f ON g."fieldId"= f.id
             JOIN complexes x ON f."complexId" = x.id
