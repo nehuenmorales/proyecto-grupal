@@ -43,7 +43,7 @@ console.log("soy el estado games en allgames", games)
                         <SearchBar state={gamesSearch} filtro="turnos" setFilter={setPage} sport={sport} />
 
                         <Tabs match={match} />
-                        <ProductsCarousel/>    
+                        <ProductsCarousel sport={sport}/>    
                         <p style={{
                             "color": "white",
                             "padding": "0 5em",

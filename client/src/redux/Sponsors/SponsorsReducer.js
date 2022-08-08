@@ -1,9 +1,10 @@
-import { CREATE_SPONSOR, GET_ALL_SPONSORS,CREATE_PRODUCT} from "./SponsorsActions";
+import { CREATE_SPONSOR, GET_ALL_SPONSORS,CREATE_PRODUCT, GET_ALL_PRODUCTS} from "./SponsorsActions";
 
 const initialState ={
     Sponsor:[],
     Product:[],
     AllSponsors:[],
+    AllProducts:[],
 }
 
 const SponsorsReducer = (state = initialState , action)=>{
@@ -22,6 +23,11 @@ const SponsorsReducer = (state = initialState , action)=>{
             return{
                 ...state,
                 AllSponsors:action.payload,
+            }
+        case GET_ALL_PRODUCTS:
+            return{
+                ...state,
+                AllProducts:action.payload,
             }
             
         default:

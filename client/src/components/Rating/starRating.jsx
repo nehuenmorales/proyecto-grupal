@@ -1,11 +1,18 @@
 import React, {useState} from "react";
 import {FaStar} from "react-icons/fa"
 import "./starRating.css"
+import {ratingComplex} from "../../redux/Complexes/ComplexAction"
 
-export default function StarRating(){
+export default function StarRating({complex}){
     
     const[rating,setRating]=useState(null)
     const[hover,setHover]=useState(null)
+
+    const Submit=(e)=>{
+        setRating(e.target.value)
+        ratingComplex(complex,rating)
+    }
+    
     return(
         <div>
             {
@@ -17,7 +24,7 @@ export default function StarRating(){
                                 type="radio"
                                 name="rating"
                                 value={ratingValue}
-                                onClick={()=>setRating(ratingValue)}    
+                                onClick={(e)=>Submit(e)}    
                             />
                             <FaStar
                             className="star"
