@@ -11,6 +11,7 @@ async function sendInvitation(req, res, next) {
         text,
         html,
     }
+    console.log("soy el mensaje", msg)
         await sgMail.send(msg)
         res.status(201).send(msg) 
     } catch(error) {

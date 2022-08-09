@@ -9,7 +9,7 @@ export const ORDER_BY_ELO = "ORDER_BY_ELO"
  
  export function getPlayers() {
     return dispatch =>{
-      axios.get(`https://falta-uno-1.herokuapp.com/player/getPlayers`)
+      axios.get(`/player/getPlayers`)
         .then(res => {
           dispatch({
             type: GET_PLAYERS,

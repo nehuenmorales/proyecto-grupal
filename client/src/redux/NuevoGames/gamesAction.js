@@ -12,7 +12,7 @@ export const GAMES_USER = "GAMES_USER"
 export function getGameSport(sport) {
   return (dispatch) => {
     axios
-      .get(`https://falta-uno-1.herokuapp.com/games/${sport}`)
+      .get(`/games/${sport}`)
       .then((res) => {
         console.log("entro allgames", res.data);
 
@@ -28,7 +28,7 @@ export function getGameSport(sport) {
 export function getSearchGames(input, sport) {
   return (dispatch) => {
     axios
-      .get(`https://falta-uno-1.herokuapp.com/games/${sport}/searchGame?name=${input}`)
+      .get(`/games/${sport}/searchGame?name=${input}`)
       .then((res) => {
         console.log("entro search", res.data);
         dispatch({
@@ -58,7 +58,7 @@ export function gamesOrderByPrice(order) {
 export function getGamesById(id) {
   return (dispatch) => {
     axios
-      .get(`https://falta-uno-1.herokuapp.com/games/detail/${id}`)
+      .get(`/games/detail/${id}`)
       .then((res) => {
         dispatch({
           type: GET_GAMES_BY_ID,
@@ -76,7 +76,7 @@ export function updateGame(id,body) {
   console.log("update body",body)
     
       return dispatch =>{
-        axios.put(`https://falta-uno-1.herokuapp.com/games/updateGame`,body)
+        axios.put(`/games/updateGame`,body)
           .then(res => {
             dispatch({
               type: UPDATE_GAME,
@@ -93,7 +93,7 @@ export function updateGame(id,body) {
 export const createGame =(body)=>{
     console.log("llega a las actions",body)
     return async function (dispatch){
-        return axios.post("https://falta-uno-1.herokuapp.com/owner/createGame",body)
+        return axios.post("/owner/createGame",body)
         .then((res)=> {
             console.log("llega al reducer",res)
             return dispatch({type:CREATE_GAME,payload:res})})
@@ -103,7 +103,7 @@ export const createGame =(body)=>{
 export const sendInvitation =(body)=>{
   console.log("llega la invitacion",body)
   return async function (dispatch){
-      return axios.post("https://falta-uno-1.herokuapp.com/sendGrid/invitation",body)
+      return axios.post("/sendGrid/invitation",body)
       .then((res)=> {
           console.log("llega al reducer la invitacion",res)
           return dispatch({type:SEND_INVITATION,payload:res})})
@@ -112,7 +112,7 @@ export const sendInvitation =(body)=>{
 export const gamesByUser =(email)=>{
   console.log("llega el id",email)
   return async function (dispatch){
-      return axios.get(`https://falta-uno-1.herokuapp.com/games/misEventos/all/${email}`)
+      return axios.get(`/games/misEventos/all/${email}`)
       .then((res)=> {
           console.log("llega al reducer la invitacion",res)
           return dispatch({type:GAMES_USER ,payload:res})})

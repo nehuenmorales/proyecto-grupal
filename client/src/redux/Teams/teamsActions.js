@@ -2,11 +2,25 @@ import axios from "axios";
 
 export const CREATE_TEAM = "CREATE_TEAM";
 export const GET_TEAM_USER = "GET_TEAM_USER"
+export const GET_TEAM ="GET_TEAM"
+
+
+export function getTeam(id){
+  return (dispatch)=>{
+    axios.get(`/team/getTeam/${id}`)
+    .then((res)=>{
+      dispatch({
+        type: GET_TEAM,
+        payload: res.data
+      })
+    })
+  }
+}
 
 export function createTeam(input) {
   return (dispatch) => {
     axios
-      .post(`https://falta-uno-1.herokuapp.com/team/createTeam`, input)
+      .post(`/team/createTeam`, input)
       .then((res) => {
         dispatch({
           type: CREATE_TEAM,
@@ -22,7 +36,7 @@ export function getTeamsUser(email) {
   console.log("hola entro a la action")
 
   return (dispatch) =>{
-    axios.get(`https://falta-uno-1.herokuapp.com/team/getTeamUser/${email}`)
+    axios.get(`/team/getTeamUser/${email}`)
     .then(res=> {
       
       console.log("hola entro al then")

@@ -4,7 +4,7 @@ export const MODIFY_SUPPLIE = "MODIFY_SUPPLIE"
  
  export function modifySupplie(body, id) {
     return dispatch =>{
-      axios.put(`https://falta-uno-1.herokuapp.com/owner/modifySupplies/${id}`, body)
+      axios.put(`/owner/modifySupplies/${id}`, body)
         .then(res => {
           console.log('soy modify supplies action', res.data)
           dispatch({
