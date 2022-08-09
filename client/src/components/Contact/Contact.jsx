@@ -12,6 +12,12 @@ export default function Contact (){
             })
         }
         return (
+            <Flex>
+              <VerticalNavbarCan />
+            <div>
+                <Link to='/owner/select'>
+                   <Button className={s.volverbtn}>Volver</Button>
+                </Link>
             <div style={{width:"80%",margin:"0 auto", marginTop:"15px"}}>
                 <div style={{width:"50%",backgroundColor:"lightgrey",margin:"0 auto", padding:"10px"}}>
                     <h1>Formulario de Contacto</h1>
@@ -35,6 +41,8 @@ export default function Contact (){
                     </form>
                 </div>
             </div>
+            </div>
+            </Flex>
         )
     
 }
