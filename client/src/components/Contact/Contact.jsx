@@ -2,6 +2,9 @@ import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle";
 import emailjs from 'emailjs-com';
+import VerticalNavBarCan from '../VerticalNavbar/VerticalNavBarCan';
+import Button from "react-bootstrap/esm/Button";
+
 
 export default function Contact (){
     
@@ -13,7 +16,7 @@ export default function Contact (){
         }
         return (
             <Flex>
-              <VerticalNavbarCan />
+              <VerticalNavBarCan />
             <div>
                 <Link to='/owner/select'>
                    <Button className={s.volverbtn}>Volver</Button>
