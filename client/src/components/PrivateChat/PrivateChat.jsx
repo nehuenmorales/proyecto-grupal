@@ -14,7 +14,7 @@ import styles from "./cardUser.module.css";
 import {GrSend} from "react-icons/gr"
 import paperPlane from "../../assets/icons/paper-plane-solid.svg"
 
-const socket = io("http://localhost:3001", { autoConnect: false });
+const socket = io("https://falta-uno-1.herokuapp.com", { autoConnect: false });
 
 
 
