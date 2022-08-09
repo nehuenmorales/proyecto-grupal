@@ -66,7 +66,11 @@ module.exports = (sequelize) => {
     reviews:{
       type:DataTypes.INTEGER,
       allowNull:true,
-      defaultValue:0
+      defaultValue:1
+    },
+    prom:{
+      type: DataTypes.FLOAT,
+      allowNull:true,
     }
   },
   {
