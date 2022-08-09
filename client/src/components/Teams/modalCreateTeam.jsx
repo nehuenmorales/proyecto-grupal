@@ -141,7 +141,7 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
       to: integrantes,
       subject: `${email} te a invitado a ser parte de su equipo`,
       text: "Falta Uno App",
-      html: `<strong>Hola, tienes una invitacion pendiente para unite al equipo ${input.name}. puedes unirte al Equipo siguiendo este link http://localhost:3000/teamInvitation/${id}</strong>`
+      html: `<strong>Hola, tienes una invitacion pendiente para unite al equipo ${input.name}. puedes unirte al Equipo siguiendo este link https://falta-uno-henry.vercel.app/teamInvitation/${id}</strong>`
     }
 
     dispatch(sendInvitation(mensaje))
