@@ -4,7 +4,9 @@ import "bootstrap/dist/js/bootstrap.bundle";
 import emailjs from 'emailjs-com';
 import VerticalNavBarCan from '../VerticalNavbar/VerticalNavBarCan';
 import Button from "react-bootstrap/esm/Button";
-
+import { Link } from "react-router-dom";
+import s from '../Fields/CreateFields/forms.module.css'      
+import { Flex } from "@chakra-ui/react"
 
 export default function Contact (){
     
