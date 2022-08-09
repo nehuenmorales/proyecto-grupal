@@ -43,6 +43,7 @@ export default function BasquetFields() {
     axios.get('https://falta-uno-1.herokuapp.com/owner/getNameComplex')
     .then((res) => {
         setComplexName(res.data)
+        console.log('nombres complejos', res.data)
     })  
 },[])
 
