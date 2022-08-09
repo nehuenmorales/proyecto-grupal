@@ -2,7 +2,6 @@ import React, { useRef } from "react"
 import s from "./privateChat.module.css"
 import { useState } from "react";
 import { useEffect } from "react";
-import { Input } from '@chakra-ui/react'
 
 
 
