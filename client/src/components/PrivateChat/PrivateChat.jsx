@@ -122,8 +122,7 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
   }
 
   function userConnect(username) {
-    console.log("user.name", user.name)
-    const name = user.name
+    const name = user?.name
     socket.auth = { username: username, name: name, image: user.picture };
     socket.connect();
     socket.emit('user connected')
