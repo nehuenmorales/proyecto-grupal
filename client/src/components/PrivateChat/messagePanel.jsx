@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useRef } from "react"
 import s from "./privateChat.module.css"
 import { useState } from "react";
 import { useEffect } from "react";
@@ -11,17 +11,21 @@ export default function MessagePanel({ selectedUser, socket, setSelectedUser }) 
   console.log("soy el selectedUser", selectedUser)
   const [content, setContent] = useState("");
   const [messages, setMessages] = useState([]);
+  const messagesEndRef = useRef(null)
 
 
 
   useEffect(() => {
     console.log("entro a ")
     setMessages(selectedUser.messages)
+    messagesEndRef.current?.scrollIntoView()
   }, [selectedUser.messages.length])
 
   const handleSubmit = (e) => {
     e.preventDefault()
-
+    if(!content){
+      return;
+    }
     socket.emit("private message", {
       content,
       to: selectedUser.userID,
@@ -31,7 +35,7 @@ export default function MessagePanel({ selectedUser, socket, setSelectedUser }) 
       content,
       fromSelf: true,
     });
-
+    
     setSelectedUser({ ...selectedUser })
 
     setContent("")
@@ -45,6 +49,7 @@ export default function MessagePanel({ selectedUser, socket, setSelectedUser }) 
       <h2 className={s.userTitle}>{selectedUser.name}</h2>
       <div></div>
       </div>
+      <div className={s.chat}>
       {messages.length ? messages.map((e) => {
         return e.fromSelf ? <div className={s.derecha}><div className={s.ownMessage}>
           <h6>{e.content}</h6>      
@@ -54,7 +59,8 @@ export default function MessagePanel({ selectedUser, socket, setSelectedUser }) 
         </div>  </div>
       }
       ) : null}
-        
+      <div ref={messagesEndRef} ></div>
+        </div>
         <div className={s.inputchat}>
       <form onSubmit={(e) => handleSubmit(e)} className="bg-zinc-900 p-10">
           <input

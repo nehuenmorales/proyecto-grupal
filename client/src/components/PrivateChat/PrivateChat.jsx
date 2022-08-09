@@ -24,6 +24,7 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
   const [usersConnected, setUsersConnected] = useState([]);
   const [selectedUser, setSelectedUser] = useState("");
   let containerUsersConn;
+  let containerSelectedUser;
 
 
   console.log("users conected", usersConnected)
@@ -32,6 +33,28 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
   socket.onAny((event, ...args) => {
     console.log(event, args);
   });
+
+
+
+  const selectOnClick = (e,user) => {
+    e.preventDefault();
+    let clickedUser = user
+    for (let i = 0; i < usersConnected.length; i++) {
+      let userSearch = usersConnected[i].username 
+      if (clickedUser === userSearch) {
+        usersConnected[i].hasNewMessages=false
+        clickedUser = usersConnected[i]
+        
+        break
+      }
+    }
+    console.log(clickedUser)
+    containerSelectedUser={...clickedUser}
+    setSelectedUser({...clickedUser})
+
+  }
+
+
 
 
   const handleUsers = (users) => {
@@ -70,11 +93,19 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
           fromSelf: false,
         });
 
+        
+        if (user.userID !== selectedUser.userID) {
+          
+          console.log("entro a el if",user)
+          console.log("selected",containerSelectedUser)
 
-        setUsersConnected([...containerUsersConn])
-        if (user !== selectedUser) {
           user.hasNewMessages = true;
+          setUsersConnected([...containerUsersConn])
+  
         } else {
+          console.log("NOOO entro a el if")
+
+          setUsersConnected([...containerUsersConn])
           setSelectedUser({ ...user })
         }
       }
@@ -160,21 +191,7 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
 
 
 
-  const selectOnClick = (e,user) => {
-    e.preventDefault();
-    let clickedUser = user
-    for (let i = 0; i < usersConnected.length; i++) {
-      let userSearch = usersConnected[i].username
-      if (clickedUser === userSearch) {
-        clickedUser = usersConnected[i]
-        break
-      }
-    }
-    console.log(clickedUser)
-    setSelectedUser(clickedUser)
-    console.log("soy el valor en el onClick", e.target.value)
-
-  }
+  
 
 
 
@@ -192,9 +209,14 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
               <img className={styles.avatar} src={user.image} />
             </div>
             <div className={styles.information}>
-              <p>
-                <span>{user.name}</span>
-              </p>
+              <div className={s.namePlusNewMessage}>
+                <div>
+                  <span>{user.name}</span>
+                </div>
+                <div>
+                {user.hasNewMessages?<p className={s.icon}><i class="fa-solid fa-message"></i></p>:null}
+                </div>
+              </div>
             </div>
             <img src={paperPlane} className={s.paperPlane} value={user.username} onClick={(e) => selectOnClick(e,user.username)} alt="imagen"/>
           </Card></div>
@@ -205,9 +227,14 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
                 <img className={styles.avatar} src={user.image} />
               </div>
               <div className={styles.information}>
-                <p>
+              <div className={s.namePlusNewMessage}>
+                <div>
                   <span>{user.name}</span>
-                </p>
+                </div>
+                <div>
+                {user.hasNewMessages?<p className={s.icon}><i class="fa-solid fa-message"></i></p>:null}
+                </div>
+              </div>
               </div>
 
               <img src={paperPlane} className={s.paperPlane} value={user.username} onClick={(e) => selectOnClick(e,user.username)} alt="imagen"/>
