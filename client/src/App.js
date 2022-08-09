@@ -40,6 +40,7 @@ import SupplieDetail from "./components/DetailOwner/Supplies/SuppliesDetails"
 import PlayersAdmin from "./pages/HomeAdmin/PlayersAdmin";
 import HomeAdmin from "./pages/HomeAdmin/HomeAdmin";
 import GamesByUser from "./components/Games/GamesByUser/GamesByUser.jsx"
+import InvitationAcept from "./components/teamInvitation/container"
 import CreateSponsors from "./components/sponsors/CreateSponsors";
 import DetailComplex from "./pages/DetailComplex/DetailComplex";
 import CreateProduct from "./components/sponsors/CreateProductsSponsors"
@@ -120,6 +121,7 @@ function App() {
       <Route exact path="/profile" component={PlayerProfile} />
       <Route exact path="/eventos" component={GamesByUser} />
       <Route exact path="/equipos" component={TeamsContainer} />
+      <Route exact path="/teamInvitation/:id" component={InvitationAcept} />
 
       <Route exact path={"/owner/createSupplie"} component={CreateSupplies} />
       <Route

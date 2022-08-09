@@ -18,7 +18,7 @@ export function getSupplies(id,sport) {
     console.log(id,sport,"get supplies")
     return async function (dispatch) {
         console.log("entra",sport)
-        const {data} = await axios.get(`/supplies/${sport}/${id}`);
+        const {data} = await axios.get(`https://falta-uno-1.herokuapp.com/supplies/${sport}/${id}`);
       dispatch({type: GET_SUPPLIES, payload: data});
     };
   }
