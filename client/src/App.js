@@ -86,7 +86,7 @@ function App() {
        {/* leo rompiste todo con esta ruta que esta abajito, AREGLALO */}
       {/* <Route exact path="/sport/:sport" component={AllGames} />  */}
       <Route exact path="/sport/:sport/gamesIncomplete" component={CarouselGamesInc} />
-      <Route exact path="/sport/:sport/gamesIncomplete/:gameid" component={DetailGamesInc} />
+      <Route exact path="/sport/gamesIncomplete/:gameid" component={DetailGamesInc} />
       <Route exact path="/fields/detail/:id" component={FieldById} />
       <Route exact path="/contactAdmin" component={Contact}/>
       {/* {isLoading ? (

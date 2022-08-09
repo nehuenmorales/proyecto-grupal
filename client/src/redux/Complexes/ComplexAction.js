@@ -44,9 +44,11 @@ export const RATING_COMPLEX = "RATING_COMPLEX"
 }
 
 export function ratingComplex(id,rating) {
+  console.log("entra action rating")
+  console.log(id,rating,"info")
   return async function (dispatch) {
     const {data} = await axios.put(
-      `https://falta-uno-1.herokuapp.com/rating/${id}/${rating}`
+      `https://falta-uno-1.herokuapp.com/complex/rating/${id}/${rating}`
     );
     dispatch({type: RATING_COMPLEX, payload: data});
   };

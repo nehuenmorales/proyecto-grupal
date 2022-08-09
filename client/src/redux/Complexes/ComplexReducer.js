@@ -1,8 +1,9 @@
-import{GET_COMPLEX, GET_SEARCH_COMPLEX,ORDER_COMPLEX} from "./ComplexAction"
+import{GET_COMPLEX, GET_SEARCH_COMPLEX,ORDER_COMPLEX,RATING_COMPLEX} from "./ComplexAction"
 
 const initialState = {
     complex: [],
-    complexSearch:[]
+    complexSearch:[],
+    rating:[],
 }
 
 export default function complexReducer (state = initialState, action){
@@ -12,6 +13,11 @@ export default function complexReducer (state = initialState, action){
                 ...state,
                 complex: action.payload,
                 complexSearch:[]
+            }
+        case RATING_COMPLEX:
+            return {
+                ...state,
+                rating: action.payload,
             }
         case GET_SEARCH_COMPLEX:
             console.log("reducer", action.payload)

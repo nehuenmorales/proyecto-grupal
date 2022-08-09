@@ -12,7 +12,9 @@ export default function StarRating({complex}){
 
     const Submit=(e)=>{
         setRating(e.target.value)
-        ratingComplex(complex,rating)
+        console.log(complex,"soy complex")
+        console.log(rating,"soy el rating")
+        ratingComplex(complex,e.target.value)
         history.push("/eventos")
     }
     
