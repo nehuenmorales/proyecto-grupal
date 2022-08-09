@@ -39,7 +39,7 @@ const GetComplex = ({ match }) => {
 										image={x.image}
 										rating={x.rating}
 										reviews={x.reviews}
-										city={x.city}
+										state={x.state}
 										/>
 									</Box>
 									);
@@ -53,7 +53,8 @@ const GetComplex = ({ match }) => {
 										name={x.name}
 										image={x.image}
 										rating={x.rating}
-										city={x.city}
+										reviews={x.reviews}
+										state={x.state}
 										/>
 									</Box>
 										);
