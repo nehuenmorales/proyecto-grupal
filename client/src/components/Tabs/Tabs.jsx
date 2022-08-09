@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 const Tabs = ({ match }) => {
   return (
     <Nav className={s.contenedor} style={{
-      "padding": "0 5em",
+      "padding": "0 4em",
       "margin": "15px 0 30px 0",
     }} variant="pills" defaultActiveKey="/" >
       <Nav.Item className={s.button} >

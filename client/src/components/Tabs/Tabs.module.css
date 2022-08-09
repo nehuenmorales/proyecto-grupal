@@ -25,5 +25,6 @@
 
 .contenedor{
     background-color: #111825 ;
-    width: 810px;
+    width: 750px;
+    border-radius: 0 25px 25px 0;
 }
