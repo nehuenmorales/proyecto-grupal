@@ -183,7 +183,7 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
 
   const backToHome = (e) => {
     e.preventDefault()
-    window.location.href = "http://localhost:3000";
+    window.location.href = "https://falta-uno-henry.vercel.app";
   }
 
 
