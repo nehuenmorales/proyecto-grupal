@@ -148,7 +148,7 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
 
 
   useEffect(() => {
-    userConnect(user.email)
+    userConnect(user?.email)
   }, [])
 
   useEffect(() => {
