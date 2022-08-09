@@ -153,7 +153,7 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
     e.preventDefault();
     // dispatch(createTeam(input));para el futuro 
     let respuesta;
-    await axios.post(`/team/createTeam`, input)
+    await axios.post(`https://falta-uno-1.herokuapp.com/team/createTeam`, input)
       .then((res) => {
         respuesta = res.data
       })
