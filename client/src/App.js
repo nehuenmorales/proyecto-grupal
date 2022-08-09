@@ -46,6 +46,8 @@ import DetailComplex from "./pages/DetailComplex/DetailComplex";
 import CreateProduct from "./components/sponsors/CreateProductsSponsors"
 import StarRating from "./components/Rating/starRating";
 import Contact from "./components/Contact/Contact";
+import ContainerChat from "./components/PrivateChat/containerChat";
+
 
 function App() {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -108,6 +110,8 @@ function App() {
       <Route exact path="/sport/:sport/complex/:id" component={DetailComplex} />
       <Route exact path={"/owner/createSupplie"} component={CreateSupplies}/>
       <Route exact path={"/games/detail/:id"} component={GameDetail}/>
+      <Route exact path={"/privateChat"} component={ContainerChat}/>
+
       <Route exact path={"/owner/createComplex"} component={CreateComplex}/>
       <Route exact path={"/complexOwner"} component={ComplexList}/>
       <Route exact path={"/fieldOwner"} component={FieldList}/>

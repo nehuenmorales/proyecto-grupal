@@ -31,6 +31,7 @@
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
     "stylis": "^4.1.1",
+    "socket.io-client": "^4.5.1",
     "sweetalert": "^2.1.2",
     "toggle-selection": "^1.0.6",
     "use-places-autocomplete": "^4.0.0",
