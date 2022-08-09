@@ -10,7 +10,7 @@ export const UPDATE_GAME="UPDATE_GAME"
 export function getGameSport(sport) {
   return (dispatch) => {
     axios
-      .get(`/games/${sport}`)
+      .get(`https://falta-uno-1.herokuapp.com/games/${sport}`)
       .then((res) => {
         console.log("entro allgames", res.data);
 
@@ -26,7 +26,7 @@ export function getGameSport(sport) {
 export function getSearchGames(input, sport) {
   return (dispatch) => {
     axios
-      .get(`/games/${sport}/searchGame?name=${input}`)
+      .get(`https://falta-uno-1.herokuapp.com/games/${sport}/searchGame?name=${input}`)
       .then((res) => {
         console.log("entro search", res.data);
         dispatch({
@@ -56,7 +56,7 @@ export function gamesOrderByPrice(order) {
 export function getGamesById(id) {
   return (dispatch) => {
     axios
-      .get(`/games/detail/${id}`)
+      .get(`https://falta-uno-1.herokuapp.com/games/detail/${id}`)
       .then((res) => {
         dispatch({
           type: GET_GAMES_BY_ID,
@@ -74,7 +74,7 @@ export function updateGame(id,body) {
   console.log("update body",body)
     
       return dispatch =>{
-        axios.put(`/games/updateGame`,body)
+        axios.put(`https://falta-uno-1.herokuapp.com/games/updateGame`,body)
           .then(res => {
             dispatch({
               type: UPDATE_GAME,
@@ -91,7 +91,7 @@ export function updateGame(id,body) {
 export const createGame =(body)=>{
     console.log("llega a las actions",body)
     return async function (dispatch){
-        return axios.post("/owner/createGame",body)
+        return axios.post("https://falta-uno-1.herokuapp.com/owner/createGame",body)
         .then((res)=> {
             console.log("llega al reducer",res)
             return dispatch({type:CREATE_GAME,payload:res})})

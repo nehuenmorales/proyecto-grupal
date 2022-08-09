@@ -9,7 +9,7 @@ export const ORDER_BY_ELO = "ORDER_BY_ELO"
  
  export function getPlayers() {
     return dispatch =>{
-      axios.get(`/player/getPlayers`)
+      axios.get(`https://falta-uno-1.herokuapp.com/player/getPlayers`)
         .then(res => {
           dispatch({
             type: GET_PLAYERS,
@@ -26,7 +26,7 @@ export const ORDER_BY_ELO = "ORDER_BY_ELO"
    export function getSearchPlayer(input,sport) {
     console.log("input",input)
     return dispatch =>{
-      axios.get(`/player/getSearchPlayer?name=${input}`)
+      axios.get(`https://falta-uno-1.herokuapp.com/player/getSearchPlayer?name=${input}`)
         .then(res => {
           console.log("informacion que trae del reducer",res.data)
           dispatch({
