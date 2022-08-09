@@ -23,24 +23,29 @@ export default function Contact (){
     const validador = (inputs) => {
         let validations = {};
         const nameExpresion = /[0-9/'0-9'/,*+._&=():;%$#!|-]/gi;
-        const emailExpresion = /^(([^<>()[]\.,;:\s@"]+(.[^<>()[]\.,;:\s@"]+)*)|(".+"))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;
+        const emailExpresion = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         if(!inputs.nombre){
             validations.nombre = 'Debe ingresar su nombre'
         } else if (nameExpresion.test(inputs.nombre)){
             validations.nombre = 'Ingrese solo letras'
         } else if (!inputs.email){
             validations.email = 'Debe ingresar su email'
-        }else if (emailExpresion.test(inputs.email)){
-            validations.email = 'Ingrese solo letras'
-        } else if (!inputs.mensaje){
-            validations.mensaje = 'Debe ingresar su email'
+        }
+        else if (!emailExpresion.test(inputs.email)){
+            validations.email = 'Ingrese un email válido'
+        } 
+        else if (!inputs.mensaje){
+            validations.mensaje = 'Debe ingresar un mensaje'
         }
         return validations
     }
 
     const handleOnChange = (e)=> {
-        setInput({...input, [e.target.name]: e.target.value})
-        const errores=  validador({...input, [e.target.name]: e.target.value})
+        setInput({ 
+            ...input, 
+            [e.target.name]: e.target.value
+        })
+         const errores=  validador({...input, [e.target.name]: e.target.value})
         setErrors(errores)
     }
     
@@ -67,18 +72,18 @@ export default function Contact (){
                             <div className="contenedorInpputss">
                                 <label className='tituloInput'><b>Nombre</b></label>
                                 <input type="text" onChange={e => handleOnChange(e)} className="formEmail" id="nombre" name="nombre" value={input.nombre}/>
-                                {errors.nombre ? <p style={{color: 'red'}}>{errors.nombre}</p> : null}
+                                {errors.nombre ? <p style={{color: 'red', marginBottom: '10px'}}>{errors.nombre}</p> : null}
                             </div>
                             <div className="contenedorInpputss">
                                 <label className='tituloInput'><b>Email</b></label>
-                                <input type="text" className="formEmail" id="email" name="email" value={input.email}/>
-                                {errors.email ? <p style={{color: 'red'}}>{errors.email}</p> : null}
+                                <input type="text" onChange={e => handleOnChange(e)} className="formEmail" id="email" name="email" value={input.email}/>
+                                {errors.email ? <p style={{color: 'red', marginBottom: '10px'}}>{errors.email}</p> : null}
                             </div>
                         </div>
                         <div className="contenedorInpputss">
                             <label className='tituloInput'><b>Mensaje</b></label>
-                            <textarea type="text" className="formEmail" id="mensaje" name="mensaje" value={input.mensaje}></textarea>
-                            {errors.mensaje ? <p style={{color: 'red'}}>{errors.mensaje}</p> : null}
+                            <textarea type="text" onChange={e => handleOnChange(e)} className="formEmail" id="mensaje" name="mensaje" value={input.mensaje}></textarea>
+                            {errors.mensaje ? <p style={{color: 'red', marginBottom: '10px'}}>{errors.mensaje}</p> : null}
                         </div>
                         <div className='ContenedorBoton'>
                             { !errors.nombre && !errors.email && !errors.mensaje ?
