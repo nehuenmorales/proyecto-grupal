@@ -299,7 +299,7 @@ export default function CreateComplex() {
                         </div>
                         {/* IMAGEN DE LA CANCHA */}
                         <div className='divInputsImage' style={{ display: 'flex', flexDirection: 'column' }}>
-                            <div>
+                            <div style={{ display: 'flex', flexDirection: 'column'}}>
                                 <h5 style={{ marginBottom: '10px', fontSize: '1.2em' }}>Imagen del complejo</h5>
                                 <input type="file" className="inputImage" onChange={(e) => upload(e.target.files[0])}></input>
                                 {loading ? <span className='loader' style={{ marginTop: '7px' }}></span> : null}
