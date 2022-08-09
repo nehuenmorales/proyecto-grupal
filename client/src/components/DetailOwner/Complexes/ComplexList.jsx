@@ -14,7 +14,7 @@ export default function ComplexList() {
     console.log(complex)
 
     useEffect(() => {
-        axios.get(`/owner/getComplexByOwner/${owner.id}`)
+        axios.get(`https://falta-uno-1.herokuapp.com/owner/getComplexByOwner/${owner.id}`)
             .then(res => {
                 setComplex(res.data)})
     }, [])
