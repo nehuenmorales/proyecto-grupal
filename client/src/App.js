@@ -41,10 +41,10 @@ import PlayersAdmin from "./pages/HomeAdmin/PlayersAdmin";
 import HomeAdmin from "./pages/HomeAdmin/HomeAdmin";
 import GamesByUser from "./components/Games/GamesByUser/GamesByUser.jsx"
 import CreateSponsors from "./components/sponsors/CreateSponsors";
-
 import DetailComplex from "./pages/DetailComplex/DetailComplex";
 import CreateProduct from "./components/sponsors/CreateProductsSponsors"
 import StarRating from "./components/Rating/starRating";
+import Contact from "./components/Contact/Contact";
 
 function App() {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -71,12 +71,12 @@ function App() {
           </Center>
           
       : isAuthenticated
-      ? user.email == 'maguiherediavaiarini@gmail.com' ?   
+      ? user.email == 'faltauno.henry@gmail.com' ?   
       <Route exact path={'/'} component={HomeAdmin} /> 
       : user['https://example.com/rol'] === 'owner' 
-      ?
+      ? 
       <Route exact path="/" component={HomeOwner} /> 
-      :
+      : 
       <Route exact path="/" component={Home} />
       : 
       <Route exact path="/" component={LandingPage} />}
@@ -85,6 +85,7 @@ function App() {
       <Route exact path="/sport/:sport/gamesIncomplete" component={CarouselGamesInc} />
       <Route exact path="/sport/:sport/gamesIncomplete/:gameid" component={DetailGamesInc} />
       <Route exact path="/fields/detail/:id" component={FieldById} />
+      <Route exact path="/contactAdmin" component={Contact}/>
       {/* {isLoading ? (
         <Spinner animation="border" variant="light" role="status">
           <span className="visually-hidden">Loading...</span>

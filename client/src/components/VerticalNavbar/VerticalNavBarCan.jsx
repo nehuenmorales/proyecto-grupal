@@ -17,7 +17,8 @@ import{
   FiLogOut,
 }from "react-icons/fi"
 import{
-    TbSoccerField
+    TbSoccerField,
+    TbAlertCircle
 }from "react-icons/tb"
 import{
     HiOutlineOfficeBuilding
@@ -84,6 +85,7 @@ export default function VerticalNavBarCan(){
         {match.path==="/fieldOwner"?<NavItem size={size} icon={HiOutlineOfficeBuilding} title="Crear Complejo" link="/owner/createComplex" active />:<NavItem size={size} icon={HiOutlineOfficeBuilding} title="Crear Complejo" link="/owner/createComplex"/>}
         {match.path==="/complexOwner"?<NavItem size={size} icon={TbSoccerField} title="Crear Canchas" link="/owner/select" active/>:<NavItem size={size} icon={TbSoccerField} title="Crear Canchas" link="/owner/select"/>}
         {match.path==="/suppliesOwner"?<NavItem size={size} icon={MdSportsTennis} title="Crear Elemento" link="/owner/createSupplie" active/>:<NavItem size={size} icon={MdSportsTennis} title="Crear Elemento" link="/owner/createSupplie"/>}
+        {match.path==="/contactAdmin"?<NavItem size={size} icon={TbAlertCircle} title="Contactar Administrador" link="/contactAdmin" active/>:<NavItem size={size} icon={TbAlertCircle} title="Contactar Administrador" link="/contactAdmin"/>}
         {match.path==="/profile"?<NavItem size={size} icon={FiUser} title="Mi Perfil" link="/profile" active/>:<NavItem size={size} icon={FiUser} title="Mi Perfil" link="/profile"/>}
 
 
