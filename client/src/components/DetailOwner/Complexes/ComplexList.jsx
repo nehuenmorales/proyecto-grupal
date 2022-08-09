@@ -50,7 +50,7 @@ export default function ComplexList() {
                                     <p className="complex-rating"> {e.rating}</p>
                                 </div>
                                 <div style={{width: '100%', display: 'flex', flexDirection:'row', justifyContent:'flex-end'}}>
-                                    {e.sports.map(sport => {
+                                    {e.sports?.map(sport => {
                                         if (sport === 'futbol') {
                                             return (
                                                 <img src="https://cdn-icons-png.flaticon.com/512/3231/3231063.png" alt="" style={{ height: '25px',  filter: 'invert(100%)'  }} className="sport-icon" />
