@@ -7,6 +7,7 @@ import Button from "react-bootstrap/esm/Button";
 import { Link } from "react-router-dom";
 import s from '../Fields/CreateFields/forms.module.css'      
 import { Flex } from "@chakra-ui/react"
+import './Contact.css'
 
 export default function Contact (){
     
@@ -19,34 +20,37 @@ export default function Contact (){
         return (
             <Flex>
               <VerticalNavBarCan />
-            <div>
+              <>
                 <Link to='/owner/select'>
                    <Button className={s.volverbtn}>Volver</Button>
                 </Link>
-            <div style={{width:"80%",margin:"0 auto", marginTop:"15px"}}>
-                <div style={{width:"50%",backgroundColor:"lightgrey",margin:"0 auto", padding:"10px"}}>
-                    <h1>Formulario de Contacto</h1>
-                    <hr/>
+            <div className='emailContainer'>
+                <div className='cajitaEmail'>
+                    <div className='cajitaTitulo'>
+                    <h1>Formulario de Contacto con el Admin</h1>
+                    </div>
                     <form onSubmit={enviarEmail}>
                         <div className="form-row">
-                            <div className="form-group col-md-6">
-                                <label><b>Nombre</b></label>
-                                <input type="text" className="form-control" id="nombre" name="nombre"/>
+                            <div className="contenedorInpputss">
+                                <label className='tituloInput'><b>Nombre</b></label>
+                                <input type="text" className="formEmail" id="nombre" name="nombre"/>
                             </div>
-                            <div className="form-group col-md-6">
-                                <label><b>Email</b></label>
-                                <input type="text" className="form-control" id="email" name="email"/>
+                            <div className="contenedorInpputss">
+                                <label className='tituloInput'><b>Email</b></label>
+                                <input type="text" className="formEmail" id="email" name="email"/>
                             </div>
                         </div>
-                        <div className="form-group">
-                            <label><b>Mensaje</b></label>
-                            <textarea type="text" className="form-control" id="mensaje" name="mensaje"></textarea>
+                        <div className="contenedorInpputss">
+                            <label className='tituloInput'><b>Mensaje</b></label>
+                            <textarea type="text" className="formEmail" id="mensaje" name="mensaje"></textarea>
                         </div>
-                        <button type="submit" className="btn btn-primary" style={{width:"50%", margin:"0 auto",marginTop:"20px"}}>Enviar Correo</button>
+                        <div className='ContenedorBoton'>
+                        <button type="submit" className="btn btn-primary" style={{backgroundColor:'rgba(0, 184, 63, 1)',border:'none', width:"50%", margin:"0 auto",marginTop:"20px"}}>Enviar Correo</button>
+                        </div>
                     </form>
                 </div>
             </div>
-            </div>
+            </>
             </Flex>
         )
     
