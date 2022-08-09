@@ -17,6 +17,7 @@ import { useHistory } from 'react-router-dom';
   const dispatch = useDispatch()
   const history = useHistory()
 
+
   useEffect(() => {
     console.log(user.email, 'user.email')
     dispatch(getOwner(user.sub))
