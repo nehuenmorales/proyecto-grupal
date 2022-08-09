@@ -12,7 +12,7 @@ export const GAMES_USER = "GAMES_USER"
 export function getGameSport(sport) {
   return (dispatch) => {
     axios
-      .get(`/games/${sport}`)
+      .get(`https://falta-uno-1.herokuapp.com/games/${sport}`)
       .then((res) => {
         console.log("entro allgames", res.data);
 
@@ -28,7 +28,7 @@ export function getGameSport(sport) {
 export function getSearchGames(input, sport) {
   return (dispatch) => {
     axios
-      .get(`/games/${sport}/searchGame?name=${input}`)
+      .get(`https://falta-uno-1.herokuapp.com/games/${sport}/searchGame?name=${input}`)
       .then((res) => {
         console.log("entro search", res.data);
         dispatch({
