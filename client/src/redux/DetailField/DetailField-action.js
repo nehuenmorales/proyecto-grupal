@@ -8,7 +8,7 @@ export const GET_SEARCH_FIELDS = 'GET_SEARCH_FIELDS';
 export function getFieldById(id) {
   
     return dispatch =>{
-      axios.get(`/fields/detail/${id}`)
+      axios.get(`https://falta-uno-1.herokuapp.com/fields/detail/${id}`)
         .then(res => {
           dispatch({
             type: GET_FIELDS_BY_ID,
@@ -24,7 +24,7 @@ export function getFieldById(id) {
 export function getAllFields(sport) {
   
     return dispatch =>{
-      axios.get(`/fields/${sport}`)
+      axios.get(`https://falta-uno-1.herokuapp.com/fields/${sport}`)
         .then(res => {
           dispatch({
             type: GET_FIELDS,
@@ -41,7 +41,7 @@ export function getAllFields(sport) {
   export function getSearchFields(input, sport) {
   
     return dispatch =>{
-      axios.get(`/fields/${sport}/getSearchField?name=${input}`)
+      axios.get(`https://falta-uno-1.herokuapp.com/fields/${sport}/getSearchField?name=${input}`)
         .then(res => {
           console.log(res.data,'actiooooon')
           dispatch({

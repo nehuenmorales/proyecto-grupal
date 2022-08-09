@@ -9,7 +9,7 @@ export const ORDER_BY_ELO = "ORDER_BY_ELO"
  
  export function getPlayers() {
     return dispatch =>{
-      axios.get(`/player/getPlayers`)
+      axios.get(`https://falta-uno-1.herokuapp.com/player/getPlayers`)
         .then(res => {
           dispatch({
             type: GET_PLAYERS,
@@ -26,7 +26,7 @@ export const ORDER_BY_ELO = "ORDER_BY_ELO"
    export function getSearchPlayer(input,sport) {
     console.log("input",input)
     return dispatch =>{
-      axios.get(`/player/getSearchPlayer?name=${input}`)
+      axios.get(`https://falta-uno-1.herokuapp.com/player/getSearchPlayer?name=${input}`)
         .then(res => {
           console.log("informacion que trae del reducer",res.data)
           dispatch({
@@ -42,7 +42,7 @@ export const ORDER_BY_ELO = "ORDER_BY_ELO"
 
    export function getPlayersProfile(email) {
     return dispatch =>{
-      axios.get(`/player/getPlayerProfile/?email=${email}`)
+      axios.get(`https://falta-uno-1.herokuapp.com/player/getPlayerProfile/?email=${email}`)
         .then(res => {
           console.log("esta es la respuesta bro",res.data)
           dispatch({
@@ -58,7 +58,7 @@ export const ORDER_BY_ELO = "ORDER_BY_ELO"
 
    export function putPlayer(email, obj) {
     return dispatch =>{
-      axios.put(`/player/modifyProfile?email=${email}`, obj)
+      axios.put(`https://falta-uno-1.herokuapp.com/player/modifyProfile?email=${email}`, obj)
         .then(res => {
           dispatch({
             type: PUT_PLAYER_MODIFY,
