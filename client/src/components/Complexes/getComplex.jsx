@@ -38,6 +38,7 @@ const GetComplex = ({ match }) => {
 										name={x.name}
 										image={x.image}
 										rating={x.rating}
+										reviews={x.reviews}
 										city={x.city}
 										/>
 									</Box>
