@@ -71,11 +71,8 @@ export default function CreateComplex() {
         state: ""
     });
 
-<<<<<<< HEAD
     const [file, setFile] = useState("")
 
-=======
->>>>>>> invitacionesEquipo
     const [loading, setLoading] = useState(false)
 
 
