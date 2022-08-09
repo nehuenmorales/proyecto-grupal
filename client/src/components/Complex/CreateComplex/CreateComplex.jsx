@@ -304,8 +304,8 @@ export default function CreateComplex() {
                                 <input type="file" className="inputImage" onChange={(e) => upload(e.target.files[0])}></input>
                                 {loading ? <span className='loader' style={{ marginTop: '7px' }}></span> : null}
                             </div>
-                            {errors.image ? <div style={{color:'red'}}>{errors.image}</div> : null}
                         </div>
+                            {errors.image ? <div style={{color:'red'}}>{errors.image}</div> : null}
                         <h5 style={{ fontSize: '1.2em', marginBottom: '10px' }}>Ubicación de complejo</h5>
                         {/* <h6>Ciudad</h6> */}
                         <div class="containerDerecha">
