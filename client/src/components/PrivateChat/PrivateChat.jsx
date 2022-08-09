@@ -184,7 +184,10 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
 
 
 
-
+  const backToHome =(e)=>{
+    e.preventDefault()
+    window.location.href = "http://localhost:3000";
+  }
 
 
 
@@ -201,6 +204,7 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
   return (
     <div className={s.containerAllChat}>
       <div className={s.colum}>
+        <div><button className={s.backToHome} onClick={(e)=>backToHome(e)}>Volver al inicio</button> </div>
         <div> <SearchUser usersConnected={usersConnected} setUserSeach={setUserSeach} /> </div>
 
         {userSearch.length ? userSearch.map((user) => {

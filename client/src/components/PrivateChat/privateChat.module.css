@@ -141,3 +141,12 @@ margin-right: 10px;
 
  
 }
+.backToHome{
+  
+  height: 3em;
+  width: 6em;
+  border-radius: 1em;
+  border: none;
+  background-color: #128DFF;
+  color: white;
+}
