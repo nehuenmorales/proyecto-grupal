@@ -53,7 +53,7 @@ export default function ComplexList() {
                                     {e.sports.map(sport => {
                                         if (sport === 'futbol') {
                                             return (
-                                                <img src="https://cdn-icons.flaticon.com/png/512/4892/premium/4892438.png?token=exp=1659223244~hmac=6844f5a1ed7c449c8687e491ea380565" alt="" style={{ height: '25px' }} className="sport-icon" />
+                                                <img src="https://cdn-icons-png.flaticon.com/512/3231/3231063.png" alt="" style={{ height: '25px',  filter: 'invert(100%)'  }} className="sport-icon" />
                                             )
                                         } else if (sport === 'tenis') {
                                             return (
