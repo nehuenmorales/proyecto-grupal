@@ -8,8 +8,8 @@
 }
 
 .sport-span {
-  bottom: 10px;
-  left: 25px;
+  bottom: 20px !important;
+  left: 60px !important;
   position: absolute; 
   color: white;
   font-size: 18px;

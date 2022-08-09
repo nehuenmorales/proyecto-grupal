@@ -1,23 +1,29 @@
-.cardContainer{
+.cardContainer {
+  padding: 5px 13px;
+  cursor: pointer;
   display: flex;
   align-items: center;
   flex-direction: row;
-  justify-content: space-between;
-  width: 300px;
+  justify-content: flex-start;
+  width: 320px;
   border-radius: 34px;
-  height: 70px;
-  margin: 10px;
-  background: #1a2539;
+  height: 65px;
+  min-height: 65px;
+  margin: 10px 10px;
+  background: #1a2539aa;
   color: white;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .3);
+  transition: all 300ms;
 }
-.avatarContainer{
-  width: 50px;
-  height: 50px;
+
+.avatarContainer {
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   overflow: hidden;
 }
 
-.avatarContainer .avatar{
+.avatarContainer .avatar {
   border: 2px solid white;
   border-radius: 50%;
   width: 100%;
@@ -27,24 +33,35 @@
   transition: all 600ms;
 }
 
-.avatarContainer:hover .avatar{
+.avatarContainer:hover .avatar {
   transform: scale(1.3);
 }
 
-.information{
+.information {
+  padding: 0;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  /* margin-left: 20px; */
+  justify-content: space-evenly;
+  margin-left: 20px;
+  font-size: 18px;
   text-transform: capitalize;
-  height: 100%;
 }
-.information p{
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+
+.iconSend{
+  position: absolute;
+  right: 15px;
+  align-self: flex-end;
+  justify-self: flex-end;
+  background: transparent;
+  transition: all 1s;
 }
-.information p span:last-child{
-  color: #128DFF;
+.cardContainer:hover{
+  background: #2e3b56aa;
+}
+
+@media ( max-width: 1400px ) {
+  .cardContainer {
+    width: 280px;
+  }
+}
+@media ( max-width: 1024px ) {
 }
