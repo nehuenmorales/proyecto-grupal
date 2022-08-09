@@ -66,7 +66,7 @@ export default function Contact (){
                         <div className="form-row">
                             <div className="contenedorInpputss">
                                 <label className='tituloInput'><b>Nombre</b></label>
-                                <input type="text" onChange={e => handleOnChange(e)} className="formEmail" id="nombre" name="nombre" value={input.name}/>
+                                <input type="text" onChange={e => handleOnChange(e)} className="formEmail" id="nombre" name="nombre" value={input.nombre}/>
                                 {errors.nombre ? <p style={{color: 'red'}}>{errors.nombre}</p> : null}
                             </div>
                             <div className="contenedorInpputss">
@@ -77,7 +77,7 @@ export default function Contact (){
                         </div>
                         <div className="contenedorInpputss">
                             <label className='tituloInput'><b>Mensaje</b></label>
-                            <textarea type="text" className="formEmail" id="mensaje" name="mensaje" value={input.message}></textarea>
+                            <textarea type="text" className="formEmail" id="mensaje" name="mensaje" value={input.mensaje}></textarea>
                             {errors.mensaje ? <p style={{color: 'red'}}>{errors.mensaje}</p> : null}
                         </div>
                         <div className='ContenedorBoton'>
