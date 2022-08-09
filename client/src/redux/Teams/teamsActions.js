@@ -2,6 +2,20 @@ import axios from "axios";
 
 export const CREATE_TEAM = "CREATE_TEAM";
 export const GET_TEAM_USER = "GET_TEAM_USER"
+export const GET_TEAM ="GET_TEAM"
+
+
+export function getTeam(id){
+  return (dispatch)=>{
+    axios.get(`https://falta-uno-1.herokuapp.com/team/getTeam/${id}`)
+    .then((res)=>{
+      dispatch({
+        type: GET_TEAM,
+        payload: res.data
+      })
+    })
+  }
+}
 
 export function createTeam(input) {
   return (dispatch) => {

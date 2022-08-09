@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createTeam, getTeamsUser } from "../../redux/Teams/teamsActions";
 import Modal from "react-bootstrap/Modal";
-import { Button, Dropdown, DropdownButton, Form, FormGroup} from "react-bootstrap";
+import { Button, Dropdown, DropdownButton, Form, FormGroup } from "react-bootstrap";
 
 import axios from "axios";
 import { useEffect } from "react";
 import s from "./diseñoTeams/modelCreateTeam.module.css";
+import { sendInvitation } from "../../redux/NuevoGames/gamesAction";
 
 export function ModalCreateTeam({ email, setShowModal, showModal }) {
   let dispatch = useDispatch();
@@ -54,22 +55,22 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
 
     return validations[property];
   };
-  const handleInputChange = (e,deporte) => {
+  const handleInputChange = (e, deporte) => {
 
-     
+
     e.preventDefault();
     const name = e.target.name;
     const value = e.target.value;
     console.log("soy name", name)
     console.log("soy value", input)
 
-    if (name==="amountPlayers"){
+    if (name === "amountPlayers") {
       setErr("")
 
     }
     if (name === "sport") {
       if (deporte === "tenis") {
-        setInput({ ...input, amountPlayers: 2,sport:"tenis"});
+        setInput({ ...input, amountPlayers: 2, sport: "tenis" });
         setFlagSport(false);
         setErr("")
         setErrors({ ...errors, [name]: "" });
@@ -77,31 +78,31 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
       }
       if (deporte === "padel") {
 
-        setInput({ ...input, amountPlayers: 2,sport:"padel"});
+        setInput({ ...input, amountPlayers: 2, sport: "padel" });
         setFlagSport(false);
         setErr("")
-        setErrors({ ...errors, [name]: "" });        
+        setErrors({ ...errors, [name]: "" });
         return;
       }
 
       if (deporte === "basquet") {
-        setInput({ ...input, amountPlayers: 5,sport:"basquet" });
+        setInput({ ...input, amountPlayers: 5, sport: "basquet" });
         setErr("")
         setFlagSport(false);
         setErrors({ ...errors, [name]: "" });
         return;
       } else {
-        
-        setInput({ ...input,sport:"futbol",amountPlayers:"" });
+
+        setInput({ ...input, sport: "futbol", amountPlayers: "" });
         setErrors({ ...errors, [name]: "" });
-       
+
 
         setFlagSport(true);
         return;
       }
     }
     setInput({ ...input, [name]: value });
-    
+
 
     setErrors({ ...errors, [name]: validator(e) });
   };
@@ -135,19 +136,39 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
     console.log("soy respuesta img", respuesta.data.data.url);
   };
 
-  const handleSubmit = (e) => {
-    
+  const sendMessages = (id) => {
+    const mensaje = {
+      to: integrantes,
+      subject: `${email} te a invitado a ser parte de su equipo`,
+      text: "Falta Uno App",
+      html: `<strong>Hola, tienes una invitacion pendiente para unite al equipo ${input.name}. puedes unirte al Equipo siguiendo este link http://localhost:3000/teamInvitation/${id}</strong>`
+    }
+
+    dispatch(sendInvitation(mensaje))
+  }
+
+  const handleSubmit = async (e) => {
+    console.log("soy los integrantes", integrantes)
+
     e.preventDefault();
-    dispatch(createTeam(input));//para el futuro 
-    console.log(input);
+    // dispatch(createTeam(input));para el futuro 
+    let respuesta;
+    await axios.post(`/team/createTeam`, input)
+      .then((res) => {
+        respuesta = res.data
+      })
+
     setShowModal(false);
-    setInput({    
+    setInput({
       name: "",
       sport: "",
       playerEmail: email,
       amountPlayers: "",
       image: "",
     });
+
+    sendMessages(respuesta.id);
+
   };
 
   const volver = () => {
@@ -160,16 +181,17 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
       amountPlayers: "",
       image: "",
     });
-    setErrors({name: "Ingrese el nombre del equipo",
-    sport: "Ingrese el deporte del equipo",
-  })
-  setErr("")
+    setErrors({
+      name: "Ingrese el nombre del equipo",
+      sport: "Ingrese el deporte del equipo",
+    })
+    setErr("")
   };
 
   //---------------------- INVITACIONES A PLAYERS -------------------------
   const [players, setPlayers] = useState([]);
   useEffect(() => {
-    axios.get("https://falta-uno-1.herokuapp.com/player/getPlayers").then((resp) => {
+    axios.get("/player/getPlayers").then((resp) => {
       setPlayers(resp.data);
       console.log("respuesta de axios", resp.data);
     });
@@ -192,13 +214,13 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
 
   const onClickInvite = (ev) => {
     ev.preventDefault()
-   if (input.amountPlayers === "") {
-    setErr("debe seleccionar un deporte")
-    return;
-   }else if(integrantes.includes(ev.target.value) || ev.target.value === email){
+    if (input.amountPlayers === "") {
+      setErr("debe seleccionar un deporte")
+      return;
+    } else if (integrantes.includes(ev.target.value) || ev.target.value === email) {
       setErr("este jugador ya está invitado")
       return;
-   }else if ((input.amountPlayers -1) < integrantes.length) {
+    } else if ((input.amountPlayers - 1) < integrantes.length) {
       console.log("entro a aca 1")
       setErr("la cantidad de jugadores esta completa")
       return;
@@ -223,7 +245,7 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
   }
 
   function deleteInvitation(e) {
-    
+
     e.preventDefault();
     const respuesta = invitations.filter((i) => i !== e.target.value);
     setInvitations(respuesta);
@@ -236,7 +258,7 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
         show={showModal}
         size="lg"
         aria-labelledby="example-modal-sizes-title-lg"
-        // style={{"color":"rgb(20, 22, 74)"}}
+      // style={{"color":"rgb(20, 22, 74)"}}
 
       >
         {/* style={{"backgroundColor":"rgb(190, 190, 190)", "boxShadow": "2px 2px 5px #999"}} */}
@@ -279,92 +301,92 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
                   </option>
                 </select> */}
                 <div className="mb-2">
-        {['down'].map((direction) => (
-          <DropdownButton
-            key={direction}
-            id={`dropdown-button-drop-${direction}`}
-            drop={direction}
-            variant="secondary"
-            title={`Seleccione un deporte`}
-            
-          >
-            <Dropdown.Item   name="sport" value="futbol" onClick={(e) => {handleInputChange(e,"futbol")}} eventKey="1">Futbol</Dropdown.Item>
-            <Dropdown.Item   name="sport" value="basquet" onClick={(e) => {handleInputChange(e,"basquet")}} eventKey="2">Basquet</Dropdown.Item>
-            <Dropdown.Item   name="sport" value="padel" onClick={(e) => {handleInputChange(e,"padel")}} eventKey="3">Padel</Dropdown.Item>
-            <Dropdown.Item   name="sport" value="tenis" onClick={(e) => {handleInputChange(e,"tenis")}} eventKey="4">Tenis</Dropdown.Item>
-            {/* <Dropdown.Divider />
+                  {['down'].map((direction) => (
+                    <DropdownButton
+                      key={direction}
+                      id={`dropdown-button-drop-${direction}`}
+                      drop={direction}
+                      variant="secondary"
+                      title={`Seleccione un deporte`}
+
+                    >
+                      <Dropdown.Item name="sport" value="futbol" onClick={(e) => { handleInputChange(e, "futbol") }} eventKey="1">Futbol</Dropdown.Item>
+                      <Dropdown.Item name="sport" value="basquet" onClick={(e) => { handleInputChange(e, "basquet") }} eventKey="2">Basquet</Dropdown.Item>
+                      <Dropdown.Item name="sport" value="padel" onClick={(e) => { handleInputChange(e, "padel") }} eventKey="3">Padel</Dropdown.Item>
+                      <Dropdown.Item name="sport" value="tenis" onClick={(e) => { handleInputChange(e, "tenis") }} eventKey="4">Tenis</Dropdown.Item>
+                      {/* <Dropdown.Divider />
             <Dropdown.Item eventKey="3">Separated link</Dropdown.Item> */}
-          </DropdownButton>
-        ))}
-      </div>
+                    </DropdownButton>
+                  ))}
+                </div>
                 {flagSport ? (
                   <div>
-                    <h5>Tipo de juego</h5>               
+                    <h5>Tipo de juego</h5>
                     {
-                      input.amountPlayers == 11 ? 
-                    <button
-                    className={s.buttonTypeFVerde}
-                      name="amountPlayers"
-                      value={11}
-                      onClick={(e) => handleInputChange(e)}
-                    >
-                      Futbol 11
-                    </button>
-                    :
-                    <button
-                    className={s.buttonTypeF}
-                      name="amountPlayers"
-                      value={11}
-                      onClick={(e) => handleInputChange(e)}
-                    >
-                      Futbol 11
-                    </button>
+                      input.amountPlayers == 11 ?
+                        <button
+                          className={s.buttonTypeFVerde}
+                          name="amountPlayers"
+                          value={11}
+                          onClick={(e) => handleInputChange(e)}
+                        >
+                          Futbol 11
+                        </button>
+                        :
+                        <button
+                          className={s.buttonTypeF}
+                          name="amountPlayers"
+                          value={11}
+                          onClick={(e) => handleInputChange(e)}
+                        >
+                          Futbol 11
+                        </button>
                     }
                     {
                       input.amountPlayers == 7 ?
-                    <button
-                      className={s.buttonTypeFVerde}
+                        <button
+                          className={s.buttonTypeFVerde}
 
-                      name="amountPlayers"
-                      value={7}
-                      onClick={(e) => handleInputChange(e)}
-                    >
-                      Futbol 7
-                    </button>
-                    :
-                    <button
-                      className={s.buttonTypeF}
+                          name="amountPlayers"
+                          value={7}
+                          onClick={(e) => handleInputChange(e)}
+                        >
+                          Futbol 7
+                        </button>
+                        :
+                        <button
+                          className={s.buttonTypeF}
 
-                      name="amountPlayers"
-                      value={7}
-                      onClick={(e) => handleInputChange(e)}
-                    >
-                      Futbol 7
-                    </button>
+                          name="amountPlayers"
+                          value={7}
+                          onClick={(e) => handleInputChange(e)}
+                        >
+                          Futbol 7
+                        </button>
                     }
                     {
                       input.amountPlayers == 5 ?
-                    <button
-                    className={s.buttonTypeFVerde}
-                      name="amountPlayers"
-                      value={5}
-                      onClick={(e) => handleInputChange(e)}
-                    >
-                      Futbol 5
-                    </button>
-                    :
-                    <button
-                    className={s.buttonTypeF}
-                      name="amountPlayers"
-                      value={5}
-                      onClick={(e) => handleInputChange(e)}
-                    >
-                      Futbol 5
-                    </button>
+                        <button
+                          className={s.buttonTypeFVerde}
+                          name="amountPlayers"
+                          value={5}
+                          onClick={(e) => handleInputChange(e)}
+                        >
+                          Futbol 5
+                        </button>
+                        :
+                        <button
+                          className={s.buttonTypeF}
+                          name="amountPlayers"
+                          value={5}
+                          onClick={(e) => handleInputChange(e)}
+                        >
+                          Futbol 5
+                        </button>
                     }
                   </div>
                 ) : null}
-                {input.amountPlayers?<h6 >{input.sport.toUpperCase()}</h6>:null}
+                {input.amountPlayers ? <h6 >{input.sport.toUpperCase()}</h6> : null}
                 {input.sport === "futbol" ? (
                   !input.amountPlayers ? (
                     <h6 className={s.error} >Elija el tipo de juego</h6>
@@ -410,19 +432,19 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
                     >
                       {playerInput
                         ? playerInput?.map((elem, index) => {
-                            return (
-                              <li id={index}>
-                                <button
-                                  onClick={(e) => onClickInvite(e)}
-                                  value={elem.email}
-                                >
-                                  {elem.name} {elem.lastName}
-                                </button>
-                              </li>
-                            );
-                          })
+                          return (
+                            <li id={index}>
+                              <button
+                                onClick={(e) => onClickInvite(e)}
+                                value={elem.email}
+                              >
+                                {elem.name} {elem.lastName}
+                              </button>
+                            </li>
+                          );
+                        })
                         : null}
-                      
+
                       {err ? <span className={s.error}>{err}</span> : null}
                     </ul>
                     <div>
@@ -430,25 +452,25 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
                         {<p className={s.nameIntegrante}>{email}</p>}
                         {integrantes
                           ? integrantes.map((e) => {
-                              return (
-                                <div className={s.integrante}>
-                                  
-                                  <h6 className={s.nameIntegrante}>{e}</h6>
-                                  
-                                  
-                                  <button
-                                  
-                                  
+                            return (
+                              <div className={s.integrante}>
+
+                                <h6 className={s.nameIntegrante}>{e}</h6>
+
+
+                                <button
+
+
                                   className={s.buttonClose}
-                                    value={e}
-                                    onClick={(e) => deleteInvitation(e)}
-                                  >
-                                    X
-                                  </button>
-                                  
-                                </div>
-                              );
-                            })
+                                  value={e}
+                                  onClick={(e) => deleteInvitation(e)}
+                                >
+                                  X
+                                </button>
+
+                              </div>
+                            );
+                          })
                           : null}
                       </ul>
                     </div>
@@ -464,14 +486,14 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
           </button>
           <div>
             {!loading &&
-            !errors.name &&
-            !errors.sport &&
-            input.amountPlayers ? (
-              <button  className="btn btn-success"  style={{color: 'white'}} type="submit" onClick={(e) => handleSubmit(e)}>
+              !errors.name &&
+              !errors.sport &&
+              input.amountPlayers ? (
+              <button className="btn btn-success" style={{ color: 'white' }} type="submit" onClick={(e) => handleSubmit(e)}>
                 Crear equipo
               </button>
             ) : (
-              <button className="btn btn-success" style={{color: 'white'}} type="submit" disabled>
+              <button className="btn btn-success" style={{ color: 'white' }} type="submit" disabled>
                 Crear equipo
               </button>
             )}

@@ -8,7 +8,7 @@ export const RATING_COMPLEX = "RATING_COMPLEX"
  
  export function getComplex() {
     return dispatch =>{
-      axios.get(`/complex/all`)
+      axios.get(`https://falta-uno-1.herokuapp.com/complex/all`)
         .then(res => {
           dispatch({
             type: GET_COMPLEX,

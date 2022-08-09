@@ -5,7 +5,8 @@ import { updateGame, sendInvitation } from '../../redux/NuevoGames/gamesAction';
 import { putGame } from '../../redux/GamesIncomplete/gamesIncompleteActions';
 import { Link } from 'react-router-dom';
 import VerticalNavbar from '../VerticalNavbar/VerticalNavbar'
-import { Button,
+import {
+  Button,
   Stack,
   FormControl,
   FormLabel,
@@ -15,7 +16,7 @@ import { Button,
   SimpleGrid,
   Center,
   Flex
-   } from '@chakra-ui/react'
+} from '@chakra-ui/react'
 
 const Success = ({ match }) => {
 
@@ -26,13 +27,15 @@ const Success = ({ match }) => {
   const urlParams = new URLSearchParams(valores);
   let status = urlParams.get('status');
 
-  const [ data, setData] = useState({
-    to:'',
-    subject:'',
+  const [mail, setMail] = useState("")
+
+  const [data, setData] = useState({
+    to: '',
+    subject: '',
     text: '',
     html: ''
   })
-   console.log(data, "esto es data")
+  console.log(data, "esto es data")
 
   useEffect(() => {
 
@@ -46,15 +49,19 @@ const Success = ({ match }) => {
     }
   }, [dispatch, isLoading]);
 
-  const handleSubmit = (e) =>{
+  const handleOnChange = (e) => {
     e.preventDefault();
-    setData({
-      ...data,
-      [e.target.name]: e.target.value,
+    setMail(e.target.value)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    let data = {
+      to: mail,
       subject: `${user.email}te a invitado su partido`,
       text: "Falta Uno App",
       html: `<strong>Hola, puedes unirte al partido siguiendo este link https://falta-uno-henry.vercel.app/games/gamesIncomplete/${id}</strong>`
-    })
+    }
     dispatch(sendInvitation(data))
   }
 
@@ -66,23 +73,23 @@ const Success = ({ match }) => {
         isLoading ?
           <p>Cargando....</p>
           :
-          status === 'approved' 
-          ? null
-          :null
+          status === 'approved'
+            ? null
+            : null
       }
-      <SimpleGrid w="100vw" flexDir="">    
+      <SimpleGrid w="100vw" flexDir="">
         <Heading className='text-white' size='lg' fontSize='45px' >
           Tu pago se realizo con exito!
-        </Heading> 
+        </Heading>
         <Heading className='text-white' as='h4' size='md'>
-          Para finalizar tu reserva invita a tus amigos: 
+          Para finalizar tu reserva invita a tus amigos:
         </Heading>
 
         <FormControl >
           <FormLabel className='text-white'>Email</FormLabel>
-            <Input  name= "to"  onChange={e => handleSubmit(e)}/>
+          <Input onChange={(e) => handleOnChange(e)} />
           <FormHelperText>Nunca compartiremos su correo electrónico.</FormHelperText>
-          <Button colorScheme='whatsapp' variant='solid' type='submit' onClick={(e)=> handleSubmit(e)}>
+          <Button colorScheme='whatsapp' variant='solid' type='submit' onClick={(e) => handleSubmit(e)}>
             Enviar Invitacion
           </Button>
         </FormControl>
@@ -91,7 +98,7 @@ const Success = ({ match }) => {
       <Link to='/'>
         <Button colorScheme='whatsapp' size='lg' >
           Volver al Inicio
-      </Button>
+        </Button>
       </Link>
     </Flex>
   )
