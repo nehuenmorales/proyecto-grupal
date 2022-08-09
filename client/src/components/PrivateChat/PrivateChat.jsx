@@ -7,12 +7,12 @@ import { useAuth0 } from "@auth0/auth0-react";
 import MessagePanel from "./messagePanel"
 import s from "./privateChat.module.css"
 import SearchUser from "./searchBar";
-
 import { Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styles from "./cardUser.module.css";
-import {GrSend} from "react-icons/gr"
-import paperPlane from "../../assets/icons/paper-plane-solid.svg"
+import { GrSend } from "react-icons/gr"
+import paperPlane from "../../assets/icons/paper-plane-solid.svg";
+import { FiSend, FiHome, FiArrowLeft } from "react-icons/fi";
 
 const socket = io("https://falta-uno-1.herokuapp.com", { autoConnect: false });
 
@@ -36,21 +36,21 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
 
 
 
-  const selectOnClick = (e,user) => {
+  const selectOnClick = (e, user) => {
     e.preventDefault();
     let clickedUser = user
     for (let i = 0; i < usersConnected.length; i++) {
-      let userSearch = usersConnected[i].username 
+      let userSearch = usersConnected[i].username
       if (clickedUser === userSearch) {
-        usersConnected[i].hasNewMessages=false
+        usersConnected[i].hasNewMessages = false
         clickedUser = usersConnected[i]
-        
+
         break
       }
     }
     console.log(clickedUser)
-    containerSelectedUser={...clickedUser}
-    setSelectedUser({...clickedUser})
+    containerSelectedUser = { ...clickedUser }
+    setSelectedUser({ ...clickedUser })
 
   }
 
@@ -93,15 +93,15 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
           fromSelf: false,
         });
 
-        
+
         if (user.userID !== selectedUser.userID) {
-          
-          console.log("entro a el if",user)
-          console.log("selected",containerSelectedUser)
+
+          console.log("entro a el if", user)
+          console.log("selected", containerSelectedUser)
 
           user.hasNewMessages = true;
           setUsersConnected([...containerUsersConn])
-  
+
         } else {
           console.log("NOOO entro a el if")
 
@@ -182,20 +182,10 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
   }, [])
 
 
-
-
-  const backToHome =(e)=>{
+  const backToHome = (e) => {
     e.preventDefault()
     window.location.href = "http://localhost:3000";
   }
-
-
-
-
-
-
-  
-
 
 
   const [flag, setFlag] = useState(false)
@@ -204,46 +194,35 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
   return (
     <div className={s.containerAllChat}>
       <div className={s.colum}>
-        <div><button className={s.backToHome} onClick={(e)=>backToHome(e)}>Volver al inicio</button> </div>
-        <div> <SearchUser usersConnected={usersConnected} setUserSeach={setUserSeach} /> </div>
+        <button className={s.backToHome} onClick={(e) => backToHome(e)}>
+        <FiArrowLeft /> Volver al inicio </button>
+        <div>
+          <SearchUser usersConnected={usersConnected} setUserSeach={setUserSeach} />
+        </div>
 
         {userSearch.length ? userSearch.map((user) => {
-          return <div><Card className={styles.cardContainer}>
-            <div className={styles.avatarContainer}>
-              <img className={styles.avatar} src={user.image} />
-            </div>
-            <div className={styles.information}>
-              <div className={s.namePlusNewMessage}>
-                <div>
-                  <span>{user.name}</span>
-                </div>
-                <div>
-                {user.hasNewMessages?<p className={s.icon}><i class="fa-solid fa-message"></i></p>:null}
-                </div>
-              </div>
-            </div>
-            <img src={paperPlane} className={s.paperPlane} value={user.username} onClick={(e) => selectOnClick(e,user.username)} alt="imagen"/>
-          </Card></div>
+          return <Card className={styles.cardContainer} onClick={(e) => selectOnClick(e, user.username)}>
+          <div className={styles.avatarContainer}>
+            <img className={styles.avatar} src={user.image} />
+          </div>
+          <div className={styles.information}>
+            <span>{user.name}</span>
+            {user.hasNewMessages ? <p className={s.icon}><i class="fa-solid fa-message"></i></p> : null}
+            <FiSend className={styles.iconSend} size={23} color='#00B83F' />
+          </div>
+        </Card>
         })
           : usersConnected.length ? usersConnected.map((user) => {
-            return <div><Card className={styles.cardContainer}>
+            return <Card className={styles.cardContainer} onClick={(e) => selectOnClick(e, user.username)}>
               <div className={styles.avatarContainer}>
                 <img className={styles.avatar} src={user.image} />
               </div>
               <div className={styles.information}>
-              <div className={s.namePlusNewMessage}>
-                <div>
-                  <span>{user.name}</span>
-                </div>
-                <div>
-                {user.hasNewMessages?<p className={s.icon}><i class="fa-solid fa-message"></i></p>:null}
-                </div>
+                <span>{user.name}</span>
+                {user.hasNewMessages ? <p className={s.icon}><i class="fa-solid fa-message"></i></p> : null}
+                <FiSend className={styles.iconSend} size={23} color='#00B83F' />
               </div>
-              </div>
-
-              <img src={paperPlane} className={s.paperPlane} value={user.username} onClick={(e) => selectOnClick(e,user.username)} alt="imagen"/>
-
-            </Card></div>
+            </Card>
           })
             : null
         }
@@ -252,9 +231,9 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
 
 
       </div>
-        
-      {selectedUser ? <MessagePanel selectedUser={selectedUser} socket={socket} setSelectedUser={setSelectedUser} user={user}/> : null}
-      
+
+      {selectedUser ? <MessagePanel selectedUser={selectedUser} socket={socket} setSelectedUser={setSelectedUser} user={user} /> : null}
+
     </div >
   );
 }

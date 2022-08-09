@@ -31,22 +31,25 @@ export default function SearchUser({ usersConnected, setUserSeach }) {
 
     return (
         <FormGroup
-            className="d-flex flex-start align-items-center"
+            className="d-flex flex-start align-items-center p-3"
         // onSubmit={(e) => onSubmit(e)}
         >
             <Form.Control
-                // className={s.input}
-                STYLE="color=#FFFFFF"
-                size="sm"
+                style={{
+                    background: 'rgba(217, 217, 217, .15)',
+                    border: 'none',
+                    padding: '8px 20px',
+                    color: 'white'
+                }}
                 type="text"
                 onChange={(e) => handleOnChange(e)}
                 placeholder={`Buscar...`}
             />
             <Button
+                style={{ background: '#00B83F', }}
                 variant="success"
                 type="submit"
                 onClick={(e) => onSubmit(e)}
-                style={{ height: "auto" }}
                 className="m-1 text-white"
             >
                 Buscar

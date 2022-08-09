@@ -15,6 +15,7 @@ import{
   FiUser,
   FiCalendar,
   FiLogOut,
+  FiMessageCircle
 }from "react-icons/fi"
 
 import { Link } from 'react-router-dom';
@@ -69,6 +70,7 @@ export default function VerticalNavBar(){
         {match.path==="/equipos"?<NavItem size={size} icon={FiUsers} title="Mis Equipos" link="/equipos" active/>:<NavItem size={size} icon={FiUsers} title="Mis Equipos" link="/equipos"/>}
         {match.path==="/eventos"?<NavItem size={size} icon={FiCalendar} title="Mis Eventos" link="/eventos" active/>:<NavItem size={size} icon={FiCalendar} title="Mis Eventos" link="/eventos"/>}
         {match.path==="/profile"?<NavItem size={size} icon={FiUser} title="Mi Perfil" link="/profile" active/>:<NavItem size={size} icon={FiUser} title="Mi Perfil" link="/profile"/>}
+        {match.path==="/privateChat"?<NavItem size={size} icon={FiMessageCircle} title="Chat" link="/privateChat" active/>:<NavItem size={size} icon={FiMessageCircle} title="Chat" link="/privateChat"/>}
 
 
       </Flex>
@@ -89,7 +91,7 @@ export default function VerticalNavBar(){
           display={size=="small"?"none":"flex"}
           >
             <Heading as="h3" color="white" size="sm">{user?.given_name} {user?.family_name}</Heading>
-            <Text color="gray">{user?.['https://example.com/rol']}</Text>
+            <Text color="gray">{user?.['https://example.com/rol'] === 'player' ? 'Jugador': 'Dueño'}</Text>
           </Flex>
           <IconButton
             background="none"
@@ -102,9 +104,7 @@ export default function VerticalNavBar(){
             }}
           />
         </Flex>
-
       </Flex>
-
     </Flex>
   )
 }

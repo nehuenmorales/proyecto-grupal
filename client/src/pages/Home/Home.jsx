@@ -1,4 +1,3 @@
-import './Home.css';
 import { useAuth0 } from '@auth0/auth0-react';
 import React from 'react';
 import { Link } from 'react-router-dom'
@@ -11,6 +10,7 @@ import VerticalNavbar from '../../components/VerticalNavbar/VerticalNavbar';
 import {
   Flex
 }from "@chakra-ui/react"
+import './Home.css';
 
 
 const Home = () => {
@@ -26,7 +26,7 @@ const Home = () => {
         <>
             <Container className='d-flex justify-content-center aling-items-center mt-3'>
               <Row>
-                <p className="text">¡¡¡¡¡¡Elegí un deporte, vas a poder ver a los mejores de tu zona, desafiarlos y alquilar canchas!!!!!</p>
+                <p className="text">Elegí un deporte, vas a poder ver a los mejores de tu zona, desafiarlos y alquilar canchas!</p>
                 <Col md={3} xs={12} sm={6} lg={3}>
                   <Link to="/sport/futbol" className='sport-container'>                   
                     <span className='sport-span' >Futbol</span>
