@@ -5,10 +5,10 @@ async function RatingReviews(req, res, next) {
     console.log(rating,"SOY EL RATING")
     try {
         const complex= await Complex.findOne({where:{id:id}})
-            const rat=complex.rating;
-            const rev=complex.reviews + 1;
+        const rev=complex.reviews + 1;
+        const rat=(complex.rating+rating)/rev
             await complex.update({
-            rating:((rat+rating)/rev),
+            rating:rat,
             reviews:rev
          })
         console.log(complex,"complex")
