@@ -7,6 +7,7 @@ async function RatingReviews(req, res, next) {
         const complex= await Complex.findOne({where:{id:id}})
         const rev=complex.reviews + 1;
         const rat=(complex.rating+rating)/rev
+        console.log(rat,"soy rat")
             await complex.update({
             rating:rat,
             reviews:rev
