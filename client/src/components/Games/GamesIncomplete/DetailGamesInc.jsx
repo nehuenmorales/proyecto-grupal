@@ -25,9 +25,10 @@ export default function DetailGamesInc({match}) {
    }
 
     return (
-        <Flex>
+    <Flex>
+
         <VerticalNavbar/>
-        <div className={s.background}>
+    <div className={s.background}>
         <img className={s.image} src={detail[0]?.image} alt="Imagen"></img>
         <div className={s.flex}>
         <h2>{detail[0]?.name}</h2>
@@ -43,7 +44,6 @@ export default function DetailGamesInc({match}) {
         <button onClick={()=>{HandleDispatch()}} className={s.button}>Unirse!</button>
     </div>
     </Flex>
-    
     )
 }
 
