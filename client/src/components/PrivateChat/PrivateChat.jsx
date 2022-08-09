@@ -19,8 +19,7 @@ const socket = io("https://falta-uno-1.herokuapp.com", { autoConnect: false });
 
 
 export default function PrivateChat({ user, isAuthenticated, isLoading }) {
-
-
+  const email = user.email;
   const [usersConnected, setUsersConnected] = useState([]);
   const [selectedUser, setSelectedUser] = useState("");
   let containerUsersConn;
@@ -212,6 +211,7 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
         </Card>
         })
           : usersConnected.length ? usersConnected.map((user) => {
+            if(email === user.username) return;
             return <Card className={styles.cardContainer} onClick={(e) => selectOnClick(e, user.username)}>
               <div className={styles.avatarContainer}>
                 <img className={styles.avatar} src={user.image} />
