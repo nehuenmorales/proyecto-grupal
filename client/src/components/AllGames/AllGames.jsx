@@ -15,6 +15,7 @@ import {
   }from "@chakra-ui/react"
 import ProductsCarousel from "../ProductsCarousel/ProductsCarousel";
 
+
 export default function AllGames({ match }) {
 
     const sport = match.params.sport;
