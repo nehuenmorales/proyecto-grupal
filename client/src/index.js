@@ -20,6 +20,12 @@ const theme=extendTheme({
         backgroundColor:"#0C131F",
         overflowY: "scroll",
         position:"relative",
+      },
+      colors: {
+        success: {
+          100: '#fafafa',
+          200: '#f7f7f7',
+        },
       }
     }
   }

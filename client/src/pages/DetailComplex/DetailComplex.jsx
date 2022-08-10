@@ -1,12 +1,12 @@
 import './DetailComplex.css';
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector} from 'react-redux';
-import { Col, Container, Row, Carousel, Button } from 'react-bootstrap';
+import { Col, Container, Row, Carousel } from 'react-bootstrap';
 import { getSearchComplex } from '../../redux/Complexes/ComplexAction'
 import VerticalNavbar from '../../components/VerticalNavbar/VerticalNavbar';
 import Map from '../../components/Map/Map';
 import { BiMapPin } from 'react-icons/bi';
-import {Flex} from "@chakra-ui/react"
+import { Flex, Button} from "@chakra-ui/react"
 
 
 const DetailComplex = ({ match }) => {
@@ -72,9 +72,9 @@ const DetailComplex = ({ match }) => {
           </div>
         </Col>
         <Col>
-          <h3 className='titleDescription'>Descripción de la cancha</h3>
+          <h3 className='titleDescription'>Descripción del complejo</h3>
           <p>{complex[0]?.description}</p>
-          <Button className='text-white w-100 m-1' variant='success' size='lg'>Contactanos!</Button>
+          <Button bg='#00B83F' colorScheme='#00B83F' className='text-white w-100 m-1' size='lg' >Contactanos!</Button>
         </Col>
       </Row>
     </Container>

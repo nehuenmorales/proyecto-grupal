@@ -1,3 +1,4 @@
+import { Radio, RadioGroup } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { Modal, Button, Card, Container, Form } from 'react-bootstrap';
 import { useDispatch } from "react-redux";
@@ -52,7 +53,7 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
         setBody({ ...body, [e.target.name]: e.target.value, status: "pending", id: id })
     }
 
-    function validateValue({ privacy, type}) {
+    function validateValue({ privacy, type }) {
         let errors = {}
         if (!privacy) {
             errors.privacy = "Seleccione la privacidad"
@@ -75,7 +76,7 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
     //     setUserData({
     //         ...userData,
     //         total: leitoTheBest,
-            
+
     //     })
     //     setPagar(true)
     // }
@@ -92,7 +93,7 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
         // street_number: '',
         tipo: 'dni',
         dni: '',
-        total:0
+        total: 0
     });
 
     const handleCloseData = () => setPagar(false);
@@ -102,7 +103,7 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
         setUserData({
             ...userData,
             [e.target.name]: e.target.value,
-            
+
         })
         console.log(userData)
     }
@@ -117,7 +118,7 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
         setUserData({
             ...userData,
             total: leitoTheBest,
-            
+
         })
         // validateText(userData.nombre)
         dispatch(postPayments(id, userData));
@@ -153,11 +154,13 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
                         <div className="form-group d-flex flex-column">
                             <label>¿Como queres que sea tu partido?</label>
                             <div>
-                                <input name="privacy" className="form-check-input" onChange={(e) => { HandlePrivacy(e) }} id="private" value="private" type="radio" />
-                                <label htmlFor="private">Privado</label>
-                                <input name="privacy" className="form-check-input" onChange={(e) => { HandlePrivacy(e) }} id="public" value="public" type="radio" />
-                                <label htmlFor="public">Publico</label>
-                                <p>{errorsValue.privacy}</p>
+                                <RadioGroup>
+                                    <Radio name="privacy" className="form-check-input" onChange={(e) => { HandlePrivacy(e) }} id="private" value="private" type="radio" />
+                                    <label htmlFor="private">Privado</label>
+                                    <Radio name="privacy" className="form-check-input" onChange={(e) => { HandlePrivacy(e) }} id="public" value="public" type="radio" />
+                                    <label htmlFor="public">Publico</label>
+                                    <p>{errorsValue.privacy}</p>
+                                </RadioGroup>
                             </div>
 
                         </div>
