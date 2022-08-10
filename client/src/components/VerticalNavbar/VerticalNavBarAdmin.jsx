@@ -73,7 +73,7 @@ export default function VerticalNavBarAdmin(){
         {match.path==="/"?<NavItem size={size} icon={FiHome} title="Inicio" link="/" active/>:<NavItem size={size} icon={FiHome} link="/" title="Inicio"/>}
         {match.path==="/admin/players"?<NavItem size={size} icon={FiUsers} title="Jugadores" link="/admin/players" active/>:<NavItem size={size} icon={FiUsers} link="/admin/players" title="Jugadores"/>}
         {match.path==="/admin/sponsors"?<NavItem size={size} icon={RiMoneyDollarBoxLine} title="Sponsors" link="/admin/sponsors" active/>:<NavItem size={size} icon={RiMoneyDollarBoxLine} link="/admin/sponsors" title="Sponsors"/>}
-        {match.path==="/profile"?<NavItem size={size} icon={FiUser} title="Mi Perfil" link="/profile" active/>:<NavItem size={size} icon={FiUser} title="Mi Perfil" link="/profile"/>}
+        {/* {match.path==="/profile"?<NavItem size={size} icon={FiUser} title="Mi Perfil" link="/profile" active/>:<NavItem size={size} icon={FiUser} title="Mi Perfil" link="/profile"/>} */}
 
 
       </Flex>

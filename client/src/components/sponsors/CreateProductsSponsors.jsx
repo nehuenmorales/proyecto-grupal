@@ -4,19 +4,20 @@ import { useDispatch, useSelector } from "react-redux";
 import Button from "react-bootstrap/esm/Button";
 import { Link } from "react-router-dom";
 import { Select } from "@chakra-ui/react";
-import { getAllSponsors,createProduct } from "../../redux/Sponsors/SponsorsActions";
+import { getAllSponsors, createProduct } from "../../redux/Sponsors/SponsorsActions";
 import s from "./createProduct.module.css"
 import { useToast } from '@chakra-ui/react'
 
 
-export default function CreateProduct() {
-    const dispatch = useDispatch();
-    const sponsors =useSelector(state=> state.SponsorsReducer.AllSponsors)
-    const toast = useToast()
 
-    useEffect(() => {
-      dispatch(getAllSponsors())
-    }, []);
+export default function CreateProduct() {
+  const dispatch = useDispatch();
+  const sponsors = useSelector(state => state.SponsorsReducer.AllSponsors)
+  const toast = useToast()
+
+  useEffect(() => {
+    dispatch(getAllSponsors())
+  }, []);
 
 
   const [newProduct, setNewProduct] = useState({
@@ -26,19 +27,19 @@ export default function CreateProduct() {
     description: "",
     sport: "",
     sponsorId: "",
-});
+  });
 
-console.log(newProduct)
-const [errors, setErrors] = useState({
+  console.log(newProduct)
+  const [errors, setErrors] = useState({
     sponsorId: "Seleccione el nombre del sponsor",
     name: "",
     link: "",
     image: "",
     description: "",
     sport: "",
-});
+  });
 
-console.log(errors)
+  console.log(errors)
   const [loading, setLoading] = useState(false);
 
   const validator = (product) => {
@@ -51,13 +52,13 @@ console.log(errors)
     } else if (product.name.length > 30) {
       validations.name = "Superó el máximo de caracteres";
     } else if (!product.link) {
-        validations.link = "Ingrese un link";
-    }else if (!product.description) {
-        validations.description = "Ingrese una description";
-    }else if (!product.sport) {
-        validations.sport = "Ingrese un deporte";
-    }else if (!product.image) {
-        validations.image = "Ingrese una imagen";
+      validations.link = "Ingrese un link";
+    } else if (!product.description) {
+      validations.description = "Ingrese una description";
+    } else if (!product.sport) {
+      validations.sport = "Ingrese un deporte";
+    } else if (!product.image) {
+      validations.image = "Ingrese una imagen";
     }
     return validations;
   };
@@ -90,51 +91,51 @@ console.log(errors)
     });
     setLoading(false);
     let errors = validator({ ...newProduct, image: e.target.value });
-        setErrors(errors);
+    setErrors(errors);
   };
 
   const handleInputChange = (e) => {
     setNewProduct({
-        ...newProduct,
-        [e.target.name]: e.target.value,
+      ...newProduct,
+      [e.target.name]: e.target.value,
     });
     let errores = validator({ ...newProduct, [e.target.name]: e.target.value });
     setErrors(errores);
 
-}
+  }
 
-// const handleInputSport = (e) => {
-//     setNewProduct({ ...newProduct, sport: e.target.value})
-//     let errors = validator({ ...newProduct, sport:e.target.value});
-//     setErrors(errors);
+  // const handleInputSport = (e) => {
+  //     setNewProduct({ ...newProduct, sport: e.target.value})
+  //     let errors = validator({ ...newProduct, sport:e.target.value});
+  //     setErrors(errors);
 
-// }
+  // }
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createProduct(newProduct));
     setNewProduct({
-        name: "",
-        link: "",
-        image: "",
-        description: "",
-        sport: "",
-        sponsorId: "",
-      });
+      name: "",
+      link: "",
+      image: "",
+      description: "",
+      sport: "",
+      sponsorId: "",
+    });
     setErrors({
-        sponsorId: "Seleccione el nombre del sponsor",
-        name: "",
-        link: "",
-        image: "",
-        description: "",
-        sport: "",
+      sponsorId: "Seleccione el nombre del sponsor",
+      name: "",
+      link: "",
+      image: "",
+      description: "",
+      sport: "",
     });
     document.formAct.reset();
     toast({
-        title: 'Producto creado correctamente',
-        status: 'success',
-        duration: 9000,
-        isClosable: true,
+      title: 'Producto creado correctamente',
+      status: 'success',
+      duration: 9000,
+      isClosable: true,
     })
   };
 
@@ -144,110 +145,116 @@ console.log(errors)
         <Link to="/">
           <Button className={s.volverbtn}>Volver</Button>
         </Link>
-        <div className={s.titleheader}>
-          <h3 className={s.titulo}>
-            <i>Creando Producto</i>
-          </h3>
-        </div>
+
       </div>
 
-      <form name="formAct" onSubmit={(e) => handleSubmit(e)} /*encType='multipart/form-data'*/>
-        <div className={s.contenedor}>
-          <div className="row d-flex justify-content-center align-items-center px-5">
-            <div className="col-md-6 col-sm-12 px-5">
-              <div className={s.input}>
-                <h5 className={s.titles}>Nombre del sponsor</h5>
-                <Select placeholder="Sponsor" name="sponsorId" onChange={(e)=>handleInputChange(e)}>
-                    {
-                        sponsors?.map(elem=>
-                            <option name="sport" value={elem.id}>{elem.name}</option>
-                            )
-                        }
-                </Select>
-                {errors.sponsorId ? (
-                  <div className={s.error}>{errors.sponsorId}</div>
-                ) : null}
-              </div>
-              <div className={s.input}>
-                <h5 className={s.titles}>Nombre del producto</h5>
-                <input
-                  type="text"
-                  className={s.inputfield}
-                  name="name"
-                  onChange={(e) => handleInputChange(e)}
-                />
-                {errors.name ? (
-                  <div className={s.error}>{errors.name}</div>
-                ) : null}
-              </div>
-              <div className={s.input}>
-                <h5 className={s.titles}>Link del producto</h5>
-                <input
-                  type="text"
-                  className={s.inputfield}
-                  name="link"
-                  onChange={(e) => handleInputChange(e)}
-                />
-                {errors.link ? (
-                  <div className={s.error}>{errors.link}</div>
-                ) : null}
-              </div>
-              <div>
-          {/*DEPORTES */}
-            <div className='divInputsSport'>
-                <h5>Deporte del producto</h5>
-                    <div className="deportesElegidos">
-                        <div>
-                            <Select placeholder="Deporte" name="sport" onChange={(e) => handleInputChange(e)} className='selectSports'>
-                                <option name='futbol' value='futbol'>Futbol</option>
-                                <option name='tenis' value='tenis'>Tenis</option>
-                                <option name='padel' value='padel'>Padel</option>
-                                <option name='basquet' value='basquet'>Basquet</option>
-                            </Select>
-                        </div>
-                    </div>
-                    {errors.sport ? <div className="errores">{errors.sport}</div> : null}
-            </div>
-                <h5 className={s.titles}>Descripcion del producto</h5>
-                <input
-                  className={s.inputfield}
-                  type="textarea"
-                  name="description"
-                  placeholder="Descripción del producto"
-                  onChange={(e) => handleInputChange(e)}
-                />
-                {errors.description ? (
-                  <div className={s.error}>{errors.description}</div>
-                ) : null}
-              </div>
-              <div>
-                <h5 className={s.titles}>Imagen del producto</h5>
-                <input
-                  type="file"
-                  name="image"
-                  className={s.fileselect}
-                  onChange={uploadImage}
-                  accept="image/*"
-                />
-                {loading ? <span class={s.loader}></span> : null}
-              </div>
-            </div>
-          </div>
-          {/* BOTON SUBMIT */}
-          <div className={s.boton}>
-            {!loading &&
-            !errors.name &&
-            !errors.sponsorId &&
-            !errors.link &&
-            !errors.image &&
-            !errors.sport &&
-            !errors.description ? 
-                <button type="submit" className={s.botonActivo}
-                >Crear</button> : <button type="submit" className={s.btnGris} disabled >Crear Producto</button>
-            }
-          </div>
-          
+      <form name="formAct" onSubmit={(e) => handleSubmit(e)} style={{width:'100%'}} >
+        <div className={s.titulo}>
+          <h3 className="fw-normal text-white fst-italic m-9" style={{ fontSize: '1em' }}>Creando Producto</h3>
         </div>
+        {/* <div className={s.contenedor}> */}
+        <div className="contenedorInputs" style={{display:'flex', flexDirection: 'row', justifyContent: 'space-around', width:'100%'}}>
+
+          <div className='inputss-izquierda'>
+
+            <div className={s.input}>
+              <p className={s.titles} style={{ color: 'rgba(18, 141, 255, 1)', fontSize: '20px', fontWeight: '600', marginTop: '30px' }}>Nombre del sponsor</p>
+              <Select placeholder="Sponsor" name="sponsorId" onChange={(e) => handleInputChange(e)} className='selectSports' style={{backgroundColor:'white', color:'black'}} >
+                {
+                  sponsors?.map(elem =>
+                    <option name="sport" value={elem.id} style={{color: 'black'}}>{elem.name}</option>
+                  )
+                }
+              </Select>
+              {errors.sponsorId ? (
+                <div className={s.error}>{errors.sponsorId}</div>
+              ) : null}
+            </div>
+            <div className={s.input}>
+              <p className={s.titles} style={{ color: 'rgba(18, 141, 255, 1)', fontSize: '20px', fontWeight: '600', marginTop: '30px' }}>Nombre del producto</p>
+              <input
+                type="text"
+                
+                name="name"
+                onChange={(e) => handleInputChange(e)}
+                style={{width: '350px', height:'40px', borderRadius:'10px', color:'black', paddingLeft:'5px'}}
+
+
+              />
+              {errors.name ? (
+                <div className={s.error}>{errors.name}</div>
+              ) : null}
+            </div>
+            <div className={s.input}>
+              <p className={s.titles} style={{ color: 'rgba(18, 141, 255, 1)', fontSize: '20px', fontWeight: '600', marginTop: '30px' }}>Link del producto</p>
+              <input
+                type="text"
+                name="link"
+                onChange={(e) => handleInputChange(e)}
+                style={{width: '350px', height:'40px', borderRadius:'10px', color:'black', paddingLeft:'5px'}}
+
+              />
+              {errors.link ? (
+                <div className={s.error}>{errors.link}</div>
+              ) : null}
+            </div>
+          </div>
+          <div className='inputss-derecha'>
+            {/*DEPORTES */}
+            <div >
+              <p style={{ color: 'rgba(18, 141, 255, 1)', fontSize: '20px', fontWeight: '600', marginTop: '30px' }}>Deporte del producto</p>
+              <div style={{marginTop:'5px'}}>
+               
+                  <Select placeholder="Deporte" name="sport" onChange={(e) => handleInputChange(e)} className='selectSports' style={{backgroundColor:'white', color:'black'}}>
+                    <option name='futbol' value='futbol' style={{color: 'black'}}>Futbol</option>
+                    <option name='tenis' value='tenis' style={{color: 'black'}}>Tenis</option>
+                    <option name='padel' value='padel' style={{color: 'black'}}>Padel</option>
+                    <option name='basquet' value='basquet' style={{color: 'black'}}>Basquet</option>
+                  </Select>
+                
+              </div>
+              {errors.sport ? <div className="errores">{errors.sport}</div> : null}
+            </div>
+            <p style={{ color: 'rgba(18, 141, 255, 1)', fontSize: '20px', fontWeight: '600', marginTop: '30px' }} className={s.titles}>Descripcion del producto</p>
+            <input
+              type="textarea"
+              name="description"
+              onChange={(e) => handleInputChange(e)}
+              style={{width: '350px', height:'40px', borderRadius:'10px', color:'black', paddingLeft:'5px'}}
+
+            />
+            {errors.description ? (
+              <div className={s.error}>{errors.description}</div>
+            ) : null}
+
+            <div style={{display:'flex', flexDirection:'column'}}>
+              <p style={{ color: 'rgba(18, 141, 255, 1)', fontSize: '20px', fontWeight: '600', marginTop: '30px' }} className={s.titles}>Imagen del producto</p>
+              <input
+                type="file"
+                name="image"
+                className='inputImage'
+                onChange={uploadImage}
+                accept="image/*"
+              />
+              {loading ? <span style={{marginTop:'10px'}} class={s.loader}></span> : null}
+            </div>
+
+
+            {/* BOTON SUBMIT */}
+          </div>
+        </div>
+            <div className={s.boton}>
+              {!loading &&
+                !errors.name &&
+                !errors.sponsorId &&
+                !errors.link &&
+                !errors.image &&
+                !errors.sport &&
+                !errors.description ?
+                <button type="submit" className={s.botonActivo} style={{marginTop:'40px', paddingTop:'7px', paddingBottom:'7px'}}
+                >Publicar producto</button> : <button style={{marginTop:'40px',  paddingTop:'7px', paddingBottom:'7px'}} type="submit" className={s.btnGris} disabled >Publicar producto</button>
+              }
+            </div>
       </form>
     </div>
   );

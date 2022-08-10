@@ -87,8 +87,8 @@
   align-items: flex-start;
   justify-content: space-between;
   padding: 0 90px 0 0;
-  background-image: url('https://blog.jdsports.es/wp-content/uploads/2022/02/header-nike-air-max-dawn-launch-es2.jpg');
-  background-position: 100% 73%;
+  background-image: url('https://origin-prod-cms.wilson.com/sites/default/files/blog/HEADER_1920x630%20%281%29.jpg');
+  background-position: 100% 85%;
   width: 100%;
   height: 170px;
   background-repeat: no-repeat;
@@ -158,15 +158,20 @@
   /* justify-content: flex-end;
   align-items: flex-end; */
   /* padding: 0 80px 0 0; */
-  height: 170px;
+  /* height: 170px; */
 }
 
 .titulo{
-  font-size: 50px;
+  font-size: 40px;
   font-family: 'Inter', sans-serif;
-  padding: 20px; 
+  margin-top: 20px;
+  /* padding: 20px;  */
   color: white;
   font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .column{
