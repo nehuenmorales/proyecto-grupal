@@ -20,11 +20,8 @@
 }
 
 .title {
-  position: absolute;
   color: white;
   text-transform: capitalize;
-  left: 20px;
-  top: 10px;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.717);
 }
 
@@ -34,7 +31,6 @@
   text-transform: capitalize;
   top: 35px;
   left: 25px;
-  font-style: italic;
 }
 
 .location {

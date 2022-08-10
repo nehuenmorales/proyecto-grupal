@@ -66,12 +66,12 @@ export default function SearchBar({ sport, filtro, setFilter , state }) {
     <>
     <div className={s.containerSearchBar}>
       <FormGroup
-        className="d-flex flex-start align-items-center"
         onSubmit={(e) => onSubmit(e)}
+        style={{display:'flex', flexDirection:'row', alignItems: 'center'}}
       >
         <Form.Control
           className={s.input}
-          STYLE="color=#FFFFFF"
+          style={{display:'flex', alignItems:'center',backgroundColor:'white', justifyContent:'center'}}
           size="sm"
           type="text"
           onChange={(e) => onChange(e)}
@@ -81,11 +81,9 @@ export default function SearchBar({ sport, filtro, setFilter , state }) {
           variant="success"
           type="submit"
           onClick={(e) => onSubmit(e)}
-          style={{ height: "auto", backgroundColor:'rgba(0, 184, 62, 1)'  }}
+          style={{ height: "auto", backgroundColor:'rgba(0, 184, 62, 1)' }}
           className="m-1 text-white"
-        >
-          Buscar
-        </Button>
+        >Buscar</Button>
       </FormGroup>
 
 
