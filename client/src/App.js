@@ -57,7 +57,7 @@ function App() {
             <span className="visually-hidden">Loading...</span>
           </Spinner>
       : isAuthenticated
-      ? user.email == 'maguiherediavaiarini@gmail.com' ?   
+      ? user.email == 'faltauno.henry@gmail.com' ?   
       <Route exact path={'/'} component={HomeAdmin} /> 
       : user['https://example.com/rol'] === 'owner' 
       ?
