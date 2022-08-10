@@ -226,7 +226,7 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
                 </Modal.Footer>
             </Modal>
 
-            <Modal show={pagar} onHide={handleClose}>
+            <Modal show={pagar} onHide={handleCloseData}>
                 <Modal.Header closeButton>
                     <Modal.Title>Completa tus datos</Modal.Title>
                 </Modal.Header>
@@ -292,12 +292,14 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
                                 autoFocus
                             />
                         </Form.Group>
+                        <div style={{display:"flex", justifyContent:"flex-end"}}>
                         <button className="btn btn-secundary" onClick={handleCloseData}>
                         Volver
                         </button>
                         <Button type="submit" style={{backgroundColor:'rgba(0, 184, 62, 1)',border:"none"}}>
                             Ir a pagar
                         </Button>
+                        </div>
                     </Form>
                 </Modal.Body>
             </Modal>
