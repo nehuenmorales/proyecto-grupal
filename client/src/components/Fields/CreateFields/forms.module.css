@@ -164,7 +164,7 @@
     border-radius: 10px;
     height: 40px;
     padding: 5px 3px 5px 15px;
-    background-color: rgba(217, 217, 217, 0.15) !important;
+    background-color: white !important;
     color: white;
     min-width: 168px;  
     cursor: pointer; 
@@ -225,9 +225,9 @@
 }
 
 .btndisp{
-    background-color: rgba(217, 217, 217, 0.15) !important;
+    background-color: white !important;
     border: none !important;
-    color: white !important;
+    color: black !important;
     padding: 5px 5px 5px 5px !important;
     margin: 0px 15px 0px 0px;
     min-width: 168px;  
