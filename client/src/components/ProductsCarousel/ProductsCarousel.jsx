@@ -28,8 +28,8 @@ const ProductsCarousel = ({sport}) => {
               <div key={product.id} className='productCard'>
                 <a href={product.link} target='_blank'>
                   <img src={product.image}/>
-                  <h4> { product.title }</h4>
-                  <p> { product.subtitle } </p>
+                  <h4> { product.name }</h4>
+                  <p> { product.description } </p>
                 </a>
               </div>
             )

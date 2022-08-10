@@ -5,7 +5,7 @@ const { conn } = require('../../db.js');
 async function getGames(req, res, next) {
     const {sport} = req.params
     try {
-        const allGames= await conn.query(`(SELECT g.*, f.name, f.capacity,x.name,x.address,x.city,f."pricePerTurn", f.description
+        const allGames= await conn.query(`(SELECT g.*, f.name, f.capacity,x.name AS "complexname",x.address,x.city,f."pricePerTurn", f.description
         FROM "games" g
         JOIN fields f ON g."fieldId" = f.id
         JOIN complexes x ON x.id= f."complexId"
