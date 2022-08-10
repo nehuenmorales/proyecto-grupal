@@ -325,6 +325,7 @@ export default function ProfileData({ email, user }) {
                     defaultValue={profile.username}
                   />{" "}
                   <button
+                  style={{backgroundColor: 'white'}}
                     name="username"
                     onClick={(e) => editProfile("username")}
                     className={s.buttonEdit}
@@ -446,8 +447,9 @@ export default function ProfileData({ email, user }) {
                 </div>
               ) : null}
               {/* // aca voy a romper todo */}
-              <Button onClick={onOpen}>Eliminar Cuenta</Button>
-
+              <div style={{display: 'flex', width: '100%', justifiContent: 'flex-end'}}>
+              <Button style={{marginTop: '60px', marginLeft:'150px', backgroundColor:'rgb(176, 6, 18)', color:'white', width: '500px'}} onClick={onOpen}>Eliminar Cuenta</Button>
+              </div>
               <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
                 <ModalContent>

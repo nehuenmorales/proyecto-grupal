@@ -58,7 +58,7 @@ export default function GamesByUser(){
                     <td style={{color:'white'}}>{elem.end}hs</td>
                     <td style={{color:'white'}}>{elem.privacy}</td>
                     <td style={{color:'white'}}>{elem.result === null ? "Sin Resultado" : elem.result}</td>
-                    <td><Button value={elem.complexid} onClick={(e)=>Rating(e)}>Califica tu experiencia</Button></td>
+                    <td><Button style={{backgroundColor:'rgba(0, 184, 63, 1)', marginLeft: '10px'}} value={elem.complexid} onClick={(e)=>Rating(e)}>Calificá tu experiencia</Button></td>
 
                 </tr>
             )

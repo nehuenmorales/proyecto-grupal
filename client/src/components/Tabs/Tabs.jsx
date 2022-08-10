@@ -23,9 +23,6 @@ const Tabs = ({ match }) => {
         <Nav.Link className={s.letras} eventKey="link-3" href={`/sport/${match.params.sport}/complex`}>Complejos</Nav.Link>
       </Nav.Item>
       <Nav.Item className={s.button}>
-        <Nav.Link className={s.letras} eventKey="link-4">Torneos</Nav.Link>
-      </Nav.Item>
-      <Nav.Item className={s.button}>
         <Nav.Link className={s.letras} eventKey="link-5" href={`/sport/${match.params.sport}/gamesIncomplete`}>FaltaUno</Nav.Link>
       </Nav.Item>
     </Nav>

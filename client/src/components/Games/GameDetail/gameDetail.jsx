@@ -11,6 +11,7 @@ import './gameDetail.css';
 import { BiMapPin, BiTimeFive } from 'react-icons/bi';
 import Map from '../../Map/Map';
 import { Container, Carousel, Button, Row, Col } from 'react-bootstrap';
+import { Link } from "react-router-dom";
 
 export default function GameDetail({ match }) {
 
@@ -24,7 +25,6 @@ export default function GameDetail({ match }) {
   useEffect(() => {
     dispatch(getGamesById(gameid));
     dispatch(getFieldById(detail[0]?.fieldId))
-    console.log(detail)
   }, [dispatch, gameid, detail])
 
 
@@ -38,6 +38,9 @@ export default function GameDetail({ match }) {
     <Flex>
       <VerticalNavbar />
       <Container style={{ color: 'white' }}>
+      <Link to='/' className="botonVolver">
+            <Button>Volver</Button>
+        </Link>
         <Carousel className='imageContainer'>
           <Carousel.Item className='imageItemContainer'>
             <img
@@ -48,7 +51,7 @@ export default function GameDetail({ match }) {
           </Carousel.Item>
         </Carousel>
         <Row className='informationContainer mt-3'>
-          <Col>
+          <Col style={{marginLeft: '40px'}}>
             <Heading as='h1'>{detail[0]?.name}</Heading>
             <p className='mb-2'>Ubicación del complejo</p>
             <Map zoom={16} margin='0 0 10px 0'
@@ -63,11 +66,11 @@ export default function GameDetail({ match }) {
             </div>
           </Col>
           <Col>
-            <Heading className='titleDescription mb-2'>Descripción de la cancha</Heading>
-            <p>{fieldDetail[0]?.description}</p>
-            <p className='d-flex align-items-center m-1'>{`${detail[0]?.start}hs - ${detail[0]?.end}hs`}<BiTimeFive className='m-2' /></p>
-            <Heading className='mb-2' as='h3'> $ {detail[0]?.pricePerTurn}</Heading>
-            <Button onClick={(e) => { handleModal(e) }} className='d-flex text-white w-100 justify-content-center align-items-center' size='lg'>Reservar turno <BiTimeFive className='m-2' /></Button>
+            <Heading className='titleDescription mb-2' style={{marginTop: '10px', fontSize: '26px'}}>Descripción de la cancha</Heading>
+            <p  style={{marginTop: '10px', fontSize: '22px', marginBottom: '10px'}}>{fieldDetail[0]?.description}</p>
+            <p className='d-flex align-items-center' style={{marginBottom: '30px', fontWeight: '700'}}>{`De ${detail[0]?.start}hs a ${detail[0]?.end}hs`}<BiTimeFive className='m-2' /></p>
+            <Heading  style={{marginBottom: '70px'}}> $ {detail[0]?.pricePerTurn}</Heading>
+            <Button onClick={(e) => { handleModal(e) }} style={{backgroundColor: 'rgba(0, 184, 63, 1)', border: 'none', width: '500px'}} className='d-flex text-white justify-content-center align-items-center' size='lg'>Reservar turno <BiTimeFive className='m-2' /></Button>
           </Col>
         </Row>
         <ModalGames

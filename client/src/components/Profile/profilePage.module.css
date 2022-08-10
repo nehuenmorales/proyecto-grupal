@@ -32,7 +32,7 @@
     height: 2em;
     width: 3em;
     border-radius: 0.5em;
-    background-color: rgb(13, 48, 78);
+    background-color: rgb(255, 255, 255);
 }
 
 .containerData{
@@ -61,7 +61,7 @@
 .buttonfinal{
     width: 16em;
     height: 3em;
-    border-radius: 1em;
+    border-radius: 10px;
     background-color: #00B83F;
     font-family: 'Inter', sans-serif;
     color: white; 

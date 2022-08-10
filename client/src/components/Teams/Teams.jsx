@@ -26,7 +26,7 @@ export function Teams({ email }) {
     <div>
       <div className={s.buttoncontainer}>
           <button style={{color: 'white', border: 'none'}} className={s.button} onClick={(e) => modalOpen(e)}>
-            Crea un equipo
+            Crear un equipo
           </button>
       </div>
       <div>
