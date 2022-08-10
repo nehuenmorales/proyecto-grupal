@@ -30,7 +30,7 @@ export default function CardComplex(props) {
           </Box>
 		  </Box>
 				<Card.Text className={s.text}>
-				<img src={locationIcon}/>  {props.city}
+				<img src={locationIcon}/> {props.state}
 				</Card.Text>
 			</Card.Body>
 			</Link>

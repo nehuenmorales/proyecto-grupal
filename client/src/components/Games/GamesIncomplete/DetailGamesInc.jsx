@@ -5,6 +5,7 @@ import VerticalNavbar from '../../VerticalNavbar/VerticalNavbar';
 import s from "./DetailGamesInc.module.css"
 import { useAuth0 } from '@auth0/auth0-react';
 import swal from 'sweetalert';
+import { Flex } from '@chakra-ui/react';
 
 export default function DetailGamesInc({match}) {
     const gameid = match.params.gameid;
@@ -23,8 +24,11 @@ export default function DetailGamesInc({match}) {
     swal('', `Te uniste Correctamente al juego!`, 'success')
    }
 
-    return (<div className={s.background}>
+    return (
+    <Flex>
+
         <VerticalNavbar/>
+    <div className={s.background}>
         <img className={s.image} src={detail[0]?.image} alt="Imagen"></img>
         <div className={s.flex}>
         <h2>{detail[0]?.name}</h2>
@@ -38,6 +42,8 @@ export default function DetailGamesInc({match}) {
         <p>${detail[0]?.pricePerTurn}</p>
         <p>players:{detail?.map(g=>g.username).join(",")}</p>
         <button onClick={()=>{HandleDispatch()}} className={s.button}>Unirse!</button>
-    </div>)
+    </div>
+    </Flex>
+    )
 }
 
