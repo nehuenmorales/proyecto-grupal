@@ -2,7 +2,7 @@ import React from 'react'
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
 import s from "./FieldCard.module.css";
-import faltauno from '../../utils/falta uno foto.png';
+import faltauno from '../../../utils/falta uno foto.png';
 
 
 function FieldCard(props) {
