@@ -1,10 +1,11 @@
-import { Radio, RadioGroup } from "@chakra-ui/react";
+import { Radio, RadioGroup, Stack, Divider} from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { Modal, Button, Card, Container, Form } from 'react-bootstrap';
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { updateGame } from "../../../redux/NuevoGames/gamesAction";
 import { postPayments, resetUrlPayment } from "../../../redux/Payments/paymentsAction";
+
 
 export default function ModalGames({ showModal, setShowModal, sport, id, price, supplies }) {
 
@@ -130,7 +131,7 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
             <Modal show={showModal} onHide={handleCloseData} size="lg" aria-labelledby="example-modal-sizes-title-lg">
                 <Modal.Header>
                     <Modal.Title>
-                        <h2>Personaliza tu reserva</h2>
+                        <h1 style={{fontSize:"25px"}}>Personaliza tu reserva</h1>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -152,30 +153,37 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
                         }
                         <p>{errorsValue.type}</p>
                         <div className="form-group d-flex flex-column">
-                            <label>¿Como queres que sea tu partido?</label>
-                            <div>
+                            <p style={{fontSize:"20px",marginBottom:"10px"}}>¿Como queres que sea tu partido?</p>
+                            <div style={{marginBottom:"10px"}}>
                                 <RadioGroup>
-                                    <Radio name="privacy" className="form-check-input" onChange={(e) => { HandlePrivacy(e) }} id="private" value="private" type="radio" />
-                                    <label htmlFor="private">Privado</label>
-                                    <Radio name="privacy" className="form-check-input" onChange={(e) => { HandlePrivacy(e) }} id="public" value="public" type="radio" />
-                                    <label htmlFor="public">Publico</label>
+                                <Stack spacing={5} direction='row'>
+                                    <Radio colorScheme='green' size='lg' name="privacy" className="form-check-input" onChange={(e) => { HandlePrivacy(e) }} id="private" value="private" type="radio"> 
+                                    Privado
+                                    </Radio>
+                                    <Radio colorScheme='green' size='lg' name="privacy" className="form-check-input" onChange={(e) => { HandlePrivacy(e) }} id="public" value="public" type="radio">
+                                    Publico
+                                    </Radio>
+                                </Stack>
                                     <p>{errorsValue.privacy}</p>
                                 </RadioGroup>
                             </div>
 
                         </div>
 
-
                         {
                             isPublic ?
-                                <textarea name="requirements" onChange={e => HandleUpdate(e)} className="form-control h-100" maxLength="1000" placeholder="Escribe los requisitos para que otros jugadores puedan unirse a tu juego!"></textarea>
-                                : null
+                            <textarea style={{marginBotton:"10px"}} name="requirements" onChange={e => HandleUpdate(e)} className="form-control h-100" maxLength="1000" placeholder="Escribe los requisitos para que otros jugadores puedan unirse a tu juego!"></textarea>
+                            : null
                         }
+
                         <div className="form-group d-flex flex-column" >
-                            <label>Link de la transmision</label>
+                            <label style={{fontSize:"20px",marginBottom:"10px",marginTop:"10px"}} >Link de la transmision</label>
                             <input name="link" onChange={e => HandleUpdate(e)} className="form-control" type="text" placeholder="Link"></input>
                         </div>
-                        <label>Elementos para alquilar</label>
+                        
+                        {supplies.length>0?
+                        <div>
+                        <label style={{fontSize:"20px",marginBottom:"10px", marginTop:"10px"}}>Elementos para alquilar</label>
                         <Container className="d-flex m-3 justify-content-around flex-wrap align-items-center">
                             {
                                 supplies?.map(supplie => {
@@ -201,17 +209,20 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
                                 })
                             }
                         </Container>
+                        </div>
+                        :null
+                        }
 
-                        <p>total $ {leitoTheBest}</p>
+                        <p style={{fontSize:"20px", marginTop:"20px"}}>total  <b>${leitoTheBest}</b></p>
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
                     <button className="btn btn-secundary" onClick={handleClose}>
                         Volver
                     </button>
-                    <button onClick={() => setPagar(true)} className="btn btn-primary">
+                    <Button onClick={() => setPagar(true)} style={{backgroundColor:'rgba(0, 184, 62, 1)',border:"none"}}>
                         Siguiente
-                    </button>
+                    </Button>
                 </Modal.Footer>
             </Modal>
 
@@ -281,10 +292,10 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
                                 autoFocus
                             />
                         </Form.Group>
-                        <Button variant="secondary" onClick={handleCloseData}>
-                            Volver
-                        </Button>
-                        <Button type="submit" variant="primary">
+                        <button className="btn btn-secundary" onClick={handleCloseData}>
+                        Volver
+                        </button>
+                        <Button type="submit" style={{backgroundColor:'rgba(0, 184, 62, 1)',border:"none"}}>
                             Ir a pagar
                         </Button>
                     </Form>
