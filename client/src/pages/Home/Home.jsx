@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react"
 import './Home.css';
 import logo from "../../assets/images/logo.png";
+import ProductsCarousel from '../../components/ProductsCarousel/ProductsCarousel'; 
 
 
 
@@ -27,6 +28,7 @@ const Home = () => {
         isAuthenticated ?
           <>
             <Container className='d-flex justify-content-center aling-items-center mt-3'>
+              <div style={{display:"flex",flexDirection:"column"}}>
               <Row>
                 <div>
                   <div className="navbar-brand text-decoration-none text-white" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', margin: '0px' }}>
@@ -62,6 +64,8 @@ const Home = () => {
                   </Link>
                 </Col>
               </Row>
+            <ProductsCarousel/>
+            </div>
             </Container>
 
           </>

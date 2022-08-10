@@ -6,7 +6,7 @@ const router = Router();
 router.post('/create', createSponsor)
 router.get("/all",getAllSponsors)
 router.post("/createProduct",createProduct)
-router.get("/products/:sport",getAllProducts)
+router.get("/products",getAllProducts)
 
 
 

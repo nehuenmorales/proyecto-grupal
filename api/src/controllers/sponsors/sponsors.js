@@ -13,12 +13,8 @@ async function getAllSponsors(req, res, next) {
 async function getAllProducts(req, res, next) {
   try {
     const sport=req.params
-    const products = await Products.findAll({
-      where: {
-          sport: sport
-      }
-  })
-    res.status(200).json(products);
+    const products = await Products.findAll()
+    res.status(200).send(products);
   } catch (e) {
     console.log(e)
     res.status(400).json({ msg: "Fallo la obtencion de los productos" ,e});
