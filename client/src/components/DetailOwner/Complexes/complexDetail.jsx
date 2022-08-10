@@ -87,7 +87,7 @@ export default function ComplexDetail({ id }) {
                     <Button style={{ 'marginTop': '15px' }}>Volver</Button>
                 </Link>
                 <div className="tituloName">
-                    <h2 className="fw-normal text-white fst-italic m-9" style={{ fontSize: '3em', marginLeft: '35%' }}>{complex.name}</h2>
+                    <h2 className="fw-normal text-white fst-italic m-9" style={{ fontSize: '3em', marginLeft: '35%' }}>{complex?.name}</h2>
                 </div>
                 <form onSubmit={(e) => handleSubmit(e)}>
                     <div className='contenedorLapiz'>
@@ -97,7 +97,7 @@ export default function ComplexDetail({ id }) {
                     <textarea className="infoForm" name='description' onChange={ev => onClick(ev)} value={change.description} />
                     {errors.description ? <div className="errores" style={{ marginLeft: '80px' }}>{errors.description}</div> : null}
                     <p className="subTitulos">Dirección</p>
-                    <p className="info">{complex.address}</p>
+                    <p className="info">{complex?.address}</p>
                     <div className='contenedorLapiz'>
                         <p className="subTitulos">Deportes</p>
                         <img src='https://cdn-icons-png.flaticon.com/512/1250/1250615.png' className='lapiz'></img>
@@ -124,7 +124,7 @@ export default function ComplexDetail({ id }) {
                         {
                             !errors.description &&
                                 !errors.sports &&
-                                change.description !== complex.description || change.sports !== complex.sports ?
+                                change.description !== complex?.description || change.sports !== complex?.sports ?
                                 <button type="submit" className='botonActivo'
                                 >Guardar cambios</button> : <button type="submit" className='btnGris' disabled >Guardar cambios</button>
                         }
@@ -132,10 +132,10 @@ export default function ComplexDetail({ id }) {
                     </div>
                 </form>
             </div>
-            <div style={{ backgroundImage: `url(${complex.image})` }} className='derecha'>
+            <div style={{ backgroundImage: `url(${complex?.image})` }} className='derecha'>
                 <div className='div-rating' style={{ backgroundColor: `rgba(17, 24, 37, 1)`, padding: '7px 15px 3px', height: '50px', width: '150px' }}>
                     <img src="https://api.iconify.design/material-symbols:star-rounded.svg?color=%23ffee00" alt="" className="rating-img" style={{ height: `28px` }} />
-                    <p className="complex-rating" style={{ fontSize: `1.3em`, textShadow: '1px 1px 3px black;' }}> {complex.rating}</p>
+                    <p className="complex-rating" style={{ fontSize: `1.3em`, textShadow: '1px 1px 3px black;' }}> {complex?.rating}</p>
                 </div>
             </div>
         </div>

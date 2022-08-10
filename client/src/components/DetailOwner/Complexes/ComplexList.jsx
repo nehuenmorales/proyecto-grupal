@@ -40,7 +40,7 @@ export default function ComplexList() {
                             <div className="content-card">
 
                                 <div className="name-address">
-                                    <p className="complex-name"><i>{e.name.charAt(0).toUpperCase() + e.name.slice(1)}</i></p>
+                                    <p className="complex-name"><i>{e.name?.charAt(0).toUpperCase() + e.name.slice(1)}</i></p>
                                     <p className="complex-address">{e.address}</p>
                                 </div>
                             </div>
