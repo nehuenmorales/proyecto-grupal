@@ -14,6 +14,12 @@ async function getSearchComplex(req, res, next) {
                     {city:{
                         [Op.iLike]: `%${name}%`,
                       }},
+                    {state:{
+                        [Op.iLike]: `%${name}%`,
+                      }},
+                    {address:{
+                        [Op.iLike]: `%${name}%`,
+                      }},
                     {name:{
                         [Op.iLike]: `%${name}%`,
                     }}

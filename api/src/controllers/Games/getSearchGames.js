@@ -30,13 +30,19 @@ async function getSearchGames(req, res, next) {
 
   try {
     let games = await conn.query(
-      `(SELECT g.*, f.name, f.capacity, f."pricePerTurn", f.description,x.city,x.name AS complex_name
+      `(SELECT g.*, f.name, f.capacity, f."pricePerTurn", f.description,x.city,x.name AS complex_name,x.address,x.state
         FROM "games" g
         JOIN fields f ON g."fieldId" = f.id
         JOIN complexes x ON f."complexId"=x.id
-        WHERE g.status = 'free' AND g.sport = :sport AND (x.city LIKE :name OR x.name LIKE :name) )`,
+        WHERE g.status = 'free' AND g.sport = :sport AND (x.city LIKE :name OR f.name LIKE :name OR x.state LIKE :name OR x.address LIKE :name) )`,
       {
-        replacements: { sport: sport, name: `%${name}%` },
+        replacements: { 
+          sport: sport,
+          name: `%${name}%`,
+          city: `%${name}%`, 
+          state: `%${name}%`, 
+          address: `%${name}%`, 
+        },
         type: QueryTypes.SELECT,
       }
     );
