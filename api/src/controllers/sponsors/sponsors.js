@@ -13,11 +13,7 @@ async function getAllSponsors(req, res, next) {
 async function getAllProducts(req, res, next) {
   try {
     const sport=req.params
-    const products = await Products.findAll({
-      where: {
-          sport: sport
-      }
-  })
+    const products = await Products.findAll()
     res.status(200).send(products);
   } catch (e) {
     console.log(e)

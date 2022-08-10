@@ -7,12 +7,12 @@ import { Link } from 'react-router-dom';
 import { getGameSport } from '../../redux/NuevoGames/gamesAction';
 import { useSelector } from 'react-redux';
 
-const ProductsCarousel = ({sport}) => {
+const ProductsCarousel = () => {
   
   const dispatch = useDispatch()
   
   useEffect(() => {
-    dispatch(getAllProducts(sport));
+    dispatch(getAllProducts());
   }, [dispatch]);
   
   const products= useSelector(state=>state.SponsorsReducer.AllProducts)

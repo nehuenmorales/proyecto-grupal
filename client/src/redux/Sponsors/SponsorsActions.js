@@ -39,9 +39,9 @@ export const createProduct =(body)=>{
     }
   }
  
-  export function getAllProducts(sport) {
+  export function getAllProducts() {
     return dispatch =>{
-      axios.get(`https://falta-uno-1.herokuapp.com/sponsor/products/${sport}`)
+      axios.get(`https://falta-uno-1.herokuapp.com/sponsor/products`)
         .then(res => {
           dispatch({
             type: GET_ALL_PRODUCTS,

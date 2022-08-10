@@ -63,7 +63,7 @@ const Home = () => {
                   </Link>
                 </Col>
               </Row>
-            <ProductsCarousel sport={"futbol"}/>
+            <ProductsCarousel/>
             </Container>
 
           </>
