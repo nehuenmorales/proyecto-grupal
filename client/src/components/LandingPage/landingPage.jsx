@@ -8,7 +8,7 @@ import { Heading, Button, Flex, Box, Image, Center } from "@chakra-ui/react";
 
 
 const LandingPage = () => {
-  const { loginWithRedirect, isAuthenticated, isLoading } = useAuth0();
+  const { loginWithRedirect } = useAuth0();
 
   const login = async () => {
     await loginWithRedirect();
