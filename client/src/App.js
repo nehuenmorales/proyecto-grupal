@@ -126,9 +126,9 @@ function App() {
       <Route exact path="/eventos" component={GamesByUser} />
       <Route exact path="/equipos" component={TeamsContainer} />
       {
-      // isAuthenticated? 
-      // window.location.href = 'https://falta-uno-1.vercel.app/'
-      // :
+      !isAuthenticated? 
+      window.location.href = 'https://falta-uno-henry.vercel.app/'
+      :
       <Route exact path="/teamInvitation/:id" component={InvitationAcept} />
       }
 
