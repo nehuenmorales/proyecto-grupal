@@ -172,7 +172,7 @@
 }
 
 .titles{
-    color: rgba(114, 77, 234, 1);
+    color: rgba(18, 141, 255, 1);
     font-size: 20px;
     font-family: 'Inter', sans-serif;
     padding: 0px;
@@ -184,8 +184,8 @@
     border-radius: 10px;
     height: 40px;
     padding: 5px 3px 5px 15px;
-    background-color: rgba(217, 217, 217, 0.15) !important;
-    color: white;
+    background-color: white !important;
+    color: black;
     min-width: 350px;  
     cursor: pointer; 
 }
@@ -194,12 +194,12 @@
     background-color: rgba(217, 217, 217, 0.15);
     border-radius: 10px;
     height: 40px;
-    color: white;
+    color: black;
     min-width: 350px;
     cursor: pointer;
 }
 .fileselect::file-selector-button{
-    background-color: rgba(12, 19, 31, 1);
+    background-color: white;
     border-color: rgba(217, 217, 217, 0.15);
     border-radius: 10px 0px 0px 10px;
     height: 40px;
@@ -208,13 +208,13 @@
 }
 
 .subtitle{
-    color: rgba(114, 77, 234, 1);
+    color: rgba(18, 141, 255, 1);
     margin: 5px 0px 0px 0px;
 }
 
 
 .inputpesos{
-    background-color: rgba(217, 217, 217, 0.15) !important;
+    background-color: white !important;
     border: none !important;
     color: white !important;
     color: white !important;

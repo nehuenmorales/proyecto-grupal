@@ -46,7 +46,7 @@ const LandingPage = () => {
               <i>Ingresar</i> 
             </Button> */}
             <Button bg='#00B83F' onClick={() => login()} style={{ color: 'white' }}>
-              Registrarse
+              Ingresar
             </Button>
             {/* <Button as="input" type="button" style={{ "color": "white" }} variant="success" value="Registrarse" /> */}
             {/* <Button variant="danger" style={{ "color": "white" }} onClick={() => logout({ returnTo: window.location.origin })}>
