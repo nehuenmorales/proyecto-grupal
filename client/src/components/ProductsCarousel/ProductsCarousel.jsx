@@ -16,6 +16,7 @@ const ProductsCarousel = ({sport}) => {
   }, [dispatch]);
   
   const products= useSelector(state=>state.SponsorsReducer.AllProducts)
+  console.log(products)
   
   return (
     <>

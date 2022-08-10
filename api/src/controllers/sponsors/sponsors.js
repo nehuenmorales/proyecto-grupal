@@ -18,7 +18,7 @@ async function getAllProducts(req, res, next) {
           sport: sport
       }
   })
-    res.status(200).json(products);
+    res.status(200).send(products);
   } catch (e) {
     console.log(e)
     res.status(400).json({ msg: "Fallo la obtencion de los productos" ,e});

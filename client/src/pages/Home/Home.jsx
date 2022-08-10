@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react"
 import './Home.css';
 import logo from "../../assets/images/logo.png";
+import ProductsCarousel from '../../components/ProductsCarousel/ProductsCarousel'; 
 
 
 
@@ -62,6 +63,7 @@ const Home = () => {
                   </Link>
                 </Col>
               </Row>
+            <ProductsCarousel sport={"futbol"}/>
             </Container>
 
           </>
