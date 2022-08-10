@@ -11,9 +11,13 @@ async function getSearchField(req, res, next) {
       let fields =await conn.query(`(SELECT f.*,x.city,x.name AS "complexName"
       FROM fields f
       JOIN complexes x ON f."complexId"=x.id
-      WHERE f.sport= :sport AND( x.city LIKE :name OR f.name LIKE :name) )`,{
+      WHERE f.sport= :sport AND( x.city LIKE :name OR f.name LIKE :name OR x.state LIKE :name OR x.address LIKE :name) )`,{
         replacements: { sport: sport,
-          name:`%${name}%`
+          name:`%${name}%`,
+          city:`%${name}%`,
+          state:`%${name}%`,
+          address:`%${name}%`,
+          name:`%${name}%`,
           },
         type: QueryTypes.SELECT
     })
