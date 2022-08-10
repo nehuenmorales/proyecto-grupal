@@ -81,7 +81,7 @@ export default function SearchBar({ sport, filtro, setFilter , state }) {
           variant="success"
           type="submit"
           onClick={(e) => onSubmit(e)}
-          style={{ height: "auto" }}
+          style={{ height: "auto", backgroundColor:'rgba(0, 184, 62, 1)'  }}
           className="m-1 text-white"
         >
           Buscar

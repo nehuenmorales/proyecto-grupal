@@ -11,19 +11,19 @@ const Tabs = ({ match }) => {
       "margin": "15px 0 30px 0",
     }} variant="pills" defaultActiveKey="/" >
       <Nav.Item className={s.button} >
-      <Nav.Link className={s.letras} href={`/sport/${match.params.sport}`}>Turnos</Nav.Link>
+      <Nav.Link className={s.letras} style={{color:'128DFF'}} href={`/sport/${match.params.sport}`}>Turnos</Nav.Link>
       </Nav.Item>
       <Nav.Item className={s.button}>
-        <Nav.Link className={s.letras} eventKey="link-6" href={`/fields/${match.params.sport}`}>Canchas</Nav.Link>
+        <Nav.Link className={s.letras} style={{color:'128DFF'}} eventKey="link-6" href={`/fields/${match.params.sport}`}>Canchas</Nav.Link>
       </Nav.Item>
       <Nav.Item className={s.button}>
-        <Nav.Link className={s.letras} eventKey="link-2" href={`/sport/${match.params.sport}/players`}>Jugadores</Nav.Link>
+        <Nav.Link className={s.letras} style={{color:'128DFF'}} eventKey="link-2" href={`/sport/${match.params.sport}/players`}>Jugadores</Nav.Link>
       </Nav.Item>
       <Nav.Item className={s.button}>
-        <Nav.Link className={s.letras} eventKey="link-3" href={`/sport/${match.params.sport}/complex`}>Complejos</Nav.Link>
+        <Nav.Link className={s.letras} style={{color:'128DFF'}} eventKey="link-3" href={`/sport/${match.params.sport}/complex`}>Complejos</Nav.Link>
       </Nav.Item>
       <Nav.Item className={s.button}>
-        <Nav.Link className={s.letras} eventKey="link-5" href={`/sport/${match.params.sport}/gamesIncomplete`}>FaltaUno</Nav.Link>
+        <Nav.Link className={s.letras} style={{color:'128DFF'}} eventKey="link-5" href={`/sport/${match.params.sport}/gamesIncomplete`}>FaltaUno</Nav.Link>
       </Nav.Item>
     </Nav>
 
