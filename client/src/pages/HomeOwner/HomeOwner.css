@@ -1,13 +1,13 @@
-.sport-container {
+.sport-container-owner {
     position:relative;
     display: flex;
     justify-content:space-around;
-    width: 100%;
     height: 450px;
-    margin-bottom: 50px;
+    width: 300px;
+    margin: 10px;
   }
   
-  .sport-span {
+  .sport-spann {
     bottom: 10px;
     left: 25px;
     position: absolute; 
@@ -22,7 +22,8 @@
   }
   
   .text{
-    margin-top: 40px;
     color:rgb(255, 255, 255) ;
     font-style: italic;
+    padding-bottom:0px;
+    margin:15px;
   }

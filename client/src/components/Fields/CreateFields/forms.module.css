@@ -165,7 +165,7 @@
     height: 40px;
     padding: 5px 3px 5px 15px;
     background-color: white !important;
-    color: white;
+    color: black;
     min-width: 168px;  
     cursor: pointer; 
 
@@ -214,10 +214,10 @@
 
 
 .inputpesos{
-    background-color: white !important;
+    background-color: rgb(187, 187, 187) !important;
     border: none !important;
-    color: white !important;
-    color: white !important;
+    color: black !important;
+    border-radius: 10px;
 }
 
 #precioinput{
