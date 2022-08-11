@@ -25,7 +25,7 @@ export default function CardGamesInc(item) {
         item.sport=="tenis"?
         <img src='https://img.freepik.com/fotos-premium/cancha-tenis-arcilla_51195-1652.jpg?w=740'/>:null
       }
-    <h4 className={style.title}>{item.complex_name}</h4>
+    {/* <h4 className={style.title}>{item.complex_name}</h4>
     <div className={style.subtitle}>
     <p >{item.name}</p>
     <p>{item.start} hs</p>
@@ -36,7 +36,27 @@ export default function CardGamesInc(item) {
       <img src={locationIcon}/>
       <p>{item.city}</p>
       
-    </div>
+    </div> */}
+    <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', flexDirection: 'column'}}>
+            <h4 className={style.title} style={{ color: 'white', fontSize: '25px', fontWeight: '500' }}> <i>{item.name}</i> </h4>
+          </div>
+          <div className={style.subtitle} style={{ color: 'white', marginLeft:'0px' }}>
+            <p style={{marginTop:'10px', marginLeft:'0px'}}>{item.complexname}</p>
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
+              <p style={{ marginRight: '5px' }}>{item.date}</p>
+              <p style={{color:'white', fontSize:'15px', fontWeight:'500'}}>Quedan {item.freeplace} lugares disponibles</p>
+              
+            </div>
+            <p>{item.start}hs - {item.end}hs</p>
+
+
+          </div>
+        </div>
+        <div className={style.location} style={{display:'flex', alignItems: 'center', flexDirection: 'row', width:'100%', justifyContent:'center', marginLeft:'10px'}}>
+          <img src={locationIcon} />
+          <p style={{marginBottom:'15px'}}>{item.city}</p>
+        </div>
     </Link>
     
   </div>

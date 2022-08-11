@@ -66,13 +66,13 @@ export default function ProfileData({ email, user }) {
   });
   useEffect(() => {
     setChangesToProfile({
-      name: player.name,
-      lastName: player.lastName,
-      telephone: player.telephone,
-      username: player.username,
-      city: player.city,
+      name: player?.name,
+      lastName: player?.lastName,
+      telephone: player?.telephone,
+      username: player?.username,
+      city: player?.city,
     });
-    axios.get("http://localhost:3001/complex/getCities").then((resp) => {
+    axios.get("https://falta-uno-1.herokuapp.com/complex/getCities").then((resp) => {
       setCities(resp.data);
     });
   }, [player]);
@@ -180,11 +180,11 @@ export default function ProfileData({ email, user }) {
 
   return (
     <>
-      {player.name ? (
+      {player?.name ? (
         <div>
           <div className={s.container}>
             <div>
-              <img src={user.picture} className={s.image} alt="Profile Image" />
+              <img src={user?.picture} className={s.image} alt="Profile Image" />
             </div>
             <div className={s.info}>
               {buttonedit.name ? (
