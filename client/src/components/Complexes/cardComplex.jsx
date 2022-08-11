@@ -9,13 +9,13 @@ import locationIcon from "../../assets/icons/location.svg"
 
 export default function CardComplex(props) {
 	return (
-		<Card className={s.separar}>
-			<Link to={`/sport/futbol/complex/${props.name}`}>
+		<Card className={s.separar} style={{backgroundColor: 'rgba(12, 19, 31, 1)'}}>
+			<Link to={`/sport/futbol/complex/${props.name}`} style={{backgroundColor: 'rgba(12, 19, 31, 1)'}}>
 
 			<Card.Img className={s.NewImage} variant="top" src={props.image} />
-			<Card.Body className={s.bodyCard}>
+			<Card.Body className={s.bodyCard} >
 				<Card.Title className={s.title}>{props.name}</Card.Title>
-				<Box display='flex' mt='2' alignItems='center'>
+				<Box display='flex' mt='2' alignItems='center' >
           		{Array(5)
             .fill('')
             .map((_, i) => (
