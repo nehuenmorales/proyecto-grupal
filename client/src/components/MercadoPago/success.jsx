@@ -15,8 +15,11 @@ import {
   Heading,
   SimpleGrid,
   Center,
-  Flex
-} from '@chakra-ui/react'
+  Flex,
+  Text
+} from '@chakra-ui/react';
+import { Container, Row } from "react-bootstrap";
+import { FiArrowLeft, FiHome, FiSend } from "react-icons/fi"
 
 const Success = ({ match }) => {
 
@@ -42,7 +45,7 @@ const Success = ({ match }) => {
     if (status === "approved") {
       dispatch(updateGame(id, { status: "booked" }))
       if (!isLoading) {
-        dispatch(putGame(id, { email: user.email }));
+        dispatch(putGame(id, { email: user?.email }));
       }
     } else {
       dispatch(updateGame(id, { status: "free" }))
@@ -67,8 +70,32 @@ const Success = ({ match }) => {
 
 
   return (
-    <Flex>
+    <Flex >
       <VerticalNavbar />
+      <Container className='p-4' fluid>
+        <Link to='/'>
+          <Button __css={{ backgroundColor: '#128DFF', border: 'none', padding: '.6em 1em',borderRadius: '11px', color: 'white', transition: 'all 400ms', marginLeft: '1.5em' }} _hover={{ backgroundColor: 'rgba(18,141,255, .6)' }} size='md' rightIcon={<FiHome/>}>
+            Volver al Inicio
+          </Button>
+        </Link>
+        <Row className='m-3'>
+          <Heading className='text-white' size='lg' fontSize='45px' >
+            Tu pago se realizo con exito!
+          </Heading>
+          <Text color='#128DFF' fontSize='2xl' className='mt-3' >
+            Invita a tus amigos al partido!
+          </Text>
+          <FormControl >
+            <FormLabel className='text-white'>Email</FormLabel>
+            <Input className='text-white' w='500px' variant='filled' placeholder='Ingrese el email de un jugador...' onChange={(e) => handleOnChange(e)} />
+            <FormHelperText>Nunca compartiremos su correo electrónico.</FormHelperText>
+            <Button className='mt-3' colorScheme='whatsapp' variant='solid' type='submit' onClick={(e) => handleSubmit(e)} rightIcon={<FiSend/>}>
+              Enviar Invitacion
+            </Button>
+          </FormControl>
+        </Row>
+
+      </Container>
       {
         isLoading ?
           <p>Cargando....</p>
@@ -77,14 +104,13 @@ const Success = ({ match }) => {
             ? null
             : null
       }
-      <SimpleGrid w="100vw" flexDir="">
+      {/* <SimpleGrid w="60vw" p='8' flexDir="">
         <Heading className='text-white' size='lg' fontSize='45px' >
           Tu pago se realizo con exito!
         </Heading>
         <Heading className='text-white' as='h4' size='md'>
           Para finalizar tu reserva invita a tus amigos:
         </Heading>
-
         <FormControl >
           <FormLabel className='text-white'>Email</FormLabel>
           <Input onChange={(e) => handleOnChange(e)} />
@@ -93,13 +119,7 @@ const Success = ({ match }) => {
             Enviar Invitacion
           </Button>
         </FormControl>
-      </SimpleGrid>
-
-      <Link to='/'>
-        <Button colorScheme='whatsapp' size='lg' >
-          Volver al Inicio
-        </Button>
-      </Link>
+      </SimpleGrid> */}
     </Flex>
   )
 }

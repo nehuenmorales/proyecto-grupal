@@ -78,30 +78,24 @@ export default function CreateSponsors() {
         setErrors(errores);
     }
 
-    const uploadImage = async (e) => {
-        const form = new FormData();
-        form.append("image", e.target.files[0]);
-        console.log(e.target.files);
-        const settings = {
-            "method": "POST",
-            "timeout": 0,
-            "processData": false,
-            "mimeType": "multipart/form-data",
-            "contentType": false,
-            "data": form
-        };
+    const upload = async (file) => {
+        const data = new FormData();
+        data.append("file", file);
+        data.append("upload_preset", 'sdujndiw');
         setLoading(true)
-
-        const respuesta = await axios("https://api.imgbb.com/1/upload?expiration=600&key=12d5944c0badc6235fe12ec6550754c8", settings)
-
+        const response = await fetch(`https://api.cloudinary.com/v1_1/dttguisff/upload`,
+            { method: "POST", body: data })
+        const data1 = await response.json()
+        console.log('respuestaa', data1) // reemplazar con un mensaje de éxito o la acción deseada
         setNewSponsor({
             ...newSponsor,
-            logo: respuesta.data.data.url,
+            image: data1.url,
         });
-        setLoading(false)
-        let errors = validator({ ...newSponsor, logo: e.target.value });
+        let errors = validator({ ...newSponsor, image: file });
         setErrors(errors);
+        setLoading(false)
     };
+
 
 
     const handleSubmit = (e) => {
@@ -185,13 +179,14 @@ export default function CreateSponsors() {
                         {/* IMAGEN DE LA CANCHA */}
                         <div className='divInputsImage'>
                             <p style={{ color: 'rgba(18, 141, 255, 1)', fontSize: '20px', fontWeight: '600', marginTop: '30px' }}>Logo del sponsor</p>
-                            <input
+                            {/* <input
                                 type="file"
                                 name="image"
                                 className="inputImage"
                                 onChange={uploadImage}
                                 accept="image/*" 
-                                style={{width: '350px', height:'40px', borderRadius:'10px'}}/>
+                                style={{width: '350px', height:'40px', borderRadius:'10px'}}/> */}
+                                <input type="file" name='image' className="inputImage" onChange={(e) => upload(e.target.files[0])}></input>
                             {loading ? <span></span> : null}
                             {errors.logo ? <div className="errores">{errors.logo}</div> : null}
                         </div>
