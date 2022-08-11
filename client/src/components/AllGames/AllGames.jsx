@@ -42,7 +42,7 @@ export default function AllGames({ match }) {
                         <SearchBar state={gamesSearch} filtro="turnos" setFilter={setPage} sport={sport} />
 
                         <Tabs match={match} />
-                        <ProductsCarousel sport={sport}/>    
+                        <ProductsCarousel />    
                         <p style={{
                             "color": "white",
                             "padding": "0 5em",
