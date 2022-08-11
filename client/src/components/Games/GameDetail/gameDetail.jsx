@@ -12,6 +12,9 @@ import { BiMapPin, BiTimeFive } from 'react-icons/bi';
 import Map from '../../Map/Map';
 import { Container, Carousel, Button, Row, Col } from 'react-bootstrap';
 import { Link } from "react-router-dom";
+import {
+  getPlayersProfile,
+} from "../../../redux/Players/GetPlayersAction";
 
 export default function GameDetail({ match }) {
 
@@ -22,10 +25,18 @@ export default function GameDetail({ match }) {
   const fieldDetail = useSelector(state => state.getFieldsR.detailFields)
   const [showModal, setShowModal] = useState(false)
 
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  const player = useSelector((state) => state.getPlayersReducer.playerProfile);
+  console.log(player, "soy player")
+
   useEffect(() => {
     dispatch(getGamesById(gameid));
     dispatch(getFieldById(detail[0]?.fieldId))
   }, [dispatch, gameid, detail])
+
+  useEffect(() => {
+    dispatch(getPlayersProfile(user?.email));
+  }, [user?.email])
 
 
   const handleModal = (e) => {
@@ -97,4 +108,3 @@ export default function GameDetail({ match }) {
     </Flex>
   );
 }
-
