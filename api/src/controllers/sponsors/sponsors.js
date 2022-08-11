@@ -6,7 +6,6 @@ async function getAllSponsors(req, res, next) {
     const sponsors = await Sponsors.findAll()
     res.status(200).json(sponsors);
   } catch (e) {
-    console.log(e)
     res.status(400).json({ msg: "Fallo la obtencion de los sponsors" ,e});
   }
 }
@@ -16,7 +15,6 @@ async function getAllProducts(req, res, next) {
     const products = await Products.findAll()
     res.status(200).send(products);
   } catch (e) {
-    console.log(e)
     res.status(400).json({ msg: "Fallo la obtencion de los productos" ,e});
   }
 }
@@ -37,10 +35,8 @@ async function createSponsor(req, res, next) {
         cuit,
         address
     });
-    console.log('creado correctamente')
     res.status(200).json(newSponsor);
   } catch (e) {
-    console.log("fallo la creacion del sponsor", e);
     res.status(400).json({ msg: "fallo la creacion del sponsor" });
   }
 }
@@ -62,10 +58,8 @@ async function createProduct(req, res, next) {
       sport,
       sponsorId,
     });
-    console.log('creado correctamente')
     res.status(200).json(newProduct);
   } catch (e) {
-    console.log(e)
     res.status(400).json({ msg: "fallo la creacion del producto", e });
   }
 }

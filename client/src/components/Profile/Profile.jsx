@@ -11,8 +11,6 @@ import OwnerProfile from './ownerProfile/ownerProfile';
 export default function PlayerProfile() {
     const { user, isAuthenticated, isLoading } = useAuth0();
     
-    console.log(user)
-    
         return (
          isLoading ? null :
          <div>

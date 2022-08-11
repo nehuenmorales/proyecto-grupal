@@ -6,7 +6,6 @@ async function deleteSupplies (req, res){
         await Supplies.destroy({where: {id : id}})
         res.json({msg: 'elemento eliminado correctamente'})
     } catch (error) {
-        console.log(error)
         res.json({msg: 'no se pudo eliminar'}) 
     }
 }

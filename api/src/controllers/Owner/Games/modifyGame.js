@@ -11,7 +11,6 @@ async function modifyGame (req, res){
         }
         res.json({msg: 'actualizado correctamente'})
     } catch (error) {
-        console.log(error)
         res.json({msg: 'no se pudo actualizar', error}) 
     }
 }

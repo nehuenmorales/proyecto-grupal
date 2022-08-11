@@ -61,8 +61,6 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
     e.preventDefault();
     const name = e.target.name;
     const value = e.target.value;
-    console.log("soy name", name)
-    console.log("soy value", input)
 
     if (name === "amountPlayers") {
       setErr("")
@@ -110,7 +108,6 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
   const uploadImage = async (e) => {
     const form = new FormData();
     form.append("image", e.target.files[0]);
-    console.log(e.target.files);
     const settings = {
       method: "POST",
       timeout: 0,
@@ -120,7 +117,6 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
       data: form,
     };
     setLoading(true);
-    // console.log("cargando..", loading);
 
     const respuesta = await axios(
       "https://api.imgbb.com/1/upload?expiration=600&key=12d5944c0badc6235fe12ec6550754c8",
@@ -133,7 +129,6 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
     });
     setLoading(false);
 
-    console.log("soy respuesta img", respuesta.data.data.url);
   };
 
   const sendMessages = (id) => {
@@ -148,8 +143,6 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
   }
 
   const handleSubmit = async (e) => {
-    console.log("soy los integrantes", integrantes)
-
     e.preventDefault();
     // dispatch(createTeam(input));para el futuro 
     let respuesta;
@@ -193,7 +186,6 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
   useEffect(() => {
     axios.get("https://falta-uno-1.herokuapp.com/player/getPlayers").then((resp) => {
       setPlayers(resp.data);
-      console.log("respuesta de axios", resp.data);
     });
   }, []);
 
@@ -221,7 +213,6 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
       setErr("este jugador ya está invitado")
       return;
     } else if ((input.amountPlayers - 1) < integrantes.length) {
-      console.log("entro a aca 1")
       setErr("la cantidad de jugadores esta completa")
       return;
     } else {
@@ -232,7 +223,6 @@ export function ModalCreateTeam({ email, setShowModal, showModal }) {
       setClick(true);
       setInputValue("");
       setIntegrantes([...integrantes, ev.target.value]);
-      console.log("entro", ev.target.value)
     }
   };
   function autocomplete(ev) {

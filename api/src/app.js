@@ -25,11 +25,9 @@ const io = new SocketServer(app, {
 });
 
 io.use((socket, next) => {
-  console.log("se conecta")
   const username = socket.handshake.auth.username;
   const name = socket.handshake.auth.name
   const image = socket.handshake.auth.image
-  console.log("nombre", name)
   socket.username = username;
   socket.name = name;
   socket.image = image,
@@ -47,7 +45,6 @@ const users = [];
         name: socket.name,
         image: socket.image
       });
-      console.log(users)
     }
 
     socket.emit("users", users)
@@ -65,8 +62,6 @@ const users = [];
   
   
     socket.on("private message", ({ content, to }) => {
-      console.log("mensaje", content, socket.id)
-      console.log("soy to", to)
       socket.to(to).emit("private message", {
         content,
         from: socket.id,
@@ -74,7 +69,6 @@ const users = [];
     })
 
     socket.on('disconnect', ()=>{
-      console.log("entro a disconect",socket.username)
       socket.broadcast.emit('user disconnected', socket.username)
     })
 
@@ -86,9 +80,6 @@ const users = [];
 
 
   // } )
-					
-// 	// console.log('\x1bc'); //clears console
-// 	console.log("Socket Id:" + socket.id);
 
 // 	let sendMessageToChatFromUser;
 
@@ -113,7 +104,6 @@ const users = [];
 // 		sendTypingFromUser = sendTypingToChat(user.name)
 
 // 		io.emit(USER_CONNECTED, connectedUsers)
-// 		console.log(connectedUsers);
 
 // 	})
 	
@@ -123,7 +113,6 @@ const users = [];
 // 			connectedUsers = removeUser(connectedUsers, socket.user.name)
 
 // 			io.emit(USER_DISCONNECTED, connectedUsers)
-// 			console.log("Disconnect", connectedUsers);
 // 		}
 // 	})
 
@@ -132,7 +121,6 @@ const users = [];
 // 	socket.on(LOGOUT, ()=>{
 // 		connectedUsers = removeUser(connectedUsers, socket.user.name)
 // 		io.emit(USER_DISCONNECTED, connectedUsers)
-// 		console.log("Disconnect", connectedUsers);
 
 // 	})
 
@@ -216,7 +204,6 @@ server.use((err, req, res, next) => {
   // eslint-disable-line no-unused-vars
   const status = err.status || 500;
   const message = err.message || err;
-  console.error(err);
   res.status(status).send(message);
 });
 

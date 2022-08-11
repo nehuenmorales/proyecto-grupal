@@ -3,8 +3,6 @@ const { Op } = require("sequelize");
 
 async function createTeam(req, res, next) {
   const { name, image, sport, playerEmail, amountPlayers } = req.body;
-  console.log(req.body)
-  console.log("soy el email",playerEmail)
   try {
     const newTeam = await Teams.create({
       name,
@@ -30,7 +28,6 @@ async function createTeam(req, res, next) {
     // newField.addField(complexField); // asocio la cancha con el complejo
     res.status(200).json(newTeam);
   } catch (e) {
-    console.log("fallo la creacion de la cancha", e);
     res.status(400).json(e);
   }
 }

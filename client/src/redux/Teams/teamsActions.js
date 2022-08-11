@@ -33,14 +33,9 @@ export function createTeam(input) {
 ///player/getPlayerProfile?email=mmm@mail.com
 // /team/getTeamUser/${email}
 export function getTeamsUser(email) {
-  console.log("hola entro a la action")
-
   return (dispatch) =>{
     axios.get(`https://falta-uno-1.herokuapp.com/team/getTeamUser/${email}`)
     .then(res=> {
-      
-      console.log("hola entro al then")
-      
       dispatch({type:GET_TEAM_USER,payload:res.data})
     
     })

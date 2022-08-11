@@ -106,7 +106,6 @@ export default function ModalGames({ showModal, setShowModal, sport, id, price, 
             [e.target.name]: e.target.value,
 
         })
-        console.log(userData)
     }
 
     const handleSubmitMP = (e) => {

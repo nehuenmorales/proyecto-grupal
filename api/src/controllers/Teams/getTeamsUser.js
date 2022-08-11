@@ -6,7 +6,6 @@ const { Op } = require("sequelize");
 async function getTeamsUser(req, res, next) {
   const playerEmail = req.params.email;
   try {
-    console.log(playerEmail);
     const player = await Player.findOne({
       where: {
         email: {
@@ -14,8 +13,6 @@ async function getTeamsUser(req, res, next) {
         },
       },
     });
-
-    console.log("soy el player en el contrller",player.id)
 
     const allTeams = await conn.query(
       `(SELECT t.*

@@ -11,7 +11,6 @@ import { useHistory } from "react-router-dom";
 export default function ComplexDetail({ id }) {
     const dispatch = useDispatch()
     let complex = useSelector((state) => state.complexDetailReducer.complexDetail)
-    // console.log(complex?.image, 'soy complexImage')
     const [change, setChange] = useState({
         description: '',
         sports: []
@@ -21,11 +20,8 @@ export default function ComplexDetail({ id }) {
         sports: "",
     });
 
-    console.log('soy complex', complex)
-    // console.log('change', change)
     const history = useHistory()
 
-    console.log(id)
     useEffect(() => {
         dispatch(getComplexDetail(id))
     }, [])

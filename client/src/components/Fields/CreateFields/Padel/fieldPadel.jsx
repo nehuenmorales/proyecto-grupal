@@ -50,7 +50,6 @@ export default function PadelFields() {
   const [loading, setLoading] = useState(false)
 
   const convertirTime = (state) => {
-    console.log(state)
     var hour = state.slice(0, 2)
     var minutes = state.slice(3, 6)
     minutes = minutes / 60
@@ -75,14 +74,12 @@ export default function PadelFields() {
     } else if (field.start < 0 || field.start > 24) {
       validations.start = "Ingrese un horario válido"
     } else if ((field.start[3] !== '0' || field.start[4] !== '0') && (field.start[3] !== '3' || field.start[4] !== '0')) {
-      console.log('soy error', field.start)
       validations.start = 'Ingrese un horario terminado en 30 o 00'
     } else if (!field.end) {
       validations.end = "Ingrese el horario de cierre"
     } else if (field.end < 0 || field.end > 24) {
       validations.end = "Ingrese un horario válido"
     } else if ((field.end[3] !== '0' || field.end[4] !== '0') && (field.end[3] !== '3' || field.end[4] !== '0')) {
-      console.log('soy error', field.start)
       validations.end = 'Ingrese un horario terminado en 30 o 00'
     } else if (!field.pricePerTurn) {
       validations.pricePerTurn = "Ingrese un precio por turno"
@@ -91,7 +88,6 @@ export default function PadelFields() {
     } else if (!field.durationPerTurn) {
       validations.durationPerTurn = "Ingrese la duración del turno"
     } else if ((field.durationPerTurn[3] !== '0' || field.durationPerTurn[4] !== '0') && (field.durationPerTurn[3] !== '3' || field.durationPerTurn[4] !== '0')) {
-      console.log('soy error', field.durationPerTurn)
       validations.durationPerTurn = 'Ingrese un horario terminado en 30 o 00'
     } else if (!field.description) {
       validations.description = "Ingrese una descripción de la cancha"
@@ -133,8 +129,6 @@ export default function PadelFields() {
         ...newField,
         [e.target.name]: e.target.value,
       });
-      // console.log(validator(e));
-      // console.log(e.target.value);
     }
     let errores = validator({ ...newField, [e.target.name]: e.target.value });
     setErrors(errores);
@@ -157,7 +151,6 @@ export default function PadelFields() {
   const uploadImage = async (e) => {
     const form = new FormData();
     form.append("image", e.target.files[0]);
-    console.log(e.target.files);
     const settings = {
       "method": "POST",
       "timeout": 0,
@@ -185,7 +178,6 @@ export default function PadelFields() {
     const response = await fetch(`https://api.cloudinary.com/v1_1/dttguisff/upload`, 
         { method: "POST", body: data })
     const data1 = await response.json()
-    console.log('respuestaa', data1) // reemplazar con un mensaje de éxito o la acción deseada
     setNewField({
       ...newField,
       image: data1.url,

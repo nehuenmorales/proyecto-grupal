@@ -43,7 +43,6 @@ export default function getPlayersReducer (state = initialState, action){
             
                     return 0;
                   }); 
-                  console.log(orderPlayers)
                   return {
                     ...state,
                     playerSearch: orderPlayers,
@@ -61,7 +60,6 @@ export default function getPlayersReducer (state = initialState, action){
             
                     return 0;
                   }); 
-                  console.log(orderPlayers)
 
                   return {
                     ...state,

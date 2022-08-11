@@ -37,7 +37,6 @@ export default function SuppliesBasquet() {
     useEffect(() => {
         axios.get('https://falta-uno-1.herokuapp.com/owner/getNameComplex')
         .then((res) => {
-          console.log(res.data, 'soy res.data')
             setComplexName(res.data)
         })  
     },[])
@@ -77,20 +76,16 @@ export default function SuppliesBasquet() {
                 ...newSupplie,
                 [e.target.name]: e.target.value,
             });
-            // console.log(validator(e));
-            // console.log(e.target.value);
         }
         let errors = validator({ ...newSupplie, [e.target.name]: e.target.value });
         setErrors(errors);
 
-        console.log(newSupplie)
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         dispatch(createSupplies(newSupplie));
-        console.log(newSupplie);
         setNewSupplie({
             name: "",
             sport: "basquet",
@@ -114,7 +109,6 @@ export default function SuppliesBasquet() {
         const response = await fetch(`https://api.cloudinary.com/v1_1/dttguisff/upload`, 
             { method: "POST", body: data })
         const data1 = await response.json()
-        console.log('respuestaa', data1) // reemplazar con un mensaje de éxito o la acción deseada
         setNewSupplie({
           ...newSupplie,
           image: data1.url,

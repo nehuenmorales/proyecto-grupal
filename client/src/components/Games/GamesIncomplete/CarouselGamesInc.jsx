@@ -20,14 +20,12 @@ export default function CarouselGamesInc({match}) {
     const games = useSelector(state => state.GamesIncompleteReducer.gamesIncomplete)
     const searchGames = useSelector(state => state.GamesIncompleteReducer.gamesSearchIncomplete)
 
-    console.log(games)
     return (
         <Flex>
         <VerticalNavbar/>
         <Flex flexDir="column" mt="40px">
         <SearchBar filtro="faltauno" sport={sport} />
         <Tabs match={match}/>
-        {console.log(games)}
         <SimpleGrid columns={3} spacing={12} ml="100px">
                 {searchGames.length?
                 searchGames?.map((x) => {

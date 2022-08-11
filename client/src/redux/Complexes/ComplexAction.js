@@ -24,7 +24,6 @@ export const RATING_COMPLEX = "RATING_COMPLEX"
     return dispatch =>{
       axios.get(`https://falta-uno-1.herokuapp.com/complex/${sport}/searchComplex?name=${input}`)
         .then(res => {
-          console.log("hola soy la action", res.data)
           dispatch({
             type: GET_SEARCH_COMPLEX,
             payload: res.data
@@ -44,8 +43,6 @@ export const RATING_COMPLEX = "RATING_COMPLEX"
 }
 
 export function ratingComplex(id,rating) {
-  console.log("entra action rating")
-  console.log(id,rating,"info")
   return async function (dispatch) {
     const {data} = await axios.put(
       `https://falta-uno-1.herokuapp.com/complex/rating/${id}/${rating}`

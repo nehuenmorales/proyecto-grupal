@@ -5,7 +5,6 @@ const { Op, QueryTypes } = require("sequelize");
 async function getSearchGames(req, res, next) {
   const sport = req.params.sport;
   const name = req.query.name;
-  console.log(sport, name);
   // const agarrarloqueneceistamos=(ele)=>{
   //   const infields=[]
   //   const infneed=[]
@@ -21,7 +20,6 @@ async function getSearchGames(req, res, next) {
   //       name:infields[i].name,
   //       pricePerTurn:infields[i].pricePerTurn,
   //       }
-  //       console.log(turnInf)
   //       infields[i].games.map((e)=>{infneed.push({...e,turnInf})})
   //   }
 
@@ -75,10 +73,8 @@ async function getSearchGames(req, res, next) {
     // });
 
     // // fields=agarrarloqueneceistamos(fields)
-    console.log("soy games desde el controller", games);
     res.send(games);
   } catch (error) {
-    console.log(error);
     res.status(400).send(error);
   }
 }

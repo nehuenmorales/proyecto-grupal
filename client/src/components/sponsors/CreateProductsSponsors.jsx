@@ -30,7 +30,6 @@ export default function CreateProduct() {
     sponsorId: "",
   });
 
-  console.log(newProduct)
   const [errors, setErrors] = useState({
     sponsorId: "Seleccione el nombre del sponsor",
     name: "",
@@ -40,7 +39,6 @@ export default function CreateProduct() {
     sport: "",
   });
 
-  console.log(errors)
   const [loading, setLoading] = useState(false);
 
   const validator = (product) => {
@@ -72,7 +70,6 @@ export default function CreateProduct() {
     const response = await fetch(`https://api.cloudinary.com/v1_1/dttguisff/upload`,
         { method: "POST", body: data })
     const data1 = await response.json()
-    console.log('respuestaa', data1) // reemplazar con un mensaje de éxito o la acción deseada
     setNewProduct({
         ...newProduct,
         image: data1.url,

@@ -20,7 +20,6 @@ export default function complexReducer (state = initialState, action){
                 rating: action.payload,
             }
         case GET_SEARCH_COMPLEX:
-            console.log("reducer", action.payload)
             return{
                 ...state,
                 complexSearch: action.payload,

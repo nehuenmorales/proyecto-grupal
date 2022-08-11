@@ -27,7 +27,6 @@ export default function VerticalNavBar(){
 
   const { user, isLoading, logout} = useAuth0();
   const [size,setSize]=useState("small")
-  console.log(useRouteMatch)
   const match = useRouteMatch()
 
   return(

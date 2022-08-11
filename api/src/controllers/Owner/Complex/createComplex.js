@@ -30,10 +30,8 @@ async function createComplex(req, res, next) {
       country,
       id
     });
-    console.log('creado correctamente')
     res.status(200).json(newField);
   } catch (e) {
-    console.log("fallo la creacion de la cancha", e);
     res.status(400).json({ msg: "fallo la creacion de la cancha" });
   }
 }

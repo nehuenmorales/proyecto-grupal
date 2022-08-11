@@ -6,7 +6,6 @@ import faltauno from '../../../utils/falta uno foto.png';
 
 
 function FieldCard(props) {
-    console.log(props, "props")
     return (
         <div className={s.contenedorDeTodo}>
             <Link to={`/fields/detail/${props.id}`} style={{ border: 'none', textDecoration:'none' }}>

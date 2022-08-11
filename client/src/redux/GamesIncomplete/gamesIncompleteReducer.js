@@ -35,7 +35,6 @@ export default function GamesIncompleteReducer (state = initialState, action){
             }
         case ORDER_GAMES_INCOMPLETE:
             let ordenado=[]
-            console.log("soy el reducer",state.gamesIncomplete)
             if (state.gamesSearchIncomplete.length) {
                 ordenado=state.gamesSearchIncomplete.slice()
                 if(action.payload==="mayorAmenor"){

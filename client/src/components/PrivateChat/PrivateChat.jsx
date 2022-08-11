@@ -26,7 +26,6 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
   let containerSelectedUser;
 
 
-  console.log("users conected", usersConnected)
 
 
   socket.onAny((event, ...args) => {
@@ -47,7 +46,6 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
         break
       }
     }
-    console.log(clickedUser)
     containerSelectedUser = { ...clickedUser }
     setSelectedUser({ ...clickedUser })
 
@@ -57,7 +55,6 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
 
 
   const handleUsers = (users) => {
-    console.log("entro a users")
     users.forEach((user) => {
       user.self = user.userID === socket.id;
       user.connected = true;
@@ -85,8 +82,6 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
       const user = containerUsersConn[i];
 
       if (user.userID === from) {
-        console.log("new message", content)
-
         user.messages.push({
           content,
           fromSelf: false,
@@ -95,14 +90,10 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
 
         if (user.userID !== selectedUser.userID) {
 
-          console.log("entro a el if", user)
-          console.log("selected", containerSelectedUser)
-
           user.hasNewMessages = true;
           setUsersConnected([...containerUsersConn])
 
         } else {
-          console.log("NOOO entro a el if")
 
           setUsersConnected([...containerUsersConn])
           setSelectedUser({ ...user })
@@ -132,9 +123,7 @@ export default function PrivateChat({ user, isAuthenticated, isLoading }) {
 
 
   const handleDisconect = (user) => {
-    console.log("soy containerUsersConn", containerUsersConn)
     containerUsersConn = containerUsersConn.filter((e) => user !== e.username)
-    console.log("soy el filtrado", containerUsersConn)
     setUsersConnected([...containerUsersConn])
     if (selectedUser.username === user) {// no funciona despues ver que onda
       selectedUser.username = "desconectado"

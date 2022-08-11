@@ -25,8 +25,6 @@ const Landing = () => {
   
   // useEffect( () =>{
   //   dispatch(postPlayer(userToBack));
-  //   console.log('entra');
-  //   console.log(userToBack);
   // }, [userToBack])
 
   return (

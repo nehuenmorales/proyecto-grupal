@@ -14,8 +14,6 @@ export default function StarRating({complex}){
 
     const Submit=(e)=>{
         setRating(e.target.value)
-        console.log(complex,"soy complex")
-        console.log(rating,"soy el rating")
         dispatch(ratingComplex(complex,e.target.value))
         history.push("/eventos")
     }

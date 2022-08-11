@@ -3,7 +3,6 @@ const { Player } = require("../../db.js");
 
 async function getPlayers(req, res, next) {
   const name = req.query.name
-  console.log(name)
   if(!name){
     try {
       const allPlayers = await Player.findAll()

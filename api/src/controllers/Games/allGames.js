@@ -16,7 +16,6 @@ async function getGames(req, res, next) {
             })
         res.send(allGames)
     }catch(e) {
-        console.log(e)
     }
 }
 

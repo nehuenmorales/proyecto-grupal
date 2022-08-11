@@ -3,7 +3,6 @@ const { Player } = require("../../db");
 
 async function getPlayerProfile(req, res, next) {
   let email = req.query.email
-  console.log("email")
 
     try {
       let player = await Player.findAll({

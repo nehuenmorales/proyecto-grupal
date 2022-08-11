@@ -8,7 +8,6 @@ async function getCities(req,res,next){
         for(let i = 0; i < data.length; i++){
             filtrado.push(data[i].nombre)
         }
-        console.log(filtrado)
         res.status(200).send(filtrado)
     }catch(e){
         res.status(400).json({ msg: "Error" });

@@ -12,7 +12,6 @@ async function getBookedGamesByOwner (req, res){
         for (let i = 0; i < getComplex.length; i++) {
           for (let j = 0; j < getComplex[i].fields.length; j++) {
             result.push(getComplex[i].fields[j]?.id)
-            console.log('result', result)
           }
         }
         let resultGames = [];
@@ -26,14 +25,11 @@ async function getBookedGamesByOwner (req, res){
             include : [{model:Field}]
           });
           resultGames.push(bookedGames)
-          console.log('resultGame',resultGames)
-          console.log('resultGame',resultGames[0])
         }
         
 
         res.status(200).json(resultGames);
       } catch (e) {
-        console.log(e);
         res.status(400).json({ msg: "no hay reservas" });
       }
 }

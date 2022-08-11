@@ -16,10 +16,8 @@ async function modifyField(req, res, next) {
         where: { id: id },
       }
     )
-    console.log(updateField, 'soy update ')
     res.status(200).send(updateField);
   } catch (error) {
-    console.log("error en la moficacion del field");
     res.status(400).send({ msg: "Error while modifying the field" });
   }
 }

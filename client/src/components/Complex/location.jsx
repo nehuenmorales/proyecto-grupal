@@ -36,9 +36,7 @@ function Map({ selected, setSelected, centerState, setCenterState, location, set
     // const [ latLng, setLatLng ] = useState({ lat: 43.45, lng: -80.49 })
     
 
-    useEffect(() => {
-        console.log('soy yo:)', location)
-    }, [location])
+
 
     var options = {
         enableHighAccuracy: true,
@@ -70,7 +68,6 @@ function Map({ selected, setSelected, centerState, setCenterState, location, set
     };
 
     const onMarkerDragEnd = async (event) => {
-        console.log(event, 'soy eventttt')
         const newLat = await event.latLng.lat();
         const newLng = await event.latLng.lng();
 
@@ -80,7 +77,6 @@ function Map({ selected, setSelected, centerState, setCenterState, location, set
         })
         Geocode.fromLatLng(newLat, newLng).then(
             response => {
-                console.log('capaz soy yo', response.results);
                 const { formatted_address } = response.results[0];
                 setLocation({
                     ...location,

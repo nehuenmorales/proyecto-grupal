@@ -25,7 +25,6 @@ const FieldById = ({ match }) => {
 
   const { user, isAuthenticated, isLoading } = useAuth0();
   const player = useSelector((state) => state.getPlayersReducer.playerProfile);
-  console.log(player, "soy player")
 
   useEffect(() => {
     dispatch(getPlayersProfile(user?.email));
@@ -46,7 +45,6 @@ const FieldById = ({ match }) => {
     e.preventDefault();
     setShowModal(true);
   }
-  console.log("detail", detail)
   return (
     <Flex>
       <VerticalNavbar />

@@ -57,13 +57,11 @@ export function getGamesIncomplete() {
   }
 
   export function putGame(id, email) {
-    console.log(id,email,"actions put")
     return async function (dispatch) {
       const {data} = await axios.put(
         `https://falta-uno-1.herokuapp.com/games/gamesIncomplete/${id}`,
         email
       );
-      console.log(data, "action data")
       dispatch({type: PUT_GAME, payload: data});
     };
   }

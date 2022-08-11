@@ -9,7 +9,6 @@ export const createSponsor =(body)=>{
     return async function (dispatch){
         return axios.post("https://falta-uno-1.herokuapp.com/sponsor/create",body)
         .then((res)=> {
-            console.log("respuesta del post",res.data)
             return dispatch({type:CREATE_SPONSOR,payload:res.data})})    
     }   
 }
@@ -17,7 +16,6 @@ export const createProduct =(body)=>{
     return async function (dispatch){
         return axios.post("https://falta-uno-1.herokuapp.com/sponsor/createProduct",body)
         .then((res)=> {
-            console.log("respuesta del post",res.data)
             return dispatch({type:CREATE_PRODUCT,payload:res.data})})    
     }   
 }

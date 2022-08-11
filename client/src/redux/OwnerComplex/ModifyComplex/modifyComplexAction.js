@@ -6,7 +6,6 @@ export const MODIFY_COMPLEX = "MODIFY_COMPLEX"
     return dispatch =>{
       axios.put(`https://falta-uno-1.herokuapp.com/owner/modifyComplex/${id}`, body)
         .then(res => {
-          console.log('soy modify complex action', res.data)
           dispatch({
             type: MODIFY_COMPLEX,
             payload: res.data

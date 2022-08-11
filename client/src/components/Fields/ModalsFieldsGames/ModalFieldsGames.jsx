@@ -17,16 +17,12 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
     const [totalGame, setTotalGame] = useState([])
 
     const history = useHistory()
-    console.log('soy sport modal', sport)
     const modificar = async () => {
         setIndice(0)
-        console.log('entro handle close')
         if (fieldId) {
             const respuesta = await axios.delete(`https://falta-uno-1.herokuapp.com/owner/deleteGames/${fieldId}`)
-            console.log(respuesta.data)
         } else {
             const res = await axios.delete(`https://falta-uno-1.herokuapp.com/owner/deleteField/${field.id}`)
-            console.log(res.data)
         }
         setShowModal(false)
 
@@ -76,7 +72,6 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
         let deporte = sport
         let tipo = type
 
-        // console.log("holaaaaa",currentField)
         totalGame.map((e) => {
             !fieldId ?
                 dispatch(createGame({
@@ -163,7 +158,6 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
                     for (let i = 0; i < array.length; i++) {
                         if (array[i] >= 24) {
                             array[i] = array[i] - 24
-                            console.log(array, 'array en el for')
                         }
                         // switch (array[i]) {
                         //     case 24:
@@ -249,7 +243,6 @@ export default function ModalsFieldsGames({ showModal, setShowModal, setNewField
                     <div >
                         <div className={s.dia}>{dias[indice]}</div>
                         <div className={s.turnos}>
-                            {/* <button>holamami</button> */console.log('turnnn', turn)}
                             {turn?.map((e) => totalGame?.includes(e) ? <button onClick={cancelTurn} className={s.botonVerde} key={e} value={e}>{cambioHora(e) + 'hs'}-{cambioHora(e + duracion) + 'hs'}</button> : <button onClick={cancelTurn} className={s.botonRojo} key={e} value={e}>{cambioHora(e) + 'hs'}-{cambioHora(e + duracion) + 'hs'}</button>)}
                         </div>
                     </div>

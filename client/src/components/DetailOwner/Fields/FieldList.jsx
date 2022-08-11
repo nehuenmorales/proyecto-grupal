@@ -10,7 +10,6 @@ import VerticalNavBarCan from "../../VerticalNavbar/VerticalNavBarCan";
 export default function FieldList() {
     const [field, setField] = useState([])
     let owner = useSelector((state) => state.getOwnerReducer.owner)
-    console.log(owner, 'ownerrrr')
     useEffect(() => {
         axios.get(`https://falta-uno-1.herokuapp.com/owner/getFieldByOwner/${owner.id}`)
             .then(res => setField(res.data))
@@ -42,7 +41,6 @@ export default function FieldList() {
                     {field?.map((e) => {
                         return (
                             e.fields?.map((el) => {
-                                console.log('el >>>>>', el)
                                 return (
                                     <Link to={`/fieldOwner/fieldDetail/${el.id}`} style={{ textDecoration: "none" }}>
                                         <div key={el.id} className='card-sport'>

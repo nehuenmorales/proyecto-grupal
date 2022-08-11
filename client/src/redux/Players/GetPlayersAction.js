@@ -24,11 +24,9 @@ export const ORDER_BY_ELO = "ORDER_BY_ELO"
 
 
    export function getSearchPlayer(input,sport) {
-    console.log("input",input)
     return dispatch =>{
       axios.get(`https://falta-uno-1.herokuapp.com/player/getSearchPlayer?name=${input}`)
         .then(res => {
-          console.log("informacion que trae del reducer",res.data)
           dispatch({
             type: GET_SEARCH_PLAYER,
             payload: res.data
@@ -44,7 +42,6 @@ export const ORDER_BY_ELO = "ORDER_BY_ELO"
     return dispatch =>{
       axios.get(`https://falta-uno-1.herokuapp.com/player/getPlayerProfile/?email=${email}`)
         .then(res => {
-          console.log("esta es la respuesta bro",res.data)
           dispatch({
             type: GET_PLAYER_PROFILE,
             payload: res.data

@@ -8,7 +8,6 @@ import locationIcon from "../../assets/icons/location.svg"
 
 
 export default function CardComplex(props) {
-	console.log(props, "propsssss")
 	return (
 		<Card className={s.separar}>
 			<Link to={`/sport/futbol/complex/${props.name}`}>

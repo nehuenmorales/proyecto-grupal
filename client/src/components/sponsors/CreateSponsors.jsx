@@ -86,7 +86,6 @@ export default function CreateSponsors() {
         const response = await fetch(`https://api.cloudinary.com/v1_1/dttguisff/upload`,
             { method: "POST", body: data })
         const data1 = await response.json()
-        console.log('respuestaa', data1) // reemplazar con un mensaje de éxito o la acción deseada
         setNewSponsor({
             ...newSponsor,
             image: data1.url,

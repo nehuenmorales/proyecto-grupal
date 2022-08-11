@@ -14,10 +14,6 @@ export default function GamesByUser(){
     const dispatch = useDispatch()
     const { user } = useAuth0();
     // const email = user.email
-    // console.log(user, "es el usuario")
-    // console.log(email, "el el mail")
-    console.log(user?.email)
-    console.log(allGames, "estos son sus games")
     const [showModal, setShowModal] = useState(false);
     const [complex, setComplex] = useState("");
  

@@ -38,7 +38,6 @@ const Success = ({ match }) => {
     text: '',
     html: ''
   })
-  console.log(data, "esto es data")
 
   useEffect(() => {
 

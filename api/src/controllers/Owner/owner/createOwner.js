@@ -13,7 +13,6 @@ async function createOwner(req, res, next) {
     });
     return res.json(player).status(200);
   } catch (err) {
-    console.log("el error en el controllerrrrr", err);
     return res.status(400).json(new Error(err));
   }
 }

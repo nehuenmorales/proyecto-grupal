@@ -80,10 +80,8 @@ export default function CreateComplex() {
 
 
     useEffect(() => {
-        console.log(owner, "este es el owner")
         axios.get('https://falta-uno-1.herokuapp.com/owner/getCities')
             .then((resp) => {
-                console.log('cities', resp.data)
                 setCities(resp.data)
             })
 
@@ -147,7 +145,6 @@ export default function CreateComplex() {
         const response = await fetch(`https://api.cloudinary.com/v1_1/dttguisff/upload`,
             { method: "POST", body: data })
         const data1 = await response.json()
-        console.log('respuestaa', data1) // reemplazar con un mensaje de éxito o la acción deseada
         setNewComplex({
             ...newComplex,
             image: data1.url,
@@ -172,7 +169,6 @@ export default function CreateComplex() {
         const results = cities.filter(city => {
             return city.toLowerCase().startsWith(value.toLowerCase());
         })
-        console.log('results', results)
         setCityInput(results)
 
     }

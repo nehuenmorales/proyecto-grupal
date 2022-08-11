@@ -5,9 +5,7 @@ const { Op } = require("sequelize");
 
 async function getTeam(req, res, next) {
   const id = req.params.id;
-  console.log("soy el id", id)
   try {
-    console.log();
     const team = await Teams.findOne({
       where: {
         id:{

@@ -4,11 +4,9 @@ import style from "./CardGamesInc.module.css"
 import locationIcon from "../../../assets/icons/location.svg"
 
 export default function CardGamesInc(item) {
-  console.log('itemmm', item)
     return (
     <div key={item.id} className={style.cardCarousel}>
     <Link to ={`/sport/gamesIncomplete/${item.gameid}`}>
-      {console.log(item)}
     {
         item.sport=="futbol"?
         <img src='https://ichef.bbci.co.uk/news/640/cpsprodpb/238D/production/_95410190_gettyimages-488144002.jpg'/>:null

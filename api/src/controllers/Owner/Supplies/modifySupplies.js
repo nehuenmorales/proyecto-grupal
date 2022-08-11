@@ -18,10 +18,8 @@ async function modifySupplie(req, res, next) {
         where: { id: id },
       }
     )
-    console.log(updateSupplie, 'soy update ')
     res.status(200).send(updateSupplie);
   } catch (error) {
-    console.log("error en la moficacion del elemento");
     res.status(400).send({ msg: "Error while modifying the supplie" });
   }
 }

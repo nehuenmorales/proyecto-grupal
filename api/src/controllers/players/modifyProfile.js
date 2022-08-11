@@ -24,7 +24,6 @@ async function modifyProfile(req, res, next) {
     )
     res.status(200).send(playerToModify);
   } catch (error) {
-    console.log("error en la moficacion del player");
     res.status(400).send({ msg: "Error while modifying the field" });
   }
 }

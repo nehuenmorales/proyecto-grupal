@@ -15,10 +15,8 @@ async function modifyOwner(req, res, next) {
         where: { id: id },
       }
     )
-    console.log(updateOwner, 'soy update ')
     res.status(200).send(updateOwner);
   } catch (error) {
-    console.log("error en la moficacion del owner");
     res.status(400).send({ msg: "Error while modifying the owner" });
   }
 }

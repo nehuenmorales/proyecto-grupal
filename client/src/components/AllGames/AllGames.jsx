@@ -23,8 +23,6 @@ export default function AllGames({ match }) {
     const games = useSelector(state => state.games.gamesSport);
     const gamesSearch = useSelector(state => state.games.gamesSportSearch);
     const [Page,setPage]=useState(false)
-console.log("soy el estado en allgames", gamesSearch)
-console.log("soy el estado games en allgames", games)
     
     useEffect(() => {
         dispatch(getGameSport(sport));

@@ -15,7 +15,6 @@ export default function SearchUser({ usersConnected, setUserSeach }) {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log("entro al submit")
         // let filtrados = [];
         // for (let i = 0; i < usersConnected.length; i++) {
         //     if (usersConnected[i].name.search(input) === -1) {
@@ -25,7 +24,6 @@ export default function SearchUser({ usersConnected, setUserSeach }) {
         //     }
         // }
         let filtrados = usersConnected.filter((e) => e.name.includes(input))
-        console.log("filtrados a ver si se veeeee", filtrados)
         setUserSeach(filtrados)
     }
 

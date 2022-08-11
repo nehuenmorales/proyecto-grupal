@@ -7,7 +7,6 @@ async function createSupplies(req, res, next) {
 
     res.status(200).json(newSupplies);
   } catch (e) {
-    console.log("fallo la creacion de la cancha", e);
     res.status(400).json({ msg: "fallo la creacion de la receta" });
   }
 }

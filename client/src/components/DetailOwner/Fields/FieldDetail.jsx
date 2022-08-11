@@ -23,7 +23,6 @@ export default function FieldDetail({ id }) {
     })
 
     let field = useSelector((state) => state.fieldDetailReducer.fieldDetail)
-    console.log(field, 'soy yoooo')
     useEffect(() => {
         dispatch(getFieldDetail(id));
     }, [])
@@ -115,7 +114,6 @@ export default function FieldDetail({ id }) {
 
 
     const convertirTime = (state) => {
-        console.log(state)
         var hour = state.slice(0, 2)
         var minutes = state.slice(3, 6)
         minutes = minutes / 60
@@ -135,14 +133,12 @@ export default function FieldDetail({ id }) {
         let errores = validator({ ...change, [ev.target.name]: ev.target.value });
         setErrors(errores);
     }
-    console.log('soy change', change)
     // const history = useHistory()
     const handleSubmit = async (ev) => {
         ev.preventDefault()
         dispatch(modifyField(time, id))
 
         const res = await axios.delete(`https://falta-uno-1.herokuapp.com/owner/deleteGames/${field.id}`)
-        console.log(res.data)
 
         setShowModal(true)
 

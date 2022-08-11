@@ -4,7 +4,6 @@ const { conn } = require('../../db.js');
 
 async function gamesByUser(req, res, next) {
     const { email } = req.params
-    console.log(req.params, "es el body") 
     try {
         // const gamesUser = await Player.findOne({
         //     where: {
@@ -26,7 +25,6 @@ async function gamesByUser(req, res, next) {
         res.send(gamesUser)
     }catch(e){
         res.send(e)
-        console.log(e)
     }
 }
 

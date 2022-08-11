@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import { FiSend } from "react-icons/fi";
 
 export default function MessagePanel({ selectedUser, socket, setSelectedUser }) {
-  console.log("soy el selectedUser", selectedUser)
   const [content, setContent] = useState("");
   const [messages, setMessages] = useState([]);
   const messagesEndRef = useRef(null)
@@ -13,7 +12,6 @@ export default function MessagePanel({ selectedUser, socket, setSelectedUser }) 
 
 
   useEffect(() => {
-    console.log("entro a ")
     setMessages(selectedUser.messages)
     messagesEndRef.current?.scrollIntoView()
   }, [selectedUser.messages.length])

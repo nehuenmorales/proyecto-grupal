@@ -11,8 +11,6 @@ import { useHistory } from "react-router-dom";
 export default function SupplieDetail({ id }) {
     const dispatch = useDispatch();
     let supplie = useSelector((state) => state.supplieDetailReducer.supplieDetail)
-    console.log('holaaaa')
-    console.log(supplie, 'soy supplie')
     const [change, setChange] = useState({
         price: '',
         stock: '',
@@ -60,7 +58,6 @@ export default function SupplieDetail({ id }) {
         swal('', "Elemento modificado exitosamente!", 'success')
         history.push("/")
     }
-    console.log(errors, 'errors')
 
     return (
             <div className="contenedorDetail">

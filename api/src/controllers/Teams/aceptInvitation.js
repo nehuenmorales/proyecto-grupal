@@ -22,7 +22,6 @@ async function aceptInvitation(req, res, next) {
 
     res.send(team);
   } catch (err) {
-    console.log("soy el puto error", err)
     res.status(400).send("error pai");
   }
 }

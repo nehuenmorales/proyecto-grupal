@@ -2,7 +2,6 @@ const { Complex } = require ("../../db.js")
 
 async function RatingReviews(req, res, next) {
     const{id,rating}=req.params
-    console.log(rating,"SOY EL RATING")
     try {
         const complex= await Complex.findOne({where:{id:id}})
         const rev=complex.reviews + 1;

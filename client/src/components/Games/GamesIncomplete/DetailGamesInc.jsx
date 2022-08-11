@@ -22,11 +22,6 @@ export default function DetailGamesInc({ match }) {
   const fieldDetail = useSelector(state => state.getFieldsR.detailFields)
   const { user } = useAuth0();
   const player = useSelector((state) => state.getPlayersReducer.playerProfile);
-  console.log(player, "soy player")
-
-  console.log(detail)
-  console.log(gameid, "game id Detail")
-  console.log(user.email, "email Detail")
   useEffect(() => {
     dispatch(getDetailIncomplete(gameid))
     dispatch(getFieldById(detail[0]?.fieldId))

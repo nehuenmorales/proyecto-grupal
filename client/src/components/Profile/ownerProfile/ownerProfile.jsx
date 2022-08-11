@@ -55,7 +55,6 @@ export default function OwnerProfile() {
         return validations
       };
 
-      console.log('errors', errors)
 
     useEffect(() => {
         setInput({
@@ -66,7 +65,6 @@ export default function OwnerProfile() {
         })
     }, [owner])
 
-    console.log('soy owner bro', owner)
 
     const handleInputChange = (e) => {
         e.preventDefault()
@@ -86,7 +84,6 @@ export default function OwnerProfile() {
 
     }
 
-    console.log('inputtt', input)
 
     return (
         <div className='container-general'>

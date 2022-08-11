@@ -15,7 +15,6 @@ const reducer = (state = initialState , action)=>{
                 ownerSupplies: [...state.ownerSupplies, action.payload],
             }
         case GET_SUPPLIES:
-            console.log("entro",state.supplies)
             return{
                 ...state,
                 supplies:action.payload

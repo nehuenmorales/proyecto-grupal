@@ -43,14 +43,12 @@ export default function BasquetFields() {
     axios.get('https://falta-uno-1.herokuapp.com/owner/getNameComplex')
     .then((res) => {
         setComplexName(res.data)
-        console.log('nombres complejos', res.data)
     })  
 },[])
 
   const [loading, setLoading] = useState(false)
 
   const convertirTime = (state) => {
-    console.log(state)
     var hour = state.slice(0,2)
     var minutes = state.slice(3,6)
     minutes = minutes/60
@@ -74,14 +72,12 @@ export default function BasquetFields() {
     } else if (field.start < 0 || field.start > 24) {
       validations.start = "Ingrese un horario válido"
     } else if ((field.start[3] !== '0' || field.start[4] !== '0') && (field.start[3] !== '3' || field.start[4] !== '0')) {
-      console.log('soy error', field.start)
       validations.start = 'Ingrese un horario terminado en 30 o 00'
     } else if (!field.end) {
       validations.end = "Ingrese el horario de cierre"
     } else if (field.end < 0 || field.end > 24) {
       validations.end = "Ingrese un horario válido"
     } else if ((field.end[3] !== '0' || field.end[4] !== '0') && (field.end[3] !== '3' || field.end[4] !== '0')) {
-      console.log('soy error', field.start)
       validations.end = 'Ingrese un horario terminado en 30 o 00'
     } else if (!field.pricePerTurn) {
       validations.pricePerTurn = "Ingrese un precio por turno"
@@ -121,8 +117,6 @@ export default function BasquetFields() {
         ...newField,
         [e.target.name]: e.target.value,
       });
-      // console.log(validator(e));
-      // console.log(e.target.value);
     }
     let errors = validator({ ...newField, [e.target.name]: e.target.value });
     setErrors(errors);
@@ -131,7 +125,6 @@ export default function BasquetFields() {
 
 
   const handleAvailable = (e) => {
-    console.log(e.target.value)
     setNewField({
       ...newField,
       available: e.target.value,
@@ -149,7 +142,6 @@ export default function BasquetFields() {
     const response = await fetch(`https://api.cloudinary.com/v1_1/dttguisff/upload`, 
         { method: "POST", body: data })
     const data1 = await response.json()
-    console.log('respuestaa', data1) // reemplazar con un mensaje de éxito o la acción deseada
     setNewField({
       ...newField,
       image: data1.url,

@@ -12,7 +12,6 @@ import s from './BookerGames.module.css'
 
 export default function BookedGames() {
     let allGames = useSelector((state) => state.gamesOwnerReducer.allGames)
-    console.log(allGames, 'all games')
     const [bookedGames, setBookedGames] = useState([])
     const [freeGames, setFreeGames] = useState([])
     const [select, setSelect] = useState('all')
@@ -44,18 +43,15 @@ export default function BookedGames() {
             })
             setSelect('free')
             setFreeGames(filtrados)
-            console.log('filtradoss', filtrados)
         } else if (e.target.value === 'booked') {
             filtrados = allGames.filter(el => {
                 return el.status == 'booked'
             })
             setSelect('booked')
             setBookedGames(filtrados)
-            console.log('filtradoss booked', filtrados)
         } else {
             setSelect('all')
         }
-        console.log('selecttttt', select)
     }
     const eliminarTurno = (ev) => {
     }

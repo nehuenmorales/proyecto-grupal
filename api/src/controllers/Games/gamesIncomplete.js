@@ -18,7 +18,6 @@ async function gamesIncomplete(req,res,next){
 
         res.status(200).send(player[0])
     }catch(e){
-        console.log(e)
         res.send(e);
     }  
 }
@@ -40,7 +39,6 @@ async function detailGameIncomplete(req, res){
         detail.players=detail?.map(g=>g.username).join(",")
         return res.send(detail)
     } catch (error) {
-        console.log(e)
       res.send(error)
     }
 }
@@ -54,11 +52,8 @@ async function updateGame(req,res){
             replacements: { pId:player.id, gId:id},
             type: QueryTypes.SELECT
         })
-        console.log(player, "es elñ jugador")
-        console.log(update, "es elñ update")
         res.send(update) 
     }catch(e){
-        console.log(e)
         res.send(e)
     }
 }

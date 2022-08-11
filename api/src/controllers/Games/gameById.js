@@ -35,7 +35,6 @@ const pagarProducto = async (req, res, next) => {
         type: QueryTypes.SELECT
     })
     // let plata = booking.name
-    // console.log(booking, "soy booking"
 
     const reservado = await Games.update({
         status: 'booked'
@@ -44,7 +43,6 @@ const pagarProducto = async (req, res, next) => {
             id: gameId
         }
     })
-    console.log(reservado, "soy reservado")
 
     
 
@@ -91,7 +89,6 @@ const pagarProducto = async (req, res, next) => {
 
     mercadopago.preferences.create(preference)
     .then(function (response) {
-        console.log(response) 
         res.json({
             global: response.body,
         })

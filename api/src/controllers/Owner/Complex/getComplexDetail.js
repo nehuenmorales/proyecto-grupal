@@ -7,7 +7,6 @@ async function getComplexDetail(req, res) {
     const getComplex = await Complex.findByPk(id);
     res.status(200).json(getComplex);
   } catch (e) {
-    console.log(e);
     res.status(400).json({ msg: "No se pudo obtener el detalle" });
   }
 }

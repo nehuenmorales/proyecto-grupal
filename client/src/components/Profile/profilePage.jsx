@@ -82,8 +82,6 @@ export default function ProfileData({ email, user }) {
     const phoneRegularExpresion = /^\d+$/;
     const name = e.target.name;
     const value = e.target.value;
-    console.log("nombre del error", name);
-    console.log("valor del error", value);
 
     if (name === "name" || name === "lastName") {
       if (nameExpresion.test(value) || !value) {
@@ -141,7 +139,6 @@ export default function ProfileData({ email, user }) {
   };
 
   const handleChangeCity = (ev) => {
-    console.log("quesoy", ev.target.value);
     setInput(ev.target.value);
     autocomplete(ev);
   };
@@ -156,9 +153,7 @@ export default function ProfileData({ email, user }) {
   };
 
   const handleDelete = async () => {
-    console.log(player?.id)
     const del = await axios.post(`https://falta-uno-1.herokuapp.com/player/delete/${player?.id}`)
-    console.log(del) 
     toast({
       title: 'Tu cuenta ha sido eliminada',
       status: 'error',

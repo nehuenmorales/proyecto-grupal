@@ -40,7 +40,6 @@ export default function VerticalNavBarCan(){
   
   const match = useRouteMatch()
   let owner = useSelector((state) => state.getOwnerReducer.owner)
-  console.log('soy owner :) ', owner)
 
 
 

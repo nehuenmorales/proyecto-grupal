@@ -4,7 +4,6 @@ const { Complex} = require("../../db");
 async function getSearchComplex(req, res, next) {
     let sport=req.params.sport
     let name = req.query.name
-    console.log(sport,name)
 
     try {
         let fields = await Complex.findAll({

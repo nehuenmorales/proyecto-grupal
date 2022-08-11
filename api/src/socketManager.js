@@ -43,8 +43,6 @@ me pusheo al array de connect ====> recibo el array de conectados
 //     // ...
   
 //     socket.on("message", (info) => {
-//         console.log("soy mensaje y llegue al back", info.body)
-//         console.log("soy from y llegue al back", info.from)
 //       socket.broadcast.emit("message", {
 //       body:info.body,
 //       from:info.from ,
@@ -58,8 +56,6 @@ me pusheo al array de connect ====> recibo el array de conectados
 
   // } )
 					
-// 	// console.log('\x1bc'); //clears console
-// 	console.log("Socket Id:" + socket.id);
 
 // 	let sendMessageToChatFromUser;
 
@@ -84,7 +80,6 @@ me pusheo al array de connect ====> recibo el array de conectados
 // 		sendTypingFromUser = sendTypingToChat(user.name)
 
 // 		io.emit(USER_CONNECTED, connectedUsers)
-// 		console.log(connectedUsers);
 
 // 	})
 	
@@ -94,7 +89,6 @@ me pusheo al array de connect ====> recibo el array de conectados
 // 			connectedUsers = removeUser(connectedUsers, socket.user.name)
 
 // 			io.emit(USER_DISCONNECTED, connectedUsers)
-// 			console.log("Disconnect", connectedUsers);
 // 		}
 // 	})
 
@@ -103,7 +97,6 @@ me pusheo al array de connect ====> recibo el array de conectados
 // 	socket.on(LOGOUT, ()=>{
 // 		connectedUsers = removeUser(connectedUsers, socket.user.name)
 // 		io.emit(USER_DISCONNECTED, connectedUsers)
-// 		console.log("Disconnect", connectedUsers);
 
 // 	})
 

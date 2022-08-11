@@ -9,7 +9,6 @@ async function getNameComplex(req,res,next){
         for(let i = 0; i < allComplex.length; i++){
             filtrado.push(allComplex[i].name)
         }
-        console.log(filtrado)
         res.status(200).send(filtrado)
     }catch(e){
         res.status(400).json({ msg: "Error" });

@@ -44,7 +44,6 @@ async function getSearchField(req, res, next) {
     // });
     res.send(fields);
       } catch (error) {
-        console.log(error)
         res.status(400).send("la cancha no existe");
       }
   

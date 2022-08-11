@@ -21,9 +21,7 @@ const HomeOwner = () => {
 
 
   useEffect(() => {
-    console.log(user.email, 'user.email')
     dispatch(getOwner(user.sub))
-    console.log('user.sub', user.sub)
     dispatch(getGamesOwner(user.sub))
   }, [user.email])
 

@@ -15,11 +15,9 @@ export default function SearchBar({ sport, filtro, setFilter , state }) {
   const dispatch = useDispatch();
   const [input, setInput] = useState("");
   const onChange = (e) => {
-    console.log("voy cambiando", e.target.value);
     setInput(e.target.value);
   };
   const [searchFlag, setSearchFlag] = useState(false);
-  console.log("soy el estado",state)
   useEffect(() => {
     setSearchFlag(false);
   }, []);
@@ -27,7 +25,6 @@ export default function SearchBar({ sport, filtro, setFilter , state }) {
   const onSubmit = (e) => {
     e.preventDefault();
 
-    console.log("entro al submit", filtro);
     if (filtro === "turnos") {
       dispatch(getSearchGames(input, sport));
     }

@@ -16,11 +16,9 @@ export function Teams({ email }) {
   }, []);
 
   const [showModal, setShowModal] = useState(false);
-  console.log("soy user teams", userTeams);
   const modalOpen = (e) => {
     e.preventDefault()
     setShowModal(true);
-    console.log("entro a modal open");
   };
   return (
     <div>

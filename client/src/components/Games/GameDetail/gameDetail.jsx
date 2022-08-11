@@ -25,7 +25,6 @@ export default function GameDetail({ match }) {
 
   const { user, isAuthenticated, isLoading } = useAuth0();
   const player = useSelector((state) => state.getPlayersReducer.playerProfile);
-  console.log(player, "soy player")
 
   useEffect(() => {
     dispatch(getGamesById(gameid));
