@@ -32,11 +32,10 @@ export default function GameDetail({ match }) {
   useEffect(() => {
     dispatch(getGamesById(gameid));
     dispatch(getFieldById(detail[0]?.fieldId))
-  }, [gameid, detail])
-
-  useEffect(() => {
     dispatch(getPlayersProfile(user?.email));
   }, [])
+
+ 
 
 
   const handleModal = (e) => {
