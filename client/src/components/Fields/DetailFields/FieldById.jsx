@@ -20,6 +20,7 @@ const FieldById = ({ match }) => {
   const id = match.params.id;
   const dispatch = useDispatch();
   const detail = useSelector(state => state.getFieldsR.detailFields);
+  const field = useSelector((state) => state.getFieldsR.fields)
   const [showModal, setShowModal] = useState(false)
   const history = useHistory();
 
@@ -45,6 +46,8 @@ const FieldById = ({ match }) => {
     e.preventDefault();
     setShowModal(true);
   }
+
+  console.log(detail)
   return (
     <Flex>
       <VerticalNavbar />
@@ -53,17 +56,17 @@ const FieldById = ({ match }) => {
           <Button  style={{marginTop:'10px'}}>Volver</Button>
         </Link>
         <Carousel className='imageContainer'>
-          <Carousel.Item className='imageItemContainer'>
+          {/* <Carousel.Item className='imageItemContainer'>
             <img
               className="d-block w-100"
-              src={detail[0]?.image}
+              src={field[0]?.image}
               alt="First slide"
             />
             <Carousel.Caption>
               <h3>First slide label</h3>
               <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
             </Carousel.Caption>
-          </Carousel.Item>
+          </Carousel.Item> */}
           <Carousel.Item className='imageItemContainer'>
             <img
               className="d-block w-100"
@@ -71,12 +74,12 @@ const FieldById = ({ match }) => {
               alt="Second slide"
             />
 
-            <Carousel.Caption>
+            {/* <Carousel.Caption>
               <h3>Second slide label</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-            </Carousel.Caption>
+            </Carousel.Caption> */}
           </Carousel.Item>
-          <Carousel.Item className='imageItemContainer'>
+          {/* <Carousel.Item className='imageItemContainer'>
             <img
               className="d-block w-100"
               src="https://donpotrero.com/img/posts/2/medidas_lg.jpg"
@@ -88,8 +91,9 @@ const FieldById = ({ match }) => {
                 Praesent commodo cursus magna, vel scelerisque nisl consectetur.
               </p>
             </Carousel.Caption>
-          </Carousel.Item>
+          </Carousel.Item> */}
         </Carousel>
+        {/* <div style={{width:'100%', height:'200px'}}> <img style={{width:'100%', height:'100%'}}src={field[0]?.image} alt="" /> </div> */}
         <Row className='informationContainer'>
           <Col width={20}>
             <Flex mb={4} style={{ marginTop: '15px' }}>
