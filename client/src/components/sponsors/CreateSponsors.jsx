@@ -102,7 +102,7 @@ export default function CreateSponsors() {
         dispatch(createSponsor(newSponsor));
         setNewSponsor({
             name: "",
-            logo: "",
+            image: "",
             link: "",
             cuit: "",
             address: "",
@@ -112,7 +112,7 @@ export default function CreateSponsors() {
             link: "",
             cuit: "",
             adress: "",
-            logo: "",
+            image: "",
         });
         toast({
             title: 'Sponsor creado correctamente',
@@ -187,7 +187,7 @@ export default function CreateSponsors() {
                                 style={{width: '350px', height:'40px', borderRadius:'10px'}}/> */}
                                 <input type="file" name='image' className="inputImage" onChange={(e) => upload(e.target.files[0])}></input>
                             {loading ? <span></span> : null}
-                            {errors.logo ? <div className="errores">{errors.logo}</div> : null}
+                            {errors.image ? <div className="errores">{errors.image}</div> : null}
                         </div>
 
 
@@ -198,7 +198,7 @@ export default function CreateSponsors() {
                                     !errors.link &&
                                     !errors.cuit &&
                                     !errors.address &&
-                                    !errors.logo ?
+                                    !errors.image ?
                                     <button type="submit" className='botonActivo' style={{width:'350px', paddingTop:'7px', paddingBottom:'7px', marginTop:'20px'}}
                                     >Crear sponsor</button> : <button type="submit" className='btnGris' style={{width:'350px', paddingTop:'7px', paddingBottom:'7px', marginTop:'20px'}} disabled >Crear sponsor</button>
                             }
