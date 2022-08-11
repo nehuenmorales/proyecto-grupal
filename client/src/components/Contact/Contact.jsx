@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import s from '../Fields/CreateFields/forms.module.css'      
 import { Flex } from "@chakra-ui/react"
 import './Contact.css'
+import swal from 'sweetalert';
 
 export default function Contact (){
     const [errors, setErrors] = useState({
@@ -54,7 +55,14 @@ export default function Contact (){
             emailjs.sendForm('service_e31gpn6','template_kcvpz8a',e.target, '8pAhqJrxv2RO5fnUg').then(res=>{
                 console.log(res);
             })
+        swal('', "¡Enviado exitosamente!", 'success')
+        setInput({
+            nombre: '',
+            email: '',
+            mensaje: ''
+        })
         }
+
         return (
             <Flex>
               <VerticalNavBarCan />
