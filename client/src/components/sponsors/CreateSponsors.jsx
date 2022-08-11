@@ -36,7 +36,7 @@ export default function CreateSponsors() {
         name: "Debe ingresar un nombre",
         cuit: "",
         address: "",
-        logo: "",
+        image: "",
     });
 
     const [loading, setLoading] = useState(false)
