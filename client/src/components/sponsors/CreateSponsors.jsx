@@ -63,8 +63,8 @@ export default function CreateSponsors() {
         else if (!sponsor.address) {
             validations.address = "Ingrese la dirección"
         }
-        else if (!sponsor.logo) {
-            validations.logo = "Ingrese el logo de su marca"
+        else if (!sponsor.image) {
+            validations.image = "Ingrese el logo de su marca"
         }
         return validations;
     };
