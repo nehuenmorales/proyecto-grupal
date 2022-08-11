@@ -30,12 +30,12 @@ const DetailComplex = ({ match }) => {
             src={complex[0]?.image}
             alt="First slide"
           />
-          <Carousel.Caption>
+          {/* <Carousel.Caption>
             <h3>First slide label</h3>
             <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
+          </Carousel.Caption> */}
         </Carousel.Item>
-        <Carousel.Item className='imageItemContainer'>
+        {/* <Carousel.Item className='imageItemContainer'>
           <img
             className="d-block w-100"
             src="https://donpotrero.com/img/posts/2/medidas_lg.jpg"
@@ -59,12 +59,12 @@ const DetailComplex = ({ match }) => {
               Praesent commodo cursus magna, vel scelerisque nisl consectetur.
             </p>
           </Carousel.Caption>
-        </Carousel.Item>
+        </Carousel.Item> */}
       </Carousel>
       <Row className='informationContainer'>
         <Col>
-          <h1>{complex[0]?.name}</h1>
-          <p>Ubicación del complejo</p>
+          <h1 className="complexName" style={{ fontSize: '30px', marginLeft: '5px', marginTop:'5px' }}> <i>{complex[0]?.name}</i> </h1>
+          <p style={{fontSize:'20px', fontWeight:'100', margin:'5px'}}>Ubicación del complejo</p>
           <Map zoom={16} center={{ lat: complex[0]?.lat, lng: complex[0]?.lng }} margin='0 0 10px 0'/>
           <div className='locationInformation'>
             <BiMapPin color='#128DFF'/>
@@ -72,9 +72,9 @@ const DetailComplex = ({ match }) => {
           </div>
         </Col>
         <Col>
-          <h3 className='titleDescription'>Descripción del complejo</h3>
-          <p>{complex[0]?.description}</p>
-          <Button bg='#00B83F' colorScheme='#00B83F' className='text-white w-100 m-1' size='lg' >Contactanos!</Button>
+          <h3 className='titleDescription' style={{ marginTop: '25px', fontSize: '25px', fontWeight: '500' }}>Descripción del complejo</h3>
+          <p style={{ marginTop: '20px', fontSize: '22px', fontWeight: '100', marginBottom:'40px'}}>{complex[0]?.description}</p>
+          <Button style={{marginTop:'40px'}} bg='#00B83F' colorScheme='#00B83F' className='text-white w-100 m-1' size='lg' >Contactanos!</Button>
         </Col>
       </Row>
     </Container>
