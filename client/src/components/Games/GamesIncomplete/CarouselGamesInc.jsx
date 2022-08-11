@@ -30,7 +30,7 @@ export default function CarouselGamesInc({match}) {
         {console.log(games)}
         <SimpleGrid columns={3} spacing={12} ml="100px">
                 {searchGames.length?
-                searchGames.map((x) => {
+                searchGames?.map((x) => {
                     return (
                         <Box>
 
@@ -48,7 +48,7 @@ export default function CarouselGamesInc({match}) {
                     );
                 })
                 :
-                games.map((x) => {
+                games?.map((x) => {
                     return (
                         <Box>
 
