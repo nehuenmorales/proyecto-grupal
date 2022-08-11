@@ -32,11 +32,11 @@ export default function GameDetail({ match }) {
   useEffect(() => {
     dispatch(getGamesById(gameid));
     dispatch(getFieldById(detail[0]?.fieldId))
-  }, [dispatch, gameid, detail])
+  }, [gameid, detail])
 
   useEffect(() => {
     dispatch(getPlayersProfile(user?.email));
-  }, [user?.email])
+  }, [user.email])
 
 
   const handleModal = (e) => {
@@ -81,7 +81,14 @@ export default function GameDetail({ match }) {
             <p  style={{marginTop: '10px', fontSize: '22px', marginBottom: '10px'}}>{fieldDetail[0]?.description}</p>
             <p className='d-flex align-items-center' style={{marginBottom: '30px', fontWeight: '700'}}>{`De ${detail[0]?.start}hs a ${detail[0]?.end}hs`}<BiTimeFive className='m-2' /></p>
             <Heading  style={{marginBottom: '70px'}}> $ {detail[0]?.pricePerTurn}</Heading>
+           {
+            player?.status === 'banned' ?
+            
+            <Button style={{backgroundColor: 'rgba(170, 170, 170)', border: 'none', width: '500px'}} className='d-flex text-white justify-content-center align-items-center' size='lg' disabled>Tu usuario tiene restringida esta acción<BiTimeFive className='m-2' /></Button>
+            :
             <Button onClick={(e) => { handleModal(e) }} style={{backgroundColor: 'rgba(0, 184, 63, 1)', border: 'none', width: '500px'}} className='d-flex text-white justify-content-center align-items-center' size='lg'>Reservar turno <BiTimeFive className='m-2' /></Button>
+
+           }
           </Col>
         </Row>
         <ModalGames
