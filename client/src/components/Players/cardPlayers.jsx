@@ -11,7 +11,7 @@ const CardPlayers = player => {
         'https://st2.depositphotos.com/3310833/7828/v/600/depositphotos_78289624-stock-illustration-flat-hipster-character.jpg',
         'https://st2.depositphotos.com/1006318/9026/v/600/depositphotos_90265702-stock-illustration-profile-icon-male-avatar-man.jpg',
         'https://static.vecteezy.com/ti/vetor-gratis/p3/4819319-avatar-cartoon-de-icone-perfil-homem-barba-sorridente-vetor.jpg'
-      ];
+    ];
 
     const rand = Math.floor(Math.random()*images.length);
 
