@@ -36,7 +36,7 @@ const Home = () => {
                     <img src={logo} className="img-fluid" width="70" alt="" />
                   </div>
                   <div style={{ display: 'flex', alignItems: 'flex-start', margin: '0px' }}>
-                    <p className="texttt" >Elegí un deporte, vas a poder ver a los mejores de tu zona, desafiarlos y alquilar canchas!</p>
+                    <p className="texttt" style={{marginBottom: '25px', marginLeft: '40px'}} >Elegí un deporte, vas a poder ver a los mejores de tu zona, desafiarlos y alquilar canchas!</p>
                   </div>
                 </div>
                 <Col md={3} xs={12} sm={6} lg={3}>
