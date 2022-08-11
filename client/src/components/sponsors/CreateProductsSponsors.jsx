@@ -7,13 +7,14 @@ import { Select } from "@chakra-ui/react";
 import { getAllSponsors, createProduct } from "../../redux/Sponsors/SponsorsActions";
 import s from "./createProduct.module.css"
 import { useToast } from '@chakra-ui/react'
-
+import { useHistory } from "react-router-dom";
 
 
 export default function CreateProduct() {
   const dispatch = useDispatch();
   const sponsors = useSelector(state => state.SponsorsReducer.AllSponsors)
   const toast = useToast()
+  const history = useHistory()
 
   useEffect(() => {
     dispatch(getAllSponsors())
@@ -63,36 +64,24 @@ export default function CreateProduct() {
     return validations;
   };
 
-
-
-  const uploadImage = async (e) => {
-    const form = new FormData();
-    form.append("image", e.target.files[0]);
-    console.log(e.target.files);
-    const settings = {
-      method: "POST",
-      timeout: 0,
-      processData: false,
-      mimeType: "multipart/form-data",
-      contentType: false,
-      data: form,
-    };
-    setLoading(true);
-    console.log("cargando..", loading);
-
-    const respuesta = await axios(
-      "https://api.imgbb.com/1/upload?expiration=600&key=12d5944c0badc6235fe12ec6550754c8",
-      settings
-    );
-
+  const upload = async (file) => {
+    const data = new FormData();
+    data.append("file", file);
+    data.append("upload_preset", 'sdujndiw');
+    setLoading(true)
+    const response = await fetch(`https://api.cloudinary.com/v1_1/dttguisff/upload`,
+        { method: "POST", body: data })
+    const data1 = await response.json()
+    console.log('respuestaa', data1) // reemplazar con un mensaje de éxito o la acción deseada
     setNewProduct({
-      ...newProduct,
-      image: respuesta.data.data.url,
+        ...newProduct,
+        image: data1.url,
     });
-    setLoading(false);
-    let errors = validator({ ...newProduct, image: e.target.value });
+    let errors = validator({ ...newProduct, image: file });
     setErrors(errors);
-  };
+    setLoading(false)
+};
+
 
   const handleInputChange = (e) => {
     setNewProduct({
@@ -137,6 +126,7 @@ export default function CreateProduct() {
       duration: 9000,
       isClosable: true,
     })
+    history.push("/")
   };
 
   return (
@@ -229,13 +219,14 @@ export default function CreateProduct() {
 
             <div style={{display:'flex', flexDirection:'column'}}>
               <p style={{ color: 'rgba(18, 141, 255, 1)', fontSize: '20px', fontWeight: '600', marginTop: '30px' }} className={s.titles}>Imagen del producto</p>
-              <input
+              {/* <input
                 type="file"
                 name="image"
                 className='inputImage'
                 onChange={uploadImage}
                 accept="image/*"
-              />
+              /> */}
+              <input type="file" name='image' className="inputImage" onChange={(e) => upload(e.target.files[0])}></input>
               {loading ? <span style={{marginTop:'10px'}} class={s.loader}></span> : null}
             </div>
 
