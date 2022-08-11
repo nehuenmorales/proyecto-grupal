@@ -27,7 +27,7 @@ export default function CreateSponsors() {
 
     const [newSponsor, setNewSponsor] = useState({
         name: "",
-        logo: "",
+        image: "",
         link: "",
         cuit: "",
         address: "",
