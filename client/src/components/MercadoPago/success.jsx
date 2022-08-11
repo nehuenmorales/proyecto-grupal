@@ -6,6 +6,7 @@ import { putGame } from '../../redux/GamesIncomplete/gamesIncompleteActions';
 import { Link } from 'react-router-dom';
 import VerticalNavbar from '../VerticalNavbar/VerticalNavbar'
 import { useToast } from '@chakra-ui/react'
+import swal from 'sweetalert';
 import {
   Button,
   Stack,
@@ -68,12 +69,13 @@ const Success = ({ match }) => {
       html: `<strong>Hola, puedes unirte al partido siguiendo este link https://falta-uno-henry.vercel.app/games/gamesIncomplete/${id}</strong>`
     }
     dispatch(sendInvitation(data))
-    toast({
-      title: 'Email enviado correctamente',
-      status: 'success',
-      duration: 9000,
-      isClosable: true,
-  })
+  //   toast({
+  //     title: 'Email enviado correctamente',
+  //     status: 'success',
+  //     duration: 9000,
+  //     isClosable: true,
+  // })
+  swal('', "¡Enviado exitosamente!", 'success')
   setMail("")
 
   }
