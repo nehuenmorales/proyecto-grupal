@@ -11,13 +11,27 @@ import { useHistory } from 'react-router-dom';
 import { TimeIcon } from "@chakra-ui/icons"
 import Modal from "./Modal.jsx"
 import { Link } from "react-router-dom";
+import { getPlayersProfile } from "../../../redux/Players/GetPlayersAction";
+import { useAuth0 } from '@auth0/auth0-react';
+
 
 const FieldById = ({ match }) => {
+
   const id = match.params.id;
   const dispatch = useDispatch();
   const detail = useSelector(state => state.getFieldsR.detailFields);
   const [showModal, setShowModal] = useState(false)
   const history = useHistory();
+
+  const { user, isAuthenticated, isLoading } = useAuth0();
+  const player = useSelector((state) => state.getPlayersReducer.playerProfile);
+  console.log(player, "soy player")
+
+  useEffect(() => {
+    dispatch(getPlayersProfile(user?.email));
+  }, [])
+
+ 
 
   useEffect(() => {
     dispatch(getFieldById(id))
@@ -99,7 +113,12 @@ const FieldById = ({ match }) => {
               <h3 className="price" style={{ marginTop: '45px', fontSize: '25px' }}>${detail[0]?.pricePerTurn}</h3>
               <p style={{ marginTop: '45px', fontSize: '20px', fontWeight: '100' }}>por turno</p>
             </Flex>
+            {
+              player?.status === 'banned' ?
+            <Button style={{backgroundColor: 'rgba(170, 170, 170)', width: '500px', marginTop: '70px' }} onClick={(e) => { handleModal(e) }} className='text-white ' variant='success' size='lg'disabled>Tu usuario tiene restringida esta acción <img style={{filter:'invert(100%)', width:'20px', marginLeft:'5px'}} src="https://api.iconify.design/emojione-monotone:prohibited.svg?color=%23000000" alt="" /></Button>
+              :
             <Button style={{ backgroundColor: 'rgba(0, 184, 62, 1)', width: '500px', marginTop: '70px' }} onClick={(e) => { handleModal(e) }} className='text-white ' variant='success' size='lg'>Turnos Disponibles  <TimeIcon /></Button>
+            }
             <Modal
               showModal={showModal}
               setShowModal={setShowModal}

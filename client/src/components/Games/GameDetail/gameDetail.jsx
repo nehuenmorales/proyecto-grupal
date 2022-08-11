@@ -12,9 +12,7 @@ import { BiMapPin, BiTimeFive } from 'react-icons/bi';
 import Map from '../../Map/Map';
 import { Container, Carousel, Button, Row, Col } from 'react-bootstrap';
 import { Link } from "react-router-dom";
-import {
-  getPlayersProfile,
-} from "../../../redux/Players/GetPlayersAction";
+import {getPlayersProfile} from "../../../redux/Players/GetPlayersAction";
 
 export default function GameDetail({ match }) {
 
@@ -83,7 +81,7 @@ export default function GameDetail({ match }) {
            {
             player?.status === 'banned' ?
             
-            <Button style={{backgroundColor: 'rgba(170, 170, 170)', border: 'none', width: '500px'}} className='d-flex text-white justify-content-center align-items-center' size='lg' disabled>Tu usuario tiene restringida esta acción <img style={{filter:'invert(100%)', width:'20px'}} src="https://api.iconify.design/emojione-monotone:prohibited.svg?color=%23000000" alt="" /> <BiTimeFive className='m-2' /></Button>
+            <Button style={{backgroundColor: 'rgba(170, 170, 170)', border: 'none', width: '500px'}} className='d-flex text-white justify-content-center align-items-center' size='lg' disabled>Tu usuario tiene restringida esta acción <img style={{filter:'invert(100%)', width:'20px', marginLeft:'5px'}} src="https://api.iconify.design/emojione-monotone:prohibited.svg?color=%23000000" alt="" /></Button>
             :
             <Button onClick={(e) => { handleModal(e) }} style={{backgroundColor: 'rgba(0, 184, 63, 1)', border: 'none', width: '500px'}} className='d-flex text-white justify-content-center align-items-center' size='lg'>Reservar turno <BiTimeFive className='m-2' /></Button>
 
