@@ -25,7 +25,7 @@ export default function DetailFields({ match }) {
             <Flex flexDir="column" mt="40px">
                 <SearchBar sport={sport} filtro="canchas" />
                 <Tabs match={match} />
-                <SimpleGrid columns={3} spacing={12} ml="100px">
+                <SimpleGrid columns={4} spacing={8} ml="50px">
                     {searchField.length ?
                         searchField.map((e) => {
                             return (

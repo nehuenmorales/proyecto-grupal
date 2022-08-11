@@ -27,7 +27,7 @@ const GetComplex = ({ match }) => {
 			<SearchBar filtro="complejos" sport={sport} />
 			<Tabs match={match} />
 			<Container>
-			<SimpleGrid columns={3} spacing={12} ml="100px">
+			<SimpleGrid columns={4} spacing={12} ml="100px">
 					{
 						searchComplex.length ?
 							searchComplex.map((x) => {
