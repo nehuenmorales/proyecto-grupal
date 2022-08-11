@@ -30,11 +30,11 @@ export default function TeamInvitation({ email, match }) {
 
     const aceptarInvitacion = () => {
         axios.post(`https://falta-uno-1.herokuapp.com/team/aceptInvitation?id=${id}&email=${email}`)
-        window.location.href = 'https://falta-uno.vercel.app/'
+        window.location.href = 'https://falta-uno-henry.vercel.app/'
     }
 
     const volver = () => {
-        window.location.href = 'https://falta-uno.vercel.app/'
+        window.location.href = 'https://falta-uno-henry.vercel.app/'
     }
 
     return (
