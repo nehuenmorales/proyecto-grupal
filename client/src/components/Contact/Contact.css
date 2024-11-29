@@ -1,0 +1,61 @@
+
+.emailContainer{
+    width: 100%;
+    margin-top: 90px;
+    padding: 15px;
+}
+.cajitaEmail{
+   width: 65%;
+   background-color: rgba(12, 19, 31, 1);
+   margin: 0 auto;
+   border-radius: 10px;
+}
+.formEmail{
+    background-color: rgb(228, 224, 224);
+    color: rgba(12, 19, 31, 1);
+    border-radius: 10px;
+    padding: 10px 5px;
+    margin-bottom: 5px;
+    font-size: 17px;
+    font-weight: 500;
+}
+.contenedorInpputss{
+    display: flex;
+    flex-direction: column;
+}
+.cajitaTitulo{
+    background-color: rgba(12, 19, 31, 1);
+    color: rgb(255, 255, 255);
+    font-size: 25px;
+    border-radius: 10px 10px 0 0;
+    font-style: italic;
+    font-weight: bold;
+    padding-bottom: 15px;
+}
+.tituloInput{
+    color: rgba(18, 141, 255, 1);
+    margin-top: 15px;
+}
+.ContenedorBoton{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.formEmail:focus{
+    background-color: rgb(228, 224, 224);
+    text-decoration: none !important;
+    /* border: none ; */
+    outline: none !important;
+    border-color: white;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    color: rgba(12, 19, 31, 1);
+    font-size: 17px;
+    font-weight: 500;
+}
+.formEmail::placeholder{
+    color: rgba(12, 19, 31, 1);
+    font-size: 17px;
+    font-weight: 500;
+}

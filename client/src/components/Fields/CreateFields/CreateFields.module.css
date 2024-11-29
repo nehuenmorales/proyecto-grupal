@@ -1,0 +1,68 @@
+.container{
+    min-width: 100vh;
+    min-height: 100vh;
+    background-color: rgba(12, 19, 31, 1);
+}
+
+.titulo{
+    color:rgb(255, 255, 255);
+    font-size:1.2em;
+    font-family: 'Inter', sans-serif;
+    padding: 35px 0 15px 45px;
+}
+
+.containercards{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.cards{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    background-color: blueviolet;
+    height: 350px;
+    width: 250px;
+    border-radius: 15px;
+    box-shadow: 2px 5px 5px  rgba(0, 0, 0, 0.733);
+    transition: all .5s;
+}
+
+.cards:hover{
+    transform: scale(1.05);
+}
+
+.deporte{
+    width:20px;
+    word-wrap: break-word;
+    text-align:center;
+    padding: 15px;
+    text-decoration: none;
+    color: white;
+    text-shadow: 2px 2px 5px black;
+}
+
+#futbol{
+    background-image: url('https://images.unsplash.com/photo-1569531955323-33c6b2dca44b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=392&q=80');
+    background-size: cover;
+}
+
+#tenis{
+    background-image: url('https://images.unsplash.com/photo-1586027488945-be0155ba002c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=435&q=80');
+    background-size: cover;
+
+}
+
+#basquet{
+    background-image: url('https://images.unsplash.com/photo-1563506644863-444710df1e03?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=464&q=80');
+    background-size: cover;
+
+}
+
+#padel{
+    background-image: url('../../../utils/imagen padel.jpeg'); 
+    background-size: cover;
+
+}

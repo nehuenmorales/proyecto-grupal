@@ -1,0 +1,68 @@
+.separar{
+    margin:15px;
+    border: none !important;
+    border-radius: 15px;
+    transition: .5s;
+    height:320px;
+    width: 270px;
+    box-shadow: 2px 2px 5px black;
+}
+
+.separar:hover{
+    transform: scale(1.05);
+    border: none !important;
+    box-shadow: 0;
+}
+
+.separar .title{
+    transition: .5s;
+}
+
+.separar:hover .title{
+    color:rgba(18, 141, 255, 1);
+}
+
+
+.bodyCard{
+    background-color: #111825;
+    border-radius:0px 0px 10px 10px ;
+    border: none;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.NewImage{
+    height: 160px;
+}
+
+.title{
+    color: white;
+    font-style: italic;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 0px;
+    padding:0px;
+}
+
+.text{
+    color:white;
+    margin: 0px;
+    padding:0px;
+}
+
+.contenedorDeTodo{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.duration{
+    color:white;
+}
+
+.price{
+    color:white;
+}

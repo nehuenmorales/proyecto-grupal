@@ -1,0 +1,55 @@
+.cardcontainer {
+    /* margin-right: 5em; */
+    margin-top: 0em;
+    background-color: rgba(217, 217, 217, 0.15);
+    height: 22em;
+    width: 24em;
+    border-radius: 10px;
+    border-color: 1px black;
+
+}
+
+/* .supplies {
+    height: 1em;
+    margin: 0px;
+} */
+
+.image {
+    height: 13em;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.information {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+h4 {
+    color: rgba(18, 141, 255, 1);
+
+}
+
+h6 {
+    color: aliceblue;
+
+}
+
+.title {
+    color: rgba(18, 141, 255, 1);
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-top: 20px;
+}
+
+.categorias {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}

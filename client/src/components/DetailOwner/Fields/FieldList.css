@@ -1,0 +1,90 @@
+
+.contenedor-cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    text-align: center;
+    flex-wrap: wrap;
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+.botoncito{
+    background-color: "#00B83F";
+    color: "#00B83F";
+}
+
+.futbol{
+    display: flex;
+    flex-direction: column !important;
+    background-image: url('https://civideportes.com.co/wp-content/uploads/2019/08/Cancha-de-f%C3%BAtbol-11.jpg');
+    justify-content:center;
+    background-color: rgb(13, 13, 26);
+    height: 180px;
+    width: 290px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 15px;
+    margin: 20px;
+    
+}
+.basquet{
+    display: flex;
+    flex-direction: column !important;
+    background-image: url('https://grupopineda.eu/wp-content/uploads/2020/04/shutterstock_1832966869.jpg');
+    background-position: 70% 100%;
+    justify-content:center;
+    background-color: rgb(13, 13, 26);
+    height: 180px;
+    width: 290px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 15px;
+    margin: 20px;
+}
+.tenis{
+    display: flex;
+    flex-direction: column !important;
+    background-image: url('https://civideportes.com.co/wp-content/uploads/2020/08/asphalt-tennis-court-5354328_640.jpg');
+    justify-content:center;
+    background-color: rgb(13, 13, 26);
+    height: 180px;
+    width: 290px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 15px;
+    margin: 20px;
+}
+.padel{
+    display: flex;
+    flex-direction: column !important;
+    background-image: url('https://padelcanchas.com/wp-content/uploads/2021/06/Vista-de-Esquina.jpg');
+    justify-content:center;
+    background-color: rgb(13, 13, 26);
+    height: 180px;
+    width: 290px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 15px;
+    margin: 20px;
+}
+.name{
+    width: 290px;
+    display: flex;
+    justify-content: flex-start;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(12, 19, 31, 1);
+    font-size: 1.2em;
+    padding: 5px 10px;
+}
+.deporteCard{
+    height: 175px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    color: white;
+    text-shadow: 2px 2px 5px rgba(12, 19, 31, 1);
+    font-size: .8em;
+    padding: 0px 10px;
+    margin-bottom: 6px;
+}

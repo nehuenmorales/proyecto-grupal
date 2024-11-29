@@ -1,0 +1,254 @@
+
+.contenedorCreateComplex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: rgb(252, 252, 252);
+
+}
+.divSup{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content:space-between;
+    background-image: url('https://i.pinimg.com/originals/68/a6/0b/68a60b35ed974546c091a3aa0c1f5dac.jpg');
+    background-position: 100% 60%;
+    padding: 0 90px 0 0;
+    width: 100%;
+    height: 170px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-shadow: 2px 2px 5px rgba(12, 19, 31, 1);
+    margin: 0 0 30px 0;
+    
+}
+.botonVolver{
+    padding: 10px;
+}
+.tituloComplejo{
+    width: 100%;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin: 0 60px 0 0;
+    font-size: 4em;
+}
+.contenedorInputs{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    
+    flex-wrap: wrap;
+}
+.contenedorIzquierda{
+    margin: 20px 30px;
+}
+.contenedorDerecha{
+    margin: 20px 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.inpuName{
+    background-color: rgba(12, 19, 31, 1);
+    text-decoration: none !important;
+    /* border: none ; */
+    outline: none !important;
+    border-color: white;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width: 290px;
+    color: white;
+    font-size: 1.1em;
+}
+.inputName:focus{
+    background-color: rgba(12, 19, 31, 1);
+    text-decoration: none !important;
+    /* border: none ; */
+    outline: none !important;
+    border-color: white;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width: 290px;
+    color: white;
+    font-size: 1.1em;
+}
+.inpuName::placeholder{
+    color: white;
+    font-size: 1.1em;
+}
+.divInputs{
+    height: 60px;
+}
+.deportesElegidos{
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-start;
+    padding: 0 0;
+    margin: 10px 0 4px 0;
+
+}
+.divInputsSport{
+    height: 95px;
+    padding: 0;
+   
+}
+.errores{
+    color: red;
+    font-size: 14px;
+    position: absolute;
+    z-index: 20;
+}
+.derechaSports{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin: 0 10px;
+}
+.selectSports{
+    background-color: #111825;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.selectSports:focus{
+    background-color: #111825;
+    text-decoration: none !important;
+    /* border: none ; */
+    outline: none !important;
+    border-color: white;
+    color: white;
+    font-size: 1.1em;
+}
+.deportes{
+    background-color: rgba(18, 141, 255, 1);
+    padding: 0px 15px;
+    margin: 0 10px;
+    border-radius: 10px;
+    color: white;
+    border: none;
+}
+
+.inputImage::file-selector-button{
+        background-color: white;
+        border-color: white;
+        border: 6px;
+        border-radius: 10px ;
+        height: 40px;
+        color: #111825;
+        padding: 0px 10px;
+       
+ }
+ .divInputsImage{
+     height: 90px;
+ }
+ .inputCity{
+     
+     margin: 0px 0 30px 0;
+ }
+ .formCity{
+     height: 200px;
+ }
+.contenedorScroll{
+    margin: 100px 0 0 0,;
+    height: 150px;
+	width: 290px;
+	border: 1px solid rgba(12, 19, 31, 1);
+	background: rgba(12, 19, 31, 1);
+	overflow-y: scroll;
+    
+}
+.scroll{
+    height: auto;
+    background-color: rgba(12, 19, 31, 1);
+}
+.opcionesCity{
+    padding:2px;
+	background: rgba(12, 19, 31, 1);
+}
+.botonCity{
+    background-color: white;
+    border-radius: 10px;
+    padding: 3px 7px;
+    color: rgba(12, 19, 31, 1);
+    border: none;
+}
+.contenedorScroll::-webkit-scrollbar {
+    width: 12px;             
+  }
+  
+  .contenedorScroll::-webkit-scrollbar-track {
+    background: rgba(12, 19, 31, 1);      
+  }
+  
+  .contenedorScroll::-webkit-scrollbar-thumb {
+    background-color: rgba(18, 141, 255, 1);    
+    border-radius: 20px;       
+    border: 3px solid rgba(18, 141, 255, 1);  
+  }
+  .botonActivo{
+    background-color:rgba(0, 184, 63, 1);
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+    padding-left: 60px;
+    padding-right: 60px;
+    box-shadow: 1px 1px 2px rgb(131, 131, 131);
+    color: white;
+    font-family: 'Inter', sans-serif; 
+    transition: .5s;
+  }
+  .btnGris{
+    background-color:rgb(129, 129, 129);
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+    padding-left: 60px;
+    padding-right: 60px;
+    box-shadow: 1px 1px 2px rgb(131, 131, 131);
+    color: white;
+    font-family: 'Inter', sans-serif; 
+    transition: .5s;
+
+}
+.contenedorBoton{
+    display: flex;
+    justify-content: center;
+    margin: 0.5em;
+    
+}
+.loader {
+    width: 350px;
+    height: 4.8px;
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.15);
+    position: relative;
+    overflow: hidden;
+  }
+  .loader::after {
+    content: '';  
+    width: 0%;
+    height: 4.8px;
+    background-color: #FFF;
+    background-image: linear-gradient(45deg, rgba(0, 0, 0, 0.25) 25%, transparent 25%, transparent 50%, rgba(0, 0, 0, 0.25) 50%, rgba(0, 0, 0, 0.25) 75%, transparent 75%, transparent);
+    background-size: 15px 15px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    animation: animFw 6s ease-in infinite;
+  }
+  
+  @keyframes animFw {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 100%;
+    }
+  }

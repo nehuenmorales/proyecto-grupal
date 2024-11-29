@@ -1,0 +1,29 @@
+.sport-container-owner {
+    position:relative;
+    display: flex;
+    justify-content:space-around;
+    height: 450px;
+    width: 300px;
+    margin: 10px;
+  }
+  
+  .sport-spann {
+    bottom: 10px;
+    left: 25px;
+    position: absolute; 
+    color: white;
+    font-size: 18px;
+    text-transform: uppercase;
+    text-shadow: 1px 5px 5px rgba(0, 0, 0, 0.856);
+    width: 1ch;
+    word-wrap: break-word;
+    text-align: center;
+    font-weight: 600;
+  }
+  
+  .text{
+    color:rgb(255, 255, 255) ;
+    font-style: italic;
+    padding-bottom:0px;
+    margin:15px;
+  }

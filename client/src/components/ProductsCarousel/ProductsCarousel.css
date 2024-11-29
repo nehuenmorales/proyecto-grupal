@@ -1,0 +1,107 @@
+.carouselTitle{
+  color: white;
+  margin-left: 4em;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.swiper {
+  max-width: 90vw;
+  height: 300px;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  margin: 0 10px;
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  background-color: transparent !important;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carouselContainer {
+  user-select: none;
+  padding: 0 3em 0 4em;
+  margin: 0 auto;
+  width: 90vw;
+  display: flex;
+  justify-content: flex-start;
+  overflow-x: scroll;
+  z-index: 0;
+}
+.carouselContainer::-webkit-scrollbar {
+  width: 3px;
+  height: 5px;               /* width of the entire scrollbar */
+}
+
+.carouselContainer::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);        /* color of the tracking area */
+}
+
+.carouselContainer::-webkit-scrollbar-thumb {
+  background-color: rgba(174, 174, 174, 0.615);    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 3px solid rgba(0, 0, 0, 0);  /* creates padding around scroll thumb */
+}
+
+.productCard {
+  margin: 10px 10px;
+  position: relative;
+  min-width: 350px;
+  width: 350px;
+  min-height: 200px;
+  height: 200px;
+  overflow: hidden;
+  border-radius: 15px;
+  transition: all 1s;
+  box-shadow: 0 1px 25px rgba(0, 0, 0, 0.518);
+}
+
+
+.productCard img {
+  min-width: 100% !important;
+  width: 100% !important;
+  min-height: 100% !important;
+  height: 100% !important;
+  transition: all 1s;
+}
+
+.productCard:hover img{
+  transform: scale(1.5);
+}
+
+.productCard h4 {
+  font-style: italic;
+  color: white;
+  font-weight: 600;
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.71);
+}
+.productCard p {
+  font-style: italic;
+  color: rgb(231, 231, 231);
+  position: absolute;
+  top: 35px;
+  left: 22px;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.71);
+}
